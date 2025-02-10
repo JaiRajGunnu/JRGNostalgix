@@ -57,7 +57,7 @@ export default function Login() {
         <title>Login</title>
       </Head>
 
-      <BackgroundBeamsWithCollision className="flex flex-col justify-center items-center min-h-screen">
+      <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-white/10 border border-white/30 
                         transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
           <h2 className="text-4xl font-bold text-center text-white mb-6">Login</h2>
