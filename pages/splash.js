@@ -7,12 +7,16 @@ export default function Splash() {
   const router = useRouter();
 
   useEffect(() => {
-    const storedName = localStorage.getItem("userName"); 
-    if (storedName) {
-      setUsername(storedName);  // ✅ Display stored name
+    const token = localStorage.getItem("token"); // ✅ Check if user is logged in
+    const storedName = localStorage.getItem("userName");
+
+    if (!token) {
+      // ✅ If no token, redirect to Home Page
+      router.push("/");
+    } else if (storedName) {
+      setUsername(storedName); // ✅ Show stored user name
     }
-  }, []);
-  
+  }, [router]); // ✅ Add router dependency to ensure redirection happens
 
   return (
     <>
