@@ -32,9 +32,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       expiresIn: '7d',
     });
 
+    // ✅ Store the user's **name** instead of email in localStorage
     return res.status(200).json({
       token,
-      user: { email: existingUser.email, name: existingUser.name || 'Guest' }, // Ensure user data exists
+      user: { name: existingUser.name || 'Guest' }, // Ensure name is provided
     });
 
   } catch (error) {

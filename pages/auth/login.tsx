@@ -24,30 +24,31 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-
+  
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-
+  
     const data = await res.json();
-
+  
     if (res.ok && data.token && data.user) {
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userEmail", data.user.email || "");
-
+      localStorage.setItem("userName", data.user.name || "Guest"); // ✅ Save name instead of email
+  
       if (rememberMe) {
         localStorage.setItem("rememberMe", "true");
       } else {
         localStorage.removeItem("rememberMe");
       }
-
+  
       router.push("/splash");
     } else {
       setError(data.error || "Login failed. Please check your credentials.");
     }
   };
+  
 
   return (
     <>
