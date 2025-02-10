@@ -21,7 +21,7 @@ export default function HomePage() {
         <p className="text-3xl text-gray-600">Start by navigating to the login page.</p>
 
         <button
-          className="mt-[3rem] bg-white text-black font-semibold py-2 px-4 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
+          className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
           onClick={() => router.push("/auth/login")}
         >
           Get started

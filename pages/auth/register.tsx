@@ -4,12 +4,14 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head"; // ✅ Import Head for setting page title
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // ✅ Import icons
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // ✅ State for toggling password
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -65,21 +67,35 @@ export default function Register() {
               required
             />
 
-            {/* Password Field */}
+            {/* Password Field with Eye Toggle */}
             <label className="text-white mb-1 text-lg">Password</label>
-            <input
-              type="password"
-              placeholder="Enter your password"
-              className="w-full p-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-            />
+            <div className="relative">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Enter your password"
+                className="w-full p-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-12"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+              />
+              {/* Eye Icon for Password Visibility */}
+              <button
+                type="button"
+                className="absolute inset-y-0 right-4 flex items-center text-white"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? (
+                  <EyeSlashIcon className="w-6 h-6 text-gray-300" />
+                ) : (
+                  <EyeIcon className="w-6 h-6 text-gray-300" />
+                )}
+              </button>
+            </div>
 
             {/* Register Button */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-purple-500 to-blue-500 text-white font-semibold py-3 rounded-lg text-lg mt-10 mb-4 transition duration-300 ease-in-out hover:from-blue-500 hover:to-purple-500"
+              className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
             >
               Register
             </button>
