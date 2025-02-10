@@ -10,7 +10,7 @@ export default function HomePage() {
     <>
       {/* ✅ Set Page Title & Favicon */}
       <Head>
-        <title>Home</title>
+        <title>Jai Raj's Slam Book</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
