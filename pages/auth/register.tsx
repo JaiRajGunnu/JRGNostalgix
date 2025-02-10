@@ -4,7 +4,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head"; // ✅ Import Head for setting page title
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // ✅ Import icons
+import { EyeIcon, EyeSlashIcon, ArrowRightIcon } from "@heroicons/react/24/solid"; // ✅ Import ArrowRightIcon
+import { ChevronRightIcon } from "@heroicons/react/24/solid"; // ✅ Using ChevronRightIcon
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -41,7 +42,7 @@ export default function Register() {
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-white/10 border border-white/30 
-                        transition-transform duration-300 hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                        transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
           <h2 className="text-4xl font-bold text-center text-white mb-6">Register</h2>
           <form onSubmit={handleSubmit} className="flex flex-col">
             
@@ -92,13 +93,14 @@ export default function Register() {
               </button>
             </div>
 
-            {/* Register Button */}
+            {/* Register Button with Right Arrow Icon */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
+              className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
             >
               Register
-            </button>
+              <ChevronRightIcon className="w-4 h-4  stroke-current mt-[2px]" />
+              </button>
 
             {/* Divider Line */}
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />
