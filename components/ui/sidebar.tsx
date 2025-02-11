@@ -1,4 +1,3 @@
-
 // /sidebar.tsx
 
 "use client";
@@ -6,7 +5,8 @@ import { cn } from "@/lib/utils";
 import Link, { LinkProps } from "next/link";
 import React, { useState, createContext, useContext } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { IconMenu2, IconX } from "@tabler/icons-react";
+import { IconX } from "@tabler/icons-react"; // Keep IconX for the mobile sidebar close button
+import { TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb"; // Import from react-icons/tb
 
 interface Links {
     label: string;
@@ -110,6 +110,7 @@ export const DesktopSidebar = ({
     );
 };
 
+
 export const MobileSidebar = ({
     className,
     children,
@@ -124,48 +125,46 @@ export const MobileSidebar = ({
                 )}
                 {...props}
             >
-                {/* Sidebar Toggle Button */}
-                <div className="flex justify-start z-20 w-full">
+                {/* Replace the single hamburger icon with toggle icons */}
+                <div className="flex justify-start z-20 w-full opacity-[0.8]">
                     {open ? (
-                        <IconX
-                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200 stroke-[2] cursor-pointer"
+                        <TbLayoutSidebarLeftCollapse // Show collapse icon when open
+                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200"
                             onClick={() => setOpen(false)}
                         />
                     ) : (
-                        <IconMenu2
-                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200 stroke-[2] cursor-pointer"
+                        <TbLayoutSidebarLeftExpand // Show expand icon when closed
+                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200"
                             onClick={() => setOpen(true)}
                         />
                     )}
                 </div>
-            </div>
-
-            <AnimatePresence>
-                {open && (
-                    <motion.div
-                        initial={{ x: "-100%", opacity: 0 }}
-                        animate={{ x: 0, opacity: 1 }}
-                        exit={{ x: "-100%", opacity: 0 }}
-                        transition={{
-                            duration: 0.3,
-                            ease: "easeInOut",
-                        }}
-                        className={cn(
-                            "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
-                            className
-                        )}
-                    >
-                        {/* Close button inside sidebar */}
-                        <div
-                            className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200 cursor-pointer"
-                            onClick={() => setOpen(false)}
+                <AnimatePresence>
+                    {open && (
+                        <motion.div
+                            initial={{ x: "-100%", opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: "-100%", opacity: 0 }}
+                            transition={{
+                                duration: 0.3,
+                                ease: "easeInOut",
+                            }}
+                            className={cn(
+                                "fixed h-full w-full inset-0 bg-white dark:bg-neutral-900 p-10 z-[100] flex flex-col justify-between",
+                                className
+                            )}
                         >
-                            <IconX className="h-6 w-6" />
-                        </div>
-                        {children}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+                            <div
+                                className="absolute right-10 top-10 z-50 text-neutral-800 dark:text-neutral-200"
+                                onClick={() => setOpen(false)}
+                            >
+                                <IconX />
+                            </div>
+                            {children}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
         </>
     );
 };
