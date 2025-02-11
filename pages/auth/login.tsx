@@ -17,41 +17,41 @@ export default function Login() {
   const router = useRouter();
 
   useEffect(() => {
-    // ✅ If user is already logged in, redirect to splash screen
+    // ✅ If user is already logged in, redirect to community screen
     const token = localStorage.getItem("token");
     if (token) {
-      router.replace("/splash"); // Redirects without adding to history
+      router.replace("/community"); // Redirects without adding to history
     }
   }, []);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
-  
+
     const res = await fetch("/api/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
     });
-  
+
     const data = await res.json();
-  
+
     if (res.ok && data.token && data.user) {
       localStorage.setItem("token", data.token);
       localStorage.setItem("userName", data.user.name || "Guest"); // ✅ Save name instead of email
-  
+
       if (rememberMe) {
         localStorage.setItem("rememberMe", "true");
       } else {
         localStorage.removeItem("rememberMe");
       }
-  
-      router.push("/splash");
+
+      router.push("/community");
     } else {
       setError(data.error || "Login failed. Please check your credentials.");
     }
   };
-  
+
 
   return (
     <>
@@ -101,22 +101,21 @@ export default function Login() {
               </button>
             </div>
 
-{/* Remember Me Checkbox using CheckIcon */}
-<div
-  className="flex items-center mt-4 cursor-pointer"
-  onClick={() => setRememberMe(!rememberMe)}
->
-  <div
-    className={`w-4 h-4 flex items-center justify-center border-2 rounded ${
-      rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
-    }`}
-  >
-    {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
-  </div>
-  <label className="text-gray-300 text-sm ml-2 cursor-pointer">
-    Remember this device?
-  </label>
-</div>
+            {/* Remember Me Checkbox using CheckIcon */}
+            <div
+              className="flex items-center mt-4 cursor-pointer"
+              onClick={() => setRememberMe(!rememberMe)}
+            >
+              <div
+                className={`w-4 h-4 flex items-center justify-center border-2 rounded ${rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
+                  }`}
+              >
+                {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
+              </div>
+              <label className="text-gray-300 text-sm ml-2 cursor-pointer">
+                Remember this device?
+              </label>
+            </div>
 
             {/* Divider Line */}
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />

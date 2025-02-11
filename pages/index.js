@@ -16,7 +16,7 @@ export default function HomePage() {
 
   const handleGetStarted = () => {
     if (isLoggedIn) {
-      router.push("/splash"); // Redirect to splash screen if logged in
+      router.push("/community"); // Redirect to splash screen if logged in
     } else {
       router.push("/auth/login"); // Redirect to login page if not logged in
     }
