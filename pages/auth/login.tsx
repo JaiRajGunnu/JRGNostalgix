@@ -5,6 +5,7 @@ import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon } from "@heroicons/react/24/solid"; // ✅ Using ChevronRightIcon
+import { CheckIcon } from "@heroicons/react/24/solid"; // ✅ Import CheckIcon
 
 
 export default function Login() {
@@ -100,19 +101,22 @@ export default function Login() {
               </button>
             </div>
 
-            {/* Remember Me Checkbox */}
-            <div className="flex items-center mt-3">
-              <input
-                type="checkbox"
-                id="rememberMe"
-                className="w-4 h-4 text-blue-500 bg-transparent border-2 border-white/50 rounded cursor-pointer"
-                checked={rememberMe}
-                onChange={() => setRememberMe(!rememberMe)}
-              />
-              <label htmlFor="rememberMe" className="text-gray-300 text-sm ml-2 my-2 cursor-pointer ">
-                Remember this device?
-              </label>
-            </div>
+{/* Remember Me Checkbox using CheckIcon */}
+<div
+  className="flex items-center mt-4 cursor-pointer"
+  onClick={() => setRememberMe(!rememberMe)}
+>
+  <div
+    className={`w-4 h-4 flex items-center justify-center border-2 rounded ${
+      rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
+    }`}
+  >
+    {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
+  </div>
+  <label className="text-gray-300 text-sm ml-2 cursor-pointer">
+    Remember this device?
+  </label>
+</div>
 
             {/* Divider Line */}
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />
