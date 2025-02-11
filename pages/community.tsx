@@ -1,5 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
+
+
 import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { motion } from "framer-motion";
@@ -7,6 +9,8 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCircle } from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
+import { Friends } from "@/components/ui/friends";
+import { fakeTestimonials } from "@/components/ui/friends"; // ✅ Import the testimonials array
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
@@ -32,6 +36,7 @@ const UserAvatar = ({ username }: { username: string }) => {
 
 export default function Community() {
   const [username, setUsername] = useState("Guest");
+  const [showFriends, setShowFriends] = useState(false); // ✅ New state to control Friends component visibility
   const router = useRouter();
 
   useEffect(() => {
@@ -50,7 +55,6 @@ export default function Community() {
     localStorage.clear(); // ✅ Clear all local storage
     window.location.href = "/"; // ✅ Hard reload to prevent Next.js rendering issues
   };
-  
 
   const links = [
     { label: "Dashboard", href: "#", icon: <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5" /> },
@@ -92,15 +96,20 @@ export default function Community() {
         </Sidebar>
 
         <div className="flex-1 flex flex-col justify-center items-center min-h-screen text-white bg-black">
-          <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
-            <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
-            <h2 className="text-3xl text-gray-600">Welcome, {username}!</h2>
-            <button
-          className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
-        >
-          Explore now
-        </button>
-          </BackgroundBeamsWithCollision>
+{showFriends ? ( 
+  <Friends testimonials={fakeTestimonials} /> // ✅ Now it gets the correct testimonials
+) : (
+  <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
+    <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
+    <h2 className="text-3xl text-gray-600">Welcome, {username}!</h2>
+    <button
+      onClick={() => setShowFriends(true)}
+      className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
+    >
+      Explore now
+    </button>
+  </BackgroundBeamsWithCollision>
+)}
         </div>
       </div>
     </>
