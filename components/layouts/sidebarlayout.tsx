@@ -49,7 +49,7 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
     { label: "Home", href: "#", icon: <IconHome className="h-8 w-8" /> },
     // { label: "Dashboard", href: "#", icon: <IconBrandTabler className="h-8 w-8" /> },
     { label: "Profile", href: "#", icon: <IconUserBolt className="h-8 w-8" /> },
-    { label: "Feedback", href: "#", icon: <IconMessage2Code className="h-8 w-8" /> },
+    { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "#", icon: <IconSettings className="h-8 w-8" /> },
     // { label: "Back", href: "#", icon: <IconArrowLeftDashed className="h-8 w-8" />},
     { label: "Logout", href: "#", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
