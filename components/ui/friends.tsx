@@ -8,7 +8,7 @@ import { useEffect, useState } from "react";
 type Testimonial = {
   quote: string;
   name: string;
-  designation: string;
+  fullname: string;
   src: string;
 };
 // Fake Testimonials Data
@@ -16,26 +16,68 @@ export const fakeTestimonials: Testimonial[] = [
   {
     quote: "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
     name: "Kanna",
-    designation: "Software Developer",
+    fullname: "Sai Tarun",
     src: "/img/img1.avif",
-  },
-  {
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Chinnuu",
-    designation: "Best Friend Forever",
-    src: "/img/img2.avif",
   },
   {
     quote: "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
     name: "Vissu",
-    designation: "Web Developer",
+    fullname: "Viswanadham",
     src: "/img/img3.avif",
   },
   {
     quote: "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
     name: "Likki",
-    designation: "Cloud Engineer",
+    fullname: "Likhith",
     src: "/img/img4.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Chinnuu",
+    fullname: "Keerthika",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Pavii",
+    fullname: "Rakshanna",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Praneeth",
+    fullname: "Sri Praneeth",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Gopi",
+    fullname: "Gopi Krishna",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Magii",
+    fullname: "Lakshmi Madhuri",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Bathuu",
+    fullname: "Bhargavi",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Paddhu",
+    fullname: "Padma Sri",
+    src: "/img/img2.avif",
+  },
+  {
+    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    name: "Giri",
+    fullname: "Gireesh",
+    src: "/img/img3.avif",
   },
 ];
 
@@ -138,8 +180,8 @@ export const Friends = ({
               <h3 className="text-2xl font-bold dark:text-white text-black">
                 {testimonials[active]?.name}
               </h3>
-              <p className="text-sm text-gray-500 dark:text-neutral-500">
-                {testimonials[active]?.designation}
+              <p className="text-xs text-gray-500 dark:text-neutral-500">
+                {testimonials[active]?.fullname}
               </p>
               <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
                 {testimonials[active]?.quote?.split(" ").map((word, index) => (
@@ -161,7 +203,7 @@ export const Friends = ({
             </motion.div>
 
             {/* Buttons */}
-            <div className="flex gap-4 pt-12 md:pt-0">
+            <div className="flex gap-4 pt-12 md:pt-0 justify-center md:justify-start lg:justify-start">
               <button
                 onClick={handlePrev}
                 className="h-7 w-7 rounded-full bg-gray-100 dark:bg-neutral-800 flex items-center justify-center group/button"
