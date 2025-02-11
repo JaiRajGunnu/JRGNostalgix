@@ -3,8 +3,10 @@ import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 
 type Testimonial = {
+  id: number;
   quote: string;
   name: string;
   fullname: string;
@@ -13,66 +15,87 @@ type Testimonial = {
 // Fake Testimonials Data
 export const fakeTestimonials: Testimonial[] = [
   {
+    id: 11092202,
     quote: "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
     name: "Kanna",
     fullname: "Sai Tarun",
     src: "/img/img1.avif",
   },
   {
+    id: 10112003,
     quote: "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
     name: "Vissu",
     fullname: "Viswanadham",
     src: "/img/img3.avif",
   },
   {
+    id: 10012001,
     quote: "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
     name: "Likki",
     fullname: "Likhith",
     src: "/img/img1.avif",
   },
+
+
   {
+    id: 10013432001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Chinnuu",
     fullname: "Keerthika",
     src: "/img/img2.avif",
   },
   {
+    id: 100128766001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Pavii",
     fullname: "Rakshanna",
     src: "/img/img4.avif",
   },
   {
+    id: 10014542001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Praneeth",
     fullname: "Sri Praneeth",
     src: "/img/img3.avif",
   },
   {
+    id: 10012676001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Gopi",
     fullname: "Gopi Krishna",
     src: "/img/img1.avif",
   },
   {
+    id: 1001542001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Magii",
     fullname: "Lakshmi Madhuri",
     src: "/img/img2.avif",
   },
   {
+    id: 1034012001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Bathuu",
     fullname: "Bhargavi",
     src: "/img/img4.avif",
   },
   {
+    id: 10012054501,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Paddhu",
     fullname: "Padma Sri",
     src: "/img/img2.avif",
   },
   {
+    id: 10014342001,
+
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Giri",
     fullname: "Gireesh",
@@ -191,9 +214,13 @@ export const Friends = ({
                 </div>
 
                 <div className="flex justify-end items-end">
-                  <button className="w-[9rem] shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
-                    Read More
-                  </button>
+
+                <Link href={`/community/${testimonials[active]?.id}`}>
+                <button className="w-[9rem] shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+                      Read More
+                    </button>
+                  </Link>
+
                 </div>
 
               </div>
