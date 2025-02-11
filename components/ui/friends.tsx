@@ -1,5 +1,4 @@
 "use client";
-
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
@@ -177,12 +176,28 @@ export const Friends = ({
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
             >
-              <h3 className="text-2xl font-bold dark:text-white text-black">
-                {testimonials[active]?.name}
-              </h3>
-              <p className="text-xs text-gray-500 dark:text-neutral-500">
-                {testimonials[active]?.fullname}
-              </p>
+              <div className="flex items-center gap-4  justify-between">
+
+                <div className="items-start justify-start">
+
+                  <h3 className="text-2xl font-bold dark:text-white text-black">
+                    {testimonials[active]?.name}
+                  </h3>
+
+                  <p className="text-xs text-gray-500 dark:text-neutral-500">
+                    {testimonials[active]?.fullname}
+                  </p>
+
+                </div>
+
+                <div className="flex justify-end items-end">
+                  <button className="w-[9rem] shadow-[0_0_0_3px_#000000_inset] px-6 py-2 bg-transparent border border-black dark:border-white dark:text-white text-black rounded-lg font-bold transform hover:-translate-y-1 transition duration-400">
+                    Read More
+                  </button>
+                </div>
+
+              </div>
+
               <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
                 {testimonials[active]?.quote?.split(" ").map((word, index) => (
                   <motion.span
@@ -201,6 +216,7 @@ export const Friends = ({
                 ))}
               </motion.p>
             </motion.div>
+
 
             {/* Buttons */}
             <div className="flex gap-4 pt-12 md:pt-0 justify-center md:justify-start lg:justify-start">
@@ -221,7 +237,7 @@ export const Friends = ({
         </div>
       ) : (
         <p className="text-center text-gray-500 dark:text-neutral-400">
-          No testimonials available.
+          No testimonials are available.
         </p>
       )}
     </div>
