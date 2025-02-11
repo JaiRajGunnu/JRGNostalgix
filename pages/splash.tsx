@@ -47,11 +47,10 @@ export default function Splash() {
 
   // ✅ Logout Functionality
   const handleLogout = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("userName");
-    localStorage.removeItem("rememberMe"); // Clear remember me if checked
-    router.push("/"); // Redirect to login page
+    localStorage.clear(); // ✅ Clear all local storage
+    window.location.href = "/"; // ✅ Hard reload to prevent Next.js rendering issues
   };
+  
 
   const links = [
     { label: "Dashboard", href: "#", icon: <IconBrandTabler className="text-neutral-700 dark:text-neutral-200 h-5 w-5" /> },
