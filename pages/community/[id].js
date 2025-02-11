@@ -8,9 +8,8 @@ import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCir
 import { useSidebar } from "@/components/ui/sidebar";
 import friends from "../../data/friends.json";
 import { useEffect, useState } from "react";
-import AuthGuard from "../../guard/AuthGuard";
+import AuthGuard from "@/guard/authguard"; 
 
-// ✅ UserAvatar Component
 const UserAvatar = ({ username }) => {
   const { open } = useSidebar();
 

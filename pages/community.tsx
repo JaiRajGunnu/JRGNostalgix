@@ -8,7 +8,7 @@ import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCir
 import { useSidebar } from "@/components/ui/sidebar";
 import { Friends } from "@/components/ui/friends";
 import { fakeTestimonials } from "@/components/ui/friends";
-import AuthGuard from "@/guard/authguard"; // ✅ Import AuthGuard
+import AuthGuard from "@/guard/authguard"; 
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
