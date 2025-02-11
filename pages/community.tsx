@@ -1,6 +1,5 @@
 "use client";
 import { useEffect, useState } from "react";
-import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { motion } from "framer-motion";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
@@ -8,7 +7,8 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCircle } from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import { Friends } from "@/components/ui/friends";
-import { fakeTestimonials } from "@/components/ui/friends"; // ✅ Import the testimonials array
+import { fakeTestimonials } from "@/components/ui/friends";
+import AuthGuard from "@/guard/authguard"; // ✅ Import AuthGuard
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
@@ -34,24 +34,18 @@ const UserAvatar = ({ username }: { username: string }) => {
 
 export default function Community() {
   const [username, setUsername] = useState("Guest");
-  const [showFriends, setShowFriends] = useState(false); // ✅ New state to control Friends component visibility
-  const router = useRouter();
+  const [showFriends, setShowFriends] = useState(false);
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
     const storedName = localStorage.getItem("userName");
-
-    if (!token) {
-      router.push("/");
-    } else if (storedName) {
+    if (storedName) {
       setUsername(storedName);
     }
-  }, [router]);
+  }, []);
 
-  // ✅ Logout Functionality
   const handleLogout = () => {
-    localStorage.clear(); // ✅ Clear all local storage
-    window.location.href = "/"; // ✅ Hard reload to prevent Next.js rendering issues
+    localStorage.clear();
+    window.location.href = "/";
   };
 
   const links = [
@@ -62,12 +56,12 @@ export default function Community() {
       label: "Logout",
       href: "#",
       icon: <IconArrowLeft className="text-neutral-700 dark:text-neutral-200 h-5 w-5" />,
-      onClick: handleLogout, // ✅ Add click event for logout
+      onClick: handleLogout,
     },
   ];
 
   return (
-    <>
+    <AuthGuard> {/* ✅ Wrap everything with AuthGuard */}
       <Head>
         <title>Jai Raj's Slam Book</title>
       </Head>
@@ -95,7 +89,7 @@ export default function Community() {
 
         <div className="flex-1 flex flex-col justify-center items-center min-h-screen text-white bg-black">
           {showFriends ? (
-            <Friends testimonials={fakeTestimonials} /> // ✅ Now it gets the correct testimonials
+            <Friends testimonials={fakeTestimonials} />
           ) : (
             <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
               <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
@@ -110,6 +104,6 @@ export default function Community() {
           )}
         </div>
       </div>
-    </>
+    </AuthGuard>
   );
 }
