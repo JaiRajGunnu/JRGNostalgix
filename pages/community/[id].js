@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import friends from "../../data/friends.json";
 
-const CommunityPage = () => {
+const FriendsPage = () => {
   const router = useRouter();
   const { id } = router.query;
 
@@ -19,4 +19,4 @@ const CommunityPage = () => {
   );
 };
 
-export default CommunityPage;
+export default FriendsPage;
