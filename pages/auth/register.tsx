@@ -45,7 +45,7 @@ export default function Register() {
                         transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
           <h2 className="text-4xl font-bold text-center text-white mb-6">Register</h2>
           <form onSubmit={handleSubmit} className="flex flex-col">
-            
+
             {/* Name Field */}
             <label className="text-white mb-1 text-lg">Name</label>
             <input
@@ -100,7 +100,7 @@ export default function Register() {
             >
               Register
               <ChevronRightIcon className="w-4 h-4  stroke-current mt-[2px]" />
-              </button>
+            </button>
 
             {/* Divider Line */}
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />

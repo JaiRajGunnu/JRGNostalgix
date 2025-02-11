@@ -17,25 +17,25 @@ export const fakeTestimonials: Testimonial[] = [
     quote: "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
     name: "Kanna",
     designation: "Software Developer",
-    src: "/img/img1.avif", 
+    src: "/img/img1.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Chinnuu",
     designation: "Best Friend Forever",
-    src: "/img/img2.avif", 
+    src: "/img/img2.avif",
   },
   {
     quote: "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
     name: "Vissu",
     designation: "Web Developer",
-    src: "/img/img3.avif", 
+    src: "/img/img3.avif",
   },
   {
     quote: "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
     name: "Likki",
     designation: "Cloud Engineer",
-    src: "/img/img4.avif", 
+    src: "/img/img4.avif",
   },
 ];
 

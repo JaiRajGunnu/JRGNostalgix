@@ -96,20 +96,20 @@ export default function Community() {
         </Sidebar>
 
         <div className="flex-1 flex flex-col justify-center items-center min-h-screen text-white bg-black">
-{showFriends ? ( 
-  <Friends testimonials={fakeTestimonials} /> // ✅ Now it gets the correct testimonials
-) : (
-  <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
-    <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
-    <h2 className="text-3xl text-gray-600">Welcome, {username}!</h2>
-    <button
-      onClick={() => setShowFriends(true)}
-      className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
-    >
-      Explore now
-    </button>
-  </BackgroundBeamsWithCollision>
-)}
+          {showFriends ? (
+            <Friends testimonials={fakeTestimonials} /> // ✅ Now it gets the correct testimonials
+          ) : (
+            <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
+              <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
+              <h2 className="text-3xl text-gray-600">Welcome, {username}!</h2>
+              <button
+                onClick={() => setShowFriends(true)}
+                className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
+              >
+                Explore now
+              </button>
+            </BackgroundBeamsWithCollision>
+          )}
         </div>
       </div>
     </>
