@@ -1,12 +1,10 @@
 import mongoose from "mongoose";
 
-const FeedbackSchema = new mongoose.Schema(
-  {
-    name: { type: String, required: true },
-    email: { type: String, required: true },
-    message: { type: String, required: true },
+const FeedbackSchema = new mongoose.Schema({
+  feedback: {
+    type: Boolean, // ✅ Stores `true` for thumbs up and `false` for thumbs down
+    required: true,
   },
-  { timestamps: true }
-);
+}, { timestamps: true });
 
 export default mongoose.models.Feedback || mongoose.model("Feedback", FeedbackSchema);
