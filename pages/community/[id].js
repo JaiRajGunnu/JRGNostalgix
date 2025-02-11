@@ -8,12 +8,15 @@ import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCir
 import { useSidebar } from "@/components/ui/sidebar";
 import friends from "../../data/friends.json";
 import { useEffect, useState } from "react";
+import AuthGuard from "../../guard/AuthGuard";
 
 // ✅ UserAvatar Component
 const UserAvatar = ({ username }) => {
   const { open } = useSidebar();
 
   return (
+    <AuthGuard>
+
     <div className="flex items-center gap-5 py-3 border-t pt-15 border-neutral-300 dark:border-neutral-700">
       <motion.div animate={{ scale: open ? 1 : 0.9 }} transition={{ duration: 0.2 }}>
         <IconUserCircle className="h-8 w-8 text-neutral-700 dark:text-neutral-300" />
@@ -29,6 +32,7 @@ const UserAvatar = ({ username }) => {
         {username}
       </motion.span>
     </div>
+    </AuthGuard>
   );
 };
 
@@ -104,6 +108,7 @@ const FriendsPage = () => {
           </BackgroundBeamsWithCollision>
         </div>
       </div>
+
     </>
   );
 };
