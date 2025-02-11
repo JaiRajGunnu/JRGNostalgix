@@ -14,7 +14,7 @@ const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
 
   return (
-    <div className="flex items-center gap-3 py-3 border-t border-neutral-300 dark:border-neutral-700">
+    <div className="flex items-center gap-5 py-3 border-t pt-15 border-neutral-300 dark:border-neutral-700">
       {/* Avatar should always be visible */}
       <motion.div
         animate={{
@@ -22,7 +22,7 @@ const UserAvatar = ({ username }: { username: string }) => {
         }}
         transition={{ duration: 0.2 }}
       >
-        <IconUserCircle className="h-8 w-8 text-neutral-700 dark:text-neutral-200" />
+        <IconUserCircle className="h-8 w-8  text-neutral-700 dark:text-neutral-300" />
       </motion.div>
 
       {/* Username should disappear when sidebar is minimized */}
@@ -31,7 +31,7 @@ const UserAvatar = ({ username }: { username: string }) => {
           opacity: open ? 1 : 0,
           width: open ? "auto" : 0, // Collapse width when minimized
         }}
-        className="text-neutral-700 dark:text-neutral-200 text-sm font-medium overflow-hidden whitespace-nowrap"
+        className="text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap"
       >
         {username}
       </motion.span>

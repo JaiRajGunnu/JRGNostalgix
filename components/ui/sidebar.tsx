@@ -129,12 +129,12 @@ export const MobileSidebar = ({
                 <div className="flex justify-start z-20 w-full opacity-[0.8]">
                     {open ? (
                         <TbLayoutSidebarLeftCollapse // Show collapse icon when open
-                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200"
+                            className="h-5 w-5 text-neutral-800 dark:text-neutral-200 bg-transparent"
                             onClick={() => setOpen(false)}
                         />
                     ) : (
                         <TbLayoutSidebarLeftExpand // Show expand icon when closed
-                            className="h-6 w-6 text-neutral-800 dark:text-neutral-200"
+                            className="h-5 w-5 text-neutral-800 dark:text-neutral-200 bg-transparent"
                             onClick={() => setOpen(true)}
                         />
                     )}
