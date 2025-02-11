@@ -2,7 +2,7 @@
 import { ReactNode, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCircle } from "@tabler/icons-react";
+import { IconArrowLeft, IconBrandTabler, IconSettings, IconUserBolt, IconUserCircle, IconHome, IconMessage2Code, IconLogout, IconLogout2, IconArrowLeftDashed, IconArrowLeftFromArc, IconArrowLeftBar } from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 
@@ -10,11 +10,16 @@ const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
 
   return (
-    <div className="flex items-center gap-5 py-3 border-t pt-15 border-neutral-300 dark:border-neutral-700">
-      <IconUserCircle className="h-8 w-8 text-neutral-700 dark:text-neutral-300" />
+    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700">
+      {/* Keep icon size consistent */}
+      <div className="h-6 w-6 flex-shrink-0">
+        <IconUserCircle className="h-full w-full text-neutral-700 dark:text-neutral-300" />
+      </div>
+
+      {/* Username animation for sidebar open/close */}
       <span
-        className={`text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap transition-opacity ${
-          open ? "opacity-100" : "opacity-0"
+        className={`text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap transition-opacity duration-300 ${
+          open ? "opacity-100" : "opacity-0 w-0"
         }`}
       >
         {username}
@@ -22,6 +27,7 @@ const UserAvatar = ({ username }: { username: string }) => {
     </div>
   );
 };
+
 
 const SidebarLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
@@ -40,10 +46,13 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
   };
 
   const links = [
-    { label: "Dashboard", href: "#", icon: <IconBrandTabler className="h-5 w-5" /> },
-    { label: "Profile", href: "#", icon: <IconUserBolt className="h-5 w-5" /> },
-    { label: "Settings", href: "#", icon: <IconSettings className="h-5 w-5" /> },
-    { label: "Logout", href: "#", icon: <IconArrowLeft className="h-5 w-5" />, onClick: handleLogout },
+    { label: "Home", href: "#", icon: <IconHome className="h-8 w-8" /> },
+    // { label: "Dashboard", href: "#", icon: <IconBrandTabler className="h-8 w-8" /> },
+    { label: "Profile", href: "#", icon: <IconUserBolt className="h-8 w-8" /> },
+    { label: "Feedback", href: "#", icon: <IconMessage2Code className="h-8 w-8" /> },
+    { label: "Settings", href: "#", icon: <IconSettings className="h-8 w-8" /> },
+    // { label: "Back", href: "#", icon: <IconArrowLeftDashed className="h-8 w-8" />},
+    { label: "Logout", href: "#", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
   ];
 
   return (
