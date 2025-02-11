@@ -29,7 +29,7 @@ export const fakeTestimonials: Testimonial[] = [
     quote: "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
     name: "Likki",
     fullname: "Likhith",
-    src: "/img/img4.avif",
+    src: "/img/img1.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
@@ -41,19 +41,19 @@ export const fakeTestimonials: Testimonial[] = [
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Pavii",
     fullname: "Rakshanna",
-    src: "/img/img2.avif",
+    src: "/img/img4.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Praneeth",
     fullname: "Sri Praneeth",
-    src: "/img/img2.avif",
+    src: "/img/img3.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Gopi",
     fullname: "Gopi Krishna",
-    src: "/img/img2.avif",
+    src: "/img/img1.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
@@ -65,7 +65,7 @@ export const fakeTestimonials: Testimonial[] = [
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     name: "Bathuu",
     fullname: "Bhargavi",
-    src: "/img/img2.avif",
+    src: "/img/img4.avif",
   },
   {
     quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
