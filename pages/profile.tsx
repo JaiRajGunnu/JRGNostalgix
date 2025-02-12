@@ -3,18 +3,21 @@ import { useEffect, useState } from "react";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Head from "next/head";
+import { fakeTestimonials as friends } from "@/components/ui/friends";
 
 const ProfileSettings = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [profileImage, setProfileImage] = useState<string | null>(null);
+  const [profileImage, setProfileImage] = useState<string>(
+    'https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png' // Default image
+  );
   const [loading, setLoading] = useState(false);
 
   // Fetch user profile data from API on component mount
   useEffect(() => {
     const fetchProfile = async () => {
-      const token = localStorage.getItem("token"); // Get JWT from localStorage
+      const token = localStorage.getItem("token");
 
       if (!token) {
         alert("You are not logged in!");
@@ -32,7 +35,12 @@ const ProfileSettings = () => {
           const data = await res.json();
           setName(data.user.name);
           setEmail(data.user.email);
-          setProfileImage(data.user.profileImage || null);
+
+          // Find matching friend by email
+          const matchedFriend = friends.find(friend=> friend.email === data.user.email);
+          if (matchedFriend) {
+            setProfileImage(matchedFriend.src);
+          }
         } else {
           console.error("Failed to fetch profile");
         }
@@ -43,18 +51,6 @@ const ProfileSettings = () => {
 
     fetchProfile();
   }, []);
-
-  // Handle image upload
-  const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setProfileImage(reader.result as string);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
@@ -71,8 +67,7 @@ const ProfileSettings = () => {
     const updatedData = {
       name,
       email,
-      password: password || undefined, // Send password only if updated
-      profileImage,
+      password: password || undefined,
     };
 
     try {
@@ -105,7 +100,6 @@ const ProfileSettings = () => {
       </Head>
 
       <SidebarLayout>
-        {/* Background Beams moved outside and given pointer-events-none */}
         <div className="absolute inset-0 -z-10 pointer-events-none">
         <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
@@ -117,28 +111,15 @@ const ProfileSettings = () => {
             </h2>
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-5">
-              {/* Profile Picture Upload */}
+              {/* Profile Picture Display */}
               <div className="flex flex-col items-center">
-                <label htmlFor="profileImage" className="cursor-pointer">
-                  {profileImage ? (
-                    <img
-                      src={profileImage}
-                      alt="Profile"
-                      className="w-24 h-24 rounded-full object-cover border-2 border-gray-300"
-                    />
-                  ) : (
-                    <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-neutral-700 flex items-center justify-center text-gray-500">
-                      Upload
-                    </div>
-                  )}
-                </label>
-                <input
-                  type="file"
-                  id="profileImage"
-                  className="hidden"
-                  onChange={handleImageUpload}
-                  accept="image/*"
-                 disabled={true} style={{ cursor: "default" }}/>
+                <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-neutral-700 overflow-hidden">
+                  <img
+                    src={profileImage}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </div>
               </div>
 
               {/* Name Input */}
@@ -149,9 +130,8 @@ const ProfileSettings = () => {
                   className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-          
-                  disabled={true}/>
-              
+                  disabled={true}
+                />
               </div>
 
               {/* Email Input */}
@@ -162,8 +142,8 @@ const ProfileSettings = () => {
                   className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  disabled={true}/>
-
+                  disabled={true}
+                />
               </div>
 
               {/* Password Input */}
