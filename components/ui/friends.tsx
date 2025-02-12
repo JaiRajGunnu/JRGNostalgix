@@ -10,96 +10,98 @@ type Testimonial = {
   quote: string;
   name: string;
   fullname: string;
+  email: string;
   src: string;
 };
 // Fake Testimonials Data
 export const fakeTestimonials: Testimonial[] = [
   {
-    id: 11092202,
-    quote: "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
-    name: "Kanna",
-    fullname: "Sai Tarun",
-    src: "/img/img1.avif",
+    "id": 11092202,
+    "quote": "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
+    "name": "Kanna",
+    "fullname": "Sai Tarun",
+    "email":"esaitarun12@gmail.com",
+    "src": "/img/img1.avif"
   },
   {
-    id: 10112003,
-    quote: "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
-    name: "Vissu",
-    fullname: "Viswanadham",
-    src: "/img/img3.avif",
+    "id": 10112003,
+    "quote": "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
+    "name": "Vissu",
+    "fullname": "Viswanadham",
+    "email":"viswanadhkillamsetty422@gmail.com",
+    "src": "/img/img3.avif"
   },
   {
-    id: 10012001,
-    quote: "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
-    name: "Likki",
-    fullname: "Likhith",
-    src: "/img/img1.avif",
-  },
-
-
-  {
-    id: 10013432001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Chinnuu",
-    fullname: "Keerthika",
-    src: "/img/img2.avif",
+    "id": 10012001,
+    "quote": "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
+    "name": "Likki",
+    "fullname": "Likhith",
+    "email":"likhithsarvisetti@gmail.com",
+    "src": "/img/img1.avif"
   },
   {
-    id: 100128766001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Pavii",
-    fullname: "Rakshanna",
-    src: "/img/img4.avif",
+    "id": 10013432001,
+    "quote": "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
+    "name": "Chinnuu",
+    "fullname": "Keerthika",
+    "email":"keerthikabandaru2003@gmail.com",
+    "src": "/img/img2.avif"
   },
   {
-    id: 10014542001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Praneeth",
-    fullname: "Sri Praneeth",
-    src: "/img/img3.avif",
+    "id": 100128766001,
+    "quote": "Junnu is a wonderful friend with a golden heart! Always there to support and uplift others.",
+    "name": "Pavii",
+    "fullname": "Rakshanna",
+    "email":"pavith2602@gmail.com",
+    "src": "/img/img4.avif"
   },
   {
-    id: 10012676001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Gopi",
-    fullname: "Gopi Krishna",
-    src: "/img/img1.avif",
+    "id": 10014542001,
+    "quote": "A great leader and motivator! Junnu inspires everyone around him with his energy and positivity.",
+    "name": "Praneeth",
+    "fullname": "Sri Praneeth",
+    "email":"praneethyakkala@gmail.com",
+    "src": "/img/img3.avif"
   },
   {
-    id: 1001542001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Magii",
-    fullname: "Lakshmi Madhuri",
-    src: "/img/img2.avif",
+    "id": 10012676001,
+    "quote": "Junnu's kindness and wisdom make him an incredible person. Always a pleasure to be around him!",
+    "name": "Gopi",
+    "fullname": "Gopi Krishna",
+    "email":"gopikrishnaanagani25@gmail.com",
+    "src": "/img/img1.avif"
   },
   {
-    id: 1034012001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Bathuu",
-    fullname: "Bhargavi",
-    src: "/img/img4.avif",
+    "id": 1001542001,
+    "quote": "A true gem of a friend! Junnu brings happiness and warmth wherever he goes.",
+    "name": "Magii",
+    "fullname": "Lakshmi Madhuri",
+    "email":"lakshmimadhuriakula@gmail.com",
+    "src": "/img/img2.avif"
   },
   {
-    id: 10012054501,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Paddhu",
-    fullname: "Padma Sri",
-    src: "/img/img2.avif",
+    "id": 1034012001,
+    "quote": "Junnu's support and understanding make every moment special. A friend like no other!",
+    "name": "Bathuu",
+    "fullname": "Bhargavi",
+    "email":"madinibharu@gmail.com",
+    "src": "/img/img4.avif"
   },
   {
-    id: 10014342001,
-
-    quote: "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
-    name: "Giri",
-    fullname: "Gireesh",
-    src: "/img/img3.avif",
+    "id": 10012054501,
+    "quote": "Junnu's generosity and humor make every day brighter. Truly a one-of-a-kind friend!",
+    "name": "Paddhu",
+    "fullname": "Padma Sri",
+    "email":"padmasri.02pandranki@gmail.com",
+    "src": "/img/img2.avif"
+  },
+  {
+    "id": 10014342001,
+    "quote": "A friend who understands without words! Junnu’s presence is always comforting.",
+    "name": "Giri",
+    "fullname": "Gireesh",
+    "email":"gireeshpotunuru@gmail.com",
+    "src": "/img/img3.avif"
   },
 ];
 
