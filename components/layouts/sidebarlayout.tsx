@@ -80,8 +80,8 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
     { label: "Home", href: "/community", icon: <IconHome className="h-8 w-8" /> },
     { label: "Profile", href: "/profile", icon: <IconUserBolt className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
-    { label: "Settings", href: "#", icon: <IconSettings className="h-8 w-8" /> },
-    { label: "Logout", href: "#", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
+    { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
+    { label: "Logout", href: "", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
   ];
 
   return (
