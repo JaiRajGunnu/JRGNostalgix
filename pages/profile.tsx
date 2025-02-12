@@ -10,7 +10,7 @@ const ProfileSettings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState<string>(
-    'https://static-00.iconduck.com/assets.00/profile-circle-icon-512x512-zxne30hp.png' // Default image
+    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU' // Default image
   );
   const [loading, setLoading] = useState(false);
 
@@ -105,7 +105,7 @@ const ProfileSettings = () => {
         </div>
 
         <div className="relative w-full min-h-screen flex justify-center items-center p-6">
-          <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg p-8 w-full max-w-2xl">
+          <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
             <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
               Profile Settings
             </h2>
