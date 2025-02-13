@@ -78,7 +78,7 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
 
   const links = [
     { label: "Home", href: "/community", icon: <IconHome className="h-8 w-8" /> },
-    { label: "About me", href: "/aboutme", icon: <IconHeart className="h-8 w-8" /> },
+    { label: "My page", href: "/aboutme", icon: <IconHeart className="h-8 w-8" /> },
     { label: "Profile", href: "/profile", icon: <IconUserHeart className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
