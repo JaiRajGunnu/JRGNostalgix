@@ -91,7 +91,7 @@ export const DesktopSidebar = ({
         <>
             <motion.div
                 className={cn(
-                    "h-full px-4 py-4 hidden md:flex md:flex-col bg-[#17181a] dark:bg-[#17181a] w-[300px] flex-shrink-0 font-poppins",
+                    "desktop-sidebar h-screen px-4 py-4 hidden md:flex md:flex-col bg-[#17181a] dark:bg-[#17181a] w-[300px] flex-shrink-0 font-poppins fixed top-0 left-0 z-50",
                     className
                 )}
                 animate={{
@@ -101,8 +101,6 @@ export const DesktopSidebar = ({
                 onMouseLeave={() => setOpen(false)}
                 {...props}
             >
-
-
                 {children}
             </motion.div>
         </>
