@@ -1,11 +1,39 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { CheckIcon } from "@heroicons/react/24/solid"; // <-- Import CheckIcon
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Head from "next/head";
 
 const Settings = () => {
   const [notifications, setNotifications] = useState(true);
+  const [privacy, setPrivacy] = useState("Friends only"); // Default
+  const [showDeactivateError, setShowDeactivateError] = useState(false);
+
+  // On mount, load privacy setting from localStorage
+  useEffect(() => {
+    const storedPrivacy = localStorage.getItem("privacySetting");
+    if (storedPrivacy) {
+      setPrivacy(storedPrivacy);
+    }
+  }, []);
+
+  // Handle Deactivate
+  const handleDeactivate = () => {
+    // Show the floating message
+    setShowDeactivateError(true);
+    // Hide after 3 seconds
+    setTimeout(() => {
+      setShowDeactivateError(false);
+    }, 3000);
+  };
+
+  // Handle Privacy Change
+  const handlePrivacyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    const newValue = e.target.value;
+    setPrivacy(newValue);
+    localStorage.setItem("privacySetting", newValue); // Save to localStorage
+  };
 
   return (
     <>
@@ -16,107 +44,143 @@ const Settings = () => {
       <SidebarLayout>
         {/* Background Effects */}
         <div className="absolute inset-0 -z-10 pointer-events-none">
-        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+          <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
 
         {/* Main Container */}
         <div className="relative min-h-screen w-full flex justify-center items-start p-6">
-          <div className="max-w-3xl w-full mx-auto space-y-8">
+          <div className="max-w-3xl w-full mx-auto">
             {/* Page Header */}
-            <div className="space-y-1">
+            <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-7 lg:mb-10">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
                 Settings
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-sm">
-                Manage your account settings, theme preferences, and more.
+                Manage your account settings, themes, and more.
               </p>
             </div>
 
-            {/* 1) Notifications */}
-            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 space-y-4">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                Notifications
-              </h3>
-              <label className="flex items-center space-x-3">
-                <input
-                  type="checkbox"
-                  checked={notifications}
-                  onChange={() => setNotifications(!notifications)}
-                  className="w-5 h-5 text-blue-600 border-gray-300 rounded focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:border-gray-600"
-                />
-                <span className="text-gray-700 dark:text-gray-300">
-                  Receive Email Notifications
-                </span>
-              </label>
-            </div>
-
-            {/* 2) Theme Customization */}
-            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 space-y-4 ">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                Theme Preference
-              </h3>
-              <div className="flex flex-row justify-between items-baseline">
-                <label
-                  htmlFor="theme-select"
-                  className="text-base font-normal text-gray-700 dark:text-gray-300"
-                >
-                  Choose your preferred theme
-                </label>
-                <select
-                  id="theme-select"
-                  className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
-                >
-                  <option>Dark theme</option>
-                  <option disabled>Light theme</option>
-                  <option disabled>System default</option>
-                </select>
-              </div>
-            </div>
-
-            {/* 3) Privacy Settings */}
-            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 space-y-4">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                Privacy Settings
-              </h3>
-              <div className="flex flex-row justify-between items-baseline">
-                <label
-                  htmlFor="privacy-select"
-                  className="text-base font-normal text-gray-700 dark:text-gray-300"
-                >
-                  Who can see your profile?
-                </label>
-                <select
-                  id="privacy-select"
-                  className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
-                > <option>Friends Only</option>
-                  <option>Private</option>
-                  <option disabled>Public</option>
-                </select>
-              </div>
-            </div>
-
-            {/* 4) Account Settings */}
-            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-lg p-6 space-y-4">
-              <h3 className="text-xl font-semibold text-gray-800 dark:text-white">
-                Account Settings
-              </h3>
-              <div className="flex flex-row justify-between items-baseline">
-
+            {/* Single Container for All Settings */}
+            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-2xl py-10 px-6 md:px-10 lg:px-15 space-y-6">
+              {/* Notifications */}
               <div>
-                <label
-                  htmlFor="new-password"
-                  className="block text-base font-normal text-gray-700 dark:text-gray-300 mb-1"
-                >
-                  Are you sure you want to delete your account?
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
+                  Notifications
+                </h3>
+                <label className="flex items-center space-x-3 cursor-pointer select-none ml-[-10px]">
+                  {/* Hidden input just for accessibility, actual UI is the custom box */}
+                  <input
+                    type="checkbox"
+                    checked={notifications}
+                    onChange={() => setNotifications(!notifications)}
+                    className="hidden"
+                  />
+                  {/* Custom checkbox container */}
+                  <div
+                    onClick={() => setNotifications(!notifications)}
+                    className={`relative w-5 h-5 flex items-center justify-center rounded border 
+                      border-gray-300 dark:border-gray-600 
+                      ${notifications ? "bg-blue-600" : "bg-transparent"}
+                      transition-colors focus:outline-none focus:ring-2 
+                      focus:ring-blue-500 dark:bg-neutral-700`}
+                  >
+                    {notifications && <CheckIcon className="w-4 h-4  text-white" />}
+                  </div>
+
+                  <span className="text-gray-700 dark:text-gray-400">
+                    Receive Email Notifications
+                  </span>
                 </label>
               </div>
-              <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring-2 focus:ring-red-600">
-                Delete Account
-              </button>
+
+              {/* Divider Line */}
+              <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-3 mb-2 h-[1px] w-full" />
+
+              {/* Theme Preference */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                  Theme Preference
+                </h3>
+                <div className="flex flex-row justify-between items-baseline my-2">
+                  <label
+                    htmlFor="theme-select"
+                    className="text-base font-normal text-gray-700 dark:text-gray-400"
+                  >
+                    Choose your preferred theme
+                  </label>
+                  <select
+                    id="theme-select"
+                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
+                  >
+                    <option>Dark theme</option>
+                    <option disabled>Light theme</option>
+                    <option disabled>System default</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Divider Line */}
+              <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-3 mb-2 h-[1px] w-full" />
+
+              {/* Privacy Settings */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                  Privacy Settings
+                </h3>
+                <div className="flex flex-row justify-between items-baseline">
+                  <label
+                    htmlFor="privacy-select"
+                    className="text-base font-normal text-gray-700 dark:text-gray-400"
+                  >
+                    Who can see your profile?
+                  </label>
+                  <select
+                    id="privacy-select"
+                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
+                    value={privacy}
+                    onChange={handlePrivacyChange}
+                  >
+                    <option>Friends only</option>
+                    <option>Private</option>
+                    <option disabled>Public</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Divider Line */}
+              <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-3 mb-2 h-[1px] w-full" />
+
+              {/* Account Settings */}
+              <div>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-2">
+                  Account Settings
+                </h3>
+                <div className="flex flex-row justify-between items-baseline">
+                  <label
+                    htmlFor="delete-account"
+                    className="block text-base font-normal text-gray-700 dark:text-gray-400"
+                  >
+                    Are you sure you want to deactivate your account?
+                  </label>
+                  <button
+                    onClick={handleDeactivate}
+                    className="dark:bg-neutral-700 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring"
+                  >
+                    Deactivate
+                  </button>
+                </div>
               </div>
             </div>
+            {/* End Single Container */}
           </div>
         </div>
+
+        {/* Floating error message */}
+        {showDeactivateError && (
+          <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+            Sorry, only admins can deactivate your account.
+          </div>
+        )}
       </SidebarLayout>
     </>
   );
