@@ -2,7 +2,7 @@
 import { ReactNode, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import { IconBrandTabler, IconSettings, IconUserBolt, IconHome, IconMessage2Code, IconLogout2 } from "@tabler/icons-react";
+import { IconSettings,  IconHome, IconMessage2Code, IconLogout2, IconUserHeart,  IconHeart, } from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 import { fakeTestimonials } from "@/components/ui/friends";
@@ -78,7 +78,8 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
 
   const links = [
     { label: "Home", href: "/community", icon: <IconHome className="h-8 w-8" /> },
-    { label: "Profile", href: "/profile", icon: <IconUserBolt className="h-8 w-8" /> },
+    { label: "About me", href: "/aboutme", icon: <IconHeart className="h-8 w-8" /> },
+    { label: "Profile", href: "/profile", icon: <IconUserHeart className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
     { label: "Logout", href: "", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
