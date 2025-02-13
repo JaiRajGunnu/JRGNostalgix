@@ -51,7 +51,7 @@ const Settings = () => {
         <div className="relative min-h-screen w-full flex justify-center items-start p-6">
           <div className="max-w-3xl w-full mx-auto">
             {/* Page Header */}
-            <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-7 lg:mb-10">
+            <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-10 lg:mb-7">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
                 Settings
               </h2>
