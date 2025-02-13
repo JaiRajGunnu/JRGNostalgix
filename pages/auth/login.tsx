@@ -4,9 +4,7 @@ import { useRouter } from "next/navigation";
 import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
-import { ChevronRightIcon } from "@heroicons/react/24/solid"; // ✅ Using ChevronRightIcon
-import { CheckIcon } from "@heroicons/react/24/solid"; // ✅ Import CheckIcon
-
+import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -14,16 +12,57 @@ export default function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+
+  // For showing "Session time expired." floating message
+  const [sessionExpired, setSessionExpired] = useState(false);
+
   const router = useRouter();
 
+  // 1) Check if user is already logged in on mount
   useEffect(() => {
-    // ✅ If user is already logged in, redirect to community screen
     const token = localStorage.getItem("token");
     if (token) {
-      router.replace("/community"); // Redirects without adding to history
+      // If a token exists, verify session isn't expired
+      const expireAt = localStorage.getItem("sessionExpireAt");
+      if (expireAt && Date.now() >= parseInt(expireAt)) {
+        // Session already expired
+        logoutAndShowExpiration();
+      } else {
+        // Session is still valid, redirect to /community
+        router.replace("/community");
+      }
     }
   }, []);
 
+  // 2) Set up an interval to check for session expiry every 30 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const token = localStorage.getItem("token");
+      const expireAt = localStorage.getItem("sessionExpireAt");
+
+      if (token && expireAt && Date.now() >= parseInt(expireAt)) {
+        // Session is expired
+        logoutAndShowExpiration();
+      }
+    }, 30_000); // check every 30s
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // Helper: logs out user, shows floating message
+  const logoutAndShowExpiration = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("sessionExpireAt");
+    setSessionExpired(true);
+
+    // Optionally redirect to /login (if user isn't already here)
+    router.replace("/");
+
+    // Hide message after 3 seconds
+    setTimeout(() => setSessionExpired(false), 3000);
+  };
+
+  // 3) Handle login
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
@@ -37,25 +76,37 @@ export default function Login() {
     const data = await res.json();
 
     if (res.ok && data.token && data.user) {
+      // Store token
       localStorage.setItem("token", data.token);
-      localStorage.setItem("userName", data.user.name || "Guest"); // ✅ Save name instead of email
 
+      // (A) Store userName if needed
+      localStorage.setItem("userName", data.user.name || "Guest");
+
+      // (B) If user wants "remember me," store that logic
       if (rememberMe) {
         localStorage.setItem("rememberMe", "true");
       } else {
         localStorage.removeItem("rememberMe");
       }
 
+      // (C) Set session expire time (15 minutes in milliseconds from now)
+      const expireTime = Date.now() + 15 * 60 * 1000;
+      
+      // For testing: expires in 30 seconds
+      // const expireTime = Date.now() + 30 * 1000;
+
+
+      localStorage.setItem("sessionExpireAt", expireTime.toString());
+
+      // Navigate to /community
       router.push("/community");
     } else {
       setError(data.error || "Login failed. Please check your credentials.");
     }
   };
 
-
   return (
     <>
-      {/* ✅ Set Page Title */}
       <Head>
         <title>Login</title>
       </Head>
@@ -63,7 +114,9 @@ export default function Login() {
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-white/10 border border-white/30 
                         transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-          <h2 className="text-4xl font-bold text-center text-white mb-6">Login</h2>
+          <h2 className="text-4xl font-bold text-center text-white mb-6">
+            Login
+          </h2>
           <form onSubmit={handleLogin} className="flex flex-col">
             {/* Email Field */}
             <label className="text-white mb-1 text-lg">Email</label>
@@ -126,13 +179,19 @@ export default function Login() {
               className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
             >
               Login
-              <ChevronRightIcon className="w-4 h-4  stroke-current mt-[2px]" />
-
+              <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />
             </button>
             {error && <p className="text-red-500 text-center mt-3">{error}</p>}
           </form>
         </div>
       </BackgroundBeamsWithCollision>
+
+      {/* Floating Session Expired Message */}
+      {sessionExpired && (
+        <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+          Session time expired.
+        </div>
+      )}
     </>
   );
 }
