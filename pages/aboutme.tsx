@@ -45,7 +45,7 @@ export default function AboutMe() {
       <SidebarLayout>
         {/* Background beams behind everything */}
         <div className="absolute inset-0 -z-10 pointer-events-none">
-          <BackgroundBeamsWithCollision />
+        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
 
         {/* Main container */}
@@ -76,7 +76,7 @@ export default function AboutMe() {
                       border-4 border-[#3a3b3c]
                       rounded-full
                       transition duration-300
-                      mt-10 w-[100px] h-[100px] object-cover
+                      mt-1 w-[100px] h-[100px] object-cover
                       hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]
                     `}
                     src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEhM7ONXWbt-5BwRZ2CniCLoO80ZMwibUKnL10QUlLyehl9-voYrdH67JqweEywEgNsSOx0z5xZJz4Oi_VVt_qI7JVG2YQN2tbGMf1jbYMhyvM3WOUWkbYxEPdUCP1X0srEoV7CVONOAWgIxlZ-yrqTKE6NgqPpVbQ11e3hyzxOAc7Q2VVJMMAS6w3M89w/s16000/FOR%20DP%201.jpg"
@@ -102,7 +102,7 @@ export default function AboutMe() {
                     rel="noopener noreferrer"
                     className="bg-[#333333] rounded-full p-2 w-6 h-6 flex items-center justify-center hover:text-white hover:bg-black"
                   >
-                    <GlobeAltIcon className="w-4 h-4 text-[#8c939d]" />
+                    <GlobeAltIcon className="w-4 h-4 text-gray-400" />
                   </a>
                   <a
                     href="https://www.instagram.com/jairaj_gunnu/"
@@ -110,7 +110,7 @@ export default function AboutMe() {
                     rel="noopener noreferrer"
                     className="bg-[#333333] rounded-full p-2 w-6 h-6 flex items-center justify-center hover:text-white hover:bg-black"
                   >
-                    <PhotoIcon className="w-4 h-4 text-[#8c939d]" />
+                    <PhotoIcon className="w-4 h-4 text-gray-400" />
                   </a>
                   <a
                     href="https://twitter.com/jairajgunnu"
@@ -118,7 +118,7 @@ export default function AboutMe() {
                     rel="noopener noreferrer"
                     className="bg-[#333333] rounded-full p-2 w-6 h-6 flex items-center justify-center hover:text-white hover:bg-black"
                   >
-                    <PaperAirplaneIcon className="w-4 h-4 text-[#8c939d] rotate-45" />
+                    <PaperAirplaneIcon className="w-4 h-4 text-gray-400 rotate-45" />
                   </a>
                   <a
                     href="https://jairajg.blogspot.com/"
@@ -126,7 +126,7 @@ export default function AboutMe() {
                     rel="noopener noreferrer"
                     className="bg-[#333333] rounded-full p-2 w-6 h-6 flex items-center justify-center hover:text-white hover:bg-black"
                   >
-                    <GlobeAltIcon className="w-4 h-4 text-[#8c939d]" />
+                    <GlobeAltIcon className="w-4 h-4 text-gray-400" />
                   </a>
                 </div> */}
 
@@ -135,13 +135,13 @@ export default function AboutMe() {
               {/* Intro */}
               <hr className="border-[rgba(255,255,255,0.19)] my-5" />
               <div className="mb-2 text-left">
-                <h3 className="text-white text-2xl mb-3">Intro</h3>
+                <h3 className="text-white text-2xl mb-3 font-bold">Intro</h3>
               </div>
               <div className="text-[16.5px] space-y-3">
                 {/* Birthday */}
                 <div className="flex items-center">
-                  <CakeIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                  <span className="text-[rgba(228,230,235,0.91)] mr-2">
+                  <CakeIcon className="w-4 h-4 text-gray-400 mr-2" />
+                  <span className="text-white-lite mr-2">
                     Jan 05 2003
                   </span>
                   <span className="text-[rgba(255,255,255,0.75)] text-sm">
@@ -150,13 +150,13 @@ export default function AboutMe() {
                 </div>
                 {/* "Atom" => approximate with Beaker or Sparkles */}
                 <div className="flex items-center">
-                  <BeakerIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                  <span className="text-[rgba(228,230,235,0.91)]">Capricorn</span>
+                  <BeakerIcon className="w-4 h-4 text-gray-400 mr-2" />
+                  <span className="text-white-lite">Capricorn</span>
                 </div>
                 {/* Location => MapPinIcon */}
                 <div className="flex items-center">
-                  <MapPinIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                  <span className="text-[rgba(228,230,235,0.91)]">
+                  <MapPinIcon className="w-4 h-4 text-gray-400 mr-2" />
+                  <span className="text-white-lite">
                     Srikakulam, Andhra Pradesh
                   </span>
                 </div>
@@ -165,42 +165,42 @@ export default function AboutMe() {
               {/* Education */}
               <hr className="border-[rgba(255,255,255,0.19)] my-5" />
               <div className="mb-2 text-left">
-                <h3 className="text-white text-2xl mb-3">Education</h3>
+                <h3 className="text-white text-2xl mb-3 font-bold">Education</h3>
               </div>
               <div className="text-[16.5px] space-y-3">
                 <div>
-                  <label className="text-[#8c939d] text-sm block">School</label>
+                  <label className="text-gray-400 text-sm block ">School</label>
                   <div className="flex items-center">
-                    <BuildingLibraryIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
-                      Sri Chaitanya Techno School
+                    <BookOpenIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
+                      Sri Chaitanya Techno School, Srikakulam
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[#8c939d] text-sm block">College</label>
+                  <label className="text-gray-400 text-sm block">College</label>
                   <div className="flex items-center">
-                    <BuildingLibraryIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
-                      Sri Chaitanya Educational Institutions
+                    <BuildingLibraryIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
+                      Sri Chaitanya Educational Institutions, Vijayawada
                     </span>
                   </div>
                 </div>
 
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     University
                   </label>
                   <div className="flex items-center">
-                    <AcademicCapIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <AcademicCapIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://en.wikipedia.org/wiki/SRM_Institute_of_Science_and_Technology"
-                      className="text-[rgba(228,230,235,0.91)]"
+                      className="text-white-lite"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      SRM University, Kattankulathur
+                      SRM University - KTR, Chennai
                     </a>
                   </div>
                 </div>
@@ -209,7 +209,7 @@ export default function AboutMe() {
               {/* Favourites */}
               <hr className="border-[rgba(255,255,255,0.19)] my-5" />
               <div className="mb-2 text-left">
-                <h3 className="text-white text-2xl mb-3">Favourites</h3>
+                <h3 className="text-white text-2xl mb-3 font-bold">Favourites</h3>
               </div>
 
               <div className="flex flex-col md:flex-row justify-between text-[16.5px] space-y-4 md:space-y-0">
@@ -217,19 +217,19 @@ export default function AboutMe() {
                 <div className="space-y-3">
                   {/* Color => palette => approximate PaintBrushIcon? */}
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Color</label>
+                    <label className="text-gray-400 text-sm block">Color</label>
                     <span className="flex items-center">
                       {/* No direct "palette" => use "PaintBrushIcon"? */}
-                      <BeakerIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">Blue</span>
+                      <BeakerIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">Blue</span>
                     </span>
                   </div>
                   {/* Place => HomeIcon */}
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Place</label>
+                    <label className="text-gray-400 text-sm block">Place</label>
                     <span className="flex items-center">
-                      <HomeIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <HomeIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         My home
                       </span>
                     </span>
@@ -238,20 +238,20 @@ export default function AboutMe() {
                       Actually there's "CakeIcon"? We used that for birthday. Let's do "BeakerIcon"? 
                       We'll do a disclaim here. If you want a "fork/knife," you can create a custom icon or pick a near match. */}
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Food</label>
+                    <label className="text-gray-400 text-sm block">Food</label>
                     <span className="flex items-center">
-                      <CakeIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <CakeIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         Chicken biryani
                       </span>
                     </span>
                   </div>
                   {/* Person => HeartIcon */}
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Person</label>
+                    <label className="text-gray-400 text-sm block">Person</label>
                     <span className="flex items-center">
-                      <IconHeart className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <IconHeart className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         Sai-Kannaya
                       </span>
                     </span>
@@ -261,41 +261,41 @@ export default function AboutMe() {
                 {/* Right column */}
                 <div className="space-y-3">
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Actor</label>
+                    <label className="text-gray-400 text-sm block">Actor</label>
                     <span className="flex items-center">
-                      <FaceSmileIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         Mahesh, Nani, Abeer soofi, Saurabh jain, Sumedh
                       </span>
                     </span>
                   </div>
                   <div>
-                    <label className="text-[#8c939d] text-sm block">Movie</label>
+                    <label className="text-gray-400 text-sm block">Movie</label>
                     <span className="flex items-center">
-                      <FilmIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <FilmIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         Bahubali, Vunnadhe okate zindagi
                       </span>
                     </span>
                   </div>
                   <div>
-                    <label className="text-[#8c939d] text-sm block">
+                    <label className="text-gray-400 text-sm block">
                       Director
                     </label>
                     <span className="flex items-center">
-                      <FilmIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <FilmIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         Rajamouli S.S
                       </span>
                     </span>
                   </div>
                   <div>
-                    <label className="text-[#8c939d] text-sm block">
+                    <label className="text-gray-400 text-sm block">
                       Book/novel
                     </label>
                     <span className="flex items-center">
-                      <BookOpenIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                      <span className="text-[rgba(228,230,235,0.91)]">
+                      <BookOpenIcon className="w-4 h-4 text-gray-400 mr-2" />
+                      <span className="text-white-lite">
                         The Mahabharat
                       </span>
                     </span>
@@ -306,67 +306,67 @@ export default function AboutMe() {
               {/* Peculiars */}
               <hr className="border-[rgba(255,255,255,0.19)] my-5" />
               <div className="mb-2 text-left">
-                <h3 className="text-white text-2xl mb-3">Peculiars</h3>
+                <h3 className="text-white text-2xl mb-3 font-bold">Peculiars</h3>
               </div>
               <div className="text-[16.5px] space-y-3">
                 <div>
-                  <label className="text-[#8c939d] text-sm block">Crush</label>
+                  <label className="text-gray-400 text-sm block">Crush</label>
                   <span className="flex items-center">
-                    <FaceSmileIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       Unexpected girl
                     </span>
                   </span>
                 </div>
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Nicknames
                   </label>
                   <span className="flex items-center">
-                    <UserIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <UserIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       Jai, Rajuu, Kanna, Jai Babu, Gunnu
                     </span>
                   </span>
                 </div>
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Crazy dreams
                   </label>
                   <span className="flex items-center">
-                    <FaceSmileIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       I wish to get some random powers like superheroes
                     </span>
                   </span>
                 </div>
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Kid&apos;s things
                   </label>
                   <span className="flex items-center">
-                    <UserIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <UserIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       Still used to overthink sometimes.
                     </span>
                   </span>
                 </div>
                 <div>
-                  <label className="text-[#8c939d] text-sm block">Hobbies</label>
+                  <label className="text-gray-400 text-sm block">Hobbies</label>
                   <span className="flex items-center">
-                    <ScissorsIcon className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <ScissorsIcon className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       Editing, web dev..
                     </span>
                   </span>
                 </div>
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Deepest fear
                   </label>
                   <span className="flex items-center">
-                    <IconHeartBroken className="w-4 h-4 text-[#8c939d] mr-2" />
-                    <span className="text-[rgba(228,230,235,0.91)]">
+                    <IconHeartBroken className="w-4 h-4 text-gray-400 mr-2" />
+                    <span className="text-white-lite">
                       Loosing my besties &amp; favourite ones..
                     </span>
                   </span>
@@ -376,21 +376,21 @@ export default function AboutMe() {
               {/* Links */}
               <hr className="border-[rgba(255,255,255,0.19)] my-5" />
               <div className="mb-2 text-left">
-                <h3 className="text-white text-2xl mb-3">Links</h3>
+                <h3 className="text-white text-2xl mb-3 font-bold">Links</h3>
               </div>
               <div className="text-[16.5px] space-y-3">
                 {/* Instagram => PhotoIcon */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Instagram
                   </label>
                   <span className="flex items-center">
-                    <PhotoIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <PhotoIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://www.instagram.com/sadguru.sai/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       @sadguru.sai
                     </a>
@@ -398,14 +398,14 @@ export default function AboutMe() {
                 </div>
                 {/* YouTube => PlayCircleIcon */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">YouTube</label>
+                  <label className="text-gray-400 text-sm block">YouTube</label>
                   <span className="flex items-center">
-                    <PlayCircleIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <PlayCircleIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://www.youtube.com/@sadguru_sai"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       @sadguru_sai
                     </a>
@@ -413,14 +413,14 @@ export default function AboutMe() {
                 </div>
                 {/* Telegram => PaperAirplaneIcon */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">Telegram</label>
+                  <label className="text-gray-400 text-sm block">Telegram</label>
                   <span className="flex items-center">
-                    <PaperAirplaneIcon className="w-4 h-4 text-[#8c939d] mr-2 rotate-45" />
+                    <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-2 rotate-45" />
                     <a
                       href="https://t.me/sadgurusaioff"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       @sadgurusaioff
                     </a>
@@ -428,14 +428,14 @@ export default function AboutMe() {
                 </div>
                 {/* Facebook => We'll do GlobeAltIcon again, or HomeIcon? We'll do GlobeAltIcon. */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">Facebook</label>
+                  <label className="text-gray-400 text-sm block">Facebook</label>
                   <span className="flex items-center">
-                    <GlobeAltIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <GlobeAltIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://www.facebook.com/groups/1243760322771265"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       @124376032277..
                     </a>
@@ -443,14 +443,14 @@ export default function AboutMe() {
                 </div>
                 {/* Webpage => GlobeAltIcon */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">Webpage</label>
+                  <label className="text-gray-400 text-sm block">Webpage</label>
                   <span className="flex items-center">
-                    <GlobeAltIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <GlobeAltIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://epgsk.blogspot.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       epgsk.blogspot.com
                     </a>
@@ -458,16 +458,16 @@ export default function AboutMe() {
                 </div>
                 {/* Portfolio => UserIcon or GlobeAltIcon? We'll do UserIcon. */}
                 <div>
-                  <label className="text-[#8c939d] text-sm block">
+                  <label className="text-gray-400 text-sm block">
                     Portfolio
                   </label>
                   <span className="flex items-center">
-                    <UserIcon className="w-4 h-4 text-[#8c939d] mr-2" />
+                    <UserIcon className="w-4 h-4 text-gray-400 mr-2" />
                     <a
                       href="https://jairaj-gunnu.blogspot.com/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="underline text-[rgba(228,230,235,0.91)]"
+                      className="underline text-white-lite"
                     >
                       jairaj-gunnu.blogspot.com
                     </a>
@@ -486,18 +486,12 @@ export default function AboutMe() {
               </p>
               <div className="text-white">
                 <span>Admin page -</span>
-                <a
-                  href="https://epgsk.blogspot.com/p/admin-jairajgunnu.html"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white pl-1 underline"
-                >
+
                   Jai Raj Gunnu
                   <CheckBadgeIcon
                     className="inline-block w-3 h-3 ml-1 text-[#2d88ff]"
                     title="Verified"
                   />
-                </a>
               </div>
             </div>
           </div>
