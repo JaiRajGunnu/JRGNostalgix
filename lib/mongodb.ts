@@ -1,3 +1,4 @@
+// lib/mongodb.ts (No changes needed)
 import mongoose from "mongoose";
 
 const MONGODB_URI = process.env.MONGODB_URI;

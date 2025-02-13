@@ -10,45 +10,61 @@ const ProfileSettings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState<string>(
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU' // Default image
+    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU" // Default image
   );
   const [loading, setLoading] = useState(false);
 
-  // Fetch user profile data from API on component mount
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem("token");
+  // For floating messages
+  const [showSuccess, setShowSuccess] = useState(false);
+  const [showError, setShowError] = useState(false);
 
-      if (!token) {
-        alert("You are not logged in!");
-        return;
-      }
+  // Fetch user profile data from API
+  const fetchProfile = async () => {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
 
-      try {
-        const res = await fetch("/api/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+    try {
+      const res = await fetch("/api/user", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-        if (res.ok) {
-          const data = await res.json();
+      if (res.ok) {
+        const data = await res.json();
+        if (data.user?.name && data.user?.email) {
           setName(data.user.name);
           setEmail(data.user.email);
 
-          // Find matching friend by email
-          const matchedFriend = friends.find(friend=> friend.email === data.user.email);
-          if (matchedFriend) {
-            setProfileImage(matchedFriend.src);
-          }
+          // Match friend image from JSON
+          const matchedFriend = friends.find(
+            (friend) => friend.email === data.user.email
+          );
+          setProfileImage(
+            matchedFriend
+              ? matchedFriend.src
+              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU"
+          );
         } else {
-          console.error("Failed to fetch profile");
+          setShowError(true);
+          setTimeout(() => setShowError(false), 3000);
         }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
+      } else {
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
       }
-    };
+    } catch (error) {
+      console.error("Error fetching profile:", error);
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+    }
+  };
 
+  useEffect(() => {
     fetchProfile();
   }, []);
 
@@ -58,21 +74,26 @@ const ProfileSettings = () => {
     setLoading(true);
 
     const token = localStorage.getItem("token");
-
     if (!token) {
-      alert("You are not logged in!");
+      setLoading(false);
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
       return;
     }
 
-    const updatedData = {
-      name,
-      email,
-      password: password || undefined,
-    };
+    // Make the new password field mandatory
+    if (!password) {
+      setLoading(false);
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
+      return;
+    }
 
     try {
-      const res = await fetch("/api/update-profile", {
-        method: "POST",
+      const updatedData = { password };
+
+      const res = await fetch("/api/user", {
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
           Authorization: `Bearer ${token}`,
@@ -81,13 +102,24 @@ const ProfileSettings = () => {
       });
 
       if (res.ok) {
-        alert("Profile updated successfully! 🚀");
+        // Show success message
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 3000);
+
+        // Clear password field
+        setPassword("");
+
+        // Refresh profile data
+        await fetchProfile();
       } else {
-        alert("Failed to update profile.");
+        // Show error message
+        setShowError(true);
+        setTimeout(() => setShowError(false), 3000);
       }
     } catch (error) {
       console.error("Error updating profile:", error);
-      alert("Something went wrong.");
+      setShowError(true);
+      setTimeout(() => setShowError(false), 3000);
     } finally {
       setLoading(false);
     }
@@ -101,7 +133,7 @@ const ProfileSettings = () => {
 
       <SidebarLayout>
         <div className="absolute inset-0 -z-10 pointer-events-none">
-        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+          <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
 
         <div className="relative w-full min-h-screen flex justify-center items-center p-6">
@@ -124,36 +156,42 @@ const ProfileSettings = () => {
 
               {/* Name Input */}
               <div>
-                <label className="block text-gray-700 dark:text-gray-300">Name</label>
+                <label className="block text-gray-700 dark:text-gray-300">
+                  Name
+                </label>
                 <input
                   type="text"
                   className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  disabled={true}
+                  disabled
                 />
               </div>
 
               {/* Email Input */}
               <div>
-                <label className="block text-gray-700 dark:text-gray-300">Email</label>
+                <label className="block text-gray-700 dark:text-gray-300">
+                  Email
+                </label>
                 <input
                   type="email"
                   className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  disabled={true}
+                  disabled
                 />
               </div>
 
               {/* Password Input */}
               <div>
-                <label className="block text-gray-700 dark:text-gray-300">New Password</label>
+                <label className="block text-gray-700 dark:text-gray-300">
+                  New Password <span className="text-red-500">*</span>
+                </label>
                 <input
                   type="password"
-                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
+                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
+                  placeholder="Enter a new password"
+                  required // HTML required attribute
                 />
               </div>
 
@@ -166,6 +204,20 @@ const ProfileSettings = () => {
                 {loading ? "Saving..." : "Save Changes"}
               </button>
             </form>
+
+            {/* Floating success message */}
+            {showSuccess && (
+              <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+                Password updated successfully! 🚀
+              </div>
+            )}
+
+            {/* Floating error message */}
+            {showError && (
+              <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+                Password updation failed.
+              </div>
+            )}
           </div>
         </div>
       </SidebarLayout>
