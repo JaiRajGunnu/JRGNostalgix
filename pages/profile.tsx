@@ -137,7 +137,7 @@ const ProfileSettings = () => {
         </div>
 
         <div className="relative w-full min-h-screen flex justify-center items-center p-6">
-          <div className="bg-white dark:bg-neutral-800 rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
+          <div className="bg-white dark:bg-[#18191af7] rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
             <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
               Profile Settings
             </h2>
@@ -161,7 +161,7 @@ const ProfileSettings = () => {
                 </label>
                 <input
                   type="text"
-                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
+                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={name}
                   disabled
                 />
@@ -174,7 +174,7 @@ const ProfileSettings = () => {
                 </label>
                 <input
                   type="email"
-                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
+                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500"
                   value={email}
                   disabled
                 />
@@ -187,7 +187,7 @@ const ProfileSettings = () => {
                 </label>
                 <input
                   type="password"
-                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-neutral-700 dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none"
+                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter a new password"

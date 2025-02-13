@@ -112,7 +112,7 @@ export default function Login() {
       </Head>
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
-        <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-white/10 border border-white/30 
+        <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-[#17181a] border border-white/30 
                         transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
           <h2 className="text-4xl font-bold text-center text-white mb-6">
             Login
@@ -123,7 +123,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -135,7 +135,7 @@ export default function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="w-full p-3 bg-white/20 text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-12"
+                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-12"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required

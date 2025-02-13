@@ -61,7 +61,7 @@ const Settings = () => {
             </div>
 
             {/* Single Container for All Settings */}
-            <div className="bg-white dark:bg-neutral-800 shadow-lg rounded-2xl py-10 px-6 md:px-10 lg:px-15 space-y-6">
+            <div className="dark:bg-[#18191af7] shadow-lg rounded-2xl py-10 px-6 md:px-10 lg:px-15 space-y-6">
               {/* Notifications */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
@@ -82,7 +82,7 @@ const Settings = () => {
                       border-gray-300 dark:border-gray-600 
                       ${notifications ? "bg-blue-600" : "bg-transparent"}
                       transition-colors focus:outline-none focus:ring-2 
-                      focus:ring-blue-500 dark:bg-neutral-700`}
+                      focus:ring-blue-500 dark:bg-[#27292af7]`}
                   >
                     {notifications && <CheckIcon className="w-4 h-4  text-white" />}
                   </div>
@@ -110,7 +110,7 @@ const Settings = () => {
                   </label>
                   <select
                     id="theme-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
+                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                   >
                     <option>Dark theme</option>
                     <option disabled>Light theme</option>
@@ -136,7 +136,7 @@ const Settings = () => {
                   </label>
                   <select
                     id="privacy-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-neutral-700 dark:text-white"
+                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                     value={privacy}
                     onChange={handlePrivacyChange}
                   >
@@ -164,7 +164,7 @@ const Settings = () => {
                   </label>
                   <button
                     onClick={handleDeactivate}
-                    className="dark:bg-neutral-700 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring"
+                    className="dark:bg-[#27292af7] text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring"
                   >
                     Deactivate
                   </button>
