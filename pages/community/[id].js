@@ -86,13 +86,13 @@ const FriendsPage = () => {
           <BackgroundBeamsWithCollision className="fixed inset-0 -z-10" />
 
           {/* Content container with padding */}
-          <div className="relative z-10 p-6 space-y-6 lg:p-30 lg:y-30">
+          <div className="relative z-10 p-6 space-y-6 ">
             {/* Questionnaire Display */}
             {questionnaire && (
-              <div className="space-y-4 max-w-4xl mx-auto lg:p-10 lg:y-10">
+              <div className="space-y-4 max-w-4xl mx-auto p-5">
                 {/* Personal Info Section */}
 
-                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                <div className="bg-[#18191af7] p-4 rounded-lg shadow-inner lg:px-5 lg:py-5">
 
                   <div
                     className="rounded-xl mt-2 text-center bg-cover bg-no-repeat bg-center cursor-pointer h-[150px]"
@@ -127,15 +127,15 @@ const FriendsPage = () => {
                         title="Verified profile"
                       />
                     </h2>
-                    <p className="text-gray-400 text-sm mt-1 mb-5">A person's true self is a reflection of their beliefs.</p>
+                    <p className="text-gray-400 text-sm mt-2 mb-3">A person's true self is a reflection of their beliefs.</p>
 
                   </div>
 
                   </div>
-                  <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
-                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Personal Information</h2>
+                  <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6 ">
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Intro</h2>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       What's your name?
                     </label>
@@ -145,7 +145,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       When were you born?
                     </label>
@@ -155,7 +155,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Your School
                     </label>
@@ -165,7 +165,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Your College
                     </label>
@@ -175,7 +175,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Zodiac sign
                     </label>
@@ -187,10 +187,10 @@ const FriendsPage = () => {
                 </div>
 
                 {/* Favorites Section */}
-                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6">
                   <h2 className="text-white text-2xl mb-3 font-bold capitalize">Favorites</h2>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite color
                     </label>
@@ -200,7 +200,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite place
                     </label>
@@ -210,7 +210,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite food
                     </label>
@@ -222,7 +222,7 @@ const FriendsPage = () => {
 
                   {/* Add other favorites... */}
                   {/* Replace with appropriate icon based on label. */}
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite movie
                     </label>
@@ -232,7 +232,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite actor/actress
                     </label>
@@ -242,7 +242,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite person
                     </label>
@@ -252,7 +252,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite book/novel
                     </label>
@@ -262,7 +262,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Favorite dress
                     </label>
@@ -274,10 +274,10 @@ const FriendsPage = () => {
                 </div>
 
                 {/* deep_thoughts Section */}
-                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6">
                   <h2 className="text-white text-2xl mb-3 font-bold capitalize">Deep Thoughts</h2>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Your crazy dreams
                     </label>
@@ -287,7 +287,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Your hobbies
                     </label>
@@ -297,7 +297,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Special talents
                     </label>
@@ -307,7 +307,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       What is your deepest fear?
                     </label>
@@ -317,7 +317,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Tell me a secret
                     </label>
@@ -327,7 +327,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       The most important person in your life
                     </label>
@@ -337,7 +337,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       What is the most childish thing you still do?
                     </label>
@@ -347,7 +347,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Who is your crush?
                     </label>
@@ -357,7 +357,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Regarding your interests, what is the ideal person you would like to marry?
                     </label>
@@ -367,7 +367,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       If you could be invisible, what would you do first?
                     </label>
@@ -379,10 +379,10 @@ const FriendsPage = () => {
                 </div>
 
                 {/* for_me Section */}
-                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6">
                   <h2 className="text-white text-2xl mb-3 font-bold capitalize">For me</h2>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       A nickname for me
                     </label>
@@ -391,7 +391,7 @@ const FriendsPage = () => {
                       <p className="text-white-lite">{questionnaire.for_me["a nickname for me"]}</p>
                     </div>
                   </div>
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       A song you would like to dedicate to me
                     </label>
@@ -400,7 +400,7 @@ const FriendsPage = () => {
                       <p className="text-white-lite">{questionnaire.for_me["a song you want to dedicate me"]}</p>
                     </div>
                   </div>
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Our relationship
                     </label>
@@ -410,7 +410,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       If I were your slave for a day, what would you ask me to do?
                     </label>
@@ -420,7 +420,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Which color suits me best?
                     </label>
@@ -430,7 +430,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Something you want to tell me
                     </label>
@@ -440,7 +440,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Something you dislike about me
                     </label>
@@ -450,7 +450,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       Something you like about me
                     </label>
@@ -460,7 +460,7 @@ const FriendsPage = () => {
                     </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex-col">
+                  <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       What was your first impression of me?
                     </label>
