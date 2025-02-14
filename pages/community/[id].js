@@ -8,25 +8,47 @@ import { useEffect, useState } from "react";
 
 /* Import only the icons you need from Heroicons and Tabler Icons */
 import {
-    CakeIcon,
-    MapPinIcon,
-    BeakerIcon,
-    BuildingLibraryIcon,
-    AcademicCapIcon,
-    HeartIcon,
-    HomeIcon,
-    FilmIcon,
-    BookOpenIcon,
-    FaceSmileIcon,
-    UserIcon,
-    ScissorsIcon,
-    PhotoIcon,
-    PlayCircleIcon,
-    PaperAirplaneIcon,
-    GlobeAltIcon,
-    CheckBadgeIcon
+  CakeIcon,
+  MapPinIcon,
+  BeakerIcon,
+  BuildingLibraryIcon,
+  AcademicCapIcon,
+  HeartIcon,
+  HomeIcon,
+  FilmIcon,
+  BookOpenIcon,
+  FaceSmileIcon,
+  UserIcon,
+  ScissorsIcon,
+  PhotoIcon,
+  PlayCircleIcon,
+  PaperAirplaneIcon,
+  GlobeAltIcon,
+  CheckBadgeIcon,
 } from "@heroicons/react/24/solid";
-import { IconAtom, IconBook, IconBrandFacebook, IconBrandInstagram, IconBrandYoutube, IconBrandYoutubeFilled, IconCake, IconChairDirector, IconCloudHeart, IconExternalLink, IconHeart, IconHeartBroken, IconHeartFilled, IconHearts, IconMapPin, IconMickey, IconMoodKid, IconPalette, IconPaletteFilled, IconSchool, IconWorld } from "@tabler/icons-react";
+import {
+  IconAtom,
+  IconBook,
+  IconBrandFacebook,
+  IconBrandInstagram,
+  IconBrandYoutube,
+  IconBrandYoutubeFilled,
+  IconCake,
+  IconChairDirector,
+  IconCloudHeart,
+  IconExternalLink,
+  IconHeart,
+  IconHeartBroken,
+  IconHeartFilled,
+  IconHearts,
+  IconMapPin,
+  IconMickey,
+  IconMoodKid,
+  IconPalette,
+  IconPaletteFilled,
+  IconSchool,
+  IconWorld,
+} from "@tabler/icons-react";
 
 const FriendsPage = () => {
   const router = useRouter();
@@ -59,238 +81,403 @@ const FriendsPage = () => {
       </Head>
 
       <SidebarLayout>
-        <div className="flex flex-col items-start min-h-screen text-white bg-black p-4">
-          <BackgroundBeamsWithCollision className="w-full p-6 rounded-lg shadow-md">
+        {/* Changed parent div to fixed height with overflow */}
+        <div className="relative h-screen overflow-y-auto text-white bg-black">
+          <BackgroundBeamsWithCollision className="fixed inset-0 -z-10" />
 
-            {/* Questionnaire Display (Hardcoded) */}
+          {/* Content container with padding */}
+          <div className="relative z-10 p-6 space-y-6 lg:p-30 lg:y-30">
+            {/* Questionnaire Display */}
             {questionnaire && (
-              <div className="space-y-4">
+              <div className="space-y-4 max-w-4xl mx-auto lg:p-10 lg:y-10">
                 {/* Personal Info Section */}
-                <div className="bg-gray-800 p-4 rounded-lg shadow-inner">
-                  <h2 className="text-2xl font-semibold mb-3">Personal Information</h2>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                    <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">
-                      <IconBrandFacebook className="w-4 h-4 text-gray-400 mr-1 inline-block" />
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+
+                  <div
+                    className="rounded-xl mt-2 text-center bg-cover bg-no-repeat bg-center cursor-pointer h-[150px]"
+                    style={{
+                      backgroundImage: `url('https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?cs=srgb&dl=pexels-andrew-3178786.jpg&fm=jpg')`,
+                      backgroundPosition: "0px -40px",
+                      backgroundSize: "cover",
+                    }}
+                  >
+
+                    <div className="flex justify-center">
+                      <img
+                        alt={friend.fullname}
+                        className={` 
+                                                      border-4 border-[#3a3b3c]
+                                                      rounded-full
+                                                      transition duration-300
+                                                      mt-[75px] w-[100px] h-[100px] object-cover 
+                                                      hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]
+                                                      `}
+                        src={friend.src}
+                      />
+                    </div>
+                  </div>
+
+                  {/* Name */}
+                  <div className="mt-4 text-center">
+                    <h2 className="text-white cursor-default mt-8 text-xl font-bold capitalize">
+                      {friend.fullname}
+                      <CheckBadgeIcon
+                        className="inline-block w-4 h-4 ml-1 text-[#2d88ff]"
+                        title="Verified profile"
+                      />
+                    </h2>
+                    <p className="text-gray-400 text-sm mt-1 mb-5">A person's true self is a reflection of their beliefs.</p>
+
+                  </div>
+
+                  </div>
+                  <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Personal Information</h2>
+
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
                       What's your name?
                     </label>
-                    <p className="text-gray-100">{questionnaire.personal_info["what's your name?"]}</p>
+                    <div className="flex items-center">
+                      <IconBrandFacebook className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.personal_info["what's your name?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <IconCake className="w-4 h-4 text-gray-400 mr-1 inline-block" />When were you born?</label>
-                    <p className="text-gray-100">{questionnaire.personal_info["when were you born?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      When were you born?
+                    </label>
+                    <div className="flex items-center">
+                      <IconCake className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.personal_info["when were you born?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                     <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                      <IconSchool className="w-4 h-4 text-gray-400 mr-1 inline-block" />Your School</label>
-                    <p className="text-gray-100">{questionnaire.personal_info["your school"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Your School
+                    </label>
+                    <div className="flex items-center">
+                      <IconSchool className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.personal_info["your school"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <IconBook className="w-4 h-4 text-gray-400 mr-1 inline-block" />Your College</label>
-                    <p className="text-gray-100">{questionnaire.personal_info["your college"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Your College
+                    </label>
+                    <div className="flex items-center">
+                      <IconBook className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.personal_info["your college"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <IconAtom className="w-4 h-4 text-gray-400 mr-1 inline-block" />Zodiac sign</label>
-                    <p className="text-gray-100">{questionnaire.personal_info["zodiac sign"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Zodiac sign
+                    </label>
+                    <div className="flex items-center">
+                      <IconAtom className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.personal_info["zodiac sign"]}</p>
+                    </div>
                   </div>
                 </div>
 
                 {/* Favorites Section */}
-                <div className="bg-gray-800 p-4 rounded-lg shadow-inner">
-                  <h2 className="text-2xl font-semibold mb-3">Favorites</h2>
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Favorites</h2>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <IconPalette className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav color</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav color"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite color
+                    </label>
+                    <div className="flex items-center">
+                      <IconPalette className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav color"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <MapPinIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav place</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav place"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite place
+                    </label>
+                    <div className="flex items-center">
+                      <MapPinIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav place"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <CakeIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav food</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav food"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite food
+                    </label>
+                    <div className="flex items-center">
+                      <CakeIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav food"]}</p>
+                    </div>
                   </div>
 
-                   {/* Add other favorites... */}
-                   {/* Replace with appropriate icon based on label. */}
-                   <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">   
-                    <FilmIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav movie</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav movie"]}</p>
+                  {/* Add other favorites... */}
+                  {/* Replace with appropriate icon based on label. */}
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite movie
+                    </label>
+                    <div className="flex items-center">
+                      <FilmIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav movie"]}</p>
+                    </div>
                   </div>
 
-                   <div className="mb-2 flex items-start flex flex-col">
-                    <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav actor/actress</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav actor/actress"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite actor/actress
+                    </label>
+                    <div className="flex items-center">
+                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav actor/actress"]}</p>
+                    </div>
                   </div>
 
-                   <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <HeartIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav person</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav person"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite person
+                    </label>
+                    <div className="flex items-center">
+                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav person"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <BookOpenIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav book/novel</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav book/novel"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite book/novel
+                    </label>
+                    <div className="flex items-center">
+                      <BookOpenIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav book/novel"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Fav dress</label>
-                    <p className="text-gray-100">{questionnaire.favorites["fav dress"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Favorite dress
+                    </label>
+                    <div className="flex items-center">
+                      <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.favorites["fav dress"]}</p>
+                    </div>
                   </div>
-
                 </div>
 
                 {/* deep_thoughts Section */}
-                <div className="bg-gray-800 p-4 rounded-lg shadow-inner flex flex-col">
-                  <h2 className="text-2xl font-semibold mb-3">Deep Thoughts</h2>
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Deep Thoughts</h2>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">
-                     <UserIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Your crazy dreams</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["your crazy dreams"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Your crazy dreams
+                    </label>
+                    <div className="flex items-center">
+                      <UserIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["your crazy dreams"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                  <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Your hobbies</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["your hobbies"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Your hobbies
+                    </label>
+                    <div className="flex items-center">
+                      <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["your hobbies"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <PhotoIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Special talents</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["special talents"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Special talents
+                    </label>
+                    <div className="flex items-center">
+                      <PhotoIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["special talents"]}</p>
+                    </div>
                   </div>
 
-                   <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <IconHeartBroken className="w-4 h-4 text-gray-400 mr-1 inline-block" />What's your deepest fear?</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["what's your deepest fear?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      What is your deepest fear?
+                    </label>
+                    <div className="flex items-center">
+                      <IconHeartBroken className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["what's your deepest fear?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Tell me one secret</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["tell me one secret"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Tell me a secret
+                    </label>
+                    <div className="flex items-center">
+                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["tell me one secret"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <HeartIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />The most important person in your life</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["the most important person in your life"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      The most important person in your life
+                    </label>
+                    <div className="flex items-center">
+                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["the most important person in your life"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <IconMoodKid className="w-4 h-4 text-gray-400 mr-1 inline-block" />What's the most childish thing you still do?</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["what's the most childish thing you still do?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      What is the most childish thing you still do?
+                    </label>
+                    <div className="flex items-center">
+                      <IconMoodKid className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["what's the most childish thing you still do?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <HeartIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Who's your crush?</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["who's your crush?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Who is your crush?
+                    </label>
+                    <div className="flex items-center">
+                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["who's your crush?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <BuildingLibraryIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />On your interest, the person you like to marry</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["on your interest, the person you like to marry"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Regarding your interests, what is the ideal person you would like to marry?
+                    </label>
+                    <div className="flex items-center">
+                      <BuildingLibraryIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["on your interest, the person you like to marry"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">   
-                  <GlobeAltIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />If you can be invisible, what will you do first?</label>
-                    <p className="text-gray-100">{questionnaire.deep_thoughts["if you can be invisible, what will you do first?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      If you could be invisible, what would you do first?
+                    </label>
+                    <div className="flex items-center">
+                      <GlobeAltIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.deep_thoughts["if you can be invisible, what will you do first?"]}</p>
+                    </div>
                   </div>
-
                 </div>
-
 
                 {/* for_me Section */}
-                <div className="bg-gray-800 p-4 rounded-lg shadow-inner">
-                  <h2 className="text-2xl font-semibold mb-3">For me</h2>
+                <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner">
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">For me</h2>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                    <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">
-                      <IconMoodKid className="w-4 h-4 text-gray-400 mr-1 inline-block"/>A nickname for me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["a nickname for me"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      A nickname for me
+                    </label>
+                    <div className="flex items-center">
+                      <IconMoodKid className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["a nickname for me"]}</p>
+                    </div>
                   </div>
-                    <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2"> 
-                    <IconBrandYoutubeFilled className="w-4 h-4 text-gray-400 mr-1 inline-block" />A song you want to dedicate me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["a song you want to dedicate me"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      A song you would like to dedicate to me
+                    </label>
+                    <div className="flex items-center">
+                      <IconBrandYoutubeFilled className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["a song you want to dedicate me"]}</p>
+                    </div>
                   </div>
-                    <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Relation between you and me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["relation between you and me"]}</p>
-                  </div>
-
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <HeartIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />If I was your slave for a day, what would you ask me to do for you?</label>
-                    <p className="text-gray-100">{questionnaire.for_me["if i was your slave for a day, what would you ask me to do for you?"]}</p>
-                  </div>
-
-                  <div className="mb-2 flex items-start flex flex-col">
-                  <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                    <IconPalette className="w-4 h-4 text-gray-400 mr-1 inline-block" />Which color suits me the most</label>
-                    <p className="text-gray-100">{questionnaire.for_me["which color suits me the most"]}</p>
-                  </div>
-
-                  <div className="mb-2 flex items-start flex flex-col">
-                   <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">   
-                    <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Something you want to tell me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["something you want to tell me"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Our relationship
+                    </label>
+                    <div className="flex items-center">
+                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["relation between you and me"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <IconHeartBroken className="w-4 h-4 text-gray-400 mr-1 inline-block" />Something you hate in me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["something you hate in me"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      If I were your slave for a day, what would you ask me to do?
+                    </label>
+                    <div className="flex items-center">
+                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["if i was your slave for a day, what would you ask me to do for you?"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">   
-                  <HeartIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />Something you like in me</label>
-                    <p className="text-gray-100">{questionnaire.for_me["something you like in me"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Which color suits me best?
+                    </label>
+                    <div className="flex items-center">
+                      <IconPalette className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["which color suits me the most"]}</p>
+                    </div>
                   </div>
 
-                  <div className="mb-2 flex items-start flex flex-col">
-                 <label className="block text-gray-300 text-sm font-bold mb-1 mr-2">  
-                  <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1 inline-block" />What did you feel when you first saw me?</label>
-                    <p className="text-gray-100">{questionnaire.for_me["what did you feel when you first saw me?"]}</p>
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Something you want to tell me
+                    </label>
+                    <div className="flex items-center">
+                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["something you want to tell me"]}</p>
+                    </div>
                   </div>
 
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Something you dislike about me
+                    </label>
+                    <div className="flex items-center">
+                      <IconHeartBroken className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["something you hate in me"]}</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      Something you like about me
+                    </label>
+                    <div className="flex items-center">
+                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["something you like in me"]}</p>
+                    </div>
+                  </div>
+
+                  <div className="mb-2 flex items-start flex-col">
+                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                      What was your first impression of me?
+                    </label>
+                    <div className="flex items-center">
+                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <p className="text-white-lite">{questionnaire.for_me["what did you feel when you first saw me?"]}</p>
+                    </div>
+                  </div>
                 </div>
-
 
                 {/* filled_at timestamp */}
                 {questionnaire.filled_at && (
-                  <p className="text-gray-500 text-sm mt-4">Filled at: {questionnaire.filled_at}</p>
+                  <p className="text-gray-500 text-sm mt-4 flex flex-right mr-[0rem]">Filled at: {questionnaire.filled_at}</p>
                 )}
               </div>
             )}
-          </BackgroundBeamsWithCollision>
+          </div>
         </div>
       </SidebarLayout>
     </>
