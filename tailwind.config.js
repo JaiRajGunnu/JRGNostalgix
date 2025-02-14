@@ -9,7 +9,9 @@ module.exports = {
       colors: {
         'white-lite': 'rgba(255, 255, 255, 0.91)',
         'gray-lite': 'rgb(38 38 38)',
-        
+      },
+      fontFamily: {
+        poppins: ['Poppins', 'sans-serif'],
       },
       
       

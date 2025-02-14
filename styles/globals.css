@@ -1,3 +1,4 @@
+@import '@fontsource/poppins'; 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -10,14 +11,7 @@ html, body {
     overflow-x: hidden;
   }
   
-  .desktop-sidebar ~ .content {
-    margin-left: 60px;
-    transition: margin-left 0.3s ease-in-out;
-  }
-  
-  .desktop-sidebar:hover ~ .content {
-    margin-left: 250px;
-  }
+
 
 
   
