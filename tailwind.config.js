@@ -11,6 +11,8 @@ module.exports = {
         'gray-lite': 'rgb(38 38 38)',
         
       },
+      
+      
     },
   },
   plugins: [],

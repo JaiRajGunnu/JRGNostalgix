@@ -5,6 +5,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import friends from "../../data/friends.json";
 import { useEffect, useState } from "react";
+// Add this import to your component or layout file
 
 /* Import only the icons you need from Heroicons and Tabler Icons */
 import {
@@ -154,146 +155,162 @@ const FriendsPage = () => {
                   </div>
 
                   </div>
+
+                  {/* Intro section */}
                   <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6 ">
-                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Intro</h2>
+                    <h2 className="text-white text-2xl mb-3 font-bold capitalize">Intro</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {/* Left Side */}
+                      <div>
+                        <div className="mb-4 flex items-start flex-col">
+                          <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                            What's your name?
+                          </label>
+                          <div className="flex items-center">
+                            <IconUserQuestion className="w-4 h-4 text-gray-400 mr-1" />
+                            <p className="text-white-lite">{questionnaire.personal_info["what's your name?"]}</p>
+                          </div>
+                        </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      What's your name?
-                    </label>
-                    <div className="flex items-center">
-                      <IconUserQuestion className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.personal_info["what's your name?"]}</p>
+                        <div className="mb-4 flex items-start flex-col">
+                          <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                            When were you born?
+                          </label>
+                          <div className="flex items-center">
+                            <IconCake className="w-4 h-4 text-gray-400 mr-1" />
+                            <p className="text-white-lite">{questionnaire.personal_info["when were you born?"]}</p>
+                          </div>
+                        </div>
+
+                        <div className="mb-0 flex items-start flex-col">
+                          <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                            Your School
+                          </label>
+                          <div className="flex items-center">
+                            <BuildingLibraryIcon className="w-4 h-4 text-gray-400 mr-1" />
+                            <p className="text-white-lite">{questionnaire.personal_info["your school"]}</p>
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Right Side */}
+                      <div>
+                        <div className="mb-4 flex items-start flex-col">
+                          <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                            Your College
+                          </label>
+                          <div className="flex items-center">
+                            <IconSchool className="w-4 h-4 text-gray-400 mr-1" />
+                            <p className="text-white-lite">{questionnaire.personal_info["your college"]}</p>
+                          </div>
+                        </div>
+
+                        <div className="mb-4 flex items-start flex-col">
+                          <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                            Zodiac sign
+                          </label>
+                          <div className="flex items-center">
+                            <IconAtom className="w-4 h-4 text-gray-400 mr-1" />
+                            <p className="text-white-lite">{questionnaire.personal_info["zodiac sign"]}</p>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      When were you born?
-                    </label>
-                    <div className="flex items-center">
-                      <IconCake className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.personal_info["when were you born?"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Your School
-                    </label>
-                    <div className="flex items-center">
-                      <BuildingLibraryIcon  className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.personal_info["your school"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Your College
-                    </label>
-                    <div className="flex items-center">
-                      <IconSchool className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.personal_info["your college"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Zodiac sign
-                    </label>
-                    <div className="flex items-center">
-                      <IconAtom className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.personal_info["zodiac sign"]}</p>
-                    </div>
-                  </div>
-                </div>
 
                 {/* Favorites Section */}
                 <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6">
                   <h2 className="text-white text-2xl mb-3 font-bold capitalize">Favorites</h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {/* Left Side */}
+                    <div>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite color
+                        </label>
+                        <div className="flex items-center">
+                          <IconPalette className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav color"]}</p>
+                        </div>
+                      </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite color
-                    </label>
-                    <div className="flex items-center">
-                      <IconPalette className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav color"]}</p>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite place
+                        </label>
+                        <div className="flex items-center">
+                          <IconMapPin className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav place"]}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite food
+                        </label>
+                        <div className="flex items-center">
+                          <IconCheese className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav food"]}</p>
+                        </div>
+                      </div>
+
+                      <div className="mb-0 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite movie
+                        </label>
+                        <div className="flex items-center">
+                          <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav movie"]}</p>
+                        </div>
+                      </div>
                     </div>
-                  </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite place
-                    </label>
-                    <div className="flex items-center">
-                      <IconMapPin className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav place"]}</p>
-                    </div>
-                  </div>
+                    {/* Right Side */}
+                    <div>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite actor/actress
+                        </label>
+                        <div className="flex items-center">
+                          <IconMoodSmile className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite font-arial">{questionnaire.favorites["fav actor/actress"]}</p>
+                        </div>
+                      </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite food
-                    </label>
-                    <div className="flex items-center">
-                      <IconCheese className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav food"]}</p>
-                    </div>
-                  </div>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite person
+                        </label>
+                        <div className="flex items-center">
+                          <IconHeart className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav person"]}</p>
+                        </div>
+                      </div>
 
-                  {/* Add other favorites... */}
-                  {/* Replace with appropriate icon based on label. */}
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite movie
-                    </label>
-                    <div className="flex items-center">
-                      <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav movie"]}</p>
-                    </div>
-                  </div>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite book/novel
+                        </label>
+                        <div className="flex items-center">
+                          <IconBook className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav book/novel"]}</p>
+                        </div>
+                      </div>
 
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite actor/actress
-                    </label>
-                    <div className="flex items-center">
-                      <IconMoodSmile className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav actor/actress"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite person
-                    </label>
-                    <div className="flex items-center">
-                      <IconHeart className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav person"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite book/novel
-                    </label>
-                    <div className="flex items-center">
-                      <IconBook className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav book/novel"]}</p>
-                    </div>
-                  </div>
-
-                  <div className="mb-4 flex items-start flex-col">
-                    <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
-                      Favorite dress
-                    </label>
-                    <div className="flex items-center">
-                      <IconHanger className="w-4 h-4 text-gray-400 mr-1" />
-                      <p className="text-white-lite">{questionnaire.favorites["fav dress"]}</p>
+                      <div className="mb-4 flex items-start flex-col">
+                        <label className="block text-gray-400 text-sm font-semibold mb-1 mr-2">
+                          Favorite dress
+                        </label>
+                        <div className="flex items-center">
+                          <IconHanger className="w-4 h-4 text-gray-400 mr-1" />
+                          <p className="text-white-lite">{questionnaire.favorites["fav dress"]}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
+
 
                 {/* deep_thoughts Section */}
                 <div className="bg-[#18191af7]  p-4 rounded-lg shadow-inner lg:px-10 lg:py-6">
@@ -495,7 +512,7 @@ const FriendsPage = () => {
 
                 {/* filled_at timestamp */}
                 {questionnaire.filled_at && (
-                  <p className="text-gray-500 text-sm mt-4 flex flex-right mr-[0rem]">Filled at: {questionnaire.filled_at}</p>
+                  <p className="text-gray-500 text-sm mt-4 flex text-center items-center justify-center">Recorded: {questionnaire.filled_at}</p>
                 )}
               </div>
             )}
