@@ -25,30 +25,52 @@ import {
   PaperAirplaneIcon,
   GlobeAltIcon,
   CheckBadgeIcon,
+  MusicalNoteIcon,
 } from "@heroicons/react/24/solid";
 import {
   IconAtom,
   IconBook,
   IconBrandFacebook,
   IconBrandInstagram,
+  IconBrandTinder,
   IconBrandYoutube,
   IconBrandYoutubeFilled,
   IconCake,
+  IconCakeOff,
   IconChairDirector,
+  IconChartBubble,
+  IconCheese,
+  IconCircleDashedNumber1,
+  IconCirclesRelation,
   IconCloudHeart,
+  IconDiamond,
   IconExternalLink,
+  IconEyeClosed,
+  IconFlare,
+  IconHandLittleFinger,
+  IconHanger,
   IconHeart,
   IconHeartBroken,
   IconHeartFilled,
   IconHearts,
+  IconLockPassword,
   IconMapPin,
+  IconMasksTheater,
   IconMickey,
   IconMoodKid,
+  IconMoodSad,
+  IconMoodSmile,
+  IconPaint,
   IconPalette,
   IconPaletteFilled,
+  IconRings,
   IconSchool,
+  IconShirt,
+  IconThumbUp,
+  IconUserQuestion,
   IconWorld,
 } from "@tabler/icons-react";
+import { TbRings } from "react-icons/tb";
 
 const FriendsPage = () => {
   const router = useRouter();
@@ -89,7 +111,7 @@ const FriendsPage = () => {
           <div className="relative z-10 p-6 space-y-6 ">
             {/* Questionnaire Display */}
             {questionnaire && (
-              <div className="space-y-4 max-w-4xl mx-auto p-5">
+              <div className="space-y-6 max-w-4xl mx-auto p-5">
                 {/* Personal Info Section */}
 
                 <div className="bg-[#18191af7] p-4 rounded-lg shadow-inner lg:px-5 lg:py-5">
@@ -107,12 +129,12 @@ const FriendsPage = () => {
                       <img
                         alt={friend.fullname}
                         className={` 
-                                                      border-4 border-[#3a3b3c]
-                                                      rounded-full
-                                                      transition duration-300
-                                                      mt-[75px] w-[100px] h-[100px] object-cover 
-                                                      hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]
-                                                      `}
+                        border-4 border-[#3a3b3c]
+                        rounded-full
+                        transition duration-300
+                        mt-[75px] w-[100px] h-[100px] object-cover 
+                        hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]
+                        `}
                         src={friend.src}
                       />
                     </div>
@@ -127,7 +149,7 @@ const FriendsPage = () => {
                         title="Verified profile"
                       />
                     </h2>
-                    <p className="text-gray-400 text-sm mt-2 mb-3">A person's true self is a reflection of their beliefs.</p>
+                    <p className="text-gray-400 text-sm mt-2 mb-3">{friend.instaqoute}</p>
 
                   </div>
 
@@ -140,7 +162,7 @@ const FriendsPage = () => {
                       What's your name?
                     </label>
                     <div className="flex items-center">
-                      <IconBrandFacebook className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconUserQuestion className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.personal_info["what's your name?"]}</p>
                     </div>
                   </div>
@@ -160,7 +182,7 @@ const FriendsPage = () => {
                       Your School
                     </label>
                     <div className="flex items-center">
-                      <IconSchool className="w-4 h-4 text-gray-400 mr-1" />
+                      <BuildingLibraryIcon  className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.personal_info["your school"]}</p>
                     </div>
                   </div>
@@ -170,7 +192,7 @@ const FriendsPage = () => {
                       Your College
                     </label>
                     <div className="flex items-center">
-                      <IconBook className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconSchool className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.personal_info["your college"]}</p>
                     </div>
                   </div>
@@ -205,7 +227,7 @@ const FriendsPage = () => {
                       Favorite place
                     </label>
                     <div className="flex items-center">
-                      <MapPinIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconMapPin className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav place"]}</p>
                     </div>
                   </div>
@@ -215,7 +237,7 @@ const FriendsPage = () => {
                       Favorite food
                     </label>
                     <div className="flex items-center">
-                      <CakeIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconCheese className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav food"]}</p>
                     </div>
                   </div>
@@ -227,7 +249,7 @@ const FriendsPage = () => {
                       Favorite movie
                     </label>
                     <div className="flex items-center">
-                      <FilmIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav movie"]}</p>
                     </div>
                   </div>
@@ -237,7 +259,7 @@ const FriendsPage = () => {
                       Favorite actor/actress
                     </label>
                     <div className="flex items-center">
-                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconMoodSmile className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav actor/actress"]}</p>
                     </div>
                   </div>
@@ -247,7 +269,7 @@ const FriendsPage = () => {
                       Favorite person
                     </label>
                     <div className="flex items-center">
-                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconHeart className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav person"]}</p>
                     </div>
                   </div>
@@ -257,7 +279,7 @@ const FriendsPage = () => {
                       Favorite book/novel
                     </label>
                     <div className="flex items-center">
-                      <BookOpenIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconBook className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav book/novel"]}</p>
                     </div>
                   </div>
@@ -267,7 +289,7 @@ const FriendsPage = () => {
                       Favorite dress
                     </label>
                     <div className="flex items-center">
-                      <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconHanger className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.favorites["fav dress"]}</p>
                     </div>
                   </div>
@@ -282,7 +304,7 @@ const FriendsPage = () => {
                       Your crazy dreams
                     </label>
                     <div className="flex items-center">
-                      <UserIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconCloudHeart className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["your crazy dreams"]}</p>
                     </div>
                   </div>
@@ -292,7 +314,7 @@ const FriendsPage = () => {
                       Your hobbies
                     </label>
                     <div className="flex items-center">
-                      <ScissorsIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconChartBubble className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["your hobbies"]}</p>
                     </div>
                   </div>
@@ -302,7 +324,7 @@ const FriendsPage = () => {
                       Special talents
                     </label>
                     <div className="flex items-center">
-                      <PhotoIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconHandLittleFinger className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["special talents"]}</p>
                     </div>
                   </div>
@@ -322,7 +344,7 @@ const FriendsPage = () => {
                       Tell me a secret
                     </label>
                     <div className="flex items-center">
-                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconLockPassword className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["tell me one secret"]}</p>
                     </div>
                   </div>
@@ -332,7 +354,7 @@ const FriendsPage = () => {
                       The most important person in your life
                     </label>
                     <div className="flex items-center">
-                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconBrandTinder className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["the most important person in your life"]}</p>
                     </div>
                   </div>
@@ -352,7 +374,7 @@ const FriendsPage = () => {
                       Who is your crush?
                     </label>
                     <div className="flex items-center">
-                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconHearts className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["who's your crush?"]}</p>
                     </div>
                   </div>
@@ -362,7 +384,7 @@ const FriendsPage = () => {
                       Regarding your interests, what is the ideal person you would like to marry?
                     </label>
                     <div className="flex items-center">
-                      <BuildingLibraryIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconDiamond className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["on your interest, the person you like to marry"]}</p>
                     </div>
                   </div>
@@ -372,7 +394,7 @@ const FriendsPage = () => {
                       If you could be invisible, what would you do first?
                     </label>
                     <div className="flex items-center">
-                      <GlobeAltIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconEyeClosed className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.deep_thoughts["if you can be invisible, what will you do first?"]}</p>
                     </div>
                   </div>
@@ -387,7 +409,7 @@ const FriendsPage = () => {
                       A nickname for me
                     </label>
                     <div className="flex items-center">
-                      <IconMoodKid className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconMickey className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["a nickname for me"]}</p>
                     </div>
                   </div>
@@ -396,7 +418,7 @@ const FriendsPage = () => {
                       A song you would like to dedicate to me
                     </label>
                     <div className="flex items-center">
-                      <IconBrandYoutubeFilled className="w-4 h-4 text-gray-400 mr-1" />
+                      <MusicalNoteIcon className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["a song you want to dedicate me"]}</p>
                     </div>
                   </div>
@@ -405,7 +427,7 @@ const FriendsPage = () => {
                       Our relationship
                     </label>
                     <div className="flex items-center">
-                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconCirclesRelation className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["relation between you and me"]}</p>
                     </div>
                   </div>
@@ -415,7 +437,7 @@ const FriendsPage = () => {
                       If I were your slave for a day, what would you ask me to do?
                     </label>
                     <div className="flex items-center">
-                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconMasksTheater className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["if i was your slave for a day, what would you ask me to do for you?"]}</p>
                     </div>
                   </div>
@@ -425,7 +447,7 @@ const FriendsPage = () => {
                       Which color suits me best?
                     </label>
                     <div className="flex items-center">
-                      <IconPalette className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconPaint className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["which color suits me the most"]}</p>
                     </div>
                   </div>
@@ -435,7 +457,7 @@ const FriendsPage = () => {
                       Something you want to tell me
                     </label>
                     <div className="flex items-center">
-                      <PaperAirplaneIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconFlare className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["something you want to tell me"]}</p>
                     </div>
                   </div>
@@ -445,7 +467,7 @@ const FriendsPage = () => {
                       Something you dislike about me
                     </label>
                     <div className="flex items-center">
-                      <IconHeartBroken className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconMoodSad className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["something you hate in me"]}</p>
                     </div>
                   </div>
@@ -455,7 +477,7 @@ const FriendsPage = () => {
                       Something you like about me
                     </label>
                     <div className="flex items-center">
-                      <HeartIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconThumbUp className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["something you like in me"]}</p>
                     </div>
                   </div>
@@ -465,7 +487,7 @@ const FriendsPage = () => {
                       What was your first impression of me?
                     </label>
                     <div className="flex items-center">
-                      <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-1" />
+                      <IconCircleDashedNumber1 className="w-4 h-4 text-gray-400 mr-1" />
                       <p className="text-white-lite">{questionnaire.for_me["what did you feel when you first saw me?"]}</p>
                     </div>
                   </div>

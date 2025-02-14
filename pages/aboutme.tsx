@@ -25,7 +25,7 @@ import {
     GlobeAltIcon,           // approximate for Facebook or website
     CheckBadgeIcon,         // for "verified" check badge
 } from "@heroicons/react/24/solid";
-import { IconAtom, IconBook, IconBrandFacebook, IconBrandInstagram, IconBrandYoutube, IconBrandYoutubeFilled, IconCake, IconChairDirector, IconCloudHeart, IconExternalLink, IconHeart, IconHeartBroken, IconHeartFilled, IconHearts, IconMapPin, IconMickey, IconMoodKid, IconPalette, IconPaletteFilled, IconSchool, IconWorld } from "@tabler/icons-react";
+import { IconAtom, IconBook, IconBrandFacebook, IconBrandInstagram, IconBrandYoutube, IconBrandYoutubeFilled, IconCake, IconChairDirector, IconChartBubble, IconCheese, IconCloudHeart, IconExternalLink, IconFileSmile, IconHeart, IconHeartBroken, IconHeartFilled, IconHearts, IconHome, IconMapPin, IconMickey, IconMoodKid, IconMoodSmile, IconPalette, IconPaletteFilled, IconSchool, IconWorld } from "@tabler/icons-react";
 
 export default function AboutMe() {
     const [lastUpdated, setLastUpdated] = useState("");
@@ -227,7 +227,7 @@ export default function AboutMe() {
                                         <label className="text-gray-400 text-sm block">Color</label>
                                         <span className="flex items-center">
                                             {/* No direct "palette" => use "PaintBrushIcon"? */}
-                                            <IconPaletteFilled className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconPalette className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">Blue</span>
                                         </span>
                                     </div>
@@ -235,7 +235,7 @@ export default function AboutMe() {
                                     <div>
                                         <label className="text-gray-400 text-sm block">Place</label>
                                         <span className="flex items-center">
-                                            <HomeIcon className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconHome className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 My home
                                             </span>
@@ -247,7 +247,7 @@ export default function AboutMe() {
                                     <div>
                                         <label className="text-gray-400 text-sm block">Food</label>
                                         <span className="flex items-center">
-                                            <CakeIcon className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconCheese className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 Chicken biryani
                                             </span>
@@ -257,7 +257,7 @@ export default function AboutMe() {
                                     <div>
                                         <label className="text-gray-400 text-sm block">Person</label>
                                         <span className="flex items-center">
-                                            <IconHeartFilled className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconHeart className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 Sai - Kannaya
                                             </span>
@@ -270,7 +270,7 @@ export default function AboutMe() {
                                     <div>
                                         <label className="text-gray-400 text-sm block">Actor</label>
                                         <span className="flex items-center">
-                                            <FaceSmileIcon className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconMoodSmile className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 Mahesh, Nani, Saurabh
                                             </span>
@@ -279,7 +279,7 @@ export default function AboutMe() {
                                     <div>
                                         <label className="text-gray-400 text-sm block">Movie</label>
                                         <span className="flex items-center">
-                                            <IconBrandYoutubeFilled className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 Hi Nanna, Bahubali, Vunadi Okate Zindagi
                                             </span>
@@ -301,7 +301,7 @@ export default function AboutMe() {
                                             Book/novel
                                         </label>
                                         <span className="flex items-center">
-                                            <BookOpenIcon className="w-4 h-4 text-gray-400 mr-2" />
+                                            <IconBook className="w-4 h-4 text-gray-400 mr-2" />
                                             <span className="text-white-lite">
                                                 The Mahabharat
                                             </span>
@@ -363,7 +363,7 @@ export default function AboutMe() {
                                 <div>
                                     <label className="text-gray-400 text-sm block">Hobbies</label>
                                     <span className="flex items-center">
-                                        <ScissorsIcon className="w-4 h-4 text-gray-400 mr-2" />
+                                        <IconChartBubble className="w-4 h-4 text-gray-400 mr-2" />
                                         <span className="text-white-lite">
                                             Video editing, building webpages.
                                         </span>
