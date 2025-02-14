@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Head from "next/head";
-import { fakeTestimonials as friends } from "@/components/ui/friends";
+import { shortTestimonials as friends } from "@/components/ui/friends";
 
 const ProfileSettings = () => {
   const [name, setName] = useState("");

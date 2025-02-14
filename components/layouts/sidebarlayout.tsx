@@ -5,7 +5,7 @@ import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import { IconSettings,  IconHome, IconMessage2Code, IconLogout2, IconUserHeart,  IconHeart, } from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
-import { fakeTestimonials } from "@/components/ui/friends";
+import { shortTestimonials } from "@/components/ui/friends";
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
@@ -27,7 +27,7 @@ const UserAvatar = ({ username }: { username: string }) => {
 
         if (res.ok) {
           const data = await res.json();
-          const matchedFriend = fakeTestimonials.find(friend => friend.email === data.user.email);
+          const matchedFriend = shortTestimonials.find(friend => friend.email === data.user.email);
           if (matchedFriend) {
             setProfileImage(matchedFriend.src);
           }

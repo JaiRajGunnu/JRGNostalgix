@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { Friends } from "@/components/ui/friends";
-import { fakeTestimonials } from "@/components/ui/friends";
+import { shortTestimonials } from "@/components/ui/friends";
 
 export default function Community() {
   const [username, setUsername] = useState("Guest");
@@ -33,7 +33,7 @@ export default function Community() {
       <SidebarLayout>
         <div className="flex flex-col justify-center items-center min-h-screen text-white bg-black">
           {showFriends ? (
-            <Friends testimonials={fakeTestimonials} />
+            <Friends testimonials={shortTestimonials} />
           ) : (
             <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
               <h1 className="text-6xl font-bold text-white mb-[2rem]">Jai Raj's Slam Book</h1>
