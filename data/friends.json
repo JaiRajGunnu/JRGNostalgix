@@ -3,89 +3,561 @@
     "id": 11092202,
     "quote": "Junnu's coding skills are next level! He builds amazing projects with such ease and creativity.",
     "name": "Kanna",
-    "fullname": "Sai Tarun",
-    "email":"esaitarun12@gmail.com",
-    "src": "/img/img1.avif"
+    "fullname": "Sai tarun",
+    "email": "esaitarun12@gmail.com",
+    "src": "/img/img1.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Sai",
+        "when were you born?": "11/09/2002 ( 03 months 24 days, elder )",
+        "your school": "Sri chaitanya",
+        "your college": "Sri chaitanya",
+        "zodiac sign": "Libra"
+      },
+      "favorites": {
+        "fav color": "Blue",
+        "fav place": "My home",
+        "fav food": "Tomato rice",
+        "fav movie": "Darling and oh my friend",
+        "fav actor/actress": "Nani",
+        "fav person": "Father and mother",
+        "fav book/novel": "No books",
+        "fav dress": "Sherwani"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Having aa best friend in girls",
+        "your hobbies": "Listening songs",
+        "special talents": "No talents as such, as of now",
+        "what's your deepest fear?": "Whether my parents feel bad about me if i do anything. i always think more times to do anything",
+        "tell me one secret": "U are my best friend .this the only thing i have not said to u till now",
+        "the most important person in your life": "My parents",
+        "what's the most childish thing you still do?": "Eating food secretly 🤣",
+        "who's your crush?": "No one",
+        "on your interest, the person you like to marry": "The one who take care of my parents more than me",
+        "if you can be invisible, what will you do first?": "Go to sweets shop and eat what ever i like every day 😜"
+      },
+      "for_me": {
+        "a nickname for me": "Jai, kanna",
+        "a song you want to dedicate me": "Oh oh my friend",
+        "relation between you and me": "Best friend and one of my family members like my younger brother",
+        "if i was your slave for a day, what would you ask me to do for you?": "To become my best friend",
+        "which color suits me the most": "Any light colour",
+        "something you want to tell me": "U know everything",
+        "something you hate in me": "U will go every where without parents permission",
+        "something you like in me": "Lovely nature",
+        "what did you feel when you first saw me?": "No feel at that point of time"
+      },
+      "filled_at": "24/04/22, 5:28 pm"
+    }
   },
   {
     "id": 10112003,
     "quote": "Junnu's dedication and passion for tech are truly inspiring. He never stops learning!",
     "name": "Vissu",
     "fullname": "Viswanadham",
-    "email":"viswanadhkillamsetty422@gmail.com",
-    "src": "/img/img3.avif"
+    "email": "viswanadhkillamsetty422@gmail.com",
+    "src": "/img/img3.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Viswanadh",
+        "when were you born?": "10/11/2003 ( 10 months 5 days, younger )",
+        "your school": "Sri chaitanya school",
+        "your college": "Sri chaitanya college",
+        "zodiac sign": "Taurus"
+      },
+      "favorites": {
+        "fav color": "Blue",
+        "fav place": "Teledu",
+        "fav food": "Chicken",
+        "fav movie": "There are many movies😂",
+        "fav actor/actress": "Nani mb",
+        "fav person": "My family and my buddies",
+        "fav book/novel": "No🥲",
+        "fav dress": "All darks shirts"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "I became ceo of one company\ni am the richest person ever😂",
+        "your hobbies": "Ff",
+        "special talents": "Nothing 😣",
+        "what's your deepest fear?": "When i get tension for anything.i feel very much fear",
+        "tell me one secret": "All secrets you know",
+        "the most important person in your life": "My parents",
+        "what's the most childish thing you still do?": "Talking like a child sometimes",
+        "who's your crush?": "U know",
+        "on your interest, the person you like to marry": "U know",
+        "if you can be invisible, what will you do first?": "I will tell you definitely in call"
+      },
+      "for_me": {
+        "a nickname for me": "Gun raju",
+        "a song you want to dedicate me": "All songs related to friendship",
+        "relation between you and me": "Bestie",
+        "if i was your slave for a day, what would you ask me to do for you?": "I pray to god that day should not come",
+        "which color suits me the most": "Black i think",
+        "something you want to tell me": "U should be like u forever don't change",
+        "something you hate in me": "Nothing :sometimes overcaring",
+        "something you like in me": "Caring",
+        "what did you feel when you first saw me?": "Topper"
+      },
+      "filled_at": "24/04/22, 7:10 pm"
+    }
   },
   {
     "id": 10012001,
     "quote": "A true problem solver! Junnu has a unique way of tackling challenges and coming up with brilliant solutions.",
     "name": "Likki",
-    "fullname": "Likhith",
-    "email":"likhithsarvisetti@gmail.com",
-    "src": "/img/img1.avif"
+    "fullname": "Sarvisetti likhith",
+    "email": "likhithsarvisetti@gmail.com",
+    "src": "/img/img1.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Sarvisetti likhith",
+        "when were you born?": "28/05/2003 ( 04 months 20 days, younger )",
+        "your school": "Sri chaitanya school",
+        "your college": "Sree vidya niketan engineering college",
+        "zodiac sign": "Aries"
+      },
+      "favorites": {
+        "fav color": "Red",
+        "fav place": "Switzerland",
+        "fav food": "Special chicken fried rice",
+        "fav movie": "Many.... darling,mr.perfect,bahubali......many more",
+        "fav actor/actress": "Prabhas",
+        "fav person": "Dad❤️",
+        "fav book/novel": "Mahabharatam",
+        "fav dress": "Black blazer...dark red neck tshirt... black pant...black shoes....srimanthudu movie lo oka marriage lo fight avtundhi ga akkada hero dress idhi"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Honeymoon in switzerland 😂🙈\ngoa...with friends\nall adventures",
+        "your hobbies": "Eat... mobile 😂",
+        "special talents": "Food fight champion nenu\nchess😌",
+        "what's your deepest fear?": "Losing dear one's",
+        "tell me one secret": "U know all man😂",
+        "the most important person in your life": "Parents",
+        "what's the most childish thing you still do?": "Nose digging 😂🤣🤣🤣",
+        "who's your crush?": "Now no one",
+        "on your interest, the person you like to marry": "Juliet🙈",
+        "if you can be invisible, what will you do first?": "Obviously....food stealing"
+      },
+      "for_me": {
+        "a nickname for me": "Rajuuu",
+        "a song you want to dedicate me": "All frndshp songs",
+        "relation between you and me": "Best friend ❤️",
+        "if i was your slave for a day, what would you ask me to do for you?": "Secret 😜",
+        "which color suits me the most": "Red 💥💥and sky blue too",
+        "something you want to tell me": "I love you 😘",
+        "something you hate in me": "I don't want to hate you for any reason",
+        "something you like in me": "Everything",
+        "what did you feel when you first saw me?": "Gurthuledu 🤣"
+      },
+      "filled_at": "24/04/22, 5:24 pm"
+    }
   },
   {
     "id": 10013432001,
     "quote": "Junnu is an amazing friend! Always supportive and kind. Blessed to have him in my life.",
     "name": "Chinnuu",
     "fullname": "Keerthika",
-    "email":"keerthikabandaru2003@gmail.com",
-    "src": "/img/img2.avif"
+    "email": "keerthikabandaru2003@gmail.com",
+    "src": "/img/img2.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Bandaru keerthika",
+        "when were you born?": "05/05/2003 ( 04 months 0 days, younger )",
+        "your school": "Sri chaitanya techno school",
+        "your college": "Sri chaitanya mahila kalasala",
+        "zodiac sign": "Gemini"
+      },
+      "favorites": {
+        "fav color": "Pink",
+        "fav place": "Agra",
+        "fav food": "Biryani",
+        "fav movie": "Remo 💘😗",
+        "fav actor/actress": "Allu arjun",
+        "fav person": "My twin",
+        "fav book/novel": "The girl with no dreams",
+        "fav dress": "Saree and jump suit"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Nothing much",
+        "your hobbies": "Listening music 🎶🎵",
+        "special talents": "Classical dancer (bharatanatyam)",
+        "what's your deepest fear?": "Nenu na praanam ga feel ayye persons naku ekkada dooram aypotharo ani...🥺😭🥺...inka entha mandhini nammi mosapothano ani 😔😕",
+        "tell me one secret": "No secrets",
+        "the most important person in your life": "Sorry adhi person kadu ... persons and that's my family...other than fam means frnds only(sorry for not mentioning their names)",
+        "what's the most childish thing you still do?": "Serious ga undalsina moments lo kuda navvuthu unta 😁😂",
+        "who's your crush?": "That waste fellow",
+        "on your interest, the person you like to marry": "My batchmate ... if he had a opinion on me",
+        "if you can be invisible, what will you do first?": "I'll meet all my beloved ones 🥺🫀....who loves me unconditionally and showers their purest form of love ❤️"
+      },
+      "for_me": {
+        "a nickname for me": "Junnu ❤️",
+        "a song you want to dedicate me": "Kerintha or oh my frnd song",
+        "relation between you and me": "Nameless relation (♾️❤️)",
+        "if i was your slave for a day, what would you ask me to do for you?": "Nenem adagalsina avasaram radu",
+        "which color suits me the most": "🤔 .... black",
+        "something you want to tell me": "🥺😭❤️♾️",
+        "something you hate in me": "Nothing",
+        "something you like in me": "Evrythng",
+        "what did you feel when you first saw me?": "Chusinappud cheptha le 🤭"
+      },
+      "filled_at": "8/15/24, 11:35 pm"
+    }
   },
   {
     "id": 100128766001,
     "quote": "Junnu is a wonderful friend with a golden heart! Always there to support and uplift others.",
     "name": "Pavii",
     "fullname": "Rakshanna",
-    "email":"pavith2602@gmail.com",
-    "src": "/img/img4.avif"
+    "email": "pavith2602@gmail.com",
+    "src": "/img/img4.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Rakshanna kanthan",
+        "when were you born?": "26/02/2003 ( 01 months 21 days, younger )",
+        "your school": "Prince srivari vidyalaya",
+        "your college": "Srm institute of science and technology",
+        "zodiac sign": "Pisces"
+      },
+      "favorites": {
+        "fav color": "All",
+        "fav place": "Home",
+        "fav food": "Briyaniiiiii",
+        "fav movie": "All",
+        "fav actor/actress": "Vijay",
+        "fav person": "All",
+        "fav book/novel": "None",
+        "fav dress": "Tee and shorts"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Long trip with friends",
+        "your hobbies": "Music and sleeping",
+        "special talents": "Sleeping for 14 hrs",
+        "what's your deepest fear?": "Future",
+        "tell me one secret": "🤫 (hidden)",
+        "the most important person in your life": "Myself",
+        "what's the most childish thing you still do?": "Cry by seeing movies",
+        "who's your crush?": "Vino sir",
+        "on your interest, the person you like to marry": "Mamaaa...bawaaa",
+        "if you can be invisible, what will you do first?": "🤫(hidden)"
+      },
+      "for_me": {
+        "a nickname for me": "Gun",
+        "a song you want to dedicate me": "Friendship anthem",
+        "relation between you and me": "Best frnds",
+        "if i was your slave for a day, what would you ask me to do for you?": "Briyaniii",
+        "which color suits me the most": "Black",
+        "something you want to tell me": "Don't judge the book by it's cover",
+        "something you hate in me": "Inferiority complex",
+        "something you like in me": "Calmness and devotee of sai",
+        "what did you feel when you first saw me?": "Terror rowdy"
+      },
+      "filled_at": "20/09/22, 11:27 am"
+    }
   },
   {
     "id": 10014542001,
     "quote": "A great leader and motivator! Junnu inspires everyone around him with his energy and positivity.",
     "name": "Praneeth",
-    "fullname": "Sri Praneeth",
-    "email":"praneethyakkala@gmail.com",
-    "src": "/img/img3.avif"
+    "fullname": "Sri praneeth",
+    "email": "praneethyakkala@gmail.com",
+    "src": "/img/img3.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Praneeth",
+        "when were you born?": "18/06/2003 ( 05 months 13 days, younger )",
+        "your school": "Kkr",
+        "your college": "Sri chaitanya",
+        "zodiac sign": "Capricorn"
+      },
+      "favorites": {
+        "fav color": "Black",
+        "fav place": "Bhimavaram",
+        "fav food": "Paneer",
+        "fav movie": "Bb2",
+        "fav actor/actress": "Mb/prabhas",
+        "fav person": "Father",
+        "fav book/novel": "-",
+        "fav dress": "-"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Drive flight\nworld tour",
+        "your hobbies": "Music, movies",
+        "special talents": "-",
+        "what's your deepest fear?": "-",
+        "tell me one secret": "Future",
+        "the most important person in your life": "Parents",
+        "what's the most childish thing you still do?": "-",
+        "who's your crush?": "-",
+        "on your interest, the person you like to marry": "-",
+        "if you can be invisible, what will you do first?": "Go around the world"
+      },
+      "for_me": {
+        "a nickname for me": "Raj",
+        "a song you want to dedicate me": "Samajavaragamana",
+        "relation between you and me": "Besties",
+        "if i was your slave for a day, what would you ask me to do for you?": "-",
+        "which color suits me the most": "Light colours",
+        "something you want to tell me": "Wanted to join srm with you",
+        "something you hate in me": "Over thinking",
+        "something you like in me": "Caring",
+        "what did you feel when you first saw me?": "-"
+      },
+      "filled_at": "24/04/22, 6:12 pm"
+    }
   },
   {
     "id": 10012676001,
     "quote": "Junnu's kindness and wisdom make him an incredible person. Always a pleasure to be around him!",
     "name": "Gopi",
-    "fullname": "Gopi Krishna",
-    "email":"gopikrishnaanagani25@gmail.com",
-    "src": "/img/img1.avif"
+    "fullname": "Gopi krishna",
+    "email": "gopikrishnaanagani25@gmail.com",
+    "src": "/img/img1.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "A gopi krishna",
+        "when were you born?": "20/02/2001 ( 1 year 10 months 13 days, elder )",
+        "your school": "Lfs",
+        "your college": "Raman bhavan-1",
+        "zodiac sign": "Evadiki telusu"
+      },
+      "favorites": {
+        "fav color": "Green",
+        "fav place": "Home",
+        "fav food": "Biryani",
+        "fav movie": ".",
+        "fav actor/actress": ".",
+        "fav person": "Nene",
+        "fav book/novel": ".",
+        "fav dress": "."
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Explore the world",
+        "your hobbies": "Cricket",
+        "special talents": "Quick learner",
+        "what's your deepest fear?": "Loosing people closer to me..",
+        "tell me one secret": ".",
+        "the most important person in your life": "Mother",
+        "what's the most childish thing you still do?": ".",
+        "who's your crush?": "No crush",
+        "on your interest, the person you like to marry": "Still searching",
+        "if you can be invisible, what will you do first?": "I get everything for free.. have fun"
+      },
+      "for_me": {
+        "a nickname for me": "Jai",
+        "a song you want to dedicate me": ".",
+        "relation between you and me": "Bestie...",
+        "if i was your slave for a day, what would you ask me to do for you?": "Kick ur a**",
+        "which color suits me the most": "All",
+        "something you want to tell me": "F*** u",
+        "something you hate in me": ".",
+        "something you like in me": "Importance u give to me",
+        "what did you feel when you first saw me?": "Nothing"
+      },
+      "filled_at": "09/05/22, 7:26 pm"
+    }
   },
   {
     "id": 1001542001,
     "quote": "A true gem of a friend! Junnu brings happiness and warmth wherever he goes.",
     "name": "Magii",
-    "fullname": "Lakshmi Madhuri",
-    "email":"lakshmimadhuriakula@gmail.com",
-    "src": "/img/img2.avif"
+    "fullname": "Lakshmi madhuri",
+    "email": "lakshmimadhuriakula@gmail.com",
+    "src": "/img/img2.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Madhuri akula 😉",
+        "when were you born?": "07/05/2002 ( 07 months 29 days, elder )",
+        "your school": "Sasi",
+        "your college": "Sasi",
+        "zodiac sign": "Aquarius"
+      },
+      "favorites": {
+        "fav color": "Dark blue,navy green,black",
+        "fav place": "Paris",
+        "fav food": "Chicken",
+        "fav movie": "None",
+        "fav actor/actress": "Pavankalayan,ntr,vicky kaushal,kajal",
+        "fav person": "Family",
+        "fav book/novel": "None",
+        "fav dress": "Western wear jeans and tops"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Just to chill/enjoy until the last min of life",
+        "your hobbies": "Drawing,dancing/singing(only near frnds/family)😂",
+        "special talents": "Ntg more",
+        "what's your deepest fear?": "Loosing my dear ones by making small mistake is the only fear",
+        "tell me one secret": "🤫(hidden)",
+        "the most important person in your life": "Family/frnds",
+        "what's the most childish thing you still do?": "Behave like a child and i do what i like to do instead of thinking what will others think abt me",
+        "who's your crush?": "Fahad",
+        "on your interest, the person you like to marry": "No one yet but he should be super honest,good behaviour and his character,good looking guy 🥰",
+        "if you can be invisible, what will you do first?": "I will go and see all the places i want to see and play with my frnds 😜😜 and importantly i will go to china and hug my linyi 👽👽❤️"
+      },
+      "for_me": {
+        "a nickname for me": "Jai babu",
+        "a song you want to dedicate me": "Tu hi yaar mera",
+        "relation between you and me": "Good frnds",
+        "if i was your slave for a day, what would you ask me to do for you?": "😌😌u have to do what i say",
+        "which color suits me the most": "Light colours",
+        "something you want to tell me": "Be yourself don't change for someone",
+        "something you hate in me": "Ntg",
+        "something you like in me": "Good behavior and the way of treating yours frnds",
+        "what did you feel when you first saw me?": "Awkward situation 😂 u r new to me but now ntg like that 😌"
+      },
+      "filled_at": "29/05/22, 10:03 pm"
+    }
   },
   {
     "id": 1034012001,
     "quote": "Junnu's support and understanding make every moment special. A friend like no other!",
     "name": "Bathuu",
     "fullname": "Bhargavi",
-    "email":"madinibharu@gmail.com",
-    "src": "/img/img4.avif"
+    "email": "madinibharu@gmail.com",
+    "src": "/img/img4.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Bharu",
+        "when were you born?": "08/11/2002 ( 01 month 28 days, elder )",
+        "your school": "Camford english high school",
+        "your college": "Sree vidhyanikethan engineering college",
+        "zodiac sign": "Sagittarius"
+      },
+      "favorites": {
+        "fav color": "Colour of the sky, colour of the ocean, colour of mountains",
+        "fav place": "Any hill stations and beaches",
+        "fav food": "Biriyani, sandwiches, pizza, dosa",
+        "fav movie": "Godavari and anand",
+        "fav actor/actress": "Uday kiran",
+        "fav person": "Likhi babu",
+        "fav book/novel": "It ends with us and it starts with us",
+        "fav dress": "Traditional"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Scream at midnight in middle of the road",
+        "your hobbies": "Reading romantic novels, instening to songs, and talking",
+        "special talents": "Matladhadham, and me",
+        "what's your deepest fear?": "Losing someone i love the most",
+        "tell me one secret": "🤫(hidden)",
+        "the most important person in your life": "Likhi babu",
+        "what's the most childish thing you still do?": "Beinng myself",
+        "who's your crush?": "Atlas",
+        "on your interest, the person you like to marry": "Emo andi\nteldu andi",
+        "if you can be invisible, what will you do first?": "I would travel the world without money"
+      },
+      "for_me": {
+        "a nickname for me": "Rajuuuuuuuuuuuuuuuuuuu",
+        "a song you want to dedicate me": "Why raju",
+        "relation between you and me": "A close friend",
+        "if i was your slave for a day, what would you ask me to do for you?": "Make all my works",
+        "which color suits me the most": "Blue",
+        "something you want to tell me": "You mean so much for me",
+        "something you hate in me": "Em led andi nijannga em led andi",
+        "something you like in me": "Your character",
+        "what did you feel when you first saw me?": "Inka ledu meeru vaste chustham"
+      },
+      "filled_at": "13/05/23, 11:35 pm"
+    }
   },
   {
     "id": 10012054501,
     "quote": "Junnu's generosity and humor make every day brighter. Truly a one-of-a-kind friend!",
     "name": "Paddhu",
-    "fullname": "Padma Sri",
-    "email":"padmasri.02pandranki@gmail.com",
-    "src": "/img/img2.avif"
+    "fullname": "Padma sri",
+    "email": "padmasri.02pandranki@gmail.com",
+    "src": "/img/img2.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Padma sri",
+        "when were you born?": "08/09/2002 ( 03 months 28 days, elder )",
+        "your school": "Sri chaitanya school",
+        "your college": "Anits",
+        "zodiac sign": "Teliyakundaa em cheppali ippudu"
+      },
+      "favorites": {
+        "fav color": "Pink, white, lavender",
+        "fav place": "Home",
+        "fav food": "Briyani",
+        "fav movie": "Murari, 2012",
+        "fav actor/actress": "Mahesh",
+        "fav person": "Not one but fam",
+        "fav book/novel": "...",
+        "fav dress": "..."
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Craziest vi eppudu cheppakudadhu, chesi choopinchali",
+        "your hobbies": "Neeku telusu ga",
+        "special talents": "Adi nuvve cheppali",
+        "what's your deepest fear?": "Snakes",
+        "tell me one secret": "Chepthey secret endhuku avuthundi 😏",
+        "the most important person in your life": "Fam",
+        "what's the most childish thing you still do?": "Chilidish ga untadi kabatti cheppakudadhu",
+        "who's your crush?": "🤫",
+        "on your interest, the person you like to marry": "🤐crush cheppaledu kabatti, idi asalu 🙅‍♀️",
+        "if you can be invisible, what will you do first?": "Ayinappudu aloochiddam"
+      },
+      "for_me": {
+        "a nickname for me": "🐈🐈🐈",
+        "a song you want to dedicate me": "🎼🎶",
+        "relation between you and me": "Close frnds",
+        "if i was your slave for a day, what would you ask me to do for you?": "1000 types of chocolates techey",
+        "which color suits me the most": "Black",
+        "something you want to tell me": "Kuch nahi",
+        "something you hate in me": "🤔",
+        "something you like in me": "🤔",
+        "what did you feel when you first saw me?": "Eppudu choosanu ninnu asalu"
+      },
+      "filled_at": "24/04/22, 11:02 pm"
+    }
   },
   {
     "id": 10014342001,
     "quote": "A friend who understands without words! Junnu’s presence is always comforting.",
     "name": "Giri",
     "fullname": "Gireesh",
-    "email":"gireeshpotunuru@gmail.com",
-    "src": "/img/img3.avif"
+    "email": "gireeshpotunuru@gmail.com",
+    "src": "/img/img3.avif",
+    "questionnaire": {
+      "personal_info": {
+        "what's your name?": "Gireesh potnuru",
+        "when were you born?": "22/08/2002 ( 04 months 14 days, elder )",
+        "your school": "Sri chaitanya",
+        "your college": "Jntu kakinada",
+        "zodiac sign": "Aquarius"
+      },
+      "favorites": {
+        "fav color": "Black",
+        "fav place": "Home",
+        "fav food": "Biryani",
+        "fav movie": "Bahubali 2",
+        "fav actor/actress": "Ntr",
+        "fav person": "Prabhas",
+        "fav book/novel": "Chetha bagath books",
+        "fav dress": "Shirt pant"
+      },
+      "deep_thoughts": {
+        "your crazy dreams": "Chala unyai",
+        "your hobbies": "Cricket, chess, shuttle, movies",
+        "special talents": "Sleeping",
+        "what's your deepest fear?": "Heights",
+        "tell me one secret": "Secret",
+        "the most important person in your life": "Daddy",
+        "what's the most childish thing you still do?": "Ame levuu",
+        "who's your crush?": "Sneha",
+        "on your interest, the person you like to marry": "Beautiful girl",
+        "if you can be invisible, what will you do first?": "Shopping mall ki velli dresses ,shoes ,... dobbeystha"
+      },
+      "for_me": {
+        "a nickname for me": "Raju",
+        "a song you want to dedicate me": "Mana frdalla",
+        "relation between you and me": "Dosthiiiiiiiiiiiii",
+        "if i was your slave for a day, what would you ask me to do for you?": "Natho undhi chalu",
+        "which color suits me the most": "Blue",
+        "something you want to tell me": "Baga chadvukoo",
+        "something you hate in me": "Ame ledhu le",
+        "something you like in me": "Character",
+        "what did you feel when you first saw me?": "Gruthulehdu bayya"
+      },
+      "filled_at": "25/04/22, 10:14 pm"
+    }
   }
-  ]
-  
+]
