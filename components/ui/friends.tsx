@@ -51,7 +51,7 @@ export const shortTestimonials: Testimonial[] = [
     "fullname": "Keerthika",
     "king": false,
     "email": "keerthikabandaru2003@gmail.com",
-    "src": "/img/img2.avif"
+    "src": "/img/female/img_chinnu.jpg"
   },
   {
     "id": 100128766001,
@@ -60,7 +60,7 @@ export const shortTestimonials: Testimonial[] = [
     "fullname": "Rakshanna",
     "king": false,
     "email": "pavith2602@gmail.com",
-    "src": "/img/img4.avif"
+    "src": "/img/female/img_raksh.jpg"
   },
   {
     "id": 10014542001,
@@ -88,7 +88,7 @@ export const shortTestimonials: Testimonial[] = [
     "fullname": "Lakshmi Madhuri",
     "king": false,
     "email": "lakshmimadhuriakula@gmail.com",
-    "src": "/img/img2.avif"
+    "src": "/img/female/img_maggi.jpg"
   },
   {
     "id": 1034012001,
@@ -97,7 +97,7 @@ export const shortTestimonials: Testimonial[] = [
     "fullname": "Bhargavi",
     "king": false,
     "email": "madinibharu@gmail.com",
-    "src": "/img/img4.avif"
+    "src": "/img/female/img_bharu.jpg"
   },
   {
     "id": 10012054501,
@@ -106,7 +106,7 @@ export const shortTestimonials: Testimonial[] = [
     "fullname": "Padma Sri",
     "king": false,
     "email": "padmasri.02pandranki@gmail.com",
-    "src": "/img/img2.avif"
+    "src": "/img/female/img_chingu.jpg"
   },
   {
     "id": 10014342001,
