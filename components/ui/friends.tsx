@@ -2,7 +2,7 @@
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
 
 type Testimonial = {
@@ -10,7 +10,7 @@ type Testimonial = {
   quote: string;
   name: string;
   fullname: string;
-  king: boolean,
+  king: boolean;
   email: string;
   src: string;
 };
@@ -18,104 +18,113 @@ type Testimonial = {
 // Short Testimonials Data
 export const shortTestimonials: Testimonial[] = [
   {
-    "id": 11092202,
-    "quote": "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna!",
-    "name": "Kanna",
-    "fullname": "Sai Tarun",
-    "king": true,
-    "email": "esaitarun12@gmail.com",
-    "src": "/img/kings/imgkanna.jpg"
+    id: 11092202,
+    quote:
+      "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna! 🥹❤️",
+    name: "Kanna",
+    fullname: "Sai Tarun",
+    king: true,
+    email: "esaitarun12@gmail.com",
+    src: "/img/kings/imgkanna.jpg",
   },
   {
-    "id": 10112003,
-    "quote": "Thanks for all the laughs and for being the bestie ever since topper day. Let's become CEOs of one company and get rich together! 😂",
-    "name": "Vissu",
-    "fullname": "Viswanadham",
-    "king": true,
-    "email": "viswanadhkillamsetty422@gmail.com",
-    "src": "/img/kings/imgvissu.jpg"
+    id: 10112003,
+    quote:
+      "Thanks for all the laughs and for being the bestie ever since topper day. Let's become CEOs and get rich together! 😂💖",
+    name: "Vissu",
+    fullname: "Viswanadham",
+    king: true,
+    email: "viswanadhkillamsetty422@gmail.com",
+    src: "/img/kings/imgvissu.jpg",
   },
   {
-    "id": 10012001,
-    "quote": "I know I can always count on you to say 'You know all, man!' Thanks for always being honest.",
-    "name": "Likki",
-    "fullname": "Likhith",
-    "king": true,
-    "email": "likhithsarvisetti@gmail.com",
-    "src": "/img/kings/imglikki.jpg"
+    id: 10012001,
+    quote:
+      "I know I can always count on you to say ' You know all, man! '. Thanks for always being. 🤗💝",
+    name: "Likki",
+    fullname: "Likhith",
+    king: true,
+    email: "likhithsarvisetti@gmail.com",
+    src: "/img/kings/imglikki.jpg",
   },
   {
-    "id": 10013432001,
-    "quote": "To the heart and soul, and the girl with no secrets! My CB ! ❤️(♾️❤️). Thanks for always being there, Chinnu.",
-    "name": "Chinnuu",
-    "fullname": "Keerthika",
-    "king": false,
-    "email": "keerthikabandaru2003@gmail.com",
-    "src": "/img/queens/imgchinnu.jpg"
+    id: 10013432001,
+    quote:
+      "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🥰💘 ",
+    name: "Chinnuu",
+    fullname: "Keerthika",
+    king: false,
+    email: "keerthikabandaru2003@gmail.com",
+    src: "/img/queens/imgchinnu.jpg",
   },
   {
-    "id": 100128766001,
-    "quote": "Briyani is ready 🤫 . Thank you for support and guidance always .",
-    "name": "Pavii",
-    "fullname": "Rakshanna",
-    "king": false,
-    "email": "pavith2602@gmail.com",
-    "src": "/img/queens/imgraksh.jpg"
+    id: 100128766001,
+    quote:
+      "Biryani is ready 🤫 Thank you for your support and your family's guidance. Always grateful. 🫶💙",
+    name: "Pavii",
+    fullname: "Rakshanna",
+    king: false,
+    email: "pavith2602@gmail.com",
+    src: "/img/queens/imgraksh.jpg",
   },
   {
-    "id": 10014542001,
-    "quote": "Thanks for the great company we shared in college. Even now, if you could, you'd still follow me anywhere! I'm grateful for your support."
-,
-    "name": "Praneeth",
-    "fullname": "Sri Praneeth",
-    "king": true,
-    "email": "praneethyakkala@gmail.com",
-    "src": "/img/kings/imgpraneeth.jpg"
+    id: 10014542001,
+    quote:
+      "Thanks for the great company in mid-age. Even now, if you could, you'd still follow me anywhere! I'm grateful for you. 🤗🩷",
+    name: "Praneeth",
+    fullname: "Sri Praneeth",
+    king: true,
+    email: "praneethyakkala@gmail.com",
+    src: "/img/kings/imgpraneeth.jpg",
   },
   {
-    "id": 10012676001,
-    "quote": "Genuine and straight to the point, I appreciate the honesty and our love in college.",
-    "name": "Gopi",
-    "fullname": "Gopi Krishna",
-    "king": true,
-    "email": "gopikrishnaanagani25@gmail.com",
-    "src": "/img/kings/imggopi.jpg"
+    id: 10012676001,
+    quote:
+      "Genuine and straight to the point, I appreciate the honesty and our love in college. 🤟❤️‍🔥",
+    name: "Gopi",
+    fullname: "Gopi Krishna",
+    king: true,
+    email: "gopikrishnaanagani25@gmail.com",
+    src: "/img/kings/imggopi.jpg",
   },
   {
-    "id": 1001542001,
-    "quote": "Thanks for always encouraging me to be myself and also being a new for me .",
-    "name": "Magii",
-    "fullname": "Lakshmi Madhuri",
-    "king": false,
-    "email": "lakshmimadhuriakula@gmail.com",
-    "src": "/img/queens/imgmaggi.jpg"
+    id: 1001542001,
+    quote:
+      "Thanks for always encouraging me to be myself and also being a new for me. 😍💓",
+    name: "Magii",
+    fullname: "Lakshmi Madhuri",
+    king: false,
+    email: "lakshmimadhuriakula@gmail.com",
+    src: "/img/queens/imgmaggi.jpg",
   },
   {
-    "id": 1034012001,
-    "quote": "Thanks for always helping me in all my works. You mean a lot.",
-    "name": "Bathuu",
-    "fullname": "Bhargavi",
-    "king": false,
-    "email": "madinibharu@gmail.com",
-    "src": "/img/queens/imgbharu.jpg"
+    id: 1034012001,
+    quote: "Thanks for always being there for me. I hope I never caused you any hurt. 🥹💗",
+    name: "Bharuu",
+    fullname: "Bhargavi",
+    king: false,
+    email: "madinibharu@gmail.com",
+    src: "/img/queens/imgbharu.jpg",
   },
   {
-    "id": 10012054501,
-    "quote": "A mystery wrapped in a Biryani and a thousand chocolates. I always enjoy your company. ",
-    "name": "Paddhu",
-    "fullname": "Padma Sri",
-    "king": false,
-    "email": "padmasri.02pandranki@gmail.com",
-    "src": "/img/queens/imgchinguu.jpg"
+    id: 10012054501,
+    quote:
+      "A mystery wrapped in biryani and a thousand chocolates. Thank you for the unforgettable adventures. 🤠💜",
+    name: "Paddhu",
+    fullname: "Padma Sri",
+    king: false,
+    email: "padmasri.02pandranki@gmail.com",
+    src: "/img/queens/imgchinguu.jpg",
   },
   {
-    "id": 10014342001,
-    "quote": "Always a fun time with you. Thanks for being around even though there is nothing you hate about me.",
-    "name": "Giri",
-    "fullname": "Gireesh",
-    "king": true,
-    "email": "gireeshpotunuru@gmail.com",
-    "src": "/img/kings/imggiri.jpg"
+    id: 10014342001,
+    quote:
+      "Always a fun time with you. Thanks for being around even though there is nothing you hate about me. 🤗💛",
+    name: "Giri",
+    fullname: "Gireesh",
+    king: true,
+    email: "gireeshpotunuru@gmail.com",
+    src: "/img/kings/imggiri.jpg",
   },
 ];
 
@@ -127,6 +136,8 @@ export const Friends = ({
   autoplay?: boolean;
 }) => {
   const [active, setActive] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+  const intervalRef = useRef<number | null>(null);
 
   const handleNext = () => {
     if (testimonials.length > 0) {
@@ -140,19 +151,47 @@ export const Friends = ({
     }
   };
 
-  useEffect(() => {
-    if (autoplay && testimonials.length > 0) {
-      const interval = setInterval(handleNext, 5000);
-      return () => clearInterval(interval);
+  const startAutoplay = () => {
+    if (autoplay && testimonials.length > 0 && !isPaused) {
+      intervalRef.current = window.setInterval(handleNext, 5000);
     }
-  }, [autoplay, testimonials.length]);
+  };
+
+  const stopAutoplay = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
+
+  useEffect(() => {
+    startAutoplay(); // Start autoplay on initial load
+
+    return () => {
+      stopAutoplay(); // Clear interval on unmount
+    };
+  }, [autoplay, testimonials.length, isPaused]);
 
   const isActive = (index: number) => index === active;
 
   const randomRotateY = () => Math.floor(Math.random() * 21) - 10;
 
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    stopAutoplay(); // Pause autoplay on mouse enter
+  };
+
+  const handleMouseLeave = () => {
+    setIsPaused(false);
+    startAutoplay(); // Resume autoplay on mouse leave
+  };
+
   return (
-    <div className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20">
+    <div
+      className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20"
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       {testimonials.length > 0 ? (
         <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
           {/* Left: Image Slider */}
@@ -246,7 +285,7 @@ export const Friends = ({
                     }}
                     className="inline-block"
                   >
-                    {word}&nbsp;
+                    {word} 
                   </motion.span>
                 ))}
               </motion.p>
@@ -276,7 +315,6 @@ export const Friends = ({
                   </button>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
