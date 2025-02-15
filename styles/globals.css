@@ -9,12 +9,10 @@ html, body {
     padding: 0;
     height: 100%;
     overflow-x: hidden;
+    user-select: none; 
   }
   
 
-
-
-  
 footer {
   flex-shrink: 0;
 }
@@ -52,6 +50,7 @@ img {
 body {
   scrollbar-width: thin;
   scrollbar-color: #1f2021 #00000093;
+
 }
 
 
