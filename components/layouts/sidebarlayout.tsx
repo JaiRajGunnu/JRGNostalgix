@@ -10,7 +10,7 @@ import { shortTestimonials } from "@/components/ui/friends";
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
   const [profileImage, setProfileImage] = useState<string>(
-    'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU' // Default image
+    './img/guestavatar.svg' // Default image
   );
 
   useEffect(() => {
