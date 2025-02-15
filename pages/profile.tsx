@@ -10,7 +10,7 @@ const ProfileSettings = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [profileImage, setProfileImage] = useState<string>(
-    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU" // Default image
+    "./img/guestavatar.svg" // Default image
   );
   const [loading, setLoading] = useState(false);
 
@@ -47,7 +47,8 @@ const ProfileSettings = () => {
           setProfileImage(
             matchedFriend
               ? matchedFriend.src
-              : "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT8PyKYrBKAWWy6YCbQzWQcwIRqH8wYMPluIZiMpV1w0NYSbocTZz0ICWFkLcXhaMyvCwQ&usqp=CAU"
+              : "./img/guestavatar.svg" // Default image
+
           );
         } else {
           setShowError(true);
@@ -136,11 +137,14 @@ const ProfileSettings = () => {
           <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
 
-        <div className="relative w-full min-h-screen flex justify-center items-center p-6">
-          <div className="bg-white dark:bg-[#18191af7] rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
-            <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
+        <div className="relative w-full min-h-screen flex justify-center items-center p-6 font-poppins flex-col space-y-6">
+          <div>
+        <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
               Profile Settings
             </h2>
+            </div>
+          <div className="bg-white dark:bg-[#18191af7] rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
+
 
             <form onSubmit={handleSubmit} className="mt-6 space-y-5">
               {/* Profile Picture Display */}

@@ -41,7 +41,7 @@ const UserAvatar = ({ username }: { username: string }) => {
   }, []);
 
   return (
-    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700">
+    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700 ">
       <div className="h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
         <img
           src={profileImage}
@@ -89,9 +89,9 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
     <AuthGuard>
       <div className="flex h-screen flex-wrap">
         <Sidebar>
-          <SidebarBody className="justify-between gap-10">
-            <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
-              <div className="mt-8 flex flex-col gap-2">
+          <SidebarBody className="justify-between gap-10  ">
+            <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden  ">
+              <div className="mt-8 flex flex-col gap-2  ">
                 {links.map((link, idx) =>
                   link.label === "Logout" ? (
                     <button key={idx} onClick={link.onClick} className="w-full text-left">

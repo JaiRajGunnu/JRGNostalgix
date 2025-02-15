@@ -83,16 +83,17 @@ export default function AboutMe() {
                                         />
                                     </h2>
                                     <p className="text-gray-400 text-sm mt-2 font-poppins">
-                                        A person's true self is a reflection of their beliefs.
+                                    A person's beliefs mirror their true self.
+
                                     </p>
                                 </div>
+                                <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                             </div>
 
                             {/* Scrollable Content */}
                             <div className="p-6 space-y-6">
                                 {/* Intro Section */}
                                 <div>
-                                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                                     <div className="mb-2 text-left">
                                         <h3 className="text-white text-2xl mb-3 font-bold">Intro</h3>
                                     </div>

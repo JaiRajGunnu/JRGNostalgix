@@ -48,7 +48,7 @@ const Settings = () => {
         </div>
 
         {/* Main Container */}
-        <div className="relative min-h-screen w-full flex justify-center items-start p-6">
+        <div className="relative min-h-screen w-full flex justify-center items-start p-6  font-poppins">
           <div className="max-w-3xl w-full mx-auto">
             {/* Page Header */}
             <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-10 lg:mb-7">
