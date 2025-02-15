@@ -2,16 +2,23 @@
 import { ReactNode, useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
-import { IconSettings,  IconHome, IconMessage2Code, IconLogout2, IconUserHeart,  IconHeart, } from "@tabler/icons-react";
+import {
+  IconSettings,
+  IconHome,
+  IconMessage2Code,
+  IconLogout2,
+  IconUserHeart,
+  IconHeart,
+} from "@tabler/icons-react";
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 import { shortTestimonials } from "@/components/ui/friends";
-import DisableRightClick from '../../components/disablerightclick';
+import DisableRightClick from "../../components/disablerightclick";
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
   const [profileImage, setProfileImage] = useState<string>(
-    './img/guestavatar.svg' // Default image
+    "/img/guestavatar.svg" // <-- Use absolute path here
   );
 
   useEffect(() => {
@@ -28,7 +35,9 @@ const UserAvatar = ({ username }: { username: string }) => {
 
         if (res.ok) {
           const data = await res.json();
-          const matchedFriend = shortTestimonials.find(friend => friend.email === data.user.email);
+          const matchedFriend = shortTestimonials.find(
+            (friend) => friend.email === data.user.email
+          );
           if (matchedFriend) {
             setProfileImage(matchedFriend.src);
           }
@@ -42,14 +51,14 @@ const UserAvatar = ({ username }: { username: string }) => {
   }, []);
 
   return (
-    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700 ">
+    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700">
       <div className="h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
-      <DisableRightClick>
-        <img
-          src={profileImage}
-          alt="Profile"
-          className="h-full w-full object-cover"
-        />
+        <DisableRightClick>
+          <img
+            src={profileImage}
+            alt="Profile"
+            className="h-full w-full object-cover"
+          />
         </DisableRightClick>
       </div>
       <span
@@ -85,19 +94,28 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
     { label: "Profile", href: "/profile", icon: <IconUserHeart className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
-    { label: "Logout", href: "", icon: <IconLogout2 className="h-8 w-8" />, onClick: handleLogout  },
+    {
+      label: "Logout",
+      href: "",
+      icon: <IconLogout2 className="h-8 w-8" />,
+      onClick: handleLogout,
+    },
   ];
 
   return (
     <AuthGuard>
       <div className="flex h-screen flex-wrap">
         <Sidebar>
-          <SidebarBody className="justify-between gap-10  ">
-            <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden  ">
-              <div className="mt-8 flex flex-col gap-2  ">
+          <SidebarBody className="justify-between gap-10">
+            <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
+              <div className="mt-8 flex flex-col gap-2">
                 {links.map((link, idx) =>
                   link.label === "Logout" ? (
-                    <button key={idx} onClick={link.onClick} className="w-full text-left">
+                    <button
+                      key={idx}
+                      onClick={link.onClick}
+                      className="w-full text-left"
+                    >
                       <SidebarLink link={link} />
                     </button>
                   ) : (
