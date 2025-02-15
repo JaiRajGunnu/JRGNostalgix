@@ -10,6 +10,7 @@ type Testimonial = {
   quote: string;
   name: string;
   fullname: string;
+  king: boolean,
   email: string;
   src: string;
 };
@@ -21,6 +22,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna!",
     "name": "Kanna",
     "fullname": "Sai Tarun",
+    "king": true,
     "email": "esaitarun12@gmail.com",
     "src": "/img/img1.avif"
   },
@@ -29,6 +31,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Thanks for all the laughs and for being the bestie ever since topper day. Let's become CEOs of one company and get rich together! 😂",
     "name": "Vissu",
     "fullname": "Viswanadham",
+    "king": true,
     "email": "viswanadhkillamsetty422@gmail.com",
     "src": "/img/img3.avif"
   },
@@ -37,6 +40,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "I know I can always count on you to say 'You know all, man!' Thanks for always being honest.",
     "name": "Likki",
     "fullname": "Likhith",
+    "king": true,
     "email": "likhithsarvisetti@gmail.com",
     "src": "/img/img1.avif"
   },
@@ -45,6 +49,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "To the heart and soul, and the girl with no secrets! My CB ! ❤️(♾️❤️). Thanks for always being there, Chinnu.",
     "name": "Chinnuu",
     "fullname": "Keerthika",
+    "king": false,
     "email": "keerthikabandaru2003@gmail.com",
     "src": "/img/img2.avif"
   },
@@ -53,6 +58,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Briyani is ready 🤫 . Thank you for support and guidance always .",
     "name": "Pavii",
     "fullname": "Rakshanna",
+    "king": false,
     "email": "pavith2602@gmail.com",
     "src": "/img/img4.avif"
   },
@@ -62,6 +68,7 @@ export const shortTestimonials: Testimonial[] = [
 ,
     "name": "Praneeth",
     "fullname": "Sri Praneeth",
+    "king": true,
     "email": "praneethyakkala@gmail.com",
     "src": "/img/img3.avif"
   },
@@ -70,6 +77,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Genuine and straight to the point, I appreciate the honesty and our love in college.",
     "name": "Gopi",
     "fullname": "Gopi Krishna",
+    "king": true,
     "email": "gopikrishnaanagani25@gmail.com",
     "src": "/img/img1.avif"
   },
@@ -78,6 +86,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Thanks for always encouraging me to be myself and also being a new for me .",
     "name": "Magii",
     "fullname": "Lakshmi Madhuri",
+    "king": false,
     "email": "lakshmimadhuriakula@gmail.com",
     "src": "/img/img2.avif"
   },
@@ -86,6 +95,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Thanks for always helping me in all my works. You mean a lot.",
     "name": "Bathuu",
     "fullname": "Bhargavi",
+    "king": false,
     "email": "madinibharu@gmail.com",
     "src": "/img/img4.avif"
   },
@@ -94,6 +104,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "A mystery wrapped in a Biryani and a thousand chocolates. I always enjoy your company. ",
     "name": "Paddhu",
     "fullname": "Padma Sri",
+    "king": false,
     "email": "padmasri.02pandranki@gmail.com",
     "src": "/img/img2.avif"
   },
@@ -102,6 +113,7 @@ export const shortTestimonials: Testimonial[] = [
     "quote": "Always a fun time with you. Thanks for being around even though there is nothing you hate about me.",
     "name": "Giri",
     "fullname": "Gireesh",
+    "king": true,
     "email": "gireeshpotunuru@gmail.com",
     "src": "/img/img3.avif"
   },
