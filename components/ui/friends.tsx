@@ -1,9 +1,10 @@
 "use client";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, disableInstantTransitions } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useRef } from "react";
 import Link from "next/link";
+import DisableRightClick from '../disablerightclick';
 
 type Testimonial = {
   id: number;
@@ -188,7 +189,7 @@ export const Friends = ({
 
   return (
     <div
-      className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-4 md:px-8 lg:px-12 py-20"
+      className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-8 md:px-8 lg:px-12 py-20"
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -229,22 +230,24 @@ export const Friends = ({
                     }}
                     className="absolute inset-0 origin-bottom"
                   >
+                    <DisableRightClick>
                     <Image
                       src={testimonial.src}
                       alt={testimonial.name}
                       width={500}
                       height={500}
                       draggable={false}
-                      className="h-full w-full rounded-3xl object-cover object-center"
+                      className="h-full w-full rounded-3xl  object-cover object-center"
                     />
+                    </DisableRightClick>
                   </motion.div>
                 ))}
               </AnimatePresence>
             </div>
-          </div>
+         </div>
 
           {/* Right: Text Content */}
-          <div className="flex justify-between flex-col py-4">
+          <div className="flex justify-between flex-col py-4 mt-[-20] md:mt-0 lg:mt-0">
             <motion.div
               key={active}
               initial={{ y: 20, opacity: 0 }}
@@ -272,23 +275,40 @@ export const Friends = ({
                 </div>
               </div>
 
-              <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
-                {testimonials[active]?.quote?.split(" ").map((word, index) => (
-                  <motion.span
-                    key={index}
-                    initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                    animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
-                    transition={{
-                      duration: 0.2,
-                      ease: "easeInOut",
-                      delay: 0.02 * index,
-                    }}
-                    className="inline-block"
-                  >
-                    {word} 
-                  </motion.span>
-                ))}
-              </motion.p>
+              <div className="relative"> {/* Container for quote and small image */}
+                <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
+                  {testimonials[active]?.quote?.split(" ").map((word, index) => (
+                    <motion.span
+                      key={index}
+                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
+                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.2,
+                        ease: "easeInOut",
+                        delay: 0.02 * index,
+                      }}
+                      className="inline-block"
+                    >
+                      {word} 
+                    </motion.span>
+                  ))}
+                </motion.p>
+
+                {/* Small Image */}
+                <div className="flex top-0 mt-3 left-0 ml-[-5px] ">
+                <DisableRightClick>
+                  <Image
+                    src="/img/byai.png"  
+                    alt="by AI"
+                    width={150}   
+                    height={150}  
+                    objectFit="contain" 
+                    className="rounded-full opacity-[0.8]"
+                    draggable="false"
+                  />
+                  </DisableRightClick>
+                </div>
+              </div>
             </motion.div>
 
             {/* Buttons */}
