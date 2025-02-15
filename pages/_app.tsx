@@ -57,9 +57,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
   return (
     <>
+
       {/* Render the actual page */}
       <Component {...pageProps} />
-
       {/* Floating expiration message */}
       {sessionExpired && (
         <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
