@@ -4,6 +4,7 @@ import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Head from "next/head";
 import { shortTestimonials as friends } from "@/components/ui/friends";
+import DisableRightClick from '../components/disablerightclick';
 
 const ProfileSettings = () => {
   const [name, setName] = useState("");
@@ -150,11 +151,13 @@ const ProfileSettings = () => {
               {/* Profile Picture Display */}
               <div className="flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-neutral-700 overflow-hidden">
+                <DisableRightClick>
                   <img
                     src={profileImage}
                     alt="Profile"
                     className="w-full h-full object-cover"
                   />
+                  </DisableRightClick>
                 </div>
               </div>
 

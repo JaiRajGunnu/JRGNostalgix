@@ -5,6 +5,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import friends from "../../data/friends.json";
 import { useEffect, useState } from "react";
+import DisableRightClick from '../../components/disablerightclick';
 
 import { BuildingLibraryIcon, CheckBadgeIcon, MusicalNoteIcon, } from "@heroicons/react/24/solid";
 
@@ -109,12 +110,13 @@ const FriendsPage = () => {
                     }}
                   >
                     <div className="flex justify-center">
+                    <DisableRightClick>
                       <img
                         alt={friend.fullname}
                         className={`border-4 border-[#3a3b3c] rounded-full transition duration-300
                           mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]`}
                         src={friend.src}
-                      />
+                      /> </DisableRightClick>
                     </div>
                   </div>
 

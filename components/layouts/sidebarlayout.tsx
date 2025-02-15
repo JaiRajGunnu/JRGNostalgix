@@ -6,6 +6,7 @@ import { IconSettings,  IconHome, IconMessage2Code, IconLogout2, IconUserHeart, 
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 import { shortTestimonials } from "@/components/ui/friends";
+import DisableRightClick from '../../components/disablerightclick';
 
 const UserAvatar = ({ username }: { username: string }) => {
   const { open } = useSidebar();
@@ -43,11 +44,13 @@ const UserAvatar = ({ username }: { username: string }) => {
   return (
     <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700 ">
       <div className="h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
+      <DisableRightClick>
         <img
           src={profileImage}
           alt="Profile"
           className="h-full w-full object-cover"
         />
+        </DisableRightClick>
       </div>
       <span
         className={`text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap transition-opacity duration-300 ${

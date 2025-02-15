@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Head from "next/head";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import DisableRightClick from '../components/disablerightclick';
 
 import { BuildingLibraryIcon, CheckBadgeIcon,} from "@heroicons/react/24/solid";
 
@@ -65,12 +66,14 @@ export default function AboutMe() {
                                     }}
                                 >
                                     <div className="flex justify-center">
+                                    <DisableRightClick>
                                         <img
                                             alt="Jai Raj Gunnu"
                                             className="border-4 border-[#3a3b3c] rounded-full transition duration-300
                                             mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]"
                                             src="/img/jairajgunnu.jpg"
                                         />
+                                        </DisableRightClick>
                                     </div>
                                 </div>
 
