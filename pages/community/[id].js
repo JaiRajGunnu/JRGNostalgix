@@ -1,4 +1,3 @@
-
 "use client";
 import { useRouter } from "next/router";
 import Head from "next/head";
@@ -10,6 +9,8 @@ import { useEffect, useState } from "react";
 import { BuildingLibraryIcon, CheckBadgeIcon, MusicalNoteIcon, } from "@heroicons/react/24/solid";
 
 import {
+  IconArrowLeft,
+  IconArrowRight,
   IconAtom,
   IconBook,
   IconBrandTinder,
@@ -66,6 +67,20 @@ const FriendsPage = () => {
 
   const questionnaire = friend.questionnaire;
 
+  // Navigation Logic
+  const currentIndex = friends.findIndex((f) => f.id?.toString() === id);
+  const previousFriend = friends[(currentIndex - 1 + friends.length) % friends.length]; // Wrap around to the last friend if at the beginning
+  const nextFriend = friends[(currentIndex + 1) % friends.length]; // Wrap around to the first friend if at the end
+
+  const goToPreviousFriend = () => {
+    router.push(`/community/${previousFriend.id}`);
+  };
+
+  const goToNextFriend = () => {
+    router.push(`/community/${nextFriend.id}`);
+  };
+
+
   return (
     <>
       <Head>
@@ -79,10 +94,13 @@ const FriendsPage = () => {
           <div className="relative z-10 p-6 space-y-6">
             {questionnaire && (
               <div className="space-y-6 max-w-4xl mx-auto p-5">
+
+
+
                 {/* Sticky Profile Section */}
                 <div className="sticky top-0 z-20 bg-[#18191af7] p-4 pb-2 backdrop-blur-md rounded-2xl shadow-2xl">
 
-                <div
+                  <div
                     className="rounded-xl mt-2 text-center bg-cover bg-no-repeat bg-center cursor-pointer h-[150px]"
                     style={{
                       backgroundImage: `url('https://images.pexels.com/photos/3178786/pexels-photo-3178786.jpeg?cs=srgb&dl=pexels-andrew-3178786.jpg&fm=jpg')`,
@@ -101,7 +119,33 @@ const FriendsPage = () => {
                   </div>
 
                   <div className="mt-8 text-center pb-4">
-                    <h2 className="text-white cursor-default text-xl font-bold capitalize">
+
+                      {/* Navigation Buttons */}
+                <div className="flex justify-between items-center mt-12">
+                  <button
+                    onClick={goToPreviousFriend}
+                    className="  
+                    py-3 px-2 rounded-full transition duration-300 leading"
+                  >
+                    <div className="flex flex-row text-gray-400">
+                      <IconArrowLeft className="w-8 h-8 stroke-[1.5] hover:text-white mr-2" />
+                      <span className="mt-0 font-poppins font-medium"></span>
+                    </div>
+                  </button>
+                  <button
+                    onClick={goToNextFriend}
+                    className="
+                     py-3 px-2 rounded-full transition duration-300 leading"
+                  >
+                    <div className="flex flex-row text-gray-400">
+                      <span className="mt-0 font-poppins font-medium"></span>
+                      <IconArrowRight className="w-8 h-8 hover:text-white stroke-[1.5] ml-2" />
+                    </div>          
+                  </button>
+                </div>
+
+
+                    <h2 className="text-white cursor-default text-xl font-bold capitalize mt-[-60px]">
                       {friend.fullname}
                       <CheckBadgeIcon
                         className="inline-block w-4 h-4 ml-1 text-[#2d88ff]"
@@ -110,7 +154,11 @@ const FriendsPage = () => {
                     </h2>
                     <p className="text-gray-400 text-sm mt-2 font-poppins">{friend.instaqoute}</p>
                   </div>
+
+                
                 </div>
+
+                
 
                 {/* Rest of Content */}
                 <div className="bg-[#18191af7] p-5 rounded-xl shadow-inner space-y-6">
@@ -356,8 +404,8 @@ const FriendsPage = () => {
 
                   <div className="mb-4 flex items-start flex-col">
                     <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                    What qualities do you look for in an ideal life partner?
-                                        </label>
+                      What qualities do you look for in an ideal life partner?
+                    </label>
                     <div className="flex items-center">
                       <IconDiamond className="w-4 h-4 text-gray-400 mr-2" />
                       <p className="text-white-lite font-poppins text-base">{questionnaire.deep_thoughts["on your interest, the person you like to marry"]}</p>
@@ -483,6 +531,3 @@ const FriendsPage = () => {
 };
 
 export default FriendsPage;
-
-
-
