@@ -50,7 +50,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10013432001,
     quote:
-      "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🥰💘 ",
+      "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🧿💘 ",
     name: "Chinnuu",
     fullname: "Keerthika",
     king: false,
