@@ -82,7 +82,7 @@ const FriendsPage = () => {
   return (
     <>
       <Head>
-        <title>{friend.name} - Jai Raj`&apos;`s Slam Book</title>
+        <title>{friend.name} - Jai Raj&apos;s Slam Book</title>
         <meta name="description" content={metaDescription} />
       </Head>
 
@@ -169,7 +169,7 @@ const FriendsPage = () => {
                     <div>
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          What`&apos;`s your name?
+                          What&apos;s your name?
                         </label>
                         <div className="flex items-center">
                           <IconUserQuestion className="w-4 h-4 text-gray-400 mr-2" />

@@ -27,7 +27,7 @@ export default function Community() {
   return (
     <>
       <Head>
-        <title>Jai Raj`&apos;`s Slam Book</title>
+        <title>Jai Raj&apos;s Slam Book</title>
       </Head>
 
       <SidebarLayout>
@@ -36,7 +36,7 @@ export default function Community() {
             <Friends testimonials={shortTestimonials} />
           ) : (
             <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
-              <h1 className="text-4xl md:text-6xl lg:text-6xl text-center font-bold text-white mb-[2rem]">Jai Raj`&apos;`s Slam Book</h1>
+              <h1 className="text-4xl md:text-6xl lg:text-6xl text-center font-bold text-white mb-[2rem]">Jai Raj&apos;s Slam Book</h1>
               <h2 className="text-2xl md:text-3xl lg:text-3xl text-gray-600">Welcome, {username}!</h2>
               <button
                 onClick={() => setShowFriends(true)}

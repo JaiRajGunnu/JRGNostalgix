@@ -20,14 +20,14 @@ const FriendsPage = () => {
   return (
     <>
       <Head>
-        <title>{friend.name} - Jai Raj`&apos;`s Slam Book</title>
+        <title>{friend.name} - Jai Raj&apos;s Slam Book</title>
       </Head>
 
       <SidebarLayout>
         <div className="flex flex-col justify-center items-center min-h-screen text-white bg-black">
           <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
             <h1 className="text-6xl font-bold text-white mb-[2rem]">{friend.name}</h1>
-            <p className="text-2xl text-gray-400 italic">`&ldquo;`{friend.quote}`&ldquo;`</p>
+            <p className="text-2xl text-gray-400 italic">&ldquo;{friend.quote}&ldquo;</p>
           </BackgroundBeamsWithCollision>
         </div>
       </SidebarLayout>

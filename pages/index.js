@@ -26,13 +26,13 @@ export default function HomePage() {
     <>
       {/* ✅ Set Page Title & Favicon */}
       <Head>
-        <title>Jai Raj`&apos;`s Slam Book</title>
+        <title>Jai Raj&apos;s Slam Book</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <BackgroundBeamsWithCollision className="flex flex-col justify-center items-center">
         <h1 className="text-6xl font-bold text-white mb-[2rem]">
-          Welcome to Jai Raj`&apos;`s Slam!
+          Welcome to Jai Raj&apos;s Slam!
         </h1>
         <p className="text-3xl text-gray-600">
           {isLoggedIn ? "Start by navigating to my community." : "Start by navigating to the login page."}
