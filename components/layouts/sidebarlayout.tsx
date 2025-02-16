@@ -1,6 +1,7 @@
+// SidebarLayout.tsx
 "use client";
 import { ReactNode, useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, usePathname } from "next/navigation"; // Import usePathname
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {
   IconSettings,
@@ -74,6 +75,7 @@ const UserAvatar = ({ username }: { username: string }) => {
 
 const SidebarLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
+  const pathname = usePathname(); // Get current path
   const [username, setUsername] = useState("Guest");
 
   useEffect(() => {
@@ -88,15 +90,28 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
     window.location.href = "/";
   };
 
+  const handleHomeClick = () => {
+    if (pathname === "/community") {
+      router.refresh(); // Refresh the component if already on the home page
+    } else {
+      router.push("/community"); // Navigate to the home page if not already there
+    }
+  };
+
   const links = [
-    { label: "Home", href: "/community", icon: <IconHome className="h-8 w-8" /> },
+    {
+      label: "Home",
+      href: "/community",
+      icon: <IconHome className="h-8 w-8" />,
+      onClick: handleHomeClick, // Add onClick handler
+    },
     { label: "My Verso", href: "/aboutme", icon: <IconHeart className="h-8 w-8" /> },
     { label: "Profile", href: "/profile", icon: <IconUserHeart className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
     {
       label: "Logout",
-      href: "",
+      href: "#", // Changed href to "#" to prevent navigation
       icon: <IconLogout2 className="h-8 w-8" />,
       onClick: handleLogout,
     },
@@ -109,19 +124,9 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
           <SidebarBody className="justify-between gap-10">
             <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
               <div className="mt-8 flex flex-col gap-2">
-                {links.map((link, idx) =>
-                  link.label === "Logout" ? (
-                    <button
-                      key={idx}
-                      onClick={link.onClick}
-                      className="w-full text-left"
-                    >
-                      <SidebarLink link={link} />
-                    </button>
-                  ) : (
-                    <SidebarLink key={idx} link={link} />
-                  )
-                )}
+                {links.map((link, idx) => (
+                  <SidebarLink key={idx} link={link} /> // Pass link object to SidebarLink
+                ))}
               </div>
             </div>
             <UserAvatar username={username} />
