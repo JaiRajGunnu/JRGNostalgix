@@ -11,6 +11,7 @@ interface Links {
     label: string;
     href: string;
     icon: React.JSX.Element | React.ReactNode;
+    onClick?: () => void; // Optional onClick handler
 }
 
 interface SidebarContextProps {
@@ -45,7 +46,16 @@ export const SidebarProvider = ({
     const [openState, setOpenState] = useState(false);
 
     const open = openProp !== undefined ? openProp : openState;
-    const setOpen = setOpenProp !== undefined ? setOpenProp : setOpenState;
+    const setOpen: React.Dispatch<React.SetStateAction<boolean>> = setOpenProp !== undefined ? setOpenProp : (value: React.SetStateAction<boolean>) => {
+      if (setOpenProp !== undefined) {
+        if (typeof setOpenProp === 'function') {
+            (setOpenProp as React.Dispatch<React.SetStateAction<boolean>>)(value);
+        }
+      } else {
+        setOpenState(value);
+      }
+    };
+
 
     return (
         <SidebarContext.Provider value={{ open, setOpen, animate: animate }}>
@@ -118,7 +128,7 @@ export const MobileSidebar = ({
         <>
             <div
                 className={cn(
-                    "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-neutral-800 w-full"
+                    "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-[#141414] w-full"
                 )}
                 {...props}
             >
@@ -177,11 +187,19 @@ export const SidebarLink = ({
     props?: LinkProps;
 }) => {
     const { open, animate } = useSidebar();
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement | HTMLButtonElement>) => {
+        if (link.onClick) {
+            e.preventDefault(); // Prevent default link behavior
+            link.onClick(); // Call the provided onClick handler
+        }
+    };
     return (
         <Link
             href={link.href}
+            onClick={handleClick}
             className={cn(
-                "flex items-center justify-start gap-3 group/sidebar py-3 ", // Increased padding for better spacing
+                "flex items-center justify-start gap-3 group/sidebar py-3 rounded-md transition-opacity duration-200 hover:opacity-70", // Increased padding for better spacing
                 className
             )}
             {...props}
@@ -204,7 +222,7 @@ export const SidebarLink = ({
                     opacity: animate ? (open ? 1 : 0) : 1,
                 }}
                 className="text-neutral-700 dark:text-neutral-200 text-[15px] font-poppins font-medium
- group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
+                group-hover/sidebar:translate-x-1 transition duration-150 whitespace-pre inline-block !p-0 !m-0"
             >
                 {link.label}
             </motion.span>
