@@ -5,6 +5,8 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import Head from "next/head";
 import { shortTestimonials as friends } from "@/components/ui/friends";
 import DisableRightClick from '../components/disablerightclick';
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // Import eye icons
+
 
 const ProfileSettings = () => {
   const [name, setName] = useState("");
@@ -14,6 +16,7 @@ const ProfileSettings = () => {
     "./img/guestavatar.svg" // Default image
   );
   const [loading, setLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false); // State for password visibility
 
   // For floating messages
   const [showSuccess, setShowSuccess] = useState(false);
@@ -192,15 +195,29 @@ const ProfileSettings = () => {
                 <label className="block text-gray-700 dark:text-gray-300">
                   New Password <span className="text-red-500">*</span>
                 </label>
-                <input
-                  type="password"
-                  className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  placeholder="Enter a new password"
-                  required // HTML required attribute
-                />
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none pr-10"  // Reduced pr for better icon alignment
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    placeholder="Enter a new password"
+                    required // HTML required attribute
+                  />
+                   <button
+                    type="button"
+                    className="absolute inset-y-0 right-4 flex items-center text-gray-500 dark:text-gray-400" // Adjusted right position
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeSlashIcon className="w-5 h-5 " />
+                    ) : (
+                      <EyeIcon className="w-5 h-5" />
+                    )}
+                  </button>
+                </div>
               </div>
+
 
               {/* Save Changes Button */}
               <button
