@@ -81,11 +81,17 @@ const FriendsPage = () => {
     router.push(`/community/${nextFriend.id}`);
   };
 
+  // Construct the meta description
+  const metaDescription = `Explore ${friend.fullname}'s slam profile on Jai Raj's Slam Book!
+  Discover their favorites, deep thoughts, and what they think about you.
+  Learn about ${friend.fullname}'s crazy dreams, hobbies. Dive into their personal slam book questions and answers.`;
+
 
   return (
     <>
       <Head>
         <title>{friend.name} - Jai Raj's Slam Book</title>
+        <meta name="description" content={metaDescription} />
       </Head>
 
       <SidebarLayout>
@@ -95,8 +101,6 @@ const FriendsPage = () => {
           <div className="relative z-10 p-6 space-y-6">
             {questionnaire && (
               <div className="space-y-6 max-w-4xl mx-auto p-5">
-
-
 
                 {/* Sticky Profile Section */}
                 <div className="sticky top-0 z-20 bg-[#18191af7] p-4 pb-2 backdrop-blur-md rounded-2xl shadow-2xl">
