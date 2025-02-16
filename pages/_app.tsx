@@ -68,13 +68,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="author" content="Jai Raj Gunnu" />
         
         {/* Open Graph (OG) Meta Tags for Social Sharing */}
-        <meta property="og:title" content="Jai Raj's Slam Book" />
+        <meta property="og:title" content="Jai Raj&apos;s Slam Book" />
         <meta property="og:description" content="A space for my friends to share their memories, favorites, and more!" />
         <meta property="og:image" content="https://jairajslam25.vercel.app/favicon.ico" />
         <meta property="og:url" content="https://jairajslam25.vercel.app" />
         <meta property="og:type" content="website" />
 
-        <title>Jai Raj's Slam Book</title>
+        <title>Jai Raj&apos;s Slam Book</title>
       </Head>
 
       {/* 2) Render your actual page */}
