@@ -20,8 +20,7 @@ type Testimonial = {
 export const shortTestimonials: Testimonial[] = [
   {
     id: 11092202,
-    quote:
-      "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna! 🥹❤️",
+    quote: "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna! 🫂❤️",
     name: "Kanna",
     fullname: "Sai Tarun",
     king: true,
