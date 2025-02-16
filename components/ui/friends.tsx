@@ -294,19 +294,24 @@ export const Friends = ({
                 </motion.p>
 
                 {/* Small Image */}
-                <div className="flex top-0 mt-3 left-0 ml-[-5px] ">
+                <motion.div
+                  className="flex top-0 mt-3 left-0 ml-[-5px] "
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.5, delay: 0.5 }} // Fades in after 0.5 seconds
+                >
                 <DisableRightClick>
                   <Image
-                    src="/img/byai.png"  
+                    src="/img/byai.png"
                     alt="by AI"
-                    width={150}   
-                    height={150}  
-                    objectFit="contain" 
+                    width={150}
+                    height={150}
+                    objectFit="contain"
                     className="rounded-full opacity-[0.8]"
                     draggable="false"
                   />
-                  </DisableRightClick>
-                </div>
+                </DisableRightClick>
+                </motion.div>
               </div>
             </motion.div>
 
