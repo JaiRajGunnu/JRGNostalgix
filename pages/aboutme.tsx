@@ -90,7 +90,7 @@ export default function AboutMe() {
 
                                     </p>
                                 </div>
-                                <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+                                <div className="bg-gradient-to-r from-transparent mb-0 via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                             </div>
 
                             {/* Scrollable Content */}
@@ -120,7 +120,7 @@ export default function AboutMe() {
 
                                 {/* Education Section */}
                                 <div>
-                                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+                                    <div className="bg-gradient-to-r from-transparent mb-5 via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                                     <div className="mb-2 text-left">
                                         <h3 className="text-white text-2xl mb-3 font-bold">Education</h3>
                                     </div>
@@ -162,7 +162,7 @@ export default function AboutMe() {
 
                                 {/* Favourites Section */}
                                 <div>
-                                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+                                    <div className="bg-gradient-to-r from-transparent mb-5 via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                                     <div className="mb-2 text-left">
                                         <h3 className="text-white text-2xl mb-3 font-bold">Favourites</h3>
                                     </div>
@@ -232,7 +232,7 @@ export default function AboutMe() {
 
                                 {/* Peculiars Section */}
                                 <div>
-                                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+                                    <div className="bg-gradient-to-r from-transparent mb-5 via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                                     <div className="mb-2 text-left">
                                         <h3 className="text-white text-2xl mb-3 font-bold">Peculiars</h3>
                                     </div>
@@ -292,7 +292,7 @@ export default function AboutMe() {
 
                                 {/* Links Section */}
                                 <div>
-                                    <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
+                                    <div className="bg-gradient-to-r from-transparent mb-5 via-neutral-300 dark:via-neutral-700 to-transparent h-[1px] w-full" />
                                     <div className="mb-2 text-left">
                                         <h3 className="text-white text-2xl mb-3 font-bold">Links</h3>
                                     </div>
