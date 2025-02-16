@@ -2,9 +2,9 @@
 
 import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
-import "../styles/globals.css"; // Or your global styles
-
-import { AppProps } from "next/app";
+import Head from "next/head";
+import "../styles/globals.css";
+import type { AppProps } from "next/app";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -38,7 +38,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       }
     }
 
-    // 2) Set an interval to check every 30 seconds if session expired
+    // 2) Set an interval to check every X seconds if session expired
     const intervalId = setInterval(() => {
       const tokenCheck = localStorage.getItem("token");
       const expireAtCheck = localStorage.getItem("sessionExpireAt");
@@ -49,18 +49,38 @@ function MyApp({ Component, pageProps }: AppProps) {
           logoutAndExpire();
         }
       }
-    }, 10_000); // every 30s
+    }, 10_000); // check every 10s or 30s, your preference
 
-    // Cleanup on unmount
     return () => clearInterval(intervalId);
   }, [logoutAndExpire, router.pathname]);
 
   return (
     <>
+      {/* 1) Global Head meta tags */}
+      <Head>
+        <meta
+          name="description"
+          content="Welcome to Jai Raj's Slam Book – a space for my friends to share their memories, favorites, and more!"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="keywords" content="Jai Raj, Jai raj slam, Slam Book, friendship," />
+        <meta name="robots" content="index, follow" />
+        <meta name="author" content="Jai Raj Gunnu" />
+        
+        {/* Open Graph (OG) Meta Tags for Social Sharing */}
+        <meta property="og:title" content="Jai Raj's Slam Book" />
+        <meta property="og:description" content="A space for my friends to share their memories, favorites, and more!" />
+        <meta property="og:image" content="https://jairajslam25.vercel.app/favicon.ico" />
+        <meta property="og:url" content="https://jairajslam25.vercel.app" />
+        <meta property="og:type" content="website" />
 
-      {/* Render the actual page */}
+        <title>Jai Raj's Slam Book</title>
+      </Head>
+
+      {/* 2) Render your actual page */}
       <Component {...pageProps} />
-      {/* Floating expiration message */}
+
+      {/* 3) Floating expiration message */}
       {sessionExpired && (
         <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
           Session time expired.
