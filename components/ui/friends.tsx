@@ -1,8 +1,8 @@
 "use client";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence, disableInstantTransitions } from "framer-motion";
+import { motion, AnimatePresence, } from "framer-motion";
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
 import DisableRightClick from '../disablerightclick';
 
@@ -139,24 +139,24 @@ export const Friends = ({
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (testimonials.length > 0) {
       setActive((prev) => (prev + 1) % testimonials.length);
     }
-  };
-
+  }, [testimonials.length]); // Ensure dependencies are correctly specified
+  
   const handlePrev = () => {
     if (testimonials.length > 0) {
       setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     }
   };
-
-  const startAutoplay = () => {
+  
+  const startAutoplay = useCallback(() => {
     if (autoplay && testimonials.length > 0 && !isPaused) {
       intervalRef.current = window.setInterval(handleNext, 5000);
     }
-  };
-
+  }, [autoplay, testimonials.length, isPaused, handleNext]);
+  
   const stopAutoplay = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -170,7 +170,7 @@ export const Friends = ({
     return () => {
       stopAutoplay(); // Clear interval on unmount
     };
-  }, [autoplay, testimonials.length, isPaused]);
+  }, [autoplay, testimonials.length, isPaused, startAutoplay]);
 
   const isActive = (index: number) => index === active;
 
@@ -350,3 +350,5 @@ export const Friends = ({
     </div>
   );
 };
+
+// Removed the local declaration of useCallback

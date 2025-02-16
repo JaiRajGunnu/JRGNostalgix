@@ -5,6 +5,8 @@ import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
+// import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
+import { useCallback } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -17,6 +19,19 @@ export default function Login() {
   const [sessionExpired, setSessionExpired] = useState(false);
 
   const router = useRouter();
+
+  // Helper: logs out user, shows floating message
+  const logoutAndShowExpiration = useCallback(() => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("sessionExpireAt");
+    setSessionExpired(true);
+
+    // Optionally redirect to /login (if user isn't already here)
+    router.replace("/");
+
+    // Hide message after 3 seconds
+    setTimeout(() => setSessionExpired(false), 3000);
+  }, [router]);
 
   // 1) Check if user is already logged in on mount
   useEffect(() => {
@@ -32,7 +47,7 @@ export default function Login() {
         router.replace("/community");
       }
     }
-  }, []);
+  }, [logoutAndShowExpiration, router]);
 
   // 2) Set up an interval to check for session expiry every 30 seconds
   useEffect(() => {
@@ -47,20 +62,7 @@ export default function Login() {
     }, 30_000); // check every 30s
 
     return () => clearInterval(interval);
-  }, []);
-
-  // Helper: logs out user, shows floating message
-  const logoutAndShowExpiration = () => {
-    localStorage.removeItem("token");
-    localStorage.removeItem("sessionExpireAt");
-    setSessionExpired(true);
-
-    // Optionally redirect to /login (if user isn't already here)
-    router.replace("/");
-
-    // Hide message after 3 seconds
-    setTimeout(() => setSessionExpired(false), 3000);
-  };
+  }, [logoutAndShowExpiration]);
 
   // 3) Handle login
   const handleLogin = async (e: React.FormEvent) => {
@@ -195,3 +197,7 @@ export default function Login() {
     </>
   );
 }
+
+
+// Removed the conflicting local declaration of useCallback
+

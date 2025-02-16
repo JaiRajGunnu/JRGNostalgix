@@ -1,9 +1,9 @@
 "use client";
-import { useEffect, useState } from "react";
 import Head from "next/head";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import DisableRightClick from '../components/disablerightclick';
+import Image from 'next/image';
 
 import { BuildingLibraryIcon, CheckBadgeIcon,} from "@heroicons/react/24/solid";
 
@@ -33,12 +33,6 @@ import {
 } from "@tabler/icons-react";
 
 export default function AboutMe() {
-    const [lastUpdated, setLastUpdated] = useState("");
-
-    useEffect(() => {
-        const mod = new Date(document.lastModified).toLocaleString();
-        setLastUpdated(mod);
-    }, []);
 
     return (
         <>
@@ -67,11 +61,13 @@ export default function AboutMe() {
                                 >
                                     <div className="flex justify-center">
                                     <DisableRightClick>
-                                        <img
+                                        <Image
                                             alt="Jai Raj Gunnu"
                                             className="border-4 border-[#3a3b3c] rounded-full transition duration-300
                                             mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]"
                                             src="/img/jairajgunnu.jpg"
+                                            width={100}
+                                            height={100}
                                         />
                                         </DisableRightClick>
                                     </div>
@@ -86,7 +82,7 @@ export default function AboutMe() {
                                         />
                                     </h2>
                                     <p className="text-gray-400 text-sm mt-2 font-poppins">
-                                    A person's beliefs mirror their true self.
+                                    A person`&apos;s` beliefs mirror their true self.
 
                                     </p>
                                 </div>

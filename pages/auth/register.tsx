@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head"; // ✅ Import Head for setting page title
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { EyeIcon, EyeSlashIcon, ArrowRightIcon } from "@heroicons/react/24/solid"; // ✅ Import ArrowRightIcon
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // ✅ Import ArrowRightIcon
 import { ChevronRightIcon } from "@heroicons/react/24/solid"; // ✅ Using ChevronRightIcon
 
 export default function Register() {

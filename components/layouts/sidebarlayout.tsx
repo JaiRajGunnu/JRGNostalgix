@@ -15,63 +15,63 @@ import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 import { shortTestimonials } from "@/components/ui/friends";
 import DisableRightClick from "../../components/disablerightclick";
-
-const UserAvatar = ({ username }: { username: string }) => {
-  const { open } = useSidebar();
-  const [profileImage, setProfileImage] = useState<string>(
-    "/img/guestavatar.svg" // <-- Use absolute path here
-  );
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const token = localStorage.getItem("token");
-      if (!token) return;
-
-      try {
-        const res = await fetch("/api/profile", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-
-        if (res.ok) {
-          const data = await res.json();
-          const matchedFriend = shortTestimonials.find(
-            (friend) => friend.email === data.user.email
-          );
-          if (matchedFriend) {
-            setProfileImage(matchedFriend.src);
+import Image from "next/image"; // Import Image from next/image
+  
+  const UserAvatar = ({ username }: { username: string }) => {
+    const { open } = useSidebar();
+    const [profileImage, setProfileImage] = useState<string>(
+      "/img/guestavatar.svg"
+    );
+  
+    useEffect(() => {
+      const fetchProfile = async () => {
+        const token = localStorage.getItem("token");
+        if (!token) return;
+        try {
+          const res = await fetch("/api/profile", {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          if (res.ok) {
+            const data = await res.json();
+            const matchedFriend = shortTestimonials.find(
+              (friend) => friend.email === data.user.email
+            );
+            if (matchedFriend) {
+              setProfileImage(matchedFriend.src);
+            }
           }
+        } catch (error) {
+          console.error("Error fetching profile:", error);
         }
-      } catch (error) {
-        console.error("Error fetching profile:", error);
-      }
-    };
-
-    fetchProfile();
-  }, []);
-
-  return (
-    <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700">
-      <div className="h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
-        <DisableRightClick>
-          <img
-            src={profileImage}
-            alt="Profile"
-            className="h-full w-full object-cover"
-          />
-        </DisableRightClick>
+      };
+      fetchProfile();
+    }, []);
+  
+    return (
+      <div className="flex items-center gap-5 py-3 border-t pt-25 border-neutral-300 dark:border-neutral-700">
+        <div className="relative h-6 w-6 flex-shrink-0 overflow-hidden rounded-full">
+          <DisableRightClick>
+            <Image
+              src={profileImage}
+              alt="Profile"
+              width={40} // Set fixed width
+              height={40} // Use objectFit to maintain aspect ratio
+              className="h-full w-full"
+            />
+          </DisableRightClick>
+        </div>
+        <span
+          className={`text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap transition-opacity duration-300 ${
+            open ? "opacity-100" : "opacity-0 w-0"
+          }`}
+        >
+          {username}
+        </span>
       </div>
-      <span
-        className={`text-neutral-700 dark:text-neutral-200 text-lg font-medium overflow-hidden whitespace-nowrap transition-opacity duration-300 ${
-          open ? "opacity-100" : "opacity-0 w-0"
-        }`}
-      >
-        {username}
-      </span>
-    </div>
-  );
-};
+    );
+  };
 
 const SidebarLayout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();

@@ -19,7 +19,6 @@ const DisableRightClick = ({ children }: { children: ReactNode }) => {
         container.removeEventListener('contextmenu', handleContextMenu);
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return <div ref={containerRef}>{children}</div>; // Attach the ref to the container

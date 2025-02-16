@@ -6,6 +6,7 @@ import Head from "next/head";
 import { shortTestimonials as friends } from "@/components/ui/friends";
 import DisableRightClick from '../components/disablerightclick';
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // Import eye icons
+import Image from 'next/image';
 
 
 const ProfileSettings = () => {
@@ -155,10 +156,12 @@ const ProfileSettings = () => {
               <div className="flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-neutral-700 overflow-hidden">
                 <DisableRightClick>
-                  <img
+                  <Image
                     src={profileImage}
                     alt="Profile"
-                    className="w-full h-full object-cover"
+                    width={100} // Set fixed width
+                    height={100} 
+                    className="object-cover"
                   />
                   </DisableRightClick>
                 </div>

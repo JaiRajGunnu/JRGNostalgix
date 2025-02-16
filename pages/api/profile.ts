@@ -16,14 +16,19 @@ export default async function profileHandler(req: NextApiRequest, res: NextApiRe
     if (!process.env.JWT_SECRET) {
       return res.status(500).json({ message: 'JWT secret is not defined' });
     }
-    const decoded: any = jwt.verify(token, process.env.JWT_SECRET);
+    interface DecodedToken {
+      userId: string;
+      iat: number;
+      exp: number;
+    }
+    const decoded: DecodedToken = jwt.verify(token, process.env.JWT_SECRET) as DecodedToken;
     const user = await User.findById(decoded.userId).select('-password');
     if (!user) {
       return res.status(404).json({ message: 'User not found' });
     }
 
     res.status(200).json({ user });
-  } catch (error) {
+  } catch {
     res.status(401).json({ message: 'Invalid or expired token' });
   }
 }

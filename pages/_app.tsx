@@ -1,6 +1,6 @@
 // pages/_app.tsx
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter } from "next/router";
 import "../styles/globals.css"; // Or your global styles
 
@@ -11,7 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
   const router = useRouter();
 
   // Helper to handle logout & show expiration
-  const logoutAndExpire = () => {
+  const logoutAndExpire = useCallback(() => {
     localStorage.removeItem("token");
     localStorage.removeItem("sessionExpireAt");
     setSessionExpired(true);
@@ -23,7 +23,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     // Hide message after 3 seconds
     setTimeout(() => setSessionExpired(false), 3000);
-  };
+  }, [router]);
 
   useEffect(() => {
     // 1) On mount, check if there's an existing token & if it's expired
@@ -53,7 +53,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     // Cleanup on unmount
     return () => clearInterval(intervalId);
-  }, []);
+  }, [logoutAndExpire, router.pathname]);
 
   return (
     <>

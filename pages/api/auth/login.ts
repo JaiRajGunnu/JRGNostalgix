@@ -26,7 +26,7 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
     const token = jwt.sign({ userId: user._id }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
     res.status(200).json({ token, user: { id: user._id, name: user.name, email: user.email } });
-  } catch (error) {
+  } catch {
     res.status(500).json({ message: 'Server error' });
   }
 }

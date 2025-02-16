@@ -1,23 +1,15 @@
 "use client";
 import { useRouter } from "next/router";
 import Head from "next/head";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import friends from "../../data/friends.json";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 
 const FriendsPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [username, setUsername] = useState("Guest");
-
-  useEffect(() => {
-    const storedName = localStorage.getItem("userName");
-    if (storedName) {
-      setUsername(storedName);
-    }
-  }, []);
 
   const friend = friends.find((f) => f.id.toString() === id);
 
@@ -28,14 +20,14 @@ const FriendsPage = () => {
   return (
     <>
       <Head>
-        <title>{friend.name} - Jai Raj's Slam Book</title>
+        <title>{friend.name} - Jai Raj`&apos;`s Slam Book</title>
       </Head>
 
       <SidebarLayout>
         <div className="flex flex-col justify-center items-center min-h-screen text-white bg-black">
           <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
             <h1 className="text-6xl font-bold text-white mb-[2rem]">{friend.name}</h1>
-            <p className="text-2xl text-gray-400 italic">"{friend.quote}"</p>
+            <p className="text-2xl text-gray-400 italic">`&ldquo;`{friend.quote}`&ldquo;`</p>
           </BackgroundBeamsWithCollision>
         </div>
       </SidebarLayout>

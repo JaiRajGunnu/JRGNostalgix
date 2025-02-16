@@ -4,9 +4,9 @@ import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import friends from "../../data/friends.json";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import DisableRightClick from '../../components/disablerightclick';
-
+import Image from 'next/image';
 import { BuildingLibraryIcon, CheckBadgeIcon, MusicalNoteIcon, } from "@heroicons/react/24/solid";
 
 import {
@@ -47,14 +47,6 @@ import {
 const FriendsPage = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [username, setUsername] = useState("Guest");
-
-  useEffect(() => {
-    const storedName = localStorage.getItem("userName");
-    if (storedName) {
-      setUsername(storedName);
-    }
-  }, []);
 
   const friend = friends.find((f) => f.id?.toString() === id);
 
@@ -90,7 +82,7 @@ const FriendsPage = () => {
   return (
     <>
       <Head>
-        <title>{friend.name} - Jai Raj's Slam Book</title>
+        <title>{friend.name} - Jai Raj`&apos;`s Slam Book</title>
         <meta name="description" content={metaDescription} />
       </Head>
 
@@ -115,11 +107,13 @@ const FriendsPage = () => {
                   >
                     <div className="flex justify-center">
                     <DisableRightClick>
-                      <img
+                      <Image
                         alt={friend.fullname}
                         className={`border-4 border-[#3a3b3c] rounded-full transition duration-300
                           mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]`}
                         src={friend.src}
+                        width={100}
+                        height={100}
                       /> </DisableRightClick>
                     </div>
                   </div>
@@ -175,7 +169,7 @@ const FriendsPage = () => {
                     <div>
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          What's your name?
+                          What`&apos;`s your name?
                         </label>
                         <div className="flex items-center">
                           <IconUserQuestion className="w-4 h-4 text-gray-400 mr-2" />
