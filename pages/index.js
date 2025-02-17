@@ -31,15 +31,18 @@ export default function HomePage() {
       </Head>
 
       <BackgroundBeamsWithCollision className="flex flex-col justify-center items-center">
-        <h1 className="text-6xl font-bold text-white mb-[2rem]">
-          Welcome to Jai Raj&apos;s Slam!
+        <h1 className="text-6xl m-[2%] text-center lg:text-8xl font-bold text-white mb-[2rem] leading-[1.25]">
+          Welcome, buddy.
         </h1>
-        <p className="text-3xl text-gray-600">
+        <p className="text-lg md:text-3xl lg:text-3xl text-gray-600">
           {isLoggedIn ? "Start by navigating to my community." : "Start by navigating to the login page."}
         </p>
 
         <button
-          className="mt-[3rem] bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl transition duration-300 ease-in-out hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
+          className="mt-[2rem] md:mt-[3rem] lg:mt-[3rem] bg-white text-black font-semibold
+          py-2.5 px-5 rounded-3xl text-xl
+          transition duration-300 ease-in-out 
+          hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
           onClick={handleGetStarted}
         >
           Get started
