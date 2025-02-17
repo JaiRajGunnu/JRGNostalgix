@@ -188,10 +188,10 @@ export const Friends = ({
 
   return (
     <div
-      className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-8 md:px-8 lg:px-12 py-20"
+      className="max-w-sm md:max-w-4xl mx-auto antialiased font-sans px-8 md:px-8 lg:px-12 pt-[3rem] md:pt-[14rem] lg:pt-[14rem] "
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-    >
+    > <div>
       {testimonials.length > 0 ? (
         <div className="relative grid grid-cols-1 md:grid-cols-2 gap-20">
           {/* Left: Image Slider */}
@@ -246,7 +246,7 @@ export const Friends = ({
          </div>
 
           {/* Right: Text Content */}
-          <div className="flex justify-between flex-col py-4 mt-[-20] md:mt-0 lg:mt-0">
+          <div className="flex justify-between flex-col py-4 mt-[-20] md:mt-0 lg:mt-10 gap-10 shadow-xl">
             <motion.div
               key={active}
               initial={{ y: 20, opacity: 0 }}
@@ -254,8 +254,8 @@ export const Friends = ({
               exit={{ y: -20, opacity: 0 }}
               transition={{ duration: 0.2, ease: "easeInOut" }}
             >
-              <div className="flex items-center gap-4 justify-between">
-                <div className="items-start justify-start">
+              <div className="flex items-center gap-4 justify-between ">
+                <div className="items-start justify-start ">
                   <h3 className="text-2xl font-bold dark:text-white text-black">
                     {testimonials[active]?.name}
                   </h3>
@@ -347,6 +347,7 @@ export const Friends = ({
           There are no friends available in this community.
         </p>
       )}
+      </div>
     </div>
   );
 };
