@@ -40,7 +40,7 @@ export default function HomePage() {
 
         <button
           className="mt-[2rem] md:mt-[3rem] lg:mt-[3rem] bg-white text-black font-semibold
-          py-2.5 px-5 rounded-3xl text-xl
+          py-2.5 px-5 rounded-3xl text-xl scale-[0.8] md:scale-1 lg:scale-1
           transition duration-300 ease-in-out 
           hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
           onClick={handleGetStarted}
