@@ -128,7 +128,7 @@ export const MobileSidebar = ({
         <>
             <div
                 className={cn(
-                    "h-10 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-[#141414] w-full"
+                    "h-13 px-4 py-4 flex flex-row md:hidden items-center justify-between bg-neutral-100 dark:bg-[#141414] w-full"
                 )}
                 {...props}
             >
@@ -136,12 +136,12 @@ export const MobileSidebar = ({
                 <div className="flex justify-start z-20 w-full opacity-[0.8]">
                     {open ? (
                         <TbLayoutSidebarLeftCollapse // Show collapse icon when open
-                            className="h-5 w-5 text-neutral-800 dark:text-neutral-200 bg-transparent"
+                            className="h-7 w-7 text-neutral-800 dark:text-neutral-200 bg-transparent"
                             onClick={() => setOpen(false)}
                         />
                     ) : (
                         <TbLayoutSidebarLeftExpand // Show expand icon when closed
-                            className="h-5 w-5 text-neutral-800 dark:text-neutral-200 bg-transparent"
+                            className="h-7 w-7 text-neutral-800 dark:text-neutral-200 bg-transparent"
                             onClick={() => setOpen(true)}
                         />
                     )}
