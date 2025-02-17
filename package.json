@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/hammersmith-one": "^5.1.1",
     "@fontsource/poppins": "^5.1.1",
     "@heroicons/react": "^2.2.0",
     "@next-auth/mongodb-adapter": "^1.1.3",
