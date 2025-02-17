@@ -5,7 +5,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import DisableRightClick from '../components/disablerightclick';
 import Image from 'next/image';
 
-import { BuildingLibraryIcon, CheckBadgeIcon,} from "@heroicons/react/24/solid";
+import { BuildingLibraryIcon, CheckBadgeIcon, } from "@heroicons/react/24/solid";
 
 import {
     IconAtom,
@@ -42,7 +42,7 @@ export default function AboutMe() {
 
             <SidebarLayout>
                 <div className="absolute inset-0 -z-10 pointer-events-none">
-                <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+                    <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
                 </div>
 
                 <main className="relative min-h-screen w-full px-6 py-10 lg:px-30 lg:py-30 text-white flex justify-center">
@@ -55,20 +55,20 @@ export default function AboutMe() {
                                     className="rounded-xl mt-2 text-center bg-cover bg-no-repeat bg-center cursor-pointer h-[150px]"
                                     style={{
                                         backgroundImage: `url('/img/cover/rk_cover_img.png')`,
-                                        backgroundPosition: "0px -40px",
+                                        backgroundPosition: "0 0",
                                         backgroundSize: "cover",
                                     }}
                                 >
                                     <div className="flex justify-center">
-                                    <DisableRightClick>
-                                        <Image
-                                            alt="Jai Raj Gunnu"
-                                            className="border-4 border-[#3a3b3c] rounded-full transition duration-300
+                                        <DisableRightClick>
+                                            <Image
+                                                alt="Jai Raj Gunnu"
+                                                className="border-4 border-[#3a3b3c] rounded-full transition duration-300
                                             mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]"
-                                            src="/img/jairajgunnu.jpg"
-                                            width={100}
-                                            height={100}
-                                        />
+                                                src="/img/jairajgunnu.jpg"
+                                                width={100}
+                                                height={100}
+                                            />
                                         </DisableRightClick>
                                     </div>
                                 </div>
@@ -82,7 +82,7 @@ export default function AboutMe() {
                                         />
                                     </h2>
                                     <p className="text-gray-400 text-sm mt-2 font-poppins">
-                                    A person&apos;s beliefs mirror their true self.
+                                        A person&apos;s beliefs mirror their true self.
 
                                     </p>
                                 </div>
