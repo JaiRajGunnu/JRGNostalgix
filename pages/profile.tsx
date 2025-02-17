@@ -142,7 +142,7 @@ const ProfileSettings = () => {
           <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
         </div>
 
-        <div className="relative w-full min-h-screen flex justify-center mt-[-15%] md:mt-0 lg:mt-0
+        <div className="relative w-full min-h-screen flex justify-center mt-[-25%] md:mt-0 lg:mt-0
         items-center p-6 font-poppins flex-col space-y-6">
           <div>
         <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
