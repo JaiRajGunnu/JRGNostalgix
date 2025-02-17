@@ -1,6 +1,6 @@
 "use client";
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
-import { motion, AnimatePresence, } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
 import { useEffect, useState, useRef, useCallback } from "react";
 import Link from "next/link";
@@ -55,7 +55,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 100128766001,
-    quote: "Biryani is ready 🤫. Thanks for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
+    quote: "Biryani is ready. Thanks for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
         name: "Pavii",
     fullname: "Rakshanna",
     king: false,
@@ -75,7 +75,8 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10012676001,
     quote:
-"Genuine and straight to the point, I truly appreciate the honesty and the love we shared in college. It means everything. 🤟❤️‍🔥",    name: "Gopi",
+"Genuine and straight to the point, I truly appreciate the honesty and the love we shared in college.  🤟❤️‍🔥",
+   name: "Gopi",
     fullname: "Gopi Krishna",
     king: true,
     email: "gopikrishnaanagani25@gmail.com",
@@ -83,7 +84,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1001542001,
-    quote: "Thanks for always encouraging me to be myself, embracing my uniqueness, and being wonderfully new to me. 😍💓",
+    quote: "Thanks for always encouraging me to be myself, embracing my uniqueness, & being wonderfully new to me. 😍💓",
     name: "Magii",
     fullname: "Lakshmi Madhuri",
     king: false,
@@ -92,7 +93,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1034012001,
-    quote: "Thanks for always being there for me and supporting me unconditionally. I hope I never caused you any hurt. 🥹💗",
+    quote: "Thanks for always being there for me and supporting me in my life. I hope I never caused you any hurt . 🥹💗",
     name: "Bharuu",
     fullname: "Bhargavi",
     king: false,
@@ -102,7 +103,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10012054501,
     quote:
-"A mystery wrapped in biryani and a thousand chocolates. Thank you for the unforgettable adventures and memories. 🤠💜",
+"A mystery wrapped in biryani & a thousand chocolates. Thank you for the unforgettable adventures and memories. 🤠💜",
     name: "Paddhu",
     fullname: "Padma Sri",
     king: false,
@@ -137,19 +138,19 @@ export const Friends = ({
       setActive((prev) => (prev + 1) % testimonials.length);
     }
   }, [testimonials.length]); // Ensure dependencies are correctly specified
-  
+
   const handlePrev = () => {
     if (testimonials.length > 0) {
       setActive((prev) => (prev - 1 + testimonials.length) % testimonials.length);
     }
   };
-  
+
   const startAutoplay = useCallback(() => {
     if (autoplay && testimonials.length > 0 && !isPaused) {
       intervalRef.current = window.setInterval(handleNext, 5000);
     }
   }, [autoplay, testimonials.length, isPaused, handleNext]);
-  
+
   const stopAutoplay = () => {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
@@ -180,8 +181,8 @@ export const Friends = ({
   };
 
   return (
-    <div className="max-w-sm md:max-w-4xl mx-auto antialiased  font-sans 
-      p-[50px] md:px-8 lg:px-12 pt-[3rem] md:pt-[14rem] lg:pt-[14rem] "
+    <div className="max-w-sm md:max-w-4xl mx-auto antialiased  font-sans
+      p-[45px] md:px-8 lg:px-12 pt-[3rem] md:pt-[14rem] lg:pt-[14rem] "
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     > <div>
@@ -236,7 +237,7 @@ export const Friends = ({
                 ))}
               </AnimatePresence>
             </div>
-         </div>
+          </div>
 
           {/* Right: Text Content */}
           <div className="flex justify-between flex-col py-4 md:mt-0 lg:mt-10 gap-10 shadow-xl">
@@ -253,7 +254,7 @@ export const Friends = ({
                     {testimonials[active]?.name}
                   </h3>
 
-                  <p className="text-xs text-gray-500 dark:text-neutral-500">
+                  <p className="text-xs text-gray-500 dark:text-neutral-500 mt-1">
                     {testimonials[active]?.fullname}
                   </p>
                 </div>
@@ -268,20 +269,26 @@ export const Friends = ({
               </div>
 
               <div className="relative"> {/* Container for quote and small image */}
-                <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
-                  {testimonials[active]?.quote?.split(" ").map((word, index) => (
+              <motion.p className="text-lg text-gray-500 mt-8 font-poppins opacity-[85%] font-medium dark:text-neutral-300 tracking-tight"
+
+                  style={{
+                    textAlign: 'justify',
+                    width: '100%', // Adjust width as needed
+                    overflowWrap: 'break-word', // Prevent long words from overflowing
+                  }}
+                >
+                  {[...testimonials[active]?.quote].map((char, index) => (
                     <motion.span
                       key={index}
-                      initial={{ filter: "blur(10px)", opacity: 0, y: 5 }}
-                      animate={{ filter: "blur(0px)", opacity: 1, y: 0 }}
+                      initial={{ opacity: 0, filter: "blur(10px)" }}
+                      animate={{ opacity: 1, filter: "blur(0px)" }}
                       transition={{
                         duration: 0.2,
                         ease: "easeInOut",
-                        delay: 0.02 * index,
+                        delay: 0.01 * index, // Adjust delay for speed
                       }}
-                      className="inline-block"
                     >
-                      {word} 
+                      {char}
                     </motion.span>
                   ))}
                 </motion.p>
@@ -340,9 +347,8 @@ export const Friends = ({
           There are no friends available in this community.
         </p>
       )}
-      </div>
+    </div>
     </div>
   );
 };
-
-// Removed the local declaration of useCallback
+export default Friends;
