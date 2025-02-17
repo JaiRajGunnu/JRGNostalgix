@@ -92,7 +92,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1034012001,
-    quote: "Thanks for always being there for me and supporting me. I hope I never caused you any hurt. 🥹💗",
+    quote: "Thanks for always being there for me and supporting me unconditionally. I hope I never caused you any hurt. 🥹💗",
     name: "Bharuu",
     fullname: "Bhargavi",
     king: false,
@@ -268,7 +268,7 @@ export const Friends = ({
               </div>
 
               <div className="relative"> {/* Container for quote and small image */}
-                <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300 text-justify w-[105%] md:w-full lg:w-full" >
+                <motion.p className="text-lg text-gray-500 mt-8 dark:text-neutral-300">
                   {testimonials[active]?.quote?.split(" ").map((word, index) => (
                     <motion.span
                       key={index}
