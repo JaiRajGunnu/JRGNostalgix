@@ -1,4 +1,6 @@
 @import '@fontsource/poppins'; 
+@import '@fontsource/hammersmith-one';
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -16,7 +18,10 @@ html, body {
 footer {
   flex-shrink: 0;
 }
+h1 {
+  font-family: 'Hammersmith One', sans-serif;
 
+}
 img {
   user-select: none;
   -webkit-user-select: none;
