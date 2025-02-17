@@ -49,8 +49,8 @@ const FeedbackPage = () => {
       </Head>
 
       <SidebarLayout>
-        <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center w-full">
-          <div className="flex flex-col items-center justify-center min-h-screen">
+        <BackgroundBeamsWithCollision className="p-[5%]  flex flex-col justify-center items-center w-full">
+          <div className="flex flex-col items-center justify-center min-h-screen mt-[-10%] md:mt-0 lg:mt-0 ">
             <h2 className="text-4xl font-bold mb-10 text-center text-gray-800 dark:text-white">
               How was your experience?
             </h2>
