@@ -20,7 +20,7 @@ type Testimonial = {
 export const shortTestimonials: Testimonial[] = [
   {
     id: 11092202,
-    quote: "You're not just a friend; you're family. Thanks for always being my ride or die, my constant support, Kanna! 🫂❤️",
+    quote: "You're not just a friend; you're family. Thank you for always being my ride or die, my constant support, Kannayaa! 🫂❤️",
     name: "Kanna",
     fullname: "Sai Tarun",
     king: true,
@@ -38,7 +38,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10012001,
-    quote: "I know I can always count on you to say, 'You know all, man!' Thanks for always being there and believing in me. 🤗💝",    name: "Likki",
+    quote: "I know I can always count on you to say, 'You know all, man!' Thank you for always being there and believing in me. 🤗💝",    name: "Likki",
     fullname: "Likhith",
     king: true,
     email: "likhithsarvisetti@gmail.com",
@@ -46,7 +46,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10013432001,
-    quote: "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🧿💘 ",
+    quote: "To the heart & soul, and the girl with no secrets! Thanks for always being there for me, Chinnu.  My CB! 🧿💘 ",
     name: "Chinnuu",
     fullname: "Keerthika",
     king: false,
@@ -55,7 +55,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 100128766001,
-    quote: "Biryani is ready. Thanks for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
+    quote: "Biryani is ready. Thank you for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
         name: "Pavii",
     fullname: "Rakshanna",
     king: false,
@@ -75,7 +75,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10012676001,
     quote:
-"Genuine and straight to the point, I truly appreciate the honesty and the love we shared in college.  🤟❤️‍🔥",
+"Genuine and straight to the point, I truly appreciate the honesty and the love we shared in college times.  🤟❤️‍🔥",
    name: "Gopi",
     fullname: "Gopi Krishna",
     king: true,
@@ -93,7 +93,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1034012001,
-    quote: "Thanks for always being there for me and supporting me in my life. I hope I never caused you any hurt . 🥹💗",
+    quote: "Thanks for always being there for me and for being so supportive in my life. I hope I've never caused you any hurt. 🥹💗",
     name: "Bharuu",
     fullname: "Bhargavi",
     king: false,
@@ -113,7 +113,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10014342001,
     quote:
-      "Always a fun time with you. Thanks for being around even though there is nothing you hate about me. 🤗💛",
+      "Always a fun time with you. Thank you for being around even though there is nothing you hate about me. 🤗💛",
     name: "Giri",
     fullname: "Gireesh",
     king: true,
