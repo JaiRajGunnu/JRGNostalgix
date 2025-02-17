@@ -26,7 +26,7 @@ export default function Community() {
   return (
     <>
       <Head>
-        <title>Jai Raj's Slam Book</title>
+        <title>Jai Raj&apos;s Slam Book</title>
       </Head>
 
       <SidebarLayout>
@@ -38,7 +38,7 @@ export default function Community() {
           ) : (
             <div className="relative z-10 pt-[16rem] md:pt-[17rem] lg:pt-[17rem] flex flex-col justify-center items-center w-full shadow-xl">                
             <h1 className="text-4xl md:text-6xl lg:text-6xl text-center font-bold text-white mb-[2rem]">
-              Jai Raj's Slam Book</h1>
+              Jai Raj&apos;s Slam Book</h1>
               <h2 className="text-2xl md:text-3xl lg:text-3xl text-gray-600">
                 Welcome, {username}!</h2>
               <button
