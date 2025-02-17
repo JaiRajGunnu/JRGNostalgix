@@ -20,7 +20,7 @@ type Testimonial = {
 export const shortTestimonials: Testimonial[] = [
   {
     id: 11092202,
-    quote: "You're not just a friend, you're family. Thanks for always being my ride or die, Kanna! 🫂❤️",
+    quote: "You're not just a friend; you're family. Thanks for always being my ride or die, my constant support, Kanna! 🫂❤️",
     name: "Kanna",
     fullname: "Sai Tarun",
     king: true,
@@ -29,8 +29,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10112003,
-    quote:
-      "Thanks for all the laughs and for being the bestie ever since topper day. Let's become CEOs and get rich together! 😂💖",
+    quote: "Thanks for all the laughs and for being the bestie ever since topper day. Let's become CEOs and get rich together! 😂💖",
     name: "Vissu",
     fullname: "Viswanadham",
     king: true,
@@ -39,9 +38,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10012001,
-    quote:
-      "I know I can always count on you to say ' You know all, man! '. Thanks for always being. 🤗💝",
-    name: "Likki",
+    quote: "I know I can always count on you to say, 'You know all, man!' Thanks for always being there and believing in me. 🤗💝",    name: "Likki",
     fullname: "Likhith",
     king: true,
     email: "likhithsarvisetti@gmail.com",
@@ -49,8 +46,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10013432001,
-    quote:
-      "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🧿💘 ",
+    quote: "To the heart and soul, and the girl with no secrets! Thanks for always being there, Chinnu.  My CB ! 🧿💘 ",
     name: "Chinnuu",
     fullname: "Keerthika",
     king: false,
@@ -59,9 +55,8 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 100128766001,
-    quote:
-      "Biryani is ready 🤫 Thank you for your support and your family's guidance. Always grateful. 🫶💙",
-    name: "Pavii",
+    quote: "Biryani is ready 🤫. Thanks for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
+        name: "Pavii",
     fullname: "Rakshanna",
     king: false,
     email: "pavith2602@gmail.com",
@@ -80,8 +75,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10012676001,
     quote:
-      "Genuine and straight to the point, I appreciate the honesty and our love in college. 🤟❤️‍🔥",
-    name: "Gopi",
+"Genuine and straight to the point, I truly appreciate the honesty and the love we shared in college. It means everything. 🤟❤️‍🔥",    name: "Gopi",
     fullname: "Gopi Krishna",
     king: true,
     email: "gopikrishnaanagani25@gmail.com",
@@ -89,8 +83,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1001542001,
-    quote:
-      "Thanks for always encouraging me to be myself and also being a new for me. 😍💓",
+    quote: "Thanks for always encouraging me to be myself, embracing my uniqueness, and being wonderfully new to me. 😍💓",
     name: "Magii",
     fullname: "Lakshmi Madhuri",
     king: false,
@@ -99,7 +92,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 1034012001,
-    quote: "Thanks for always being there for me. I hope I never caused you any hurt. 🥹💗",
+    quote: "Thanks for always being there for me and supporting me unconditionally. I hope I never caused you any hurt. 🥹💗",
     name: "Bharuu",
     fullname: "Bhargavi",
     king: false,
@@ -109,7 +102,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 10012054501,
     quote:
-      "A mystery wrapped in biryani and a thousand chocolates. Thank you for the unforgettable adventures. 🤠💜",
+"A mystery wrapped in biryani and a thousand chocolates. Thank you for the unforgettable adventures and memories. 🤠💜",
     name: "Paddhu",
     fullname: "Padma Sri",
     king: false,
