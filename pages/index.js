@@ -34,7 +34,7 @@ export default function HomePage() {
         <h1 className="text-6xl m-[1%] md:m-[2%] lg:m-[2%] text-center lg:text-8xl font-bold text-white mb-[2rem] leading-[1.25]">
           Welcome, buddy.
         </h1>
-        <p className="text-lg md:text-3xl lg:text-3xl text-gray-600">
+        <p className="text-md md:text-3xl lg:text-3xl text-center text-gray-600 font-poppins">
           {isLoggedIn ? "Start by navigating to my community." : "Start by navigating to the login page."}
         </p>
 
