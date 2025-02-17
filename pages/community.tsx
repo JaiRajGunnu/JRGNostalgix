@@ -36,10 +36,10 @@ export default function Community() {
           {showFriends ? (
             <Friends testimonials={shortTestimonials} />
           ) : (
-            <div className="relative z-10 pt-[16rem] mt-[1%] md:mt-[0] lg:mt-[0] md:pt-[16rem] lg:pt-[16rem]
+            <div className="relative z-10 pt-[9rem] mt-[1%] md:mt-[0] lg:mt-[0] md:pt-[16rem] lg:pt-[16rem]
              flex flex-col justify-center items-center font-hammersmith w-full shadow-xl">                
-            <h1 className="text-4xl md:text-6xl lg:text-7xl text-center
-            font-bold text-white mb-[1.5rem] md:mb-[2rem] lg:mb-[2.5rem]">
+            <h1 className="text-6xl md:text-6xl lg:text-7xl text-center leading-[1.3]
+            font-bold text-white mb-[1.5rem] md:mb-[2rem] lg:mb-[2.5rem] w-[90%] md:w-full lg:w-full">
               Jai Raj&apos;s Slam Book</h1>
               <h2 className="text-2xl md:text-3xl lg:text-3xl text-gray-600 font-poppins">
                 Welcome, {username}!</h2>
