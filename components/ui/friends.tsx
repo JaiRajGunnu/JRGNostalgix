@@ -316,7 +316,7 @@ export const Friends = ({
             </motion.div>
 
             {/* Buttons */}
-            <div className="flex gap-4 pt-3 md:pt-0 justify-center md:justify-start lg:justify-start">
+            <div className="flex gap-4 pt-0 md:pt-0 justify-center md:justify-start lg:justify-start">
               <div>
                 <div className="flex items-center justify-center md:justify-start gap-4">
                   {/* Slide Counter */}
