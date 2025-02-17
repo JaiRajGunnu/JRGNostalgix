@@ -36,7 +36,7 @@ export default function Community() {
           {showFriends ? (
             <Friends testimonials={shortTestimonials} />
           ) : (
-            <div className="relative z-10 pt-[9rem] mt-[1%] md:mt-[0] lg:mt-[0] md:pt-[16rem] lg:pt-[16rem]
+            <div className="relative z-10 pt-[14rem] mt-[0] md:mt-[0] lg:mt-[0] md:pt-[16rem] lg:pt-[16rem]
              flex flex-col justify-center items-center font-hammersmith w-full shadow-xl">                
             <h1 className="text-6xl md:text-6xl lg:text-7xl text-center leading-[1.3]
             font-bold text-white mb-[1.5rem] md:mb-[2rem] lg:mb-[2.5rem] w-[90%] md:w-full lg:w-full">
