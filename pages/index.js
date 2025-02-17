@@ -31,7 +31,7 @@ export default function HomePage() {
       </Head>
 
       <BackgroundBeamsWithCollision className="flex flex-col justify-center items-center">
-        <h1 className="text-6xl m-[1%] md:m-[2%] lg:m-[2%] text-center lg:text-8xl font-bold text-white mb-[2rem] leading-[1.25]">
+        <h1 className="text-7xl m-[1%] md:m-[2%] lg:m-[2%] text-center lg:text-8xl font-bold text-white mb-[2rem] leading-[1.25]">
           Welcome, buddy.
         </h1>
         <p className="text-md md:text-3xl lg:text-3xl text-center text-gray-600 font-poppins">
@@ -41,7 +41,7 @@ export default function HomePage() {
         <button
           className="mt-[2rem] md:mt-[3rem] lg:mt-[3rem] bg-white text-black font-medium
           py-2.5 px-5 rounded-3xl text-xl scale-[0.9] md:scale-[1] lg:scale-[1]
-          transition duration-300 ease-in-out font-poppins
+          transition duration-300 ease-in-out font-arial
           hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
           onClick={handleGetStarted}
         >
