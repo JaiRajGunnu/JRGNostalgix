@@ -228,7 +228,7 @@ const ProfileSettings = () => {
               {/* Save Changes Button */}
               <button
                 type="submit"
-                className="w-full bg-white text-black py-2 rounded-md hover:pointer transition duration-300 disabled:opacity-50"
+                className="w-full bg-white text-black py-2 font-semibold rounded-md hover:pointer transition duration-300 disabled:opacity-50"
                 disabled={loading}
               >
                 {loading ? "Saving..." : "Save Changes"}

@@ -40,7 +40,7 @@ export default function HomePage() {
         </p>
 
         <button
-          className="mt-[2rem] md:mt-[3rem] lg:mt-[3rem] bg-white text-black font-medium
+          className="mt-[2rem] md:mt-[3rem] lg:mt-[3rem] bg-white text-black font-medium font-poppins
           py-2.5 px-5 rounded-3xl text-xl scale-[0.9] md:scale-[1] lg:scale-[1]
           transition duration-300 ease-in-out font-arial
           hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
