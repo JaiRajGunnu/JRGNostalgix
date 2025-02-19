@@ -46,7 +46,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 10013432001,
-    quote: "To the heart & soul, and the girl with no secrets! Thanks for always being there for me, Chinnu.  My CB! 🧿💘 ",
+    quote: "To the heart & soul, and the girl with no secrets! Thanks for always being there for me, Chinnuluuu.  My CB! 🧿💘 ",
     name: "Chinnuu",
     fullname: "Keerthika",
     king: false,
@@ -55,7 +55,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 100128766001,
-    quote: "Thank you for your unwavering support and your family's kindness and guidance. Always grateful. 🫶💙",
+    quote: "Thank you for your unwavering support and your family's kindness and guidance. Always grateful to you. 🫶💙",
         name: "Pavii",
     fullname: "Rakshanna",
     king: false,
