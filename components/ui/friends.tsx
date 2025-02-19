@@ -55,7 +55,7 @@ export const shortTestimonials: Testimonial[] = [
   },
   {
     id: 100128766001,
-    quote: "Biryani is ready. Thank you for your unwavering support & your family's kindness and guidance. Always grateful. 🫶💙",
+    quote: "Thank you for your unwavering support and your family's kindness and guidance. Always grateful. 🫶💙",
         name: "Pavii",
     fullname: "Rakshanna",
     king: false,
@@ -269,12 +269,13 @@ export const Friends = ({
               </div>
 
               <div className="relative"> {/* Container for quote and small image */}
-              <motion.p className="text-lg text-gray-500 mt-8 font-poppins opacity-[85%] font-medium dark:text-neutral-300 tracking-tight"
-
+              <motion.p className="text-lg text-gray-500 mt-8 md:mt-5 lg:mt-6
+              font-poppins opacity-[85%] font-medium dark:text-neutral-300 tracking-tight"
                   style={{
                     textAlign: 'justify',
-                    width: '100%', // Adjust width as needed
-                    overflowWrap: 'break-word', // Prevent long words from overflowing
+                    width: '105%',
+                    height:'115px', 
+                    overflowWrap: 'break-word', 
                   }}
                 >
                   {[...testimonials[active]?.quote].map((char, index) => (
@@ -298,7 +299,7 @@ export const Friends = ({
                   className="flex top-0 mt-3 left-0 ml-[-5px] "
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
-                  transition={{ duration: 0.5, delay: 0.5 }} // Fades in after 0.5 seconds
+                  transition={{ duration: 0.5, delay: 0.75 }} // Fades in after 0.5 seconds
                 >
                 <DisableRightClick>
                   <Image
