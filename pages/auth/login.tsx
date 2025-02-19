@@ -190,7 +190,7 @@ export default function Login() {
 
       {/* Floating Session Expired Message */}
       {sessionExpired && (
-        <div className="fixed bottom-5 right-5 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+        <div className="fixed m-5 bottom-5 right-0  md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
           Session time expired.
         </div>
       )}
@@ -199,5 +199,4 @@ export default function Login() {
 }
 
 
-// Removed the conflicting local declaration of useCallback
 
