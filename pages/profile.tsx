@@ -196,13 +196,15 @@ const ProfileSettings = () => {
 
               {/* Password Input */}
               <div>
-                <label className="block text-gray-700 dark:text-gray-300">
+                <label className="block text-gray-700 dark:text-gray-300 ">
                   New Password <span className="text-red-500">*</span>
                 </label>
                 <div className="relative">
                   <input
                     type={showPassword ? "text" : "password"}
-                    className="mt-1 block w-full px-4 py-2 rounded-md dark:bg-[#27292af7] dark:text-white border dark:border-gray-600 focus:ring focus:ring-blue-500 focus:border-none focus:outline-none pr-10"  // Reduced pr for better icon alignment
+                    className="mt-1 block w-full px-4 py-2 mb-3 rounded-md dark:bg-[#27292af7]
+                    dark:text-white border dark:border-gray-600
+                    focus:ring focus:ring-blue-500 focus:border-none focus:outline-none pr-10"  // Reduced pr for better icon alignment
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter a new password"

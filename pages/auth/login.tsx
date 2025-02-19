@@ -116,12 +116,12 @@ export default function Login() {
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-[#17181a] border border-white/30 
                         transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-          <h2 className="text-4xl font-bold text-center text-white mb-6">
+          <h2 className="text-4xl font-bold font-hammersmith text-center text-white mb-6">
             Login
           </h2>
           <form onSubmit={handleLogin} className="flex flex-col">
             {/* Email Field */}
-            <label className="text-white mb-1 text-lg">Email</label>
+            <label className="text-white mb-1 text-md font-poppins">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -132,7 +132,7 @@ export default function Login() {
             />
 
             {/* Password Field with Eye Toggle */}
-            <label className="text-white mb-1 text-lg">Password</label>
+            <label className="text-white mb-1 text-md font-poppins">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -158,7 +158,7 @@ export default function Login() {
 
             {/* Remember Me Checkbox using CheckIcon */}
             <div
-              className="flex items-center mt-4 cursor-pointer"
+              className="flex items-center mt-5 cursor-pointer"
               onClick={() => setRememberMe(!rememberMe)}
             >
               <div
@@ -167,7 +167,7 @@ export default function Login() {
               >
                 {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
               </div>
-              <label className="text-gray-300 text-sm ml-2 cursor-pointer">
+              <label className="text-gray-300 text-sm ml-2  font-poppins cursor-pointer">
                 Remember this device?
               </label>
             </div>
@@ -178,7 +178,7 @@ export default function Login() {
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
+              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
             >
               Login
               <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />

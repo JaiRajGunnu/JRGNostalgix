@@ -47,7 +47,7 @@ export default function Register() {
           <form onSubmit={handleSubmit} className="flex flex-col">
 
             {/* Name Field */}
-            <label className="text-white mb-1 text-lg">Name</label>
+            <label className="text-white mb-1 text-md font-poppins">Name</label>
             <input
               type="text"
               placeholder="Enter your name"
@@ -58,7 +58,7 @@ export default function Register() {
             />
 
             {/* Email Field */}
-            <label className="text-white mb-1 text-lg">Email</label>
+            <label className="text-white mb-1 text-md font-poppins">Email</label>
             <input
               type="email"
               placeholder="Enter your email"
@@ -69,7 +69,7 @@ export default function Register() {
             />
 
             {/* Password Field with Eye Toggle */}
-            <label className="text-white mb-1 text-lg">Password</label>
+            <label className="text-white mb-1 text-md font-poppins">Password</label>
             <div className="relative">
               <input
                 type={showPassword ? "text" : "password"}
@@ -96,7 +96,7 @@ export default function Register() {
             {/* Register Button with Right Arrow Icon */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
+              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
             >
               Register
               <ChevronRightIcon className="w-4 h-4  stroke-current mt-[2px]" />
@@ -106,7 +106,7 @@ export default function Register() {
             <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />
 
             {/* Already have an account? Login Now */}
-            <p className="text-gray-300 text-center mt-4">
+            <p className="text-gray-300 text-center mt-4 font-poppins">
               Already have an account?{" "}
               <Link href="/auth/login" className="text-blue-400 hover:underline">
                 Login now

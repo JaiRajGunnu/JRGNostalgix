@@ -18,10 +18,13 @@ html, body {
 footer {
   flex-shrink: 0;
 }
-h1 {
+h1, h2 {
   font-family: 'Hammersmith One', sans-serif;
+  letter-spacing: 0.5px;
 
 }
+
+
 img {
   user-select: none;
   -webkit-user-select: none;
