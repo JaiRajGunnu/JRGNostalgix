@@ -75,7 +75,7 @@ const FriendsPage = () => {
 
   // Construct the meta description
   const metaDescription = `Explore ${friend.fullname}'s slam profile on Jai Raj's Slam Book!
-  Discover their favorites, deep thoughts, and what they think about you.
+  Discover their favourites, deep thoughts, and what they think about you.
   Learn about ${friend.fullname}'s crazy dreams, hobbies. Dive into their personal slam book questions and answers.`;
 
 
@@ -225,48 +225,48 @@ const FriendsPage = () => {
                   {/* Divider Line */}
                   <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-10 mb-10 h-[1px] w-full" />
 
-                  {/* Favorites Section */}
-                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Favorites</h2>
+                  {/* Favourites Section */}
+                  <h2 className="text-white text-2xl mb-3 font-bold capitalize">Favourites</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {/* Left Side */}
                     <div>
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite color
+                          Favourite color
                         </label>
                         <div className="flex items-center">
                           <IconPalette className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav color"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav color"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite place
+                          Favourite place
                         </label>
                         <div className="flex items-center">
                           <IconMapPin className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav place"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav place"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite food
+                          Favourite food
                         </label>
                         <div className="flex items-center">
                           <IconCheese className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav food"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav food"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-0 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite movie
+                          Favourite movie
                         </label>
                         <div className="flex items-center">
                           <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav movie"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav movie"]}</p>
                         </div>
                       </div>
                     </div>
@@ -275,41 +275,41 @@ const FriendsPage = () => {
                     <div>
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite actor
+                          Favourite actor
                         </label>
                         <div className="flex items-center">
                           <IconMoodSmile className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base font-arial">{questionnaire.favorites["fav actor/actress"]}</p>
+                          <p className="text-white-lite font-poppins text-base font-arial">{questionnaire.Favourites["fav actor/actress"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite person
+                          Favourite person
                         </label>
                         <div className="flex items-center">
                           <IconHeart className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav person"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav person"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite book/novel
+                          Favourite book/novel
                         </label>
                         <div className="flex items-center">
                           <IconBook className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav book/novel"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav book/novel"]}</p>
                         </div>
                       </div>
 
                       <div className="mb-4 flex items-start flex-col">
                         <label className="block text-gray-400 text-sm font-poppins font-medium mb-1 mr-2 ">
-                          Favorite dress
+                          Favourite dress
                         </label>
                         <div className="flex items-center">
                           <IconHanger className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.favorites["fav dress"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav dress"]}</p>
                         </div>
                       </div>
                     </div>
