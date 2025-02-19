@@ -74,7 +74,7 @@ export default function AboutMe() {
                                 </div>
 
                                 <div className="mt-8 text-center pb-4">
-                                    <h2 className="text-white cursor-default text-xl font-bold">
+                                    <h2 className="text-white  cursor-default text-xl font-bold">
                                         Jai Raj Gunnu
                                         <CheckBadgeIcon
                                             className="inline-block w-4 h-4 ml-1 text-[#2d88ff]"
