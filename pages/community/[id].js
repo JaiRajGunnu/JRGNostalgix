@@ -236,7 +236,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconPalette className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav color"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav color"]}</p>
                         </div>
                       </div>
 
@@ -246,7 +246,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconMapPin className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav place"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav place"]}</p>
                         </div>
                       </div>
 
@@ -256,7 +256,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconCheese className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav food"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav food"]}</p>
                         </div>
                       </div>
 
@@ -266,7 +266,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconBrandYoutube className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav movie"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav movie"]}</p>
                         </div>
                       </div>
                     </div>
@@ -279,7 +279,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconMoodSmile className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base font-arial">{questionnaire.Favourites["fav actor/actress"]}</p>
+                          <p className="text-white-lite font-poppins text-base font-arial">{questionnaire.favourites["fav actor/actress"]}</p>
                         </div>
                       </div>
 
@@ -289,7 +289,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconHeart className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav person"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav person"]}</p>
                         </div>
                       </div>
 
@@ -299,7 +299,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconBook className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav book/novel"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav book/novel"]}</p>
                         </div>
                       </div>
 
@@ -309,7 +309,7 @@ const FriendsPage = () => {
                         </label>
                         <div className="flex items-center">
                           <IconHanger className="w-4 h-4 text-gray-400 mr-2" />
-                          <p className="text-white-lite font-poppins text-base">{questionnaire.Favourites["fav dress"]}</p>
+                          <p className="text-white-lite font-poppins text-base">{questionnaire.favourites["fav dress"]}</p>
                         </div>
                       </div>
                     </div>
