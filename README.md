@@ -41,8 +41,7 @@ JAISLAM25 is a modern slam book application that allows users to create a digita
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📸 Screenshots
-(Add screenshots here if available)
-
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)
 ## 👥 Contributors
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
 
