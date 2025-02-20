@@ -91,9 +91,8 @@ jairajslam/
 
 ## 📸 Screenshots  
 ![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)  
-<center>
-<p style="font-size: 12; ">An sample screenshot</p>
-</center>
+<p style="font-size: 12; text-align:center">An sample screenshot</p>
+
 
 ## 👥 Contributors
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
