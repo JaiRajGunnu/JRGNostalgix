@@ -8,8 +8,8 @@ JAISLAM25 is a modern slam book application that allows users to create a digita
 - **Community Page** (Personalized welcome & greetings)
 - **Friends Page** (Displays a list of friends with avatars)
 - **Slam Book Page** (View & manage slam book details)
-- **Profile Setting Page** (Manage users profile settings, password updation)
-- **Settings Page** (Manage users controls, deactivations.)
+- **Profile Setting Page** (Manage user profile settings, password updates)
+- **Settings Page** (Manage user controls, deactivations)
 
 ## 🛠 Tech Stack
 
@@ -90,13 +90,14 @@ jairajslam/
 
 ## 📸 Screenshots  
 ![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)  
-<p style="font-size: 12; text-align:center">An sample screenshot</p>
-
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
 
 ## 👥 Contributors
+
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
 
 ## 📜 License
+
 This project is licensed under the MIT License.
 
 ---
