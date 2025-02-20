@@ -21,7 +21,7 @@ JAIRAJSLAM25 is a modern slam book application that allows users to create a dig
 ## 🗂️ File Structure
 
 ```
-jairajslam/
+jairajslam25/
 ├── .env.local                       # Environment variables
 ├── .gitignore                       # Specifies intentionally untracked files that Git should ignore
 ├── components/                      # Reusable React components
