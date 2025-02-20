@@ -1,3 +1,5 @@
+// pages\api\user.js
+
 import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
 import jwt from "jsonwebtoken";
