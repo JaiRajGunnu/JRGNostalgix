@@ -1,3 +1,4 @@
+```markdown
 # JAISLAM25
 
 JAISLAM25 is a modern slam book application that allows users to create a digital slam book experience. Users can authenticate, interact in a community, add friends, and explore their slam book entries.
@@ -17,6 +18,54 @@ JAISLAM25 is a modern slam book application that allows users to create a digita
 - **Backend:** Node.js (if applicable)
 - **Database:** MongoDB
 - **UI Components:** Aceternity UI
+
+## 🗂️ File Structure
+
+```
+jairajslam/
+├── .env.local                       # Environment variables
+├── .gitignore                       # Specifies intentionally untracked files that Git should ignore
+├── components/                      # Reusable React components
+│   ├── layouts/                     # Layout components
+│   │   └── sidebarlayout.tsx        # Layout with sidebar
+│   └── ui/                          # UI components
+│       ├── buttons.tsx              # Button components
+│       └── sidebar.tsx              # Sidebar component
+├── data/                            # Static data
+│   └── friends.json                 # List of friends with details
+├── lib/                             # Utility and helper functions
+│   └── mongodb.ts                   # MongoDB connection setup
+├── models/                          # Data models for MongoDB
+│   └── User.tsx                     # User model
+├── pages/                           # Next.js pages (routes)
+│   ├── api/                         # API endpoints
+│   │   ├── auth/                    # Authentication API
+│   │   │   ├── login.ts             # Login API endpoint
+│   │   │   └── register.ts          # Register API endpoint
+│   │   ├── feedback.ts              # Feedback API endpoint
+│   │   └── profile.ts               # Profile API endpoint
+│   ├── auth/                        # Authentication pages
+│   │   ├── login.tsx                # Login page
+│   │   └── register.tsx             # Register page
+│   ├── community/                   # Community pages
+│   │   └── [id].js                  # Dynamic route for community posts
+│   ├── community.tsx                # Community main page
+│   ├── profile.tsx                  # User profile page
+│   ├── settings.tsx                 # Settings page
+│   ├── _app.tsx                     # Custom App component
+│   └── _document.tsx                # Custom Document component
+├── public/                          # Static assets
+│   ├── favicon.ico                  # Favicon
+│   └── img/                         # Images
+│       ├── cover/                   # Cover images
+│       ├── female/                  # Female avatar images
+│       └── kings/                   # Male avatar images
+├── styles/                          # Global styles
+│   └── globals.css                  # Global CSS file
+├── tailwind.config.js               # Tailwind CSS configuration
+├── tsconfig.json                    # TypeScript configuration
+└── README.md                        # Project README
+```
 
 ## 📦 Installation & Setup
 
@@ -40,8 +89,11 @@ JAISLAM25 is a modern slam book application that allows users to create a digita
    ```
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📸 Screenshots
-(Add screenshots here if available)
+## 📸 Screenshots  
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)  
+<center>
+<p style="font-size: 12; ">An sample screenshot</p>
+</center>
 
 ## 👥 Contributors
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
@@ -52,3 +104,4 @@ This project is licensed under the MIT License.
 ---
 
 Feel free to update this README with more details as the project evolves! 🚀
+```
