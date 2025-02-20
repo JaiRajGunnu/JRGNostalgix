@@ -9,12 +9,12 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user") || "{}");
-    
     if (user?.role === "admin") {
       setIsAdmin(true);
     } else {
-      router.replace("/"); // Redirect non-admin users
-    }
+      router.replace("/");
+    }    
+    
   }, []);
 
   if (!isAdmin) return null; // Prevent rendering before checking role

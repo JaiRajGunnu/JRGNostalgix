@@ -82,29 +82,28 @@ export default function Login() {
     if (res.ok && data.token && data.user) {
       // Store token
       localStorage.setItem("token", data.token);
-
+    
+      // Store the full user object, including the role
+      localStorage.setItem("user", JSON.stringify(data.user));  // ✅ FIX HERE
+    
       // (A) Store userName if needed
       localStorage.setItem("userName", data.user.name || "Guest");
-
+    
       // (B) If user wants "remember me," store that logic
       if (rememberMe) {
         localStorage.setItem("rememberMe", "true");
       } else {
         localStorage.removeItem("rememberMe");
       }
-
+    
       // (C) Set session expire time (15 minutes in milliseconds from now)
       const expireTime = Date.now() + 15 * 60 * 1000;
-      
-      // For testing: expires in 30 seconds
-      // const expireTime = Date.now() + 30 * 1000;
-
-
       localStorage.setItem("sessionExpireAt", expireTime.toString());
-
+    
       // Navigate to /community
       router.push("/community");
-    } else {
+    }
+     else {
       setError(data.error || "Login failed. Please check your credentials.");
     }
   };
