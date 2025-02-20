@@ -33,13 +33,14 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
       { expiresIn: '1h' }
     );
 
+    console.log('User role:', user.role);
     res.status(200).json({
       token,
       user: {
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role, 
+        role: user.role
       },
     });
   } catch {

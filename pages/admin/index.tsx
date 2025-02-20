@@ -2,6 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import withAuth from "@/guard/withAuth";
+
+
+
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -26,4 +30,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default AdminDashboard;
+export default withAuth(AdminDashboard, ["admin"]);
