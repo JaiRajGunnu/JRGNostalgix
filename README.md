@@ -1,4 +1,3 @@
-```markdown
 # JAISLAM25
 
 JAISLAM25 is a modern slam book application that allows users to create a digital slam book experience. Users can authenticate, interact in a community, add friends, and explore their slam book entries.
@@ -103,4 +102,3 @@ This project is licensed under the MIT License.
 ---
 
 Feel free to update this README with more details as the project evolves! 🚀
-```
