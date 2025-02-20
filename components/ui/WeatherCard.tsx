@@ -25,16 +25,21 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ temperature, condition }) => 
                     bg-[url('https://themewagon.github.io/skydash/images/dashboard/people.svg')]
                     bg-no-repeat bg-right bg-contain">
 
-            <div className="flex">
-                {getWeatherIcon()}
-            </div>
+            <div className="flex content-end items-end ml-auto mb-auto "> 
+                {/* sub div 01 */}
+                <span className=' '>
+                    {getWeatherIcon()}
+                </span>
 
-            <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Temperature</p>
-                <p className="text-2xl font-bold text-gray-100">{temperature}°C</p>
-                <p className="text-lg font-semibold text-gray-300">{condition}</p>
+                <div className="ml-4">
+                    <p className="text-lg font-semibold text-gray-600">Temperature</p>
+                    <p className="text-2xl font-bold text-gray-800">{temperature}°C</p>
+                    <p className="text-lg font-semibold text-gray-600">{condition}</p>
+                </div>
+
             </div>
         </div>
+
     );
 };
 
