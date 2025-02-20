@@ -20,9 +20,32 @@ const AdminDashboard = () => {
   }, [router]);
 
   const fetchDashboardData = async () => {
-    // Simulated API call to fetch user and feedback counts
-    setUserCount(5); // Replace with actual API response
-    setFeedbackCount(8); // Replace with actual API response
+    try {
+      const userResponse = await fetch("/api/users");
+      const feedbackCountResponse = await fetch("/api/feedback/count");
+
+      if (!userResponse.ok) {
+        const errorData = await userResponse.json();
+        console.error("Error fetching users:", errorData);
+        setUserCount(0);
+      } else {
+        const users = await userResponse.json();
+        setUserCount(users.length);
+      }
+
+      if (!feedbackCountResponse.ok) {
+        const errorData = await feedbackCountResponse.json();
+        console.error("Error fetching feedback count:", errorData);
+        setFeedbackCount(0);
+      } else {
+        const { count } = await feedbackCountResponse.json();
+        setFeedbackCount(count);
+      }
+    } catch (error) {
+      console.error("Error fetching dashboard data:", error);
+      setUserCount(0);
+      setFeedbackCount(0);
+    }
   };
 
   if (!isAdmin) {
