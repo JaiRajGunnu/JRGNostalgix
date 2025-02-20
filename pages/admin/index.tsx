@@ -4,24 +4,23 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
 
-
-
-
 const AdminDashboard = () => {
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user") || "{}");
-    if (user?.role === "admin") {
-      setIsAdmin(true);
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/auth/login");
     } else {
-      router.replace("/");
-    }    
-    
-  }, []);
+      // If token exists, set isAdmin to true
+      setIsAdmin(true);
+    }
+  }, [router]);
 
-  if (!isAdmin) return null; // Prevent rendering before checking role
+  if (!isAdmin) {
+    return null;
+  }
 
   return (
     <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
@@ -30,4 +29,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default withAuth(AdminDashboard, ["admin"]);
+export default withAuth(AdminDashboard);
