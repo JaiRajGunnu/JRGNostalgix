@@ -40,8 +40,11 @@ JAISLAM25 is a modern slam book application that allows users to create a digita
    ```
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📸 Screenshots
-![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)
+## 📸 Screenshots  
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/jairajslam25/refs/heads/main/public/img/ss.png)  
+<p style="font-size: 12; text-align:center">An sample screenshot</p>
+
+
 ## 👥 Contributors
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
 
