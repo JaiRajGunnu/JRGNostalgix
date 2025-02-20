@@ -33,7 +33,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ temperature, condition }) => 
 
                 <div className="ml-4">
                     <p className="text-lg font-semibold text-gray-600">Temperature</p>
-                    <p className="text-2xl font-bold text-gray-800">{temperature}°C</p>
+                    <p className="text-2xl font-bold text-gray-800">{temperature}° C</p>
                     <p className="text-lg font-semibold text-gray-600">{condition}</p>
                 </div>
 
