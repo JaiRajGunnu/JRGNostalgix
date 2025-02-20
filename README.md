@@ -1,6 +1,6 @@
-# JAISLAM25
+# JAIRAJSLAM25
 
-JAISLAM25 is a modern slam book application that allows users to create a digital slam book experience. Users can authenticate, interact in a community, add friends, and explore their slam book entries.
+JAIRAJSLAM25 is a modern slam book application that allows users to create a digital slam book experience. Users can authenticate, interact in a community, add friends, and explore their slam book entries.
 
 ## 🚀 Features
 
