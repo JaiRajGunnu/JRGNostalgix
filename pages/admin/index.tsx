@@ -101,7 +101,7 @@ const AdminDashboard = () => {
 
         <div className="flex grid grid-cols-2 gap-6">
           <div>
-            <WeatherCard temperature={25} condition="Sunny" />
+            <WeatherCard />
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-6">
