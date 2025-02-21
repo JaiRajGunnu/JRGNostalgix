@@ -9,6 +9,7 @@ interface Admin {
   name: string;
   email: string;
   role: string; // Assuming role can be "admin" or "user"
+  lastLogin?: string; // Include lastLogin field
 }
 
 const AdminsPage = () => {
@@ -20,10 +21,12 @@ const AdminsPage = () => {
     const fetchAdmins = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await axios.get<{ admins: Admin[] }>("/api/admin/users", {
+        const response = await axios.get<Admin[]>("/api/users", {
           headers: { Authorization: `Bearer ${token}` },
         });
-        setAdmins(response.data.admins);
+        // Filter admins from the response
+        const adminUsers = response.data.filter(admin => admin.role === "admin");
+        setAdmins(adminUsers);
       } catch (error: unknown) {
         if (error instanceof Error) {
           console.error("Error fetching admins:", error.message);
@@ -53,6 +56,7 @@ const AdminsPage = () => {
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
               <th className="p-3">Role</th>
+              <th className="p-3">Last Login</th>
             </tr>
           </thead>
           <tbody>
@@ -61,6 +65,7 @@ const AdminsPage = () => {
                 <td className="p-3">{admin.name}</td>
                 <td className="p-3">{admin.email}</td>
                 <td className="p-3">{admin.role}</td>
+                <td className="p-3">{admin.lastLogin || 'N/A'}</td>
               </tr>
             ))}
           </tbody>

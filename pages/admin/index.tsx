@@ -14,6 +14,14 @@ interface User {
   _id: string;
   name: string;
   email: string;
+  lastLogin?: string;
+  role: string;
+}
+
+interface Friend {
+  email: string;
+  name: string;
+  src: string;
 }
 
 const AdminDashboard = () => {
@@ -23,6 +31,7 @@ const AdminDashboard = () => {
   const [feedbackCount, setFeedbackCount] = useState(0);
   const [viewsCount, setViewsCount] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
+  const [friends, setFriends] = useState<Friend[]>([]);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -84,6 +93,15 @@ const AdminDashboard = () => {
       } else {
         const { count } = await viewsCountResponse.json();
         setViewsCount(count);
+      }
+
+      const friendsResponse = await fetch("/api/friends");
+      if (!friendsResponse.ok) {
+        console.error("Error fetching friends data");
+        setFriends([]);
+      } else {
+        const friendsData = await friendsResponse.json();
+        setFriends(friendsData);
       }
     } catch (error) {
       console.error("Error fetching dashboard data:", error);
@@ -167,16 +185,33 @@ const AdminDashboard = () => {
 
         <div className="mt-6 grid grid-cols-2 gap-6">
 
-          {/* User List Card */}
+          {/* Admin List Card */}
           <div className="mt-10">
-            <h2 className="text-lg font-semibold font-poppins text-gray-300 mb-4">User List</h2>
-            <ul className="list-disc pl-5">
-              {users.map((user) => (
-                <li key={user._id} className="text-gray-100">
-                  {user.name}
-                </li>
-              ))}
-            </ul>
+            <h2 className="text-lg font-semibold font-poppins text-gray-300 mb-4">Admin List</h2>
+            <table className="min-w-full bg-[#18191af7] rounded-lg overflow-hidden">
+              <thead>
+                <tr className="bg-[#27292af7] text-white">
+                  <th className="p-3">Admin</th>
+                  <th className="p-3">Name</th>
+                  <th className="p-3">Last Login</th>
+                </tr>
+              </thead>
+              <tbody>
+                {users.filter(user => user.role === "admin").map((admin) => {
+                  return (
+                    <tr key={admin._id} className="border-b border-gray-600">
+                      <td className="p-3">
+                        <div className="w-10 h-10 rounded-full bg-gray-500"></div>
+                      </td>
+                      <td className="p-3 text-gray-100">{admin.name}</td>
+                      <td className="p-3 text-gray-100">
+                        {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) : "N/A"}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
 
           {/* TODO List Card */}
