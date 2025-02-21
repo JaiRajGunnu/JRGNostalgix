@@ -106,15 +106,16 @@ const AdminDashboard = () => {
       <main className="flex-1 p-10 ml-64">
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, Admin 👋</h1>
 
-        <div className="flex grid grid-cols-2 gap-6">
-          <div>
+        <div className="flex grid grid-cols-2 gap-20">
+          <div className="">
             <WeatherCard />
           </div>
 
-          <div className="mt-6 grid grid-cols-2 gap-6">
+          <div className="ml-[45px] grid grid-cols-2 gap-5 ">
 
             {/* Card 01 */}
-            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-lg rounded-xl flex items-center h-50">
+            <div className=" grid grid-cols-1 gap-y-5 ">
+            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-lg rounded-xl flex items-center h-50 w-[85%]">
               <FaUsers className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Users</p>
@@ -122,32 +123,41 @@ const AdminDashboard = () => {
               </div>
             </div>
 
-            {/* Card 02 */}
-            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-lg rounded-xl flex items-center h-50">
-              <FaComments className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+            {/* Card 03 */}
+            <div className=" p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-lg rounded-xl flex items-center h-50 w-[100%]">
+              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Feedbacks</p>
-                <p className="text-2xl font-bold text-white">{feedbackCount}</p>
+                <p className="text-lg font-semibold text-gray-300">Total Tickets</p>
+                <p className="text-2xl font-bold text-white">{viewsCount}</p>
               </div>
             </div>
+            </div>
 
-            {/* Card 03 */}
-            <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-lg rounded-xl flex items-center h-50">
-              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+
+            <div className=" grid grid-rows-2 gap-5 ">
+
+            {/* Card 04 */}
+            <div className="ml-[-45px]  p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-lg rounded-xl flex items-center h-50 w-[105%]">
+
+              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Total Views</p>
                 <p className="text-2xl font-bold text-white">{viewsCount}</p>
               </div>
             </div>
 
-            {/* Card 04 */}
-            <div className="p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-lg rounded-xl flex items-center h-50">
-              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
+            {/* Card 02 */}
+            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-lg rounded-xl flex items-center h-50 w-[90%]">
+              <FaComments className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Total Tickets</p>
-                <p className="text-2xl font-bold text-white">{viewsCount}</p>
+                <p className="text-lg font-semibold text-gray-300">Feedbacks</p>
+                <p className="text-2xl font-bold text-white">{feedbackCount}</p>
               </div>
             </div>
+            </div>
+
+
+
 
 
           </div>
