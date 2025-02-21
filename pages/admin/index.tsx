@@ -105,51 +105,66 @@ const AdminDashboard = () => {
           </div>
 
           <div className="mt-6 grid grid-cols-2 gap-6">
-            <div className="p-6 bg-gray-800 shadow-lg rounded-lg flex items-center">
-              <FaUsers className="text-green-400 text-4xl" />
+
+            {/* Card 01 */}
+            <div className="p-6 bg-gradient-to-r from-green-400 to-blue-500 shadow-lg rounded-xl flex items-center">
+              <FaUsers className="text-white text-4xl" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Users</p>
-                <p className="text-2xl font-bold text-gray-100">{userCount}</p>
+                <p className="text-2xl font-bold text-white">{userCount}</p>
               </div>
             </div>
 
-            <div className="p-6 bg-gray-800 shadow-lg rounded-lg flex items-center">
-              <FaComments className="text-blue-400 text-4xl" />
+            {/* Card 02 */}
+            <div className="p-6 bg-gradient-to-r from-pink-400 to-purple-500 shadow-lg rounded-xl flex items-center">
+              <FaComments className="text-white text-4xl" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Feedbacks</p>
-                <p className="text-2xl font-bold text-gray-100">{feedbackCount}</p>
+                <p className="text-2xl font-bold text-white">{feedbackCount}</p>
               </div>
             </div>
 
-            <div className="p-6 bg-gray-800 shadow-lg rounded-lg flex items-center">
-              <FaEye className="text-yellow-400 text-4xl" />
+            {/* Card 03 */}
+            <div className="p-6 bg-gradient-to-r from-yellow-400 to-red-500 shadow-lg rounded-xl flex items-center">
+              <FaEye className="text-white text-4xl" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Total Views</p>
-                <p className="text-2xl font-bold text-gray-100">{viewsCount}</p>
+                <p className="text-2xl font-bold text-white">{viewsCount}</p>
               </div>
             </div>
+
+            {/* Card 04 */}
+            <div className="p-6 bg-gradient-to-r from-blue-900 to-blue-500 shadow-lg rounded-xl flex items-center">
+              <FaEye className="text-white text-4xl" />
+              <div className="ml-4">
+                <p className="text-lg font-semibold text-gray-300">Total Tickets</p>
+                <p className="text-2xl font-bold text-white">{viewsCount}</p>
+              </div>
+            </div>
+
+
           </div>
         </div>
 
         <div className="mt-6 grid grid-cols-2 gap-6">
 
-        {/* User List Card */}
-        <div className="mt-10">
-          <h2 className="text-lg font-semibold text-gray-300 mb-4">User List</h2>
-          <ul className="list-disc pl-5">
-            {users.map((user) => (
-              <li key={user._id} className="text-gray-100">
-                {user.name}
-              </li>
-            ))}
-          </ul>
-        </div>
+          {/* User List Card */}
+          <div className="mt-10">
+            <h2 className="text-lg font-semibold text-gray-300 mb-4">User List</h2>
+            <ul className="list-disc pl-5">
+              {users.map((user) => (
+                <li key={user._id} className="text-gray-100">
+                  {user.name}
+                </li>
+              ))}
+            </ul>
+          </div>
 
-        {/* TODO List Card */}
-        <div className="mt-10">
-          <TodoList />
+          {/* TODO List Card */}
+          <div className="mt-10">
+            <TodoList />
+          </div>
         </div>
-</div>
 
       </main>
     </div>
