@@ -5,6 +5,7 @@ import { FaUsers, FaComments, FaEye } from "react-icons/fa";
 import WeatherCard from '@/components/ui/WeatherCard';
 import TodoList from '@/components/ui/TodoList';
 import AdminSidebar from '@/components/ui/AdminSidebar';
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 interface User {
   _id: string;
@@ -94,7 +95,13 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-white">
+
+  
+    <div className="flex min-h-screen  text-white">
+          <div className="absolute inset-0 -z-10 pointer-events-none">
+    <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+  </div>
+
       <AdminSidebar />
       <main className="flex-1 p-10 ml-64">
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, Admin 👋</h1>
@@ -107,8 +114,8 @@ const AdminDashboard = () => {
           <div className="mt-6 grid grid-cols-2 gap-6">
 
             {/* Card 01 */}
-            <div className="p-10 bg-gradient-to-r from-green-400 to-blue-500 shadow-lg rounded-xl flex items-center">
-              <FaUsers className="text-white text-[65px] bg-grey backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-lg rounded-xl flex items-center h-50">
+              <FaUsers className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Users</p>
                 <p className="text-2xl font-bold text-white">{userCount}</p>
@@ -116,8 +123,8 @@ const AdminDashboard = () => {
             </div>
 
             {/* Card 02 */}
-            <div className="p-10 bg-gradient-to-r from-pink-400 to-purple-500 shadow-lg rounded-xl flex items-center">
-              <FaComments className="text-white text-[65px] bg-grey backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-lg rounded-xl flex items-center h-50">
+              <FaComments className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Feedbacks</p>
                 <p className="text-2xl font-bold text-white">{feedbackCount}</p>
@@ -125,8 +132,8 @@ const AdminDashboard = () => {
             </div>
 
             {/* Card 03 */}
-            <div className="p-10 bg-gradient-to-r from-yellow-400 to-red-500 shadow-lg rounded-xl flex items-center">
-              <FaEye className="text-white text-[65px] bg-grey backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-lg rounded-xl flex items-center h-50">
+              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Total Views</p>
                 <p className="text-2xl font-bold text-white">{viewsCount}</p>
@@ -134,8 +141,8 @@ const AdminDashboard = () => {
             </div>
 
             {/* Card 04 */}
-            <div className="p-10 bg-gradient-to-r from-blue-900 to-blue-500 shadow-lg rounded-xl flex items-center">
-              <FaEye className="text-white text-[65px] bg-grey backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-lg rounded-xl flex items-center h-50">
+              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
               <div className="ml-4">
                 <p className="text-lg font-semibold text-gray-300">Total Tickets</p>
                 <p className="text-2xl font-bold text-white">{viewsCount}</p>
