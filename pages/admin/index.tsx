@@ -4,6 +4,7 @@ import withAuth from "@/guard/withAuth";
 import { FaUsers, FaComments, FaEye } from "react-icons/fa";
 import WeatherCard from '@/components/ui/WeatherCard';
 import TodoList from '@/components/ui/TodoList';
+import AdminSidebar from '@/components/ui/AdminSidebar';
 
 interface User {
   _id: string;
@@ -94,19 +95,8 @@ const AdminDashboard = () => {
 
   return (
     <div className="flex min-h-screen bg-gray-900 text-white">
-      {/* Sidebar */}
-      <aside className="w-64 bg-gray-800 text-gray-200 p-6">
-        <h2 className="text-2xl font-bold">Admin Panel</h2>
-        <nav className="mt-6">
-          <ul>
-            <li className="mt-4 cursor-pointer hover:text-gray-400">Dashboard</li>
-            <li className="mt-4 cursor-pointer hover:text-gray-400">Users</li>
-            <li className="mt-4 cursor-pointer hover:text-gray-400">Feedbacks</li>
-          </ul>
-        </nav>
-      </aside>
-      {/* Main Content */}
-      <main className="flex-1 p-10">
+      <AdminSidebar />
+      <main className="flex-1 p-10 ml-64">
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, Admin 👋</h1>
 
         <div className="flex grid grid-cols-2 gap-6">
