@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
-import { FaUsers, FaComments, FaEye } from "react-icons/fa";
+import { LuUsersRound } from "react-icons/lu";
+import { MdOutlineFeedback } from "react-icons/md";
+import { FaChartLine } from "react-icons/fa";
+import { RiCustomerServiceLine } from "react-icons/ri";
 import WeatherCard from '@/components/ui/WeatherCard';
 import TodoList from '@/components/ui/TodoList';
 import AdminSidebar from '@/components/ui/AdminSidebar';
@@ -115,19 +118,21 @@ const AdminDashboard = () => {
 
             {/* Card 01 */}
             <div className=" grid grid-cols-1 gap-y-5 ">
-            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-lg rounded-xl flex items-center h-50 w-[85%]">
-              <FaUsers className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center h-50 w-[85%]">
+            <LuUsersRound 
+            className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Users</p>
+                <p className="text-lg font-semibold font-poppins text-gray-300">Users</p>
                 <p className="text-2xl font-bold text-white">{userCount}</p>
               </div>
             </div>
 
             {/* Card 03 */}
-            <div className=" p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-lg rounded-xl flex items-center h-50 w-[100%]">
-              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+            <div className=" p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center h-50 w-[100%]">
+            <RiCustomerServiceLine 
+            className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Total Tickets</p>
+                <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
                 <p className="text-2xl font-bold text-white">{viewsCount}</p>
               </div>
             </div>
@@ -137,28 +142,25 @@ const AdminDashboard = () => {
             <div className=" grid grid-rows-2 gap-5 ">
 
             {/* Card 04 */}
-            <div className="ml-[-45px]  p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-lg rounded-xl flex items-center h-50 w-[105%]">
+            <div className="ml-[-45px]  p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center h-50 w-[105%]">
 
-              <FaEye className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
+            <FaChartLine  className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Total Views</p>
+                <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
                 <p className="text-2xl font-bold text-white">{viewsCount}</p>
               </div>
             </div>
 
             {/* Card 02 */}
-            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-lg rounded-xl flex items-center h-50 w-[90%]">
-              <FaComments className="text-white text-[65px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center h-50 w-[90%]">
+            <MdOutlineFeedback
+                        className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
               <div className="ml-4">
-                <p className="text-lg font-semibold text-gray-300">Feedbacks</p>
+                <p className="text-lg font-semibold font-poppins text-gray-300">Feedbacks</p>
                 <p className="text-2xl font-bold text-white">{feedbackCount}</p>
               </div>
             </div>
             </div>
-
-
-
-
 
           </div>
         </div>
@@ -167,7 +169,7 @@ const AdminDashboard = () => {
 
           {/* User List Card */}
           <div className="mt-10">
-            <h2 className="text-lg font-semibold text-gray-300 mb-4">User List</h2>
+            <h2 className="text-lg font-semibold font-poppins text-gray-300 mb-4">User List</h2>
             <ul className="list-disc pl-5">
               {users.map((user) => (
                 <li key={user._id} className="text-gray-100">

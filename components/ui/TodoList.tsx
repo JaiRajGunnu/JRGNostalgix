@@ -43,19 +43,20 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-800 shadow-lg rounded-lg font-poppins">
+    <div className=" ml-[75px] p-6 bg-[#18191af7] shadow-xl rounded-xl font-poppins 
+    min-h-[175px] max-h-[450px] w-[555px] overflow-y-auto ">
       <h2 className="text-lg font-semibold text-gray-300 mb-4">To-do List</h2>
       <div className="flex mb-4">
         <input
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          className="flex-1 p-2 border border-gray-600 bg-gray-700 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+          className="flex-1 p-2 border border-gray-600 bg-[#27292af7] rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
           placeholder="Add a new task"
         />
         <button
           onClick={handleAddTodo}
-          className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition flex items-center"
+          className="ml-4 bg-white text-[#18191af7] px-4 py-2 rounded hover:opacity-60 transition flex items-center"
         >
           <FaPlus className="text-xl" />
         </button>
@@ -63,7 +64,7 @@ const TodoList: React.FC = () => {
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <ul className="list-disc pl-0 space-y-2">
         {todos.map((todo, index) => (
-          <li key={index} className="flex justify-between items-center bg-gray-700 p-2 rounded">
+          <li key={index} className="flex justify-between items-center bg-[#27292af7] p-2 rounded">
             <label className="flex items-center">
               <div
                 onClick={() => toggleTodoCompletion(index)}

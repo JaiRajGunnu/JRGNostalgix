@@ -78,8 +78,8 @@ const WeatherCard: React.FC = () => {
     };
 
     return (
-        <div className="p-6 bg-gray-800 shadow-xl rounded-xl flex items-center h-[375px] w-[719px]
-                    bg-[url('https://themewagon.github.io/skydash/images/dashboard/people.svg')]
+        <div className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-[375px] w-[717px]
+                    bg-[url('/img/moonwallp.jpg')]
                     bg-no-repeat bg-right bg-contain">
             <div className="flex content-end items-end ml-auto mb-auto">
                 {loading ? (

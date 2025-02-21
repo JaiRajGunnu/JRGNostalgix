@@ -29,7 +29,7 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <aside className="fixed top-0 left-0 w-64 h-full bg-gray-800 text-gray-200 p-6">
+    <aside className="fixed top-0 left-0 w-64 h-full bg-[#17181a] text-gray-200 p-6">
       <h2 className="text-2xl font-bold">Admin Panel</h2>
       <nav className="mt-6">
         <ul>
