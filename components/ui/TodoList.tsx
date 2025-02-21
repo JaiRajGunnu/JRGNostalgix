@@ -1,10 +1,24 @@
-import React, { useState } from 'react';
+import { CheckIcon } from '@heroicons/react/24/solid';
+import React, { useState, useEffect } from 'react';
 import { FaPlus, FaTrash } from 'react-icons/fa';
 
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<{ text: string; completed: boolean }[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
+
+  // Load todos from localStorage on component mount
+  useEffect(() => {
+    const storedTodos = localStorage.getItem('todos');
+    if (storedTodos) {
+      setTodos(JSON.parse(storedTodos));
+    }
+  }, []);
+
+  // Save todos to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('todos', JSON.stringify(todos));
+  }, [todos]);
 
   const handleAddTodo = () => {
     if (inputValue.trim()) {
@@ -29,8 +43,8 @@ const TodoList: React.FC = () => {
   };
 
   return (
-    <div className="p-6 bg-gray-800 shadow-lg rounded-lg">
-      <h2 className="text-lg font-semibold text-gray-300 mb-4">TODO List</h2>
+    <div className="p-6 bg-gray-800 shadow-lg rounded-lg font-poppins">
+      <h2 className="text-lg font-semibold text-gray-300 mb-4">To-do List</h2>
       <div className="flex mb-4">
         <input
           type="text"
@@ -43,27 +57,27 @@ const TodoList: React.FC = () => {
           onClick={handleAddTodo}
           className="ml-2 bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition flex items-center"
         >
-          <FaPlus className="mr-1" />
+          <FaPlus className="text-xl" />
         </button>
       </div>
-      {errorMessage && <p className="text-red-500">{errorMessage}</p>}
+      {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <ul className="list-disc pl-0 space-y-2">
         {todos.map((todo, index) => (
           <li key={index} className="flex justify-between items-center bg-gray-700 p-2 rounded">
             <label className="flex items-center">
-              <input
-                type="checkbox"
-                checked={todo.completed}
-                onChange={() => toggleTodoCompletion(index)}
-                className="mr-2"
-              />
+              <div
+                onClick={() => toggleTodoCompletion(index)}
+                className={`w-4 h-4 flex items-center justify-center border-2 rounded mr-3 ml-2 cursor-pointer ${todo.completed ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+              >
+                {todo.completed && <CheckIcon className="w-3 h-3 text-white " />}
+              </div>
               <span className={`text-gray-100 ${todo.completed ? 'line-through' : ''}`}>
                 {todo.text}
               </span>
             </label>
             <button
               onClick={() => handleDeleteTodo(index)}
-              className="text-red-500 hover:text-red-700"
+              className="text-gray-400 hover:text-red-500 mr-3"
             >
               <FaTrash />
             </button>
