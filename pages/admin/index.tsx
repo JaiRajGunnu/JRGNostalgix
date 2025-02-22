@@ -36,6 +36,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [friends, setFriends] = useState<Friend[]>([]);
   const [userName, setUserName] = useState<string>("");
+  const [lastLogin, setLastLogin] = useState<string | null>(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -52,40 +53,47 @@ const AdminDashboard = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserName(user.name);
+  
+      if (user.lastLogin) {
+        const options: Intl.DateTimeFormatOptions = {
+          timeZone: "Asia/Kolkata",
+          day: "2-digit",
+          month: "short",
+          year: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: true,
+        };
+  
+        let formattedTime = new Date(user.lastLogin).toLocaleString("en-IN", options);
+        
+        // Insert comma manually after the date
+        formattedTime = formattedTime.replace(/^(\d{2} \w{3} \d{2})/, "$1");
+  
+        // Convert am/pm to uppercase AM/PM
+        formattedTime = formattedTime.replace(/\b(am|pm)\b/g, (match) => match.toUpperCase());
+  
+        setLastLogin(formattedTime);
+      } else {
+        setLastLogin("N/A");
+      }
     }
   }, []);
 
+  
   const fetchDashboardData = async () => {
     try {
       const userResponse = await fetch("/api/users");
       const feedbackCountResponse = await fetch("/api/feedback/count");
       const viewsCountResponse = await fetch("/api/views/count");
 
-      if (!userResponse.ok) {
-        const contentType = userResponse.headers.get("content-type");
-        let errorData;
-        if (contentType && contentType.includes("application/json")) {
-          errorData = await userResponse.json();
-        } else {
-          errorData = await userResponse.text();
-        }
-        console.error("Error fetching users:", errorData);
-        setUserCount(0);
-      } else {
-        const usersData = await userResponse.json();
-        setUsers(usersData);
-        setUserCount(usersData.length);
-      }
+      if (!userResponse.ok) throw new Error("Failed to fetch users");
+      const userData = await userResponse.json();
+      setUsers(userData);
+      setUserCount(userData.length);
 
       if (!feedbackCountResponse.ok) {
-        const contentType = feedbackCountResponse.headers.get("content-type");
-        let errorData;
-        if (contentType && contentType.includes("application/json")) {
-          errorData = await feedbackCountResponse.json();
-        } else {
-          errorData = await feedbackCountResponse.text();
-        }
-        console.error("Error fetching feedback count:", errorData);
+        console.error("Error fetching feedback count");
         setFeedbackCount(0);
       } else {
         const { count } = await feedbackCountResponse.json();
@@ -93,14 +101,7 @@ const AdminDashboard = () => {
       }
 
       if (!viewsCountResponse.ok) {
-        const contentType = viewsCountResponse.headers.get("content-type");
-        let errorData;
-        if (contentType && contentType.includes("application/json")) {
-          errorData = await viewsCountResponse.json();
-        } else {
-          errorData = await viewsCountResponse.text();
-        }
-        console.error("Error fetching views count:", errorData);
+        console.error("Error fetching views count");
         setViewsCount(0);
       } else {
         const { count } = await viewsCountResponse.json();
@@ -128,23 +129,22 @@ const AdminDashboard = () => {
   }
 
   return (
-
-
-    <div className="flex min-h-screen  text-white">
+    <div className="flex min-h-screen text-white">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+      <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
       <AdminSidebar />
       <main className="flex-1 p-10 ml-64">
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, {userName} 👋</h1>
+
         <div className="flex grid grid-cols-2 gap-20">
-          <div className="">
+          <div>
             <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Weather</h2>
             <WeatherCard />
           </div>
           <div className="ml-[45px] grid grid-rows">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 ">Analytics</h2>
+          <h2 className="text-lg font-semibold font-poppins text-gray-200 ">Analytics</h2>
             <div className=" grid grid-cols-2 gap-5 mt-[-60px]">
 
               {/* Card 01 */}
@@ -200,9 +200,10 @@ const AdminDashboard = () => {
         <div className="mt-6 grid grid-cols-2 gap-6">
 
           {/* Admin List Card */}
+
           <div className="mt-5">
             <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Admins</h2>
-            <table className="w-[450px] max-w-3xl bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+            <table className="w-full max-w-3xl bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-[#27292af7] text-white font-medium">
                   <th className="p-3">Name</th>
@@ -212,44 +213,34 @@ const AdminDashboard = () => {
                 </tr>
               </thead>
               <tbody>
-                {users.filter(user => user.role === "admin").map((admin) => {
-                  return (
-                    <tr key={admin._id} className="border-b border-gray-600">
-
-                      <td className="p-3 text-center text-gray-100 flex flex-row">
-                        <Image
-                          src={admin.image || '/img/guestavatar.svg'}
-                          alt={`${admin.name}'s profile`}
-                          width={25}
-                          height={25}
-                          className="rounded-full object-cover mr-2"
-                        />
-                        {admin.name}</td>
-                      <td className="p-3 text-center capitalize">
-                        {admin.role}
-                      </td>
-
-                      <td className="p-3 text-center">
-                        {admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '') : "N/A"}
-                      </td>
-                      <td className="p-3 text-center">
-                        {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '') : "N/A"}
-                      </td>
-                    </tr>
-                  );
-                })}
+                {users.filter(user => user.role === "admin").map((admin) => (
+                  <tr key={admin._id} className="border-b border-gray-600">
+                    <td className="p-3 text-center text-gray-100 flex flex-row">
+                      <Image
+                        src={admin.image || '/img/guestavatar.svg'}
+                        alt={`${admin.name}'s profile`}
+                        width={25}
+                        height={25}
+                        className="rounded-full object-cover mr-2 transform scale-[0.8]"
+                      />
+                      {admin.name}
+                    </td>
+                    <td className="p-3 text-center capitalize">{admin.role}</td>
+                    <td className="p-3 text-center">
+                      {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                    </td>
+                    <td className="p-3 text-center">
+                      {lastLogin}
+                    </td>
+                  </tr>
+                ))}
               </tbody>
             </table>
           </div>
-
-          {/* TODO List Card */}
-
           <div className="mt-5">
-
             <TodoList />
           </div>
         </div>
-
       </main>
     </div>
   );

@@ -48,7 +48,8 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
         lastLogin: user.lastLogin
       },
     });
-  } catch {
+  } catch (error) {
+    console.error("Login error:", error);
     res.status(500).json({ message: 'Server error' });
   }
 }
