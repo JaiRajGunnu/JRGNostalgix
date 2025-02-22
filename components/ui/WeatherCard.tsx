@@ -73,8 +73,8 @@ const WeatherCard: React.FC = () => {
         if (hour < 6) return "early morning"; // early morning.jpg
         if (hour < 12) return "morning"; // morning.jpg
         if (hour === 12) return "noon"; // noon.jpg
-        if (hour < 18) return "afternoon"; // afternoon.jpg
-        if (hour < 21) return "evening"; // evening.jpg
+        if (hour < 16) return "afternoon"; // afternoon.jpg
+        if (hour < 20) return "evening"; // evening.jpg
         return "night"; // night.jpg
     };
 
