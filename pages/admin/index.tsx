@@ -209,7 +209,7 @@ const AdminDashboard = () => {
                   <th className="p-3">Name</th>
                   <th className="p-3">Role</th>
                   <th className="p-3">Member since</th>
-                  <th className="p-3">Last Login</th>
+                  <th className="p-3">Last login</th>
                 </tr>
               </thead>
               <tbody>

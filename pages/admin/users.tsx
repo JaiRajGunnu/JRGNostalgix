@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
 import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 
 interface User {
   _id: string;
@@ -70,8 +71,14 @@ const AdminDashboard = () => {
   }
 
   return (
-    <div className="flex min-h-screen bg-gray-900 text-white">
+    <div className="flex min-h-screen text-white">
+
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+      </div>
+
       <AdminSidebar />
+
       <main className="flex-1 p-10 ml-64">
         <h1 className="text-4xl font-bold text-center mb-6">Admin Dashboard</h1>
         {loading ? (
