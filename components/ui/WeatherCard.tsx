@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { FaSun, FaCloudRain, FaSnowflake, FaCloud, FaSmog } from 'react-icons/fa';
+import Image from 'next/image';
 
 const WeatherCard: React.FC = () => {
     const [weather, setWeather] = useState<{ temperature: number; condition: string } | null>(null);
@@ -68,19 +69,25 @@ const WeatherCard: React.FC = () => {
 
     const getTimeOfDay = () => {
         const hour = new Date().getHours();
-        if (hour === 0) return "midnight";
-        if (hour < 6) return "early morning";
-        if (hour < 12) return "morning";
-        if (hour === 12) return "noon";
-        if (hour < 18) return "afternoon";
-        if (hour < 21) return "evening";
-        return "night";
+        if (hour === 0) return "midnight"; // midnight.jpg
+        if (hour < 6) return "early morning"; // early morning.jpg
+        if (hour < 12) return "morning"; // morning.jpg
+        if (hour === 12) return "noon"; // noon.jpg
+        if (hour < 18) return "afternoon"; // afternoon.jpg
+        if (hour < 21) return "evening"; // evening.jpg
+        return "night"; // night.jpg
     };
 
     return (
-        <div className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-[375px] w-[717px]
-                    bg-[url('/img/moonwallp.jpg')]
-                    bg-no-repeat bg-right bg-contain">
+        <div
+            className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-[375px] w-[717px]"
+            style={{
+                backgroundImage: `url('/img/wallpapers/${getTimeOfDay()}.jpg')`,
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'right',
+                backgroundSize: 'contain',
+            }}
+        >
             <div className="flex content-end items-end ml-auto mb-auto">
                 {loading ? (
                     <p className="text-lg font-semibold text-gray-400">Loading weather...</p>
