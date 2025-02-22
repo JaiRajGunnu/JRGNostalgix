@@ -7,6 +7,7 @@ import { MdOutlineAdminPanelSettings } from "react-icons/md";
 import { IoSettingsOutline } from "react-icons/io5";
 
 import { RiCodeSSlashLine } from "react-icons/ri";
+import { IconLogout2 } from "@tabler/icons-react";
 
 const AdminSidebar = () => {
   const [isPagesOpen, setIsPagesOpen] = useState(true);
@@ -21,25 +22,30 @@ const AdminSidebar = () => {
   ];
 
   const pilotPages = [
-    { label: "Home", href: "/pilot/home" },
-    { label: "Login", href: "/pilot/login" },
-    { label: "Register", href: "/pilot/register" },
-    { label: "Error", href: "/pilot/error" },
-    { label: "Settings", href: "/pilot/settings" },
+    { label: "Login", href: "/auth/login" },
+    { label: "Register", href: "/auth/register" },
+    { label: "Error", href: "/error" },
+    { label: "Settings", href: "/settings" },
   ];
 
   const userPages = [
-    { label: "Profile", href: "/user/profile" },
-    { label: "My Verso", href: "/user/my-verso" },
-    { label: "Community", href: "/user/community" },
-    { label: "Feedback", href: "/user/feedback" },
+    { label: "Profile", href: "/profile" },
+    { label: "My Verso", href: "/aboutme" },
+    { label: "Community", href: "/community" },
+    { label: "Friend's Page", href: "/community/11092202" },
+    { label: "Feedback", href: "/feedback" },
   ];
+
+  const handleLogout = () => {
+    localStorage.clear();
+    window.location.href = "/auth/login"; // Redirect to login page
+  };
 
   return (
     <aside className="fixed top-0 left-0 w-64 h-full bg-[#17181a] text-gray-200 p-6 font-poppins">
       <h2 className="text-2xl font-bold font-poppins">Admin Panel</h2>
       <nav className="mt-4 border-t pt-4 border-neutral-300 dark:border-neutral-700">
-        <ul className="flex flex-col gap-5">
+        <ul className="flex flex-col gap-5 capitalize">
           {links.map((link, idx) => (
             <li key={idx} className="cursor-pointer hover:text-gray-400">
               <Link href={link.href} className="flex items-center gap-2">
@@ -48,16 +54,22 @@ const AdminSidebar = () => {
               </Link>
             </li>
           ))}
+          <li className="cursor-pointer hover:text-gray-400" onClick={handleLogout}>
+            <div className="flex items-center gap-2">
+              <IconLogout2 className="h-6 w-6" />
+              <span className="ml-3">Logout</span>
+            </div>
+          </li>
           <li className="cursor-pointer ">
             <div className="flex items-center gap-2 hover:text-gray-400" onClick={() => setIsPagesOpen(!isPagesOpen)}>
             <RiCodeSSlashLine className="h-6 w-6" />
 
               <span className="ml-3">My Pages</span>
-              <FaChevronDown className={`transition-transform mt-1 ${isPagesOpen ? "rotate-180" : ""}`} />
+              <FaChevronDown className={`transition-transform mt-1 opacity-80 ${isPagesOpen ? "rotate-180" : ""}`} />
             </div>
             {isPagesOpen && (
               <ul className="ml-4 mt-2">
-                <li className="mt-2 cursor-pointer">
+                <li className="mt-5 cursor-pointer">
                   <div className="flex items-center hover:text-gray-400" onClick={() => setIsPilotPagesOpen(!isPilotPagesOpen)}>
                     <FaChevronDown className={`transition-transform ${isPilotPagesOpen ? "rotate-180" : ""}`} />
                     <span className="ml-2">Core Pages</span>
@@ -74,7 +86,7 @@ const AdminSidebar = () => {
                     </ul>
                   )}
                 </li>
-                <li className="mt-2 cursor-pointer">
+                <li className="mt-5 cursor-pointer">
                   <div className="flex items-center hover:text-gray-400" onClick={() => setIsUserPagesOpen(!isUserPagesOpen)}>
                     <FaChevronDown className={`transition-transform ${isUserPagesOpen ? "rotate-180" : ""}`} />
                     <span className="ml-2">User Pages</span>
