@@ -203,7 +203,7 @@ const AdminDashboard = () => {
 
           <div className="mt-5">
             <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Admins</h2>
-            <table className="w-full max-w-3xl bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+            <table className="w-[710px] bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-[#27292af7] text-white font-medium">
                   <th className="p-3">Name</th>

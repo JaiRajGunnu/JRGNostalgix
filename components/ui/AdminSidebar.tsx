@@ -78,7 +78,7 @@ const AdminSidebar = () => {
                     <ul className="ml-4 mt-2">
                       {pilotPages.map((page, idx) => (
                         <li key={idx} className="mt-2 cursor-pointer hover:text-gray-400">
-                          <Link href={page.href} className="flex items-center">
+                          <Link href={page.href}  target="_blank" rel="noopener noreferrer" className="flex items-center">
                             <span className="ml-2">{page.label}</span>
                           </Link>
                         </li>
@@ -95,7 +95,7 @@ const AdminSidebar = () => {
                     <ul className="ml-4 mt-2">
                       {userPages.map((page, idx) => (
                         <li key={idx} className="mt-2 cursor-pointer hover:text-gray-400">
-                          <Link href={page.href} className="flex items-center">
+                          <Link href={page.href}  target="_blank" rel="noopener noreferrer"  className="flex items-center">
                             <span className="ml-2">{page.label}</span>
                           </Link>
                         </li>
