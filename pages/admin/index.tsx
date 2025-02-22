@@ -229,9 +229,7 @@ const AdminDashboard = () => {
                     <td className="p-3 text-center">
                       {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
                     </td>
-                    <td className="p-3 text-center">
-                      {lastLogin}
-                    </td>
+                    <td className="p-3 text-center">{lastLogin}</td>
                   </tr>
                 ))}
               </tbody>

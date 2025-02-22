@@ -57,11 +57,10 @@ const AdminsPage = () => {
       <AdminSidebar />
       <main className="flex-1 p-10 ml-64">
 
-        <h1 className="text-4xl font-bold text-center mb-6">Admin List</h1>
-        <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
+        <h1 className="text-4xl font-bold  text-center mb-6">Admin List</h1>
+        <table className="w-full bg-[#18191af7] rounded-lg font-poppins overflow-hidden">
           <thead>
             <tr className="bg-[#27292af7] text-white">
-              <th className="p-3">Picture</th>
               <th className="p-3">Name</th>
               <th className="p-3">Email</th>
               <th className="p-3">Role</th>
@@ -73,13 +72,16 @@ const AdminsPage = () => {
               const friend = shortTestimonials.find(friend => friend.email === admin.email);
               return (
                 <tr key={admin._id} className="border-b border-[#27292af7]">
-                  <td className="p-3">
-                    <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} className="w-10 h-10 rounded-full" />
+                  <td className="p-3 text-center">
+                    <div className="flex flex-row gap-2 ">
+                    <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} 
+                    className="w-7 h-7 rounded-full" />
+                    {admin.name}
+                    </div>
                   </td>
-                  <td className="p-3">{admin.name}</td>
-                  <td className="p-3">{admin.email}</td>
-                  <td className="p-3">{admin.role}</td>
-                  <td className="p-3">
+                  <td className="p-3 text-center">{admin.email}</td>
+                  <td className="p-3 text-center">{admin.role}</td>
+                  <td className="p-3 text-center">
                     {admin.lastLogin
                       ? new Date(admin.lastLogin).toLocaleString("en-IN", {
                           day: "numeric",
