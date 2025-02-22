@@ -97,9 +97,9 @@ const WeatherCard: React.FC = () => {
                             {getWeatherIcon()}
                         </span>
                         <div className="ml-4">
-                            <p className="text-md font-semibold text-gray-600 capitalize">{getTimeOfDay()}</p>
-                            <p className="text-3xl font-bold text-gray-800">{weather.temperature}° C</p>
-                            <p className="text-lg font-semibold text-gray-600">{weather.condition}</p>
+                            <p className="text-md font-semibold text-white opacity-70 capitalize">{getTimeOfDay()}</p>
+                            <p className="text-3xl font-bold text-white-800">{weather.temperature}° C</p>
+                            <p className="text-lg font-semibold text-white opacity-40">{weather.condition}</p>
                         </div>
                     </>
                 ) : (
