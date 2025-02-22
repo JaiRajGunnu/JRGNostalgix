@@ -32,6 +32,7 @@ const AdminDashboard = () => {
   const [viewsCount, setViewsCount] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
   const [friends, setFriends] = useState<Friend[]>([]);
+  const [userName, setUserName] = useState<string>("");
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -42,6 +43,14 @@ const AdminDashboard = () => {
       fetchDashboardData();
     }
   }, [router]);
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setUserName(user.name);
+    }
+  }, []);
 
   const fetchDashboardData = async () => {
     try {
@@ -125,7 +134,7 @@ const AdminDashboard = () => {
 
       <AdminSidebar />
       <main className="flex-1 p-10 ml-64">
-        <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, Admin 👋</h1>
+        <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, {userName} 👋</h1>
 
         <div className="flex grid grid-cols-2 gap-20">
           <div className="">
