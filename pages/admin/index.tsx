@@ -214,7 +214,7 @@ const AdminDashboard = () => {
               </thead>
               <tbody>
                 {users.filter(user => user.role === "admin").map((admin) => (
-                  <tr key={admin._id} className="border-b border-gray-600">
+                  <tr key={admin._id} className="border-b border-[#27292af7]">
                     <td className="p-3 text-center text-gray-100 flex flex-row">
                       <Image
                         src={admin.image || '/img/guestavatar.svg'}

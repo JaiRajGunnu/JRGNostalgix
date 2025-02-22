@@ -6,6 +6,7 @@ import withAuth from "@/guard/withAuth";
 import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import { shortTestimonials } from "@/components/ui/friends";
 
 interface User {
   _id: string;
@@ -80,13 +81,14 @@ const AdminDashboard = () => {
       <AdminSidebar />
 
       <main className="flex-1 p-10 ml-64">
-        <h1 className="text-4xl font-bold text-center mb-6">Admin Dashboard</h1>
+        <h1 className="text-4xl font-bold text-center mb-6">Users Dashboard</h1>
         {loading ? (
           <p className="text-center">Loading users...</p>
         ) : (
-          <table className="w-full bg-gray-800 rounded-lg overflow-hidden">
+          <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>
-              <tr className="bg-gray-700 text-white">
+              <tr className="bg-[#27292af7] text-white">
+                <th className="p-3">Profile Picture</th>
                 <th className="p-3">Name</th>
                 <th className="p-3">Email</th>
                 <th className="p-3">Role</th>
@@ -94,17 +96,23 @@ const AdminDashboard = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user) => (
-                <tr key={user._id} className="border-b border-gray-600">
-                  <td className="p-3">{user.name}</td>
-                  <td className="p-3">{user.email}</td>
-                  <td className="p-3">{user.isAdmin ? "Admin" : "User"}</td>
-                  <td className="p-3">
-                    <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-blue-500 px-4 py-2 rounded mr-2">{user.isAdmin ? "Revoke Admin" : "Make Admin"}</button>
-                    <button onClick={() => deleteUser(user._id)} className="bg-red-500 px-4 py-2 rounded">Delete</button>
-                  </td>
-                </tr>
-              ))}
+              {users.map((user) => {
+                const friend = shortTestimonials.find(friend => friend.email === user.email);
+                return (
+                  <tr key={user._id} className="border-b border-[#27292af7]">
+                    <td className="p-3">
+                      <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name} className="w-10 h-10 rounded-full" />
+                    </td>
+                    <td className="p-3">{user.name}</td>
+                    <td className="p-3">{user.email}</td>
+                    <td className="p-3">{user.isAdmin ? "Admin" : "User"}</td>
+                    <td className="p-3">
+                      <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-blue-500 px-4 py-2 rounded mr-2">{user.isAdmin ? "Revoke Admin" : "Make Admin"}</button>
+                      <button onClick={() => deleteUser(user._id)} className="bg-red-500 px-4 py-2 rounded">Delete</button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         )}
