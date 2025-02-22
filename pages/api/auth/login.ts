@@ -26,6 +26,10 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
       return res.status(500).json({ message: 'JWT_SECRET is not defined' });
     }
 
+    // Update lastLogin field
+    user.lastLogin = new Date();
+    await user.save();
+
     // Include role in JWT payload
     const token = jwt.sign(
       { userId: user._id, isAdmin: user.role === "admin" },
@@ -40,7 +44,8 @@ export default async function loginHandler(req: NextApiRequest, res: NextApiResp
         id: user._id,
         name: user.name,
         email: user.email,
-        role: user.role
+        role: user.role,
+        lastLogin: user.lastLogin
       },
     });
   } catch {

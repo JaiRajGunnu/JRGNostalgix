@@ -9,6 +9,7 @@ import WeatherCard from '@/components/ui/WeatherCard';
 import TodoList from '@/components/ui/TodoList';
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
+import Image from "next/image";
 
 interface User {
   _id: string;
@@ -16,6 +17,8 @@ interface User {
   email: string;
   lastLogin?: string;
   role: string;
+  image?: string;
+  createdAt?: string;
 }
 
 interface Friend {
@@ -126,71 +129,71 @@ const AdminDashboard = () => {
 
   return (
 
-  
+
     <div className="flex min-h-screen  text-white">
-          <div className="absolute inset-0 -z-10 pointer-events-none">
-    <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
-  </div>
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+      </div>
 
       <AdminSidebar />
       <main className="flex-1 p-10 ml-64">
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, {userName} 👋</h1>
         <div className="flex grid grid-cols-2 gap-20">
           <div className="">
-          <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Weather</h2>
+            <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Weather</h2>
             <WeatherCard />
           </div>
           <div className="ml-[45px] grid grid-rows">
-          <h2 className="text-lg font-semibold font-poppins text-gray-200 ">Analytics</h2>
-          <div className=" grid grid-cols-2 gap-5 mt-[-60px]">
+            <h2 className="text-lg font-semibold font-poppins text-gray-200 ">Analytics</h2>
+            <div className=" grid grid-cols-2 gap-5 mt-[-60px]">
 
-            {/* Card 01 */}
-            <div className=" grid grid-cols-1 gap-y-5 ">
-            <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center h-47 w-[85%]">
-            <LuUsersRound 
-            className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
-              <div className="ml-4">
-                <p className="text-lg font-semibold font-poppins text-gray-300">Users</p>
-                <p className="text-2xl font-bold text-white">{userCount}</p>
+              {/* Card 01 */}
+              <div className=" grid grid-cols-1 gap-y-5 ">
+                <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center h-47 w-[85%]">
+                  <LuUsersRound
+                    className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+                  <div className="ml-4">
+                    <p className="text-lg font-semibold font-poppins text-gray-300">Users</p>
+                    <p className="text-2xl font-bold text-white">{userCount}</p>
+                  </div>
+                </div>
+
+                {/* Card 03 */}
+                <div className=" p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center h-47 w-[100%]">
+                  <RiCustomerServiceLine
+                    className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+                  <div className="ml-4">
+                    <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
+                    <p className="text-2xl font-bold text-white">{viewsCount}</p>
+                  </div>
+                </div>
               </div>
-            </div>
 
-            {/* Card 03 */}
-            <div className=" p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center h-47 w-[100%]">
-            <RiCustomerServiceLine 
-            className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
-              <div className="ml-4">
-                <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
-                <p className="text-2xl font-bold text-white">{viewsCount}</p>
+
+              <div className=" grid grid-rows-2 gap-5 ">
+
+                {/* Card 04 */}
+                <div className="ml-[-45px]  p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center h-47 w-[105%]">
+
+                  <FaChartLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
+                  <div className="ml-4">
+                    <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
+                    <p className="text-2xl font-bold text-white">{viewsCount}</p>
+                  </div>
+                </div>
+
+                {/* Card 02 */}
+                <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center h-47 w-[90%]">
+                  <MdOutlineFeedback
+                    className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+                  <div className="ml-4">
+                    <p className="text-lg font-semibold font-poppins text-gray-300">Feedbacks</p>
+                    <p className="text-2xl font-bold text-white">{feedbackCount}</p>
+                  </div>
+                </div>
               </div>
+
             </div>
-            </div>
-
-
-            <div className=" grid grid-rows-2 gap-5 ">
-
-            {/* Card 04 */}
-            <div className="ml-[-45px]  p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center h-47 w-[105%]">
-
-            <FaChartLine  className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
-              <div className="ml-4">
-                <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
-                <p className="text-2xl font-bold text-white">{viewsCount}</p>
-              </div>
-            </div>
-
-            {/* Card 02 */}
-            <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center h-47 w-[90%]">
-            <MdOutlineFeedback
-                        className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
-              <div className="ml-4">
-                <p className="text-lg font-semibold font-poppins text-gray-300">Feedbacks</p>
-                <p className="text-2xl font-bold text-white">{feedbackCount}</p>
-              </div>
-            </div>
-            </div>
-
-          </div>
           </div>
         </div>
 
@@ -199,11 +202,12 @@ const AdminDashboard = () => {
           {/* Admin List Card */}
           <div className="mt-5">
             <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Admins</h2>
-            <table className="min-w-full bg-[#18191af7] rounded-lg overflow-hidden">
+            <table className="w-[450px] max-w-3xl bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
               <thead>
-                <tr className="bg-[#27292af7] text-white">
-                  <th className="p-3">Admin</th>
+                <tr className="bg-[#27292af7] text-white font-medium">
                   <th className="p-3">Name</th>
+                  <th className="p-3">Role</th>
+                  <th className="p-3">Member since</th>
                   <th className="p-3">Last Login</th>
                 </tr>
               </thead>
@@ -211,12 +215,25 @@ const AdminDashboard = () => {
                 {users.filter(user => user.role === "admin").map((admin) => {
                   return (
                     <tr key={admin._id} className="border-b border-gray-600">
-                      <td className="p-3">
-                        <div className="w-10 h-10 rounded-full bg-gray-500"></div>
+
+                      <td className="p-3 text-center text-gray-100 flex flex-row">
+                        <Image
+                          src={admin.image || '/img/guestavatar.svg'}
+                          alt={`${admin.name}'s profile`}
+                          width={25}
+                          height={25}
+                          className="rounded-full object-cover mr-2"
+                        />
+                        {admin.name}</td>
+                      <td className="p-3 text-center capitalize">
+                        {admin.role}
                       </td>
-                      <td className="p-3 text-gray-100">{admin.name}</td>
-                      <td className="p-3 text-gray-100">
-                        {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", { timeZone: "Asia/Kolkata" }) : "N/A"}
+
+                      <td className="p-3 text-center">
+                        {admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '') : "N/A"}
+                      </td>
+                      <td className="p-3 text-center">
+                        {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }).replace('.', '') : "N/A"}
                       </td>
                     </tr>
                   );
