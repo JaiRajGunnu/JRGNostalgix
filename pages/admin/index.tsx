@@ -197,7 +197,7 @@ const AdminDashboard = () => {
                 <tr className="bg-[#27292af7] text-white font-medium">
                   <th className="p-3">Name</th>
                   <th className="p-3">Role</th>
-                  <th className="p-3">Member since</th>
+                  <th className="p-3">Since</th>
                   <th className="p-3">Last login</th>
                 </tr>
               </thead>
