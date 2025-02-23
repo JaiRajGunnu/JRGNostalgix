@@ -13,6 +13,7 @@ interface User {
   _id: string;
   name: string;
   email: string;
+  role: string;
   isAdmin: boolean;
   createdAt: string;
   lastLogin?: string;
@@ -71,25 +72,35 @@ const AdminDashboard = () => {
 
   const deleteUser = async (userId: string) => {
     try {
-      await axios.delete(`/api/users/${userId}`);
+      const token = localStorage.getItem('token');
+      await axios.delete(`/api/users/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      });
       setUsers(users.filter((user) => user._id !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);
     }
   };
 
-  const toggleAdmin = async (userId: string, isAdmin: boolean) => {
+  const toggleAdmin = async (userId: string, currentRole: string) => {
     try {
-      await axios.put(`/api/users/${userId}`, { isAdmin: !isAdmin });
-      setUsers(users.map(user => user._id === userId ? { ...user, isAdmin: !isAdmin } : user));
+      const token = localStorage.getItem('token');
+      const newRole = currentRole === "admin" ? "user" : "admin";
+      
+      const response = await axios.put(`/api/users?id=${userId}`, 
+        { role: newRole },
+        { headers: { Authorization: `Bearer ${token}` }}
+      );
+      
+      if (response.data) {
+        setUsers(users.map(user => 
+          user._id === userId ? { ...user, role: newRole } : user
+        ));
+      }
     } catch (error) {
-      console.error("Error updating admin status:", error);
+      console.error("Error updating user role:", error);
     }
   };
-
-  if (!isAdmin) {
-    return null;
-  }
 
   return (
     <div className="flex min-h-screen text-white">
@@ -179,8 +190,15 @@ const AdminDashboard = () => {
                     <td className="p-3 text-center">
                       <div className="relative group">
                         <div className=" transition-opacity duration-300 ">
-                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="scale-[85%] bg-[#18191af7] border border-white hover:border-green-500 text-white opacity-30 hover:opacity-100 hover:text-green-500 px-3 py-1 rounded">
-                            {user.isAdmin ? "Revoke Admin" : "Make Admin"}
+                          <button 
+                            onClick={() => toggleAdmin(user._id, user.role)} 
+                            className={`scale-[85%] bg-[#18191af7] border border-white ${
+                              user.role === "admin" 
+                                ? "hover:border-red-500 hover:text-red-500" 
+                                : "hover:border-green-500 hover:text-green-500"
+                            } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
+                          >
+                            {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
                           </button>
                           <button onClick={() => deleteUser(user._id)} className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded">
                             Delete

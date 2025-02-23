@@ -77,6 +77,24 @@ const AdminsPage = () => {
     }
   };
 
+  const toggleAdmin = async (userId: string, currentRole: string) => {
+    try {
+      const token = localStorage.getItem('token');
+      const newRole = currentRole === "admin" ? "user" : "admin";
+      
+      const response = await axios.put(`/api/users?id=${userId}`, 
+        { role: newRole },
+        { headers: { Authorization: `Bearer ${token}` }}
+      );
+      
+      if (response.data) {
+        setAdmins(admins.filter(admin => admin._id !== userId));
+      }
+    } catch (error) {
+      console.error("Error updating user role:", error);
+    }
+  };
+
   if (!isAdmin) {
     return null;
   }
@@ -111,6 +129,7 @@ const AdminsPage = () => {
                 <th className="p-3">Admin since</th>
                 <th className="p-3">Status</th>
                 <th className="p-3">Last login</th>
+                <th className="p-3">Actions</th>
               </tr>
             </thead>
             <tbody>
@@ -126,7 +145,7 @@ const AdminsPage = () => {
                         {selectedAdmins[admin._id] && <CheckIcon className="w-3 h-3 text-white" />}
                       </div>  
                     </td>
-                    <td className="p-3 text-center ax-w-[150px]">
+                    <td className="p-3 text-center max-w-[150px]">
                       <div className="flex flex-row gap-3 justify-start  ">
                         <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} className="w-7 h-7 rounded-full" />
                         <span className="text-ellipsis overflow-hidden whitespace-nowrap" title={admin.name}>{admin.name}</span>
@@ -168,7 +187,24 @@ const AdminsPage = () => {
                       }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                       : 'N/A'}
                     </td>
-
+                    <td className="p-3 text-center">
+                      <div className="relative group">
+                        <div className="transition-opacity duration-300">
+                          <button 
+                            onClick={() => toggleAdmin(admin._id, admin.role)}
+                            className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
+                          >
+                            Revoke Admin
+                          </button>
+                          <button 
+                            onClick={() => deleteAdmin(admin._id)} 
+                            className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded ml-2"
+                          >
+                            Delete
+                          </button>
+                        </div>
+                      </div>
+                    </td>
                   </tr>
                 );
               })}
