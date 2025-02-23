@@ -7,12 +7,14 @@ import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
+import { CheckIcon } from "@heroicons/react/24/solid";
 
 interface User {
   _id: string;
   name: string;
   email: string;
   isAdmin: boolean;
+  createdAt: string;
 }
 
 const AdminDashboard = () => {
@@ -20,6 +22,7 @@ const AdminDashboard = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -47,6 +50,21 @@ const AdminDashboard = () => {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleSelectAll = () => {
+    const allSelected = users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean);
+    const newSelectedUsers: { [key: string]: boolean } = {};
+    
+    users.forEach(user => {
+      newSelectedUsers[user._id] = !allSelected;
+    });
+    
+    setSelectedUsers(newSelectedUsers);
+  };
+
+  const handleSelectUser = (userId: string) => {
+    setSelectedUsers(prev => ({ ...prev, [userId]: !prev[userId] }));
   };
 
   const deleteUser = async (userId: string) => {
@@ -87,10 +105,22 @@ const AdminDashboard = () => {
         ) : (
           <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>
-              <tr className="bg-[#27292af7] text-white">
-                <th className="p-3">Name</th>
+              
+              <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
+                <th className="p-3">
+                  <aside
+                    onClick={handleSelectAll}
+                    className={`w-5 h-5 border-2 rounded cursor-pointer ${users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+                  >
+                    {users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) && <CheckIcon className="w-3 h-3 text-white" />}
+                  </aside>
+                </th>
+                <th className="p-3">
+                  Name
+                </th>
                 <th className="p-3">Email</th>
                 <th className="p-3">Role</th>
+                <th className="p-3">Member Since</th>
                 <th className="p-3">Actions</th>
               </tr>
             </thead>
@@ -100,24 +130,40 @@ const AdminDashboard = () => {
                 return (
                   <tr key={user._id} className="border-b border-[#27292af7]">
                     <td className="p-3 text-center">
+                      <div
+                        onClick={() => handleSelectUser(user._id)}
+                        className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+                      >
+                        {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
+                      </div>  
+                    </td>
+
+                    <td className="p-3 text-center">
+
                       <div className="flex flex-row gap-2 justify-start ml-[30%]">
                         <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name} 
-                        className="w-7 h-7 rounded-full" />
+                             className="w-7 h-7 rounded-full" />
                         {user.name}
                       </div>
+                      
                     </td>
                     <td className="p-3 text-center">{user.email}</td>
                     <td className="p-3 text-center">{user.isAdmin ? "Admin" : "User"}</td>
                     <td className="p-3 text-center">
-                      
-                      <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border 
-                      border-green-500 text-green-500 px-3 py-1 rounded mr-4 opacity-70 hover:opacity-100">
-                        {user.isAdmin ? "Revoke Admin" : "Make Admin"}
-                      </button>
-                      <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-red-500 text-red-500 px-3 py-1
-                       rounded opacity-70 hover:opacity-100"> Delete
-                      </button>
-
+                      {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                    </td>
+                    <td className="p-3 text-center">
+                      <div className="relative group">
+                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border 
+                                  border-green-500 text-green-500 px-3 py-1 rounded mr-4">
+                            {user.isAdmin ? "Revoke Admin" : "Make Admin"}
+                          </button>
+                          <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-red-500 text-red-500 px-3 py-1
+                                  rounded"> Delete
+                          </button>
+                        </div>
+                      </div>
                     </td>
                   </tr>
                 );
