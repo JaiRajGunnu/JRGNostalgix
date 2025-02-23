@@ -73,8 +73,8 @@ const AdminsPage = () => {
               return (
                 <tr key={admin._id} className="border-b border-[#27292af7]">
                   <td className="p-3 text-center">
-                    <div className="flex flex-row gap-2 ">
-                    <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} 
+                  <div className="flex flex-row gap-2 justify-start ml-[30%]">
+                  <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} 
                     className="w-7 h-7 rounded-full" />
                     {admin.name}
                     </div>

@@ -88,7 +88,6 @@ const AdminDashboard = () => {
           <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>
               <tr className="bg-[#27292af7] text-white">
-                <th className="p-3">Profile Picture</th>
                 <th className="p-3">Name</th>
                 <th className="p-3">Email</th>
                 <th className="p-3">Role</th>
@@ -100,13 +99,16 @@ const AdminDashboard = () => {
                 const friend = shortTestimonials.find(friend => friend.email === user.email);
                 return (
                   <tr key={user._id} className="border-b border-[#27292af7]">
-                    <td className="p-3">
-                      <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name} className="w-10 h-10 rounded-full" />
+                    <td className="p-3 text-center">
+                      <div className="flex flex-row gap-2 justify-start ml-[30%]">
+                        <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name} 
+                        className="w-7 h-7 rounded-full" />
+                        {user.name}
+                      </div>
                     </td>
-                    <td className="p-3">{user.name}</td>
-                    <td className="p-3">{user.email}</td>
-                    <td className="p-3">{user.isAdmin ? "Admin" : "User"}</td>
-                    <td className="p-3">
+                    <td className="p-3 text-center">{user.email}</td>
+                    <td className="p-3 text-center">{user.isAdmin ? "Admin" : "User"}</td>
+                    <td className="p-3 text-center">
                       <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-blue-500 px-4 py-2 rounded mr-2">{user.isAdmin ? "Revoke Admin" : "Make Admin"}</button>
                       <button onClick={() => deleteUser(user._id)} className="bg-red-500 px-4 py-2 rounded">Delete</button>
                     </td>
