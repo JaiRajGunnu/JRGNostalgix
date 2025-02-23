@@ -14,6 +14,7 @@ interface Admin {
   role: string; // Assuming role can be "admin" or "user"
   lastLogin?: string; // Include lastLogin field
   isActive: boolean; // Add isActive field for status
+  createdAt?: string;
 }
 
 const AdminsPage = () => {
@@ -39,7 +40,7 @@ const AdminsPage = () => {
       const response = await axios.get<Admin[]>("/api/users", {
         headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
       });
-      const adminUsers = response.data.filter(user => user.role === "admin");
+      const adminUsers = response.data.filter(user => user.role == "admin");
       setAdmins(adminUsers);
     } catch (error: unknown) {
       if (error instanceof Error) {
@@ -101,12 +102,13 @@ const AdminsPage = () => {
                     onClick={handleSelectAll}
                     className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
                   >
-                    {admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) && <CheckIcon className="w-3 h-3 text-white" />}
+                    {admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) && <CheckIcon className="w-3 h-3 text-[#27292a]" />}
                   </aside>
                 </th>
-                <th className="p-3">Name</th>
-                <th className="p-3">Email</th>
+                <th className="p-3 text-left">Name</th>
+                <th className="p-3">E-mail</th>
                 <th className="p-3">Role</th>
+                <th className="p-3">Admin since</th>
                 <th className="p-3">Status</th>
                 <th className="p-3">Last login</th>
               </tr>
@@ -121,25 +123,35 @@ const AdminsPage = () => {
                         onClick={() => handleSelectAdmin(admin._id)}
                         className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedAdmins[admin._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
                       >
-                        {selectedAdmins[admin._id] && <CheckIcon className="w-3 h-3 text-white" />}
+                        {selectedAdmins[admin._id] && <CheckIcon className="w-3 h-3 text-[#27292a]" />}
                       </div>  
                     </td>
-                    <td className="p-3 text-center">
-                      <div className="flex flex-row gap-3 justify-start ml-[30%]">
+                    <td className="p-3 text-center ax-w-[150px]">
+                      <div className="flex flex-row gap-3 justify-start  ">
                         <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} className="w-7 h-7 rounded-full" />
-                        {admin.name}
+                        <span className="text-ellipsis overflow-hidden whitespace-nowrap" title={admin.name}>{admin.name}</span>
                       </div>
                     </td>
                     <td className="p-3 text-center">{admin.email}</td>
                     <td className="p-3 text-center capitalize">{admin.role}</td>
+                    <td className="p-3 text-center">{admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", {
+                      day: '2-digit',
+                      month: 'short',
+                      year: 'numeric',
+                      hour: '2-digit',
+                      minute: '2-digit',
+                      hour12: true,
+                      }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                      : 'N/A'}
+                    </td>
                     <td className="p-3 text-center">
-                      {admin.isActive ? (
-                        <span className="flex items-center justify-center">
+                    {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
+                        <span className="flex items-center justify-center ml-0" title={`This admin was active in the last 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                           Active
                         </span>
                       ) : (
-                        <span className="flex items-center justify-center">
+                        <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                           Inactive
                         </span>

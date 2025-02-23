@@ -100,7 +100,6 @@ const AdminDashboard = () => {
 
       <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
-
       <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
         <h1 className="text-4xl font-bold text-center mt-5 mb-10">Member's Dashboard</h1>
         {loading ? (
@@ -118,10 +117,8 @@ const AdminDashboard = () => {
                     {users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) && <CheckIcon className="w-3 h-3 text-white" />}
                   </aside>
                 </th>
-                <th className="p-3">
-                  Name
-                </th>
-                <th className="p-3">Email</th>
+                <th className="p-3 text-left">Name</th>
+                <th className="p-3">E-mail</th>
                 <th className="p-3">Status</th>
                 <th className="p-3">Last login</th>
                 <th className="p-3">Member since</th>
@@ -142,24 +139,24 @@ const AdminDashboard = () => {
                       </div>  
                     </td>
 
-                    <td className="p-3 text-center">
+                    <td className="p-3 text-center max-w-[150px]">
 
-                      <div className="flex flex-row gap-2 justify-start ml-[30%]">
-                        <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name} 
+                      <div className="flex flex-row gap-2 justify-start">
+                        <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}  
                              className="w-7 h-7 rounded-full" />
-                        {user.name}
-                      </div>
+                        <span className="text-ellipsis overflow-hidden whitespace-nowrap" title={user.name}>{user.name}</span>
+                        </div>
                       
                     </td>
                     <td className="p-3 text-center">{user.email}</td>
                     <td className="p-3 text-center">
                       {user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                        <span className="flex items-center">
+                        <span className="flex items-center justify-center" title={`This user was active in the last 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                           Active
                         </span>
                       ) : (
-                        <span className="flex items-center">
+                        <span className="flex items-center  justify-center ml-3" title={`This user was inactive for more than 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                           Inactive
                         </span>
@@ -181,11 +178,11 @@ const AdminDashboard = () => {
                     </td>
                     <td className="p-3 text-center">
                       <div className="relative group">
-                        <div className=" transition-opacity duration-300">
-                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border border-white hover:border-green-500 text-white opacity-30 hover:opacity-100 hover:text-green-500 px-3 py-1 rounded mr-4">
+                        <div className=" transition-opacity duration-300 ">
+                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="scale-[85%] bg-[#18191af7] border border-white hover:border-green-500 text-white opacity-30 hover:opacity-100 hover:text-green-500 px-3 py-1 rounded">
                             {user.isAdmin ? "Revoke Admin" : "Make Admin"}
                           </button>
-                          <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded">
+                          <button onClick={() => deleteUser(user._id)} className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded">
                             Delete
                           </button>
                         </div>
