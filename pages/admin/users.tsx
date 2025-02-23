@@ -15,6 +15,7 @@ interface User {
   email: string;
   isAdmin: boolean;
   createdAt: string;
+  lastLogin?: string;
 }
 
 const AdminDashboard = () => {
@@ -110,7 +111,7 @@ const AdminDashboard = () => {
                 <th className="p-3">
                   <aside
                     onClick={handleSelectAll}
-                    className={`w-5 h-5 border-2 rounded cursor-pointer ${users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+                    className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
                   >
                     {users.length > 0 && Object.keys(selectedUsers).length === users.length && Object.values(selectedUsers).every(Boolean) && <CheckIcon className="w-3 h-3 text-white" />}
                   </aside>
@@ -119,8 +120,9 @@ const AdminDashboard = () => {
                   Name
                 </th>
                 <th className="p-3">Email</th>
-                <th className="p-3">Role</th>
-                <th className="p-3">Member Since</th>
+                <th className="p-3">Status</th>
+                <th className="p-3">Last login</th>
+                <th className="p-3">Member since</th>
                 <th className="p-3">Actions</th>
               </tr>
             </thead>
@@ -148,19 +150,41 @@ const AdminDashboard = () => {
                       
                     </td>
                     <td className="p-3 text-center">{user.email}</td>
-                    <td className="p-3 text-center">{user.isAdmin ? "Admin" : "User"}</td>
+                    <td className="p-3 text-center">
+                      {user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
+                        <span className="flex items-center">
+                          <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                          Active
+                        </span>
+                      ) : (
+                        <span className="flex items-center">
+                          <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                          Inactive
+                        </span>
+                      )}
+                    </td>
+                    <td className="p-3 text-center">
+                      {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                      }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                    : 'N/A'}
+                    </td>
                     <td className="p-3 text-center">
                       {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
                     </td>
                     <td className="p-3 text-center">
                       <div className="relative group">
-                        <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border 
-                                  border-green-500 text-green-500 px-3 py-1 rounded mr-4">
+                        <div className=" transition-opacity duration-300">
+                          <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border border-white hover:border-green-500 text-white opacity-30 hover:opacity-100 hover:text-green-500 px-3 py-1 rounded mr-4">
                             {user.isAdmin ? "Revoke Admin" : "Make Admin"}
                           </button>
-                          <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-red-500 text-red-500 px-3 py-1
-                                  rounded"> Delete
+                          <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded">
+                            Delete
                           </button>
                         </div>
                       </div>
