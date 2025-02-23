@@ -109,8 +109,15 @@ const AdminDashboard = () => {
                     <td className="p-3 text-center">{user.email}</td>
                     <td className="p-3 text-center">{user.isAdmin ? "Admin" : "User"}</td>
                     <td className="p-3 text-center">
-                      <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-blue-500 px-4 py-2 rounded mr-2">{user.isAdmin ? "Revoke Admin" : "Make Admin"}</button>
-                      <button onClick={() => deleteUser(user._id)} className="bg-red-500 px-4 py-2 rounded">Delete</button>
+                      
+                      <button onClick={() => toggleAdmin(user._id, user.isAdmin)} className="bg-[#18191af7] border 
+                      border-green-500 text-green-500 px-3 py-1 rounded mr-4 opacity-70 hover:opacity-100">
+                        {user.isAdmin ? "Revoke Admin" : "Make Admin"}
+                      </button>
+                      <button onClick={() => deleteUser(user._id)} className="bg-[#18191af7] border border-red-500 text-red-500 px-3 py-1
+                       rounded opacity-70 hover:opacity-100"> Delete
+                      </button>
+
                     </td>
                   </tr>
                 );
