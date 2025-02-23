@@ -102,7 +102,7 @@ const AdminsPage = () => {
                     onClick={handleSelectAll}
                     className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
                   >
-                    {admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) && <CheckIcon className="w-3 h-3 text-[#27292a]" />}
+                    {admins.length > 0 && Object.keys(selectedAdmins).length === admins.length && Object.values(selectedAdmins).every(Boolean) && <CheckIcon className="w-3 h-3 text-white" />}
                   </aside>
                 </th>
                 <th className="p-3 text-left">Name</th>
@@ -123,7 +123,7 @@ const AdminsPage = () => {
                         onClick={() => handleSelectAdmin(admin._id)}
                         className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedAdmins[admin._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
                       >
-                        {selectedAdmins[admin._id] && <CheckIcon className="w-3 h-3 text-[#27292a]" />}
+                        {selectedAdmins[admin._id] && <CheckIcon className="w-3 h-3 text-white" />}
                       </div>  
                     </td>
                     <td className="p-3 text-center ax-w-[150px]">
