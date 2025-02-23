@@ -24,6 +24,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -97,12 +98,13 @@ const AdminDashboard = () => {
         <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
-      <AdminSidebar />
+      <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
-      <main className="flex-1 p-10 ml-64">
-        <h1 className="text-4xl font-bold text-center mb-6">Users Dashboard</h1>
+
+      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
+        <h1 className="text-4xl font-bold text-center mt-5 mb-10">Member's Dashboard</h1>
         {loading ? (
-          <p className="text-center">Loading users...</p>
+          <p className="text-center">Retrieving data from server, just a moment...</p>
         ) : (
           <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>

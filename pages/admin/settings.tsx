@@ -4,6 +4,7 @@ import { useState } from "react";
 
 const ToggleMessage = () => {
   const [show, setShow] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen  p-4">
@@ -12,7 +13,7 @@ const ToggleMessage = () => {
         <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
-      <AdminSidebar />
+      <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
       <h1 className="text-2xl font-bold mb-4 text-white">React Test Component</h1>
       <button

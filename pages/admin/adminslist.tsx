@@ -16,32 +16,42 @@ interface Admin {
 
 const AdminsPage = () => {
   const router = useRouter();
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [admins, setAdmins] = useState<Admin[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchAdmins = async () => {
-      try {
-        const token = localStorage.getItem("token");
-        const response = await axios.get<Admin[]>("/api/users", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        // Filter admins from the response
-        const adminUsers = response.data.filter(admin => admin.role === "admin");
-        setAdmins(adminUsers);
-      } catch (error: unknown) {
-        if (error instanceof Error) {
-          console.error("Error fetching admins:", error.message);
-        } else {
-          console.error("Unexpected error:", error);
-        }
-      } finally {
-        setLoading(false);
-      }
-    };
+    const token = localStorage.getItem("token");
+    if (!token) {
+      router.replace("/auth/login");
+    } else {
+      setIsAdmin(true);
+      fetchAdmins();
+    }
+  }, [router]);
 
-    fetchAdmins();
-  }, []);
+  const fetchAdmins = async () => {
+    try {
+      const response = await axios.get<Admin[]>("/api/users", {
+        headers: { Authorization: `Bearer ${localStorage.getItem("token")}` },
+      });
+      const adminUsers = response.data.filter(user => user.role === "admin");
+      setAdmins(adminUsers);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.error("Error fetching admins:", error.message);
+      } else {
+        console.error("Unexpected error:", error);
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  if (!isAdmin) {
+    return null;
+  }
 
   if (loading) {
     return <p className="text-center">Loading admins...</p>;
@@ -54,8 +64,9 @@ const AdminsPage = () => {
         <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
-      <AdminSidebar />
-      <main className="flex-1 p-10 ml-64">
+      <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      
+      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
 
         <h1 className="text-4xl font-bold  text-center mb-6">Admin List</h1>
         <table className="w-full bg-[#18191af7] rounded-lg font-poppins overflow-hidden">

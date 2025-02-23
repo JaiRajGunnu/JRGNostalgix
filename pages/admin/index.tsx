@@ -30,6 +30,7 @@ interface Friend {
 const AdminDashboard = () => {
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [userCount, setUserCount] = useState(0);
   const [feedbackCount, setFeedbackCount] = useState(0);
   const [viewsCount, setViewsCount] = useState(0);
@@ -134,8 +135,8 @@ const AdminDashboard = () => {
       <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
-      <AdminSidebar />
-      <main className="flex-1 p-10 ml-64">
+      <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
+      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
         <h1 className="text-3xl font-bold text-gray-100 mb-10">Welcome, {userName} 👋</h1>
 
         <div className="flex grid grid-cols-2 gap-20">

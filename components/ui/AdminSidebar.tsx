@@ -7,11 +7,15 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { RiCodeSSlashLine } from "react-icons/ri";
 import { IconLogout2 } from "@tabler/icons-react";
 
-const AdminSidebar = () => {
+interface AdminSidebarProps {
+  isSidebarOpen: boolean;
+  setIsSidebarOpen: (isOpen: boolean) => void; // Define the type for the setter function
+}
+
+const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const [isPagesOpen, setIsPagesOpen] = useState(true);
   const [isPilotPagesOpen, setIsPilotPagesOpen] = useState(true);
   const [isUserPagesOpen, setIsUserPagesOpen] = useState(true);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
 
   const links = [
     { label: "Dashboard", href: "/admin", icon: <MdOutlineDashboard className="h-6 w-6" /> },
