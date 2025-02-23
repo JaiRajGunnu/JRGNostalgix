@@ -80,12 +80,12 @@ const WeatherCard: React.FC = () => {
 
     return (
         <div
-            className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-[375px] w-[717px]"
+            className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-full w-full"
             style={{
                 backgroundImage: `url('/img/wallpapers/${getTimeOfDay()}.jpg')`,
                 backgroundRepeat: 'no-repeat',
-                backgroundPosition: 'right',
-                backgroundSize: 'contain',
+                backgroundPosition: 'center',
+                backgroundSize: 'cover',
             }}
         >
             <div className="flex content-end items-end ml-auto mb-auto">
