@@ -64,8 +64,9 @@ const TodoList: React.FC = () => {
   };
 
   return (
+    <div>
+      <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">To-do List</h2>
     <div className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex flex-col h-full w-full">
-      <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">To-do List</h2>
       <div className="flex mb-4">
         <input
           type="text"
@@ -106,6 +107,7 @@ const TodoList: React.FC = () => {
           </li>
         ))}
       </ul>
+    </div>
     </div>
   );
 };

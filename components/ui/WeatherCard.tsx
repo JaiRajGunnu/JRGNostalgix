@@ -90,16 +90,16 @@ const WeatherCard: React.FC = () => {
         >
             <div className="flex content-end items-end ml-auto mb-auto">
                 {loading ? (
-                    <p className="text-lg font-semibold text-gray-400">Loading weather...</p>
+                    <p className="text-lg font-semibold text-gray-400">Loading weather..</p>
                 ) : weather ? (
                     <>
                         <span className="flex justify-center items-center scale-150 m-5">
                             {getWeatherIcon()}
                         </span>
                         <div className="ml-4">
-                            <p className="text-md font-semibold text-white opacity-70 capitalize">{getTimeOfDay()}</p>
-                            <p className="text-3xl font-bold text-white-800">{weather.temperature}° C</p>
-                            <p className="text-lg font-semibold text-white opacity-40">{weather.condition}</p>
+                            <p className="text-md font-semibold text-white opacity-70 capitalize" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)' }}>{getTimeOfDay()}</p>
+                            <p className="text-3xl font-bold text-white-800" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)' }}>{weather.temperature}° C</p>
+                            <p className="text-lg font-semibold text-white opacity-40" style={{ textShadow: '1px 1px 2px rgba(0, 0, 0, 0.7)' }}>{weather.condition}</p>
                         </div>
                     </>
                 ) : (

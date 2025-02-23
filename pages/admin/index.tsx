@@ -141,11 +141,11 @@ const AdminDashboard = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Weather</h2>
+            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Weather</h2>
             <WeatherCard />
           </div>
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Analytics</h2>
+            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Analytics</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
               {/* Card 01 */}
               <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center">
@@ -153,6 +153,24 @@ const AdminDashboard = () => {
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Users</p>
                   <p className="text-2xl font-bold text-white">{userCount}</p>
+                </div>
+              </div>
+              
+                {/* Card 04 */}
+                <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
+                <FaChartLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
+                <div className="ml-4">
+                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
+                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
+                </div>
+              </div>
+
+              {/* Card 03 */}
+              <div className="p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center">
+                <RiCustomerServiceLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+                <div className="ml-4">
+                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
+                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
                 </div>
               </div>
               {/* Card 02 */}
@@ -163,22 +181,9 @@ const AdminDashboard = () => {
                   <p className="text-2xl font-bold text-white">{feedbackCount}</p>
                 </div>
               </div>
-              {/* Card 03 */}
-              <div className="p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center">
-                <RiCustomerServiceLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
-                <div className="ml-4">
-                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
-                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
-                </div>
-              </div>
-              {/* Card 04 */}
-              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
-                <FaChartLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
-                <div className="ml-4">
-                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
-                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
-                </div>
-              </div>
+
+
+
             </div>
           </div>
         </div>
@@ -186,7 +191,7 @@ const AdminDashboard = () => {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Admin List Card */}
           <div className="mt-5">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 mb-4">Admins</h2>
+            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Admins</h2>
             <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-[#27292af7] text-white font-medium">
