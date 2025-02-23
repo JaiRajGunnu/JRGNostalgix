@@ -51,15 +51,15 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebar
     >
       {/* Sidebar Header */}
       <div className="flex justify-between items-center">
-        {isSidebarOpen && <h2 className="text-2xl font-bold font-poppins">Admin Panel</h2>}
+        {isSidebarOpen && <h2 className="text-2xl font-bold font-poppins mt-4">Admin Panel</h2>}
         <button
           onClick={() => setIsSidebarOpen(!isSidebarOpen)}
           className="text-gray-400 hover:text-gray-600"
         >
           {isSidebarOpen ? (
-            <TbLayoutSidebarLeftCollapse className="h-7 w-7" />
+            <TbLayoutSidebarLeftCollapse className="h-7 w-7 mt-4" />
           ) : (
-            <TbLayoutSidebarLeftExpand className="h-7 w-7" />
+            <TbLayoutSidebarLeftExpand className="h-7 w-7 mt-4" />
           )}
         </button>
       </div>
@@ -69,7 +69,7 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebar
         className={`mt-4 border-t pt-4 border-neutral-300 dark:border-neutral-700 
         ${isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
-        <ul className="flex flex-col gap-5 capitalize">
+        <ul className="flex flex-col gap-5 capitalize mt-2">
           {links.map((link, idx) => (
             <li key={idx} className="cursor-pointer hover:text-gray-400">
               <Link href={link.href} className="flex items-center gap-2">
