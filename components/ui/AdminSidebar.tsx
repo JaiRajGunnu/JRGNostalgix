@@ -2,8 +2,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineDashboard, MdOutlineAdminPanelSettings } from "react-icons/md";
-import { TbUsersGroup, TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand } from "react-icons/tb";
-import { IoSettingsOutline } from "react-icons/io5";
+import { TbUsersGroup, TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand, TbDatabaseCog } from "react-icons/tb";
 import { RiCodeSSlashLine } from "react-icons/ri";
 import { IconLogout2 } from "@tabler/icons-react";
 
@@ -17,11 +16,12 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebar
   const [isPilotPagesOpen, setIsPilotPagesOpen] = useState(true);
   const [isUserPagesOpen, setIsUserPagesOpen] = useState(true);
 
+
   const links = [
     { label: "Dashboard", href: "/admin", icon: <MdOutlineDashboard className="h-6 w-6" /> },
     { label: "Members", href: "/admin/users", icon: <TbUsersGroup className="h-6 w-6" /> },
     { label: "Admins", href: "/admin/adminslist", icon: <MdOutlineAdminPanelSettings className="h-6 w-6" /> },
-    { label: "Settings", href: "/admin/settings", icon: <IoSettingsOutline className="h-6 w-6" /> },
+    { label: "Database", href: process.env.NEXT_PUBLIC_MONGODB_CLUSTER_URL || '#',  icon: <TbDatabaseCog className="h-6 w-6" />  },
   ];
 
   const pilotPages = [
@@ -69,13 +69,25 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebar
         className={`mt-4 border-t pt-4 border-neutral-300 dark:border-neutral-700 
         ${isSidebarOpen ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
       >
-        <ul className="flex flex-col gap-5 capitalize mt-2">
+        <ul className="flex flex-col gap-5 capitalize mt-2 ">
           {links.map((link, idx) => (
             <li key={idx} className="cursor-pointer hover:text-gray-400">
-              <Link href={link.href} className="flex items-center gap-2">
-                {link.icon}
-                <span className="ml-3">{isSidebarOpen && link.label}</span>
-              </Link>
+              {link.label === "Database" ? (
+                <a 
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
+                  {link.icon}
+                  <span className="ml-3">{isSidebarOpen && link.label}</span>
+                </a>
+              ) : (
+                <Link href={link.href} className="flex items-center gap-2">
+                  {link.icon}
+                  <span className="ml-3">{isSidebarOpen && link.label}</span>
+                </Link>
+              )}
             </li>
           ))}
 
