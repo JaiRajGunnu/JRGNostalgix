@@ -18,9 +18,21 @@ interface User {
   lastLogin?: string;
 }
 
+interface BatchActionModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  description: string;
+  confirmText: string;
+  cancelText: string;
+  onConfirm: () => Promise<void>;
+  isDestructive?: boolean;
+}
+
 type FilterType = 'all' | 'admin' | 'member';
 type StatusFilterType = 'all' | 'active' | 'inactive';
 type SortType = 'none' | 'name-asc' | 'name-desc' | 'login-recent' | 'login-oldest';
+type BatchActionType = 'make-admin' | 'revoke-admin' | 'delete';
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -34,6 +46,25 @@ const AdminDashboard = () => {
   const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+
+  // Batch action modal state
+  const [isBatchActionModalOpen, setIsBatchActionModalOpen] = useState(false);
+  const [batchActionConfig, setBatchActionConfig] = useState<{
+    title: string;
+    description: string;
+    confirmText: string;
+    cancelText: string;
+    onConfirm: () => Promise<void>;
+    isDestructive?: boolean;
+  }>({
+    title: '',
+    description: '',
+    confirmText: '',
+    cancelText: 'Cancel',
+    onConfirm: async () => { },
+    isDestructive: false
+  });
+  const [processingBatchAction, setProcessingBatchAction] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -70,24 +101,24 @@ const AdminDashboard = () => {
   const applyFiltersAndSort = () => {
     // First apply role filter
     let filtered = [...users];
-    
+
     if (activeFilter === 'admin') {
       filtered = filtered.filter(user => user.role === 'admin');
     } else if (activeFilter === 'member') {
       filtered = filtered.filter(user => user.role === 'user');
     }
-    
+
     // Then apply status filter
     if (statusFilter === 'active') {
-      filtered = filtered.filter(user => 
+      filtered = filtered.filter(user =>
         user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000
       );
     } else if (statusFilter === 'inactive') {
-      filtered = filtered.filter(user => 
+      filtered = filtered.filter(user =>
         !user.lastLogin || new Date(user.lastLogin).getTime() <= Date.now() - 48 * 60 * 60 * 1000
       );
     }
-    
+
     // Apply sorting
     if (sortBy === 'name-asc') {
       filtered.sort((a, b) => a.name.localeCompare(b.name));
@@ -108,7 +139,7 @@ const AdminDashboard = () => {
         return new Date(a.lastLogin).getTime() - new Date(b.lastLogin).getTime();
       });
     }
-    
+
     setFilteredUsers(filtered);
   };
 
@@ -150,20 +181,30 @@ const AdminDashboard = () => {
   };
 
   const handleSelectAll = () => {
-    const allSelected = filteredUsers.length > 0 && 
-      Object.keys(selectedUsers).length === filteredUsers.length && 
-      Object.values(selectedUsers).every(Boolean);
+    // Get the filtered users that are not the master admin
+    const selectableUsers = filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com");
     
+    // Check if all selectable users are already selected
+    const allSelected = selectableUsers.length > 0 && 
+      selectableUsers.every(user => selectedUsers[user._id]);
+  
     const newSelectedUsers: { [key: string]: boolean } = {};
-    
+  
     filteredUsers.forEach(user => {
-      newSelectedUsers[user._id] = !allSelected;
+      // Skip the Master Admin account
+      if (user.email !== "jairajgsklm@gmail.com") {
+        newSelectedUsers[user._id] = !allSelected;
+      }
     });
-    
+  
     setSelectedUsers(newSelectedUsers);
   };
 
-  const handleSelectUser = (userId: string) => {
+  const handleSelectUser = (userId: string, email: string) => {
+    // Prevent selecting the Master Admin account
+    if (email === "jairajgsklm@gmail.com") {
+      return;
+    }
     setSelectedUsers(prev => ({ ...prev, [userId]: !prev[userId] }));
   };
 
@@ -171,19 +212,175 @@ const AdminDashboard = () => {
     try {
       const token = localStorage.getItem('token');
       const newRole = currentRole === "admin" ? "user" : "admin";
-      
-      const response = await axios.put(`/api/users?id=${userId}`, 
+
+      const response = await axios.put(`/api/users?id=${userId}`,
         { role: newRole },
-        { headers: { Authorization: `Bearer ${token}` }}
+        { headers: { Authorization: `Bearer ${token}` } }
       );
-      
+
       if (response.data) {
-        setUsers(users.map(user => 
+        setUsers(users.map(user =>
           user._id === userId ? { ...user, role: newRole } : user
         ));
       }
     } catch (error) {
       console.error("Error updating user role:", error);
+    }
+  };
+
+  // Batch action helpers
+  const getSelectedUserIds = (): string[] => {
+    return Object.entries(selectedUsers)
+      .filter(([_, isSelected]) => isSelected)
+      .map(([userId, _]) => userId);
+  };
+
+  const getSelectedUserCount = (): number => {
+    return getSelectedUserIds().length;
+  };
+
+  const openBatchActionModal = (actionType: BatchActionType) => {
+    const selectedUserIds = getSelectedUserIds();
+    const selectedUserCount = selectedUserIds.length;
+
+    if (selectedUserCount === 0) return;
+
+    // Filter out protected users (if applicable)
+    const protectedEmails = ["jairajgsklm@gmail.com"];
+    const selectedUsers = filteredUsers.filter(user =>
+      selectedUserIds.includes(user._id) && !protectedEmails.includes(user.email)
+    );
+
+    // Update config based on action type
+    switch (actionType) {
+      case 'make-admin':
+        setBatchActionConfig({
+          title: 'Promote Users to Admin',
+          description: `Are you sure you want to grant admin privileges to ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}?`,
+          confirmText: 'Promote to Admin',
+          cancelText: 'Cancel',
+          isDestructive: false,
+          onConfirm: async () => {
+            setProcessingBatchAction(true);
+            const token = localStorage.getItem('token');
+
+            try {
+              // Process each user one at a time
+              for (const user of selectedUsers) {
+                if (user.role !== 'admin') {
+                  await axios.put(`/api/users?id=${user._id}`,
+                    { role: 'admin' },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                  );
+                }
+              }
+
+              // Update local state
+              setUsers(users.map(user =>
+                selectedUserIds.includes(user._id) && !protectedEmails.includes(user.email)
+                  ? { ...user, role: 'admin' }
+                  : user
+              ));
+
+              // Clear selections
+              setSelectedUsers({});
+              setIsBatchActionModalOpen(false);
+            } catch (error) {
+              console.error("Error updating user roles:", error);
+              // Handle error (could add error state and display it)
+            } finally {
+              setProcessingBatchAction(false);
+            }
+          }
+        });
+        break;
+
+      case 'revoke-admin':
+        setBatchActionConfig({
+          title: 'Revoke Admin Privileges',
+          description: `Are you sure you want to revoke admin privileges from ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}?`,
+          confirmText: 'Revoke Admin',
+          cancelText: 'Cancel',
+          isDestructive: true,
+          onConfirm: async () => {
+            setProcessingBatchAction(true);
+            const token = localStorage.getItem('token');
+
+            try {
+              // Process each user one at a time
+              for (const user of selectedUsers) {
+                if (user.role === 'admin') {
+                  await axios.put(`/api/users?id=${user._id}`,
+                    { role: 'user' },
+                    { headers: { Authorization: `Bearer ${token}` } }
+                  );
+                }
+              }
+
+              // Update local state
+              setUsers(users.map(user =>
+                selectedUserIds.includes(user._id) && !protectedEmails.includes(user.email)
+                  ? { ...user, role: 'user' }
+                  : user
+              ));
+
+              // Clear selections
+              setSelectedUsers({});
+              setIsBatchActionModalOpen(false);
+            } catch (error) {
+              console.error("Error updating user roles:", error);
+              // Handle error (could add error state and display it)
+            } finally {
+              setProcessingBatchAction(false);
+            }
+          }
+        });
+        break;
+
+      case 'delete':
+        setBatchActionConfig({
+          title: 'Delete Users',
+          description: `Are you sure you want to permanently delete ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}? This action cannot be undone.`,
+          confirmText: 'Terminate Users',
+          cancelText: 'Cancel',
+          isDestructive: true,
+          onConfirm: async () => {
+            setProcessingBatchAction(true);
+            const token = localStorage.getItem('token');
+
+            try {
+              // Process each user one at a time
+              for (const user of selectedUsers) {
+                await axios.delete(`/api/users?id=${user._id}`,
+                  { headers: { Authorization: `Bearer ${token}` } }
+                );
+              }
+
+              // Update local state
+              setUsers(users.filter(user =>
+                !selectedUserIds.includes(user._id) || protectedEmails.includes(user.email)
+              ));
+
+              // Clear selections
+              setSelectedUsers({});
+              setIsBatchActionModalOpen(false);
+            } catch (error) {
+              console.error("Error deleting users:", error);
+              // Handle error (could add error state and display it)
+            } finally {
+              setProcessingBatchAction(false);
+            }
+          }
+        });
+        break;
+    }
+
+    setIsBatchActionModalOpen(true);
+  };
+
+  const closeBatchActionModal = () => {
+    if (!processingBatchAction) {
+      setIsBatchActionModalOpen(false);
     }
   };
 
@@ -195,6 +392,60 @@ const AdminDashboard = () => {
     if (statusFilter !== 'all') count++;
     if (sortBy !== 'none') count++;
     return count;
+  };
+
+  // BatchActionModal component
+  const BatchActionModal = ({
+    isOpen,
+    onClose,
+    title,
+    description,
+    confirmText,
+    cancelText,
+    onConfirm,
+    isDestructive = false
+  }: BatchActionModalProps) => {
+    if (!isOpen) return null;
+
+    return (
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
+        <div className="bg-[#1e1f21] w-full max-w-md rounded-lg shadow-xl overflow-hidden">
+          <div className="p-5">
+            <h3 className="text-xl font-semibold text-white">{title}</h3>
+            <p className="mt-2 text-white/70">{description}</p>
+
+            <div className="mt-6 flex justify-end gap-3">
+              <button
+                onClick={onClose}
+                disabled={processingBatchAction}
+                className="px-4 py-2 bg-[#27292af7] text-white/70 hover:bg-[#323436] rounded-lg transition-colors"
+              >
+                {cancelText}
+              </button>
+              <button
+                onClick={onConfirm}
+                disabled={processingBatchAction}
+                className={`px-4 py-2 ${isDestructive
+                  ? 'bg-white text-black hover:text-white hover:bg-red-600 hover:opacity-100'
+                  : 'bg-white text-black hover:text-white hover:bg-green-600 hover:opacity-100'
+                  }  rounded-lg transition-colors flex items-center ${processingBatchAction ? 'opacity-70 cursor-not-allowed' : ''
+                  }`}
+              >
+                {processingBatchAction ? (
+                  <>
+                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                    </svg>
+                    Processing...
+                  </>
+                ) : confirmText}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
   };
 
   return (
@@ -214,10 +465,10 @@ const AdminDashboard = () => {
           <div className="flex justify-between items-center mt-5 mb-10">
             <h1 className="text-4xl font-bold text-center">Member's Dashboard</h1>
           </div>
-          
+
           {/* Filter Toggle Button */}
           <div className="mb-6 flex justify-between items-center">
-            <button 
+            <button
               onClick={() => setIsFiltersOpen(!isFiltersOpen)}
               className={`flex items-center gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
             >
@@ -229,7 +480,7 @@ const AdminDashboard = () => {
                 </span>
               )}
             </button>
-            
+
             {isAnyFilterActive && (
               <div className="text-sm text-white/50 flex items-center gap-2">
                 <span>
@@ -237,13 +488,12 @@ const AdminDashboard = () => {
                   {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
                   {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
                   {(activeFilter !== 'all' || statusFilter !== 'all') && sortBy !== 'none' && ' | '}
-                  {sortBy !== 'none' && `Sorted by: ${
-                    sortBy === 'name-asc' ? 'Name (A-Z)' : 
-                    sortBy === 'name-desc' ? 'Name (Z-A)' : 
-                    sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
-                  }`}
+                  {sortBy !== 'none' && `Sorted by: ${sortBy === 'name-asc' ? 'Name (A-Z)' :
+                    sortBy === 'name-desc' ? 'Name (Z-A)' :
+                      sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
+                    }`}
                 </span>
-                <button 
+                <button
                   onClick={resetAllFilters}
                   className="flex items-center gap-1 bg-gray-700 hover:bg-gray-600 text-white/70 hover:text-white px-2 py-1 rounded text-xs transition-all"
                   title="Reset all filters"
@@ -254,106 +504,99 @@ const AdminDashboard = () => {
               </div>
             )}
           </div>
-          
+
           {/* Filter and Sort Controls - Only shown when filters are open */}
           {isFiltersOpen && (
             <div className="mb-8 bg-[#1e1f21] rounded-lg overflow-hidden shadow-lg">
               <div className="flex justify-between items-center px-4 py-3 border-b border-[#27292af7]">
                 <h3 className="font-semibold">Filter & Sort Options</h3>
-                <button 
+                <button
                   onClick={() => setIsFiltersOpen(false)}
                   className="text-white/70 hover:text-white transition-colors"
                 >
                   <XMarkIcon className="h-5 w-5" />
                 </button>
               </div>
-              
+
               <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-0">
                 {/* Role Filter Buttons */}
                 <div>
                   <h3 className="text-sm text-white/70 mb-3 font-medium">Filter by Role</h3>
                   <div className="flex gap-2 flex-wrap">
-                    <button 
+                    <button
                       onClick={() => handleRoleFilterChange('all')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        activeFilter === 'all' 
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'all'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                        }`}
                     >
                       All ({users.length})
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleRoleFilterChange('admin')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        activeFilter === 'admin' 
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'admin'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Admins ({users.filter(user => user.role === 'admin').length})
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleRoleFilterChange('member')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        activeFilter === 'member' 
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'member'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Members ({users.filter(user => user.role === 'user').length})
                     </button>
                   </div>
                 </div>
-                
+
                 {/* Status Filter Buttons */}
                 <div>
                   <h3 className="text-sm text-white/70 mb-3 font-medium">Filter by Status</h3>
                   <div className="flex gap-2 flex-wrap">
-                    <button 
+                    <button
                       onClick={() => handleStatusFilterChange('all')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        statusFilter === 'all' 
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'all'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                        }`}
                     >
                       All Status
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleStatusFilterChange('active')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        statusFilter === 'active' 
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'active'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Active ({getActiveUsersCount()})
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleStatusFilterChange('inactive')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
-                        statusFilter === 'inactive' 
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'inactive'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Inactive ({getInactiveUsersCount()})
                     </button>
                   </div>
                 </div>
-                
+
                 {/* Sort Options */}
                 <div>
                   <h3 className="text-sm text-white/70 mb-3 font-medium">Sort By</h3>
                   <div className="flex gap-2 flex-wrap">
-                    <button 
+                    <button
                       onClick={() => handleSortChange('name-asc')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
-                        sortBy === 'name-asc'
-                          ? 'bg-blue-600 text-white' 
-                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'name-asc'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                        }`}
                     >
                       Name (A-Z) <ArrowUpIcon className="h-3 w-3 ml-1" />
                     </button>
@@ -367,33 +610,31 @@ const AdminDashboard = () => {
                     >
                       Name (Z-A) <ArrowDownIcon className="h-3 w-3 ml-1" />
                     </button> */}
-                    <button 
+                    <button
                       onClick={() => handleSortChange('login-recent')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
-                        sortBy === 'login-recent'
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'login-recent'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Recent Login <ArrowUpIcon className="h-3 w-3 ml-1" />
                     </button>
-                    <button 
+                    <button
                       onClick={() => handleSortChange('login-oldest')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
-                        sortBy === 'login-oldest'
-                        ? 'bg-blue-600 text-white' 
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'login-oldest'
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                      }`}
+                        }`}
                     >
                       Oldest Login <ArrowDownIcon className="h-3 w-3 ml-1" />
                     </button>
                   </div>
                 </div>
               </div>
-              
+
             </div>
           )}
-          
+
           {loading ? (
             <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
           ) : (
@@ -402,7 +643,7 @@ const AdminDashboard = () => {
                 <div className="text-center py-10 ">
                   <p className="opacity-70">No users match the selected filters</p>
                   {isAnyFilterActive && (
-                    <button 
+                    <button
                       onClick={resetAllFilters}
                       className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
                     >
@@ -415,37 +656,67 @@ const AdminDashboard = () => {
                 <div className="bg-[#18191af7] rounded-lg overflow-hidden">
                   <div className="p-4 border-b border-[#27292af7] flex justify-between items-center">
                     <span className="text-white/70">Showing {filteredUsers.length} of {users.length} users</span>
+
+                    {/* Batch Actions Section */}
+                    {getSelectedUserCount() > 0 && (
+                      <div className="flex items-center gap-3">
+                        <span className="text-white/70 text-sm">
+                          {getSelectedUserCount()} user{getSelectedUserCount() !== 1 ? 's' : ''} selected
+                        </span>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => openBatchActionModal('make-admin')}
+                            className="border border-green-600 text-green-600 hover:text-white hover:bg-green-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                          >
+                            Make Admin
+                          </button>
+                          <button
+                            onClick={() => openBatchActionModal('revoke-admin')}
+                            className="border border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                          >
+                            Revoke Admin
+                          </button>
+                          <button
+                            onClick={() => openBatchActionModal('delete')}
+                            className="border border-red-600 text-red-600 hover:text-white hover:bg-red-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                          >
+                            Terminate
+                          </button>
+                        </div>
+                      </div>
+                    )}
                   </div>
                   <table className="w-full">
                     <thead>
                       <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
-                        <th className="p-3">
-                          <aside
-                            onClick={handleSelectAll}
-                            className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
-                              filteredUsers.length > 0 && 
-                              Object.keys(selectedUsers).length === filteredUsers.length && 
-                              Object.values(selectedUsers).every(Boolean) 
-                                ? "bg-blue-500 border-blue-500" 
-                                : "border-white/50"
-                            }`}
-                          >
-                            {filteredUsers.length > 0 && 
-                             Object.keys(selectedUsers).length === filteredUsers.length && 
-                             Object.values(selectedUsers).every(Boolean) && 
-                             <CheckIcon className="w-3 h-3 text-white" />}
-                          </aside>
-                        </th>
+<th className="p-3">
+  <aside
+    onClick={handleSelectAll}
+    className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
+      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
+      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
+        .every(user => selectedUsers[user._id])
+        ? "bg-blue-500 border-blue-500"
+        : "border-white/50"
+    }`}
+  >
+    {filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
+      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
+        .every(user => selectedUsers[user._id]) &&
+      <CheckIcon className="w-3 h-3 text-white" />}
+  </aside>
+</th>
+
                         <th className="p-3 text-left">
                           <div className="flex items-center">
                             Name
                             <div className="ml-2 flex flex-col">
-                              <ArrowUpIcon 
-                                className={`w-3 h-3 ${sortBy === 'name-asc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`} 
+                              <ArrowUpIcon
+                                className={`w-3 h-3 ${sortBy === 'name-asc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`}
                                 onClick={() => handleSortChange('name-asc')}
                               />
-                              <ArrowDownIcon 
-                                className={`w-3 h-3 ${sortBy === 'name-desc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`} 
+                              <ArrowDownIcon
+                                className={`w-3 h-3 ${sortBy === 'name-desc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`}
                                 onClick={() => handleSortChange('name-desc')}
                               />
                             </div>
@@ -461,12 +732,12 @@ const AdminDashboard = () => {
                           <div className="flex justify-center items-center">
                             Last login
                             <div className="ml-2 flex flex-col">
-                              <ArrowUpIcon 
-                                className={`w-3 h-3 ${sortBy === 'login-recent' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`} 
+                              <ArrowUpIcon
+                                className={`w-3 h-3 ${sortBy === 'login-recent' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`}
                                 onClick={() => handleSortChange('login-recent')}
                               />
-                              <ArrowDownIcon 
-                                className={`w-3 h-3 ${sortBy === 'login-oldest' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`} 
+                              <ArrowDownIcon
+                                className={`w-3 h-3 ${sortBy === 'login-oldest' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`}
                                 onClick={() => handleSortChange('login-oldest')}
                               />
                             </div>
@@ -480,22 +751,30 @@ const AdminDashboard = () => {
                       {filteredUsers.map((user) => {
                         const friend = shortTestimonials.find(friend => friend.email === user.email);
                         const userActive = isUserActive(user);
-                        
+
                         return (
                           <tr key={user._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
                             <td className="p-3 text-center">
-                              <div
-                                onClick={() => handleSelectUser(user._id)}
-                                className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
-                              >
-                                {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
-                              </div>  
+                              {user.email === "jairajgsklm@gmail.com" ? (
+                                <div
+                                  className="w-5 h-5 flex items-center justify-center border-2 border-gray-500 rounded opacity-50 cursor-not-allowed"
+                                  title="Master Admin cannot be selected"
+                                ></div>
+                              ) : (
+                                <div
+                                  onClick={() => handleSelectUser(user._id, user.email)}
+                                  className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"
+                                    }`}
+                                >
+                                  {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
+                                </div>
+                              )}
                             </td>
 
                             <td className="p-3 text-center max-w-[150px]">
                               <div className="flex flex-row gap-2 justify-start">
-                                <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}  
-                                    className="w-7 h-7 rounded-full" />
+                                <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
+                                  className="w-7 h-7 rounded-full" />
                                 <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
                               </div>
                             </td>
@@ -522,7 +801,7 @@ const AdminDashboard = () => {
                                 minute: '2-digit',
                                 hour12: true,
                               }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
-                            : 'N/A'}
+                                : 'N/A'}
                             </td>
                             <td className="p-3 text-center">
                               {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
@@ -537,13 +816,12 @@ const AdminDashboard = () => {
                                     </button>
                                   ) : (
                                     <>
-                                      <button 
-                                        onClick={() => toggleAdmin(user._id, user.role)} 
-                                        className={`scale-[85%] bg-[#18191af7] border border-white ${
-                                          user.role === "admin" 
-                                            ? "hover:border-red-500 hover:text-red-500" 
-                                            : "hover:border-green-500 hover:text-green-500"
-                                        } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
+                                      <button
+                                        onClick={() => toggleAdmin(user._id, user.role)}
+                                        className={`scale-[85%] bg-[#18191af7] border border-white ${user.role === "admin"
+                                          ? "hover:border-red-500 hover:text-red-500"
+                                          : "hover:border-green-500 hover:text-green-500"
+                                          } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
                                       >
                                         {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
                                       </button>
@@ -559,6 +837,17 @@ const AdminDashboard = () => {
                   </table>
                 </div>
               )}
+              {/* Add the modal at the end */}
+              <BatchActionModal
+                isOpen={isBatchActionModalOpen}
+                onClose={closeBatchActionModal}
+                title={batchActionConfig.title}
+                description={batchActionConfig.description}
+                confirmText={batchActionConfig.confirmText}
+                cancelText={batchActionConfig.cancelText}
+                onConfirm={batchActionConfig.onConfirm}
+                isDestructive={batchActionConfig.isDestructive}
+              />
             </>
           )}
         </main>
