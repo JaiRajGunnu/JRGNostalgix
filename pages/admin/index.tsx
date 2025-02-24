@@ -163,6 +163,7 @@ const AdminDashboard = () => {
           <div className="flex flex-col">
             <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Analytics</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+
               {/* Card 01 */}
               <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center">
                 <LuUsersRound className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
@@ -185,7 +186,6 @@ const AdminDashboard = () => {
                       </div>
                     </div>
                   </div>
-                 
                 </div>
               </div>
 
@@ -197,6 +197,7 @@ const AdminDashboard = () => {
                   <p className="text-2xl font-bold text-white">{viewsCount}</p>
                 </div>
               </div>
+
               {/* Card 02 */}
               <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center">
                 <MdOutlineFeedback className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
@@ -205,8 +206,6 @@ const AdminDashboard = () => {
                   <p className="text-2xl font-bold text-white">{feedbackCount}</p>
                 </div>
               </div>
-
-
 
             </div>
           </div>

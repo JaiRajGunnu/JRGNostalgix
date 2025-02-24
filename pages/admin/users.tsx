@@ -140,7 +140,7 @@ const AdminDashboard = () => {
               {users.map((user) => {
                 const friend = shortTestimonials.find(friend => friend.email === user.email);
                 return (
-                  <tr key={user._id} className="border-b border-[#27292af7]">
+                  <tr key={user._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
                     <td className="p-3 text-center">
                       <div
                         onClick={() => handleSelectUser(user._id)}

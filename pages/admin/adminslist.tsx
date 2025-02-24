@@ -114,7 +114,7 @@ const AdminsPage = () => {
         ) : (
           <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>
-              <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
+              <tr className="bg-[#27292af7] text-white font-poppins font-semibold ">
                 <th className="p-3">
                   <aside
                     onClick={handleSelectAll}
@@ -136,7 +136,7 @@ const AdminsPage = () => {
               {admins.map((admin) => {
                 const friend = shortTestimonials.find(friend => friend.email === admin.email);
                 return (
-                  <tr key={admin._id} className="border-b border-[#27292af7]">
+                  <tr key={admin._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
                     <td className="p-3 text-center">
                       <div
                         onClick={() => handleSelectAdmin(admin._id)}
