@@ -189,20 +189,32 @@ const AdminDashboard = () => {
                     </td>
                     <td className="p-3 text-center">
                       <div className="relative group">
-                        <div className=" transition-opacity duration-300 ">
-                          <button 
-                            onClick={() => toggleAdmin(user._id, user.role)} 
-                            className={`scale-[85%] bg-[#18191af7] border border-white ${
-                              user.role === "admin" 
-                                ? "hover:border-red-500 hover:text-red-500" 
-                                : "hover:border-green-500 hover:text-green-500"
-                            } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
-                          >
-                            {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
-                          </button>
-                          <button onClick={() => deleteUser(user._id)} className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded">
-                            Delete
-                          </button>
+                        <div className="transition-opacity duration-300">
+                          {user.email === "jairajgsklm@gmail.com" ? (
+                            <button title="This is the primary admin account, no changes can be made to it."
+                              className="scale-[85%] bg-[#18191af7] border border-gray-500 hover:border-blue-500  text-gray-500 hover:text-blue-500 pacity-30 px-3 py-1 rounded cursor-help"
+                            > Master Admin
+                            </button>
+                          ) : (
+                            <>
+                              <button 
+                                onClick={() => toggleAdmin(user._id, user.role)} 
+                                className={`scale-[85%] bg-[#18191af7] border border-white ${
+                                  user.role === "admin" 
+                                    ? "hover:border-red-500 hover:text-red-500" 
+                                    : "hover:border-green-500 hover:text-green-500"
+                                } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
+                              >
+                                {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
+                              </button>
+                              <button 
+                                onClick={() => deleteUser(user._id)} 
+                                className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
+                              >
+                                Delete
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
                     </td>

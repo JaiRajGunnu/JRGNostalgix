@@ -190,18 +190,27 @@ const AdminsPage = () => {
                     <td className="p-3 text-center">
                       <div className="relative group">
                         <div className="transition-opacity duration-300">
-                          <button 
-                            onClick={() => toggleAdmin(admin._id, admin.role)}
-                            className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
-                          >
-                            Revoke Admin
+                          {admin.email === "jairajgsklm@gmail.com" ? (
+                            <button title="This is the primary admin account, no changes can be made to it."
+                            className="scale-[85%] bg-[#18191af7] border border-gray-500 hover:border-blue-500  text-gray-500 hover:text-blue-500 pacity-30 px-3 py-1 rounded cursor-help"
+                          > Master Admin
                           </button>
-                          <button 
-                            onClick={() => deleteAdmin(admin._id)} 
-                            className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded ml-2"
-                          >
-                            Delete
-                          </button>
+                          ) : (
+                            <>
+                              <button 
+                                onClick={() => toggleAdmin(admin._id, admin.role)}
+                                className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
+                              >
+                                Revoke Admin
+                              </button>
+                              <button 
+                                onClick={() => deleteAdmin(admin._id)} 
+                                className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded ml-2"
+                              >
+                                Delete
+                              </button>
+                            </>
+                          )}
                         </div>
                       </div>
                     </td>
