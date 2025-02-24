@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
 import { LuUsersRound } from "react-icons/lu";
 import { MdOutlineFeedback } from "react-icons/md";
+import { IoMdWifi } from "react-icons/io";
 import { FaChartLine } from "react-icons/fa";
 import { RiCustomerServiceLine } from "react-icons/ri";
 import WeatherCard from '@/components/ui/WeatherCard';
@@ -39,6 +40,8 @@ const AdminDashboard = () => {
   const [userName, setUserName] = useState<string>("");
   const [lastLogin, setLastLogin] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [activeUsers, setActiveUsers] = useState(0);
+  const [inactiveUsers, setInactiveUsers] = useState(0);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -82,6 +85,16 @@ const AdminDashboard = () => {
     }
   }, []);
 
+  useEffect(() => {
+    if (users.length > 0) {
+      const active = users.filter(user => 
+        user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000
+      ).length;
+      const inactive = users.length - active;
+      setActiveUsers(active);
+      setInactiveUsers(inactive);
+    }
+  }, [users]);
 
   const fetchDashboardData = async () => {
     try {
@@ -154,25 +167,33 @@ const AdminDashboard = () => {
               <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center">
                 <LuUsersRound className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
                 <div className="ml-4">
-                  <p className="text-lg font-semibold font-poppins text-gray-300">Users</p>
+                  <p className="text-lg font-semibold font-poppins text-gray-300">Total users</p>
                   <p className="text-2xl font-bold text-white">{userCount}</p>
                 </div>
               </div>
 
               {/* Card 04 */}
-              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
-                <FaChartLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
-                <div className="ml-4">
-                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
-                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
+              <div className="p-10  bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center">
+                    <IoMdWifi className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
+                    <div className="ml-4">
+                      <p className="text-lg font-semibold font-poppins text-gray-300">Active users</p>
+                      <div className="flex items-center gap-2">
+                        <span className="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
+                        <p className="text-2xl font-bold text-white">{activeUsers}</p>
+                      </div>
+                    </div>
+                  </div>
+                 
                 </div>
               </div>
 
               {/* Card 03 */}
-              <div className="p-10 bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl flex items-center">
+              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
                 <RiCustomerServiceLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
                 <div className="ml-4">
-                  <p className="text-lg font-semibold font-poppins text-gray-300">Total Tickets</p>
+                  <p className="text-lg font-semibold font-poppins text-gray-300">Total tickets</p>
                   <p className="text-2xl font-bold text-white">{viewsCount}</p>
                 </div>
               </div>
