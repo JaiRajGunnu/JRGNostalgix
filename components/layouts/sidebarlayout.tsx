@@ -11,6 +11,7 @@ import {
   IconUserHeart,
   IconHeart,
 } from "@tabler/icons-react";
+import { LuLayoutDashboard } from "react-icons/lu";
 import { useSidebar } from "@/components/ui/sidebar";
 import AuthGuard from "@/guard/authguard";
 import { shortTestimonials } from "@/components/ui/friends";
@@ -73,15 +74,28 @@ import Image from "next/image"; // Import Image from next/image
     );
   };
 
-const SidebarLayout = ({ children }: { children: ReactNode }) => {
+interface SidebarLayoutProps {
+  children: React.ReactNode;
+}
+
+const SidebarLayout = ({ children }: SidebarLayoutProps) => {
   const router = useRouter();
   const pathname = usePathname(); // Get current path
   const [username, setUsername] = useState("Guest");
+  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     const storedName = localStorage.getItem("userName");
     if (storedName) {
       setUsername(storedName);
+    }
+  }, []);
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+    if (user) {
+      const userData = JSON.parse(user);
+      setIsAdmin(userData.role === "admin");
     }
   }, []);
 
@@ -99,22 +113,33 @@ const SidebarLayout = ({ children }: { children: ReactNode }) => {
   };
 
   const links = [
+
+
     {
       label: "Home",
       href: "/community",
       icon: <IconHome className="h-8 w-8" />,
-      onClick: handleHomeClick, // Add onClick handler
+      onClick: handleHomeClick,
     },
     { label: "My Verso", href: "/aboutme", icon: <IconHeart className="h-8 w-8" /> },
     { label: "Profile", href: "/profile", icon: <IconUserHeart className="h-8 w-8" /> },
     { label: "Feedback", href: "/feedback", icon: <IconMessage2Code className="h-8 w-8" /> },
     { label: "Settings", href: "/settings", icon: <IconSettings className="h-8 w-8" /> },
+
     {
       label: "Logout",
-      href: "#", // Changed href to "#" to prevent navigation
+      href: "#",
       icon: <IconLogout2 className="h-8 w-8" />,
       onClick: handleLogout,
     },
+            // Admin Panel link - only shown if user is admin
+            ...(isAdmin ? [{
+              label: "Admin Panel",
+              href: "/admin",
+              icon: <LuLayoutDashboard  
+              className="h-8 w-8" />,
+            }] : []),
+    
   ];
 
   return (
