@@ -7,7 +7,7 @@ import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
-import { CheckIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 
 interface User {
@@ -21,6 +21,8 @@ interface User {
 }
 
 type FilterType = 'all' | 'admin' | 'member';
+type StatusFilterType = 'all' | 'active' | 'inactive';
+type SortType = 'none' | 'name-asc' | 'name-desc' | 'login-recent' | 'login-oldest';
 
 const AdminDashboard = () => {
   const router = useRouter();
@@ -28,6 +30,8 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
+  const [statusFilter, setStatusFilter] = useState<StatusFilterType>('all');
+  const [sortBy, setSortBy] = useState<SortType>('none');
   const [loading, setLoading] = useState(true);
   const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
@@ -43,8 +47,8 @@ const AdminDashboard = () => {
   }, [router]);
 
   useEffect(() => {
-    filterUsers(activeFilter);
-  }, [users, activeFilter]);
+    applyFiltersAndSort();
+  }, [users, activeFilter, statusFilter, sortBy]);
 
   const fetchUsers = async () => {
     try {
@@ -64,25 +68,79 @@ const AdminDashboard = () => {
     }
   };
 
-  const filterUsers = (filterType: FilterType) => {
-    switch (filterType) {
-      case 'admin':
-        setFilteredUsers(users.filter(user => user.role === 'admin'));
-        break;
-      case 'member':
-        setFilteredUsers(users.filter(user => user.role === 'user'));
-        break;
-      case 'all':
-      default:
-        setFilteredUsers([...users]);
-        break;
+  const applyFiltersAndSort = () => {
+    // First apply role filter
+    let filtered = [...users];
+    
+    if (activeFilter === 'admin') {
+      filtered = filtered.filter(user => user.role === 'admin');
+    } else if (activeFilter === 'member') {
+      filtered = filtered.filter(user => user.role === 'user');
     }
+    
+    // Then apply status filter
+    if (statusFilter === 'active') {
+      filtered = filtered.filter(user => 
+        user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000
+      );
+    } else if (statusFilter === 'inactive') {
+      filtered = filtered.filter(user => 
+        !user.lastLogin || new Date(user.lastLogin).getTime() <= Date.now() - 48 * 60 * 60 * 1000
+      );
+    }
+    
+    // Apply sorting
+    if (sortBy === 'name-asc') {
+      filtered.sort((a, b) => a.name.localeCompare(b.name));
+    } else if (sortBy === 'name-desc') {
+      filtered.sort((a, b) => b.name.localeCompare(a.name));
+    } else if (sortBy === 'login-recent') {
+      filtered.sort((a, b) => {
+        // Handle cases where lastLogin might be undefined
+        if (!a.lastLogin) return 1;
+        if (!b.lastLogin) return -1;
+        return new Date(b.lastLogin).getTime() - new Date(a.lastLogin).getTime();
+      });
+    } else if (sortBy === 'login-oldest') {
+      filtered.sort((a, b) => {
+        // Handle cases where lastLogin might be undefined
+        if (!a.lastLogin) return 1;
+        if (!b.lastLogin) return -1;
+        return new Date(a.lastLogin).getTime() - new Date(b.lastLogin).getTime();
+      });
+    }
+    
+    setFilteredUsers(filtered);
   };
 
-  const handleFilterChange = (filterType: FilterType) => {
+  const handleRoleFilterChange = (filterType: FilterType) => {
     setActiveFilter(filterType);
     // Reset selected users when changing filters
     setSelectedUsers({});
+  };
+
+  const handleStatusFilterChange = (filterType: StatusFilterType) => {
+    setStatusFilter(filterType);
+    // Reset selected users when changing filters
+    setSelectedUsers({});
+  };
+
+  const handleSortChange = (sortType: SortType) => {
+    setSortBy(sortType);
+    // Reset selected users when changing sort
+    setSelectedUsers({});
+  };
+
+  const isUserActive = (user: User): boolean => {
+    return !!(user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000);
+  };
+
+  const getActiveUsersCount = (): number => {
+    return users.filter(isUserActive).length;
+  };
+
+  const getInactiveUsersCount = (): number => {
+    return users.length - getActiveUsersCount();
   };
 
   const handleSelectAll = () => {
@@ -139,38 +197,128 @@ const AdminDashboard = () => {
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <h1 className="text-4xl font-bold text-center mt-5 mb-10">Member's Dashboard</h1>
           
-          {/* Role Filter Buttons */}
-          <div className="flex justify-center mb-10 gap-4">
-            <button 
-              onClick={() => handleFilterChange('all')}
-              className={`px-4 py-2 rounded-lg transition-all ${
-                activeFilter === 'all' 
-                  ? 'bg-white text-black' 
-                  : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-              }`}
-            >
-              All Users ({users.length})
-            </button>
-            <button 
-              onClick={() => handleFilterChange('admin')}
-              className={`px-4 py-2 rounded-lg transition-all ${
-                activeFilter === 'admin' 
-                ? 'bg-white text-black' 
-                : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-              }`}
-            >
-              Admins Only ({users.filter(user => user.role === 'admin').length})
-            </button>
-            <button 
-              onClick={() => handleFilterChange('member')}
-              className={`px-4 py-2 rounded-lg transition-all ${
-                activeFilter === 'member' 
-                ? 'bg-white text-black' 
-                : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-              }`}
-            >
-              Members Only ({users.filter(user => user.role === 'user').length})
-            </button>
+          {/* Filter and Sort Controls */}
+          <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Role Filter Buttons */}
+            <div className="bg-[#1e1f21] p-4 rounded-lg">
+              <h3 className="text-sm text-white/70 mb-2 font-semibold">Filter by Role</h3>
+              <div className="flex gap-2 flex-wrap">
+                <button 
+                  onClick={() => handleRoleFilterChange('all')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    activeFilter === 'all' 
+                      ? 'bg-white text-black' 
+                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  All ({users.length})
+                </button>
+                <button 
+                  onClick={() => handleRoleFilterChange('admin')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    activeFilter === 'admin' 
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Admins ({users.filter(user => user.role === 'admin').length})
+                </button>
+                <button 
+                  onClick={() => handleRoleFilterChange('member')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    activeFilter === 'member' 
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Members ({users.filter(user => user.role === 'user').length})
+                </button>
+              </div>
+            </div>
+            
+            {/* Status Filter Buttons */}
+            <div className="bg-[#1e1f21] p-4 rounded-lg">
+              <h3 className="text-sm text-white/70 mb-2 font-semibold">Filter by Status</h3>
+              <div className="flex gap-2 flex-wrap">
+                <button 
+                  onClick={() => handleStatusFilterChange('all')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    statusFilter === 'all' 
+                      ? 'bg-white text-black' 
+                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  All Status
+                </button>
+                <button 
+                  onClick={() => handleStatusFilterChange('active')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    statusFilter === 'active' 
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Active ({getActiveUsersCount()})
+                </button>
+                <button 
+                  onClick={() => handleStatusFilterChange('inactive')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
+                    statusFilter === 'inactive' 
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Inactive ({getInactiveUsersCount()})
+                </button>
+              </div>
+            </div>
+            
+            {/* Sort Options */}
+            <div className="bg-[#1e1f21] p-4 rounded-lg">
+              <h3 className="text-sm text-white/70 mb-2 font-semibold">Sort By</h3>
+              <div className="flex gap-2 flex-wrap">
+                <button 
+                  onClick={() => handleSortChange('name-asc')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
+                    sortBy === 'name-asc'
+                      ? 'bg-white text-black' 
+                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Name (A-Z) <ArrowUpIcon className="h-3 w-3 ml-1" />
+                </button>
+                <button 
+                  onClick={() => handleSortChange('name-desc')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
+                    sortBy === 'name-desc'
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Name (Z-A) <ArrowDownIcon className="h-3 w-3 ml-1" />
+                </button>
+                <button 
+                  onClick={() => handleSortChange('login-recent')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
+                    sortBy === 'login-recent'
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Recent Login <ArrowUpIcon className="h-3 w-3 ml-1" />
+                </button>
+                <button 
+                  onClick={() => handleSortChange('login-oldest')}
+                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
+                    sortBy === 'login-oldest'
+                    ? 'bg-white text-black' 
+                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                  }`}
+                >
+                  Oldest Login <ArrowDownIcon className="h-3 w-3 ml-1" />
+                </button>
+              </div>
+            </div>
           </div>
           
           {loading ? (
@@ -178,115 +326,165 @@ const AdminDashboard = () => {
           ) : (
             <>
               {filteredUsers.length === 0 ? (
-                <p className="text-center py-10 opacity-70">No users match the selected filter</p>
+                <p className="text-center py-10 opacity-70">No users match the selected filters</p>
               ) : (
-                <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
-                  <thead>
-                    <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
-                      <th className="p-3">
-                        <aside
-                          onClick={handleSelectAll}
-                          className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
-                            filteredUsers.length > 0 && 
-                            Object.keys(selectedUsers).length === filteredUsers.length && 
-                            Object.values(selectedUsers).every(Boolean) 
-                              ? "bg-blue-500 border-blue-500" 
-                              : "border-white/50"
-                          }`}
-                        >
-                          {filteredUsers.length > 0 && 
-                           Object.keys(selectedUsers).length === filteredUsers.length && 
-                           Object.values(selectedUsers).every(Boolean) && 
-                           <CheckIcon className="w-3 h-3 text-white" />}
-                        </aside>
-                      </th>
-                      <th className="p-3 text-left">Name</th>
-                      <th className="p-3">E-mail</th>
-                      <th className="p-3">Status</th>
-                      <th className="p-3">Last login</th>
-                      <th className="p-3">Member since</th>
-                      <th className="p-3">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {filteredUsers.map((user) => {
-                      const friend = shortTestimonials.find(friend => friend.email === user.email);
-                      return (
-                        <tr key={user._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
-                          <td className="p-3 text-center">
-                            <div
-                              onClick={() => handleSelectUser(user._id)}
-                              className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
-                            >
-                              {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
-                            </div>  
-                          </td>
+                <div className="bg-[#18191af7] rounded-lg overflow-hidden">
+                  <div className="p-4 border-b border-[#27292af7] flex justify-between items-center">
+                    <span className="text-white/70">Showing {filteredUsers.length} of {users.length} users</span>
+                    <span className="text-sm text-white/50">
+                      {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
+                      {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
+                      {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
+                      {(activeFilter !== 'all' || statusFilter !== 'all') && sortBy !== 'none' && ' | '}
+                      {sortBy !== 'none' && `Sorted by: ${
+                        sortBy === 'name-asc' ? 'Name (A-Z)' : 
+                        sortBy === 'name-desc' ? 'Name (Z-A)' : 
+                        sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
+                      }`}
+                    </span>
+                  </div>
+                  <table className="w-full">
+                    <thead>
+                      <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
+                        <th className="p-3">
+                          <aside
+                            onClick={handleSelectAll}
+                            className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
+                              filteredUsers.length > 0 && 
+                              Object.keys(selectedUsers).length === filteredUsers.length && 
+                              Object.values(selectedUsers).every(Boolean) 
+                                ? "bg-blue-500 border-blue-500" 
+                                : "border-white/50"
+                            }`}
+                          >
+                            {filteredUsers.length > 0 && 
+                             Object.keys(selectedUsers).length === filteredUsers.length && 
+                             Object.values(selectedUsers).every(Boolean) && 
+                             <CheckIcon className="w-3 h-3 text-white" />}
+                          </aside>
+                        </th>
+                        <th className="p-3 text-left">
+                          <div className="flex items-center">
+                            Name
+                            <div className="ml-2 flex flex-col">
+                              <ArrowUpIcon 
+                                className={`w-3 h-3 ${sortBy === 'name-asc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`} 
+                                onClick={() => handleSortChange('name-asc')}
+                              />
+                              <ArrowDownIcon 
+                                className={`w-3 h-3 ${sortBy === 'name-desc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`} 
+                                onClick={() => handleSortChange('name-desc')}
+                              />
+                            </div>
+                          </div>
+                        </th>
+                        <th className="p-3">E-mail</th>
+                        <th className="p-3">
+                          <div className="flex justify-center items-center">
+                            Status
+                          </div>
+                        </th>
+                        <th className="p-3">
+                          <div className="flex justify-center items-center">
+                            Last login
+                            <div className="ml-2 flex flex-col">
+                              <ArrowUpIcon 
+                                className={`w-3 h-3 ${sortBy === 'login-recent' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`} 
+                                onClick={() => handleSortChange('login-recent')}
+                              />
+                              <ArrowDownIcon 
+                                className={`w-3 h-3 ${sortBy === 'login-oldest' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`} 
+                                onClick={() => handleSortChange('login-oldest')}
+                              />
+                            </div>
+                          </div>
+                        </th>
+                        <th className="p-3">Member since</th>
+                        <th className="p-3">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {filteredUsers.map((user) => {
+                        const friend = shortTestimonials.find(friend => friend.email === user.email);
+                        const userActive = isUserActive(user);
+                        
+                        return (
+                          <tr key={user._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
+                            <td className="p-3 text-center">
+                              <div
+                                onClick={() => handleSelectUser(user._id)}
+                                className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+                              >
+                                {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
+                              </div>  
+                            </td>
 
-                          <td className="p-3 text-center max-w-[150px]">
-                            <div className="flex flex-row gap-2 justify-start">
-                              <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}  
-                                  className="w-7 h-7 rounded-full" />
-                              <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
-                            </div>
-                          </td>
-                          <td className="p-3 text-center">{user.email}</td>
-                          <td className="p-3 text-center">
-                            {user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                              <span className="flex items-center justify-center cursor-help" title={`This user was active in the last 48 hours`}>
-                                <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
-                                Active
-                              </span>
-                            ) : (
-                              <span className="flex items-center justify-center ml-3 cursor-help" title={`This user was inactive for more than 48 hours`}>
-                                <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
-                                Inactive
-                              </span>
-                            )}
-                          </td>
-                          <td className="p-3 text-center">
-                            {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
-                              day: '2-digit',
-                              month: 'short',
-                              year: 'numeric',
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              hour12: true,
-                            }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
-                          : 'N/A'}
-                          </td>
-                          <td className="p-3 text-center">
-                            {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
-                          </td>
-                          <td className="p-3 text-center">
-                            <div className="relative group">
-                              <div className="transition-opacity duration-300">
-                                {user.email === "jairajgsklm@gmail.com" ? (
-                                  <button title="This is the primary admin account, no changes can be made to it."
-                                    className="scale-[85%] bg-[#18191af7] border border-gray-500 hover:border-blue-500  text-gray-500 hover:text-blue-500 pacity-30 px-3 py-1 rounded cursor-help"
-                                  > Master Admin
-                                  </button>
-                                ) : (
-                                  <>
-                                    <button 
-                                      onClick={() => toggleAdmin(user._id, user.role)} 
-                                      className={`scale-[85%] bg-[#18191af7] border border-white ${
-                                        user.role === "admin" 
-                                          ? "hover:border-red-500 hover:text-red-500" 
-                                          : "hover:border-green-500 hover:text-green-500"
-                                      } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
-                                    >
-                                      {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
-                                    </button>
-                                  </>
-                                )}
+                            <td className="p-3 text-center max-w-[150px]">
+                              <div className="flex flex-row gap-2 justify-start">
+                                <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}  
+                                    className="w-7 h-7 rounded-full" />
+                                <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
                               </div>
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                            </td>
+                            <td className="p-3 text-center">{user.email}</td>
+                            <td className="p-3 text-center">
+                              {userActive ? (
+                                <span className="flex items-center justify-center cursor-help" title={`This user was active in the last 48 hours`}>
+                                  <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                                  Active
+                                </span>
+                              ) : (
+                                <span className="flex items-center justify-center ml-3 cursor-help" title={`This user was inactive for more than 48 hours`}>
+                                  <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                                  Inactive
+                                </span>
+                              )}
+                            </td>
+                            <td className="p-3 text-center">
+                              {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
+                                day: '2-digit',
+                                month: 'short',
+                                year: 'numeric',
+                                hour: '2-digit',
+                                minute: '2-digit',
+                                hour12: true,
+                              }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                            : 'N/A'}
+                            </td>
+                            <td className="p-3 text-center">
+                              {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                            </td>
+                            <td className="p-3 text-center">
+                              <div className="relative group">
+                                <div className="transition-opacity duration-300">
+                                  {user.email === "jairajgsklm@gmail.com" ? (
+                                    <button title="This is the primary admin account, no changes can be made to it."
+                                      className="scale-[85%] bg-[#18191af7] border border-gray-500 hover:border-blue-500  text-gray-500 hover:text-blue-500 pacity-30 px-3 py-1 rounded cursor-help"
+                                    > Master Admin
+                                    </button>
+                                  ) : (
+                                    <>
+                                      <button 
+                                        onClick={() => toggleAdmin(user._id, user.role)} 
+                                        className={`scale-[85%] bg-[#18191af7] border border-white ${
+                                          user.role === "admin" 
+                                            ? "hover:border-red-500 hover:text-red-500" 
+                                            : "hover:border-green-500 hover:text-green-500"
+                                        } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
+                                      >
+                                        {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
+                                      </button>
+                                    </>
+                                  )}
+                                </div>
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })}
+                    </tbody>
+                  </table>
+                </div>
               )}
             </>
           )}
