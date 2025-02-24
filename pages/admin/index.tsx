@@ -54,7 +54,7 @@ const AdminDashboard = () => {
     if (storedUser) {
       const user = JSON.parse(storedUser);
       setUserName(user.name);
-  
+
       if (user.lastLogin) {
         const options: Intl.DateTimeFormatOptions = {
           timeZone: "Asia/Kolkata",
@@ -65,15 +65,15 @@ const AdminDashboard = () => {
           minute: "2-digit",
           hour12: true,
         };
-  
+
         let formattedTime = new Date(user.lastLogin).toLocaleString("en-IN", options);
-        
+
         // Insert comma manually after the date
         formattedTime = formattedTime.replace(/^(\d{2} \w{3} \d{2})/, "$1");
-  
+
         // Convert am/pm to uppercase AM/PM
         formattedTime = formattedTime.replace(/\b(am|pm)\b/g, (match) => match.toUpperCase());
-  
+
         setLastLogin(formattedTime);
       } else {
         setLastLogin("N/A");
@@ -81,7 +81,7 @@ const AdminDashboard = () => {
     }
   }, []);
 
-  
+
   const fetchDashboardData = async () => {
     try {
       const userResponse = await fetch("/api/users");
@@ -132,7 +132,7 @@ const AdminDashboard = () => {
   return (
     <div className="flex min-h-screen text-white">
       <div className="absolute inset-0 -z-10 pointer-events-none">
-      <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
+        <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
       </div>
 
       <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
@@ -155,9 +155,9 @@ const AdminDashboard = () => {
                   <p className="text-2xl font-bold text-white">{userCount}</p>
                 </div>
               </div>
-              
-                {/* Card 04 */}
-                <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
+
+              {/* Card 04 */}
+              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
                 <FaChartLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Total Views</p>
@@ -195,16 +195,20 @@ const AdminDashboard = () => {
             <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
               <thead>
                 <tr className="bg-[#27292af7] text-white font-medium">
-                  <th className="p-3">Name</th>
-                  <th className="p-3">Role</th>
+                  <th className="p-3 max-w-[200px] text-left">Name</th>
                   <th className="p-3">Since</th>
+                  <th className="p-3">Status</th>
                   <th className="p-3">Last login</th>
                 </tr>
               </thead>
               <tbody>
                 {users.filter(user => user.role === "admin").map((admin) => (
-                  <tr key={admin._id} className="border-b border-[#27292af7]">
-                    <td className="p-3 text-center text-gray-100 flex flex-row">
+                  <tr 
+                    key={admin._id} 
+                    className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
+                    onClick={() => router.push('/admin/adminslist')}
+                  >
+                    <td className="p-3 text-centertext-gray-100 flex flex-row max-w-[200px]">
                       <Image
                         src={admin.image || '/img/guestavatar.svg'}
                         alt={`${admin.name}'s profile`}
@@ -214,11 +218,34 @@ const AdminDashboard = () => {
                       />
                       {admin.name}
                     </td>
-                    <td className="p-3 text-center capitalize">{admin.role}</td>
                     <td className="p-3 text-center">
                       {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
                     </td>
-                    <td className="p-3 text-center">{lastLogin}</td>
+                    <td className="p-3 text-center">
+                      {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
+                        <span className="flex items-center justify-center ml-0" title={`This admin was active in the last 48 hours`}>
+                          <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                          Active
+                        </span>
+                      ) : (
+                        <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
+                          <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                          Inactive
+                        </span>
+                      )}
+                    </td>
+
+                    <td className="p-3 text-center">
+                      {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: true,
+                      }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                      : 'N/A'}
+                    </td>                  
                   </tr>
                 ))}
               </tbody>
