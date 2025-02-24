@@ -1,5 +1,3 @@
-// pages\admin\users.tsx
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
@@ -7,7 +5,7 @@ import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
-import { CheckIcon, ArrowUpIcon, ArrowDownIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, ArrowUpIcon, ArrowDownIcon, ArrowPathIcon, FunnelIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 
 interface User {
@@ -35,6 +33,7 @@ const AdminDashboard = () => {
   const [loading, setLoading] = useState(true);
   const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+  const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -131,6 +130,13 @@ const AdminDashboard = () => {
     setSelectedUsers({});
   };
 
+  const resetAllFilters = () => {
+    setActiveFilter('all');
+    setStatusFilter('all');
+    setSortBy('none');
+    setSelectedUsers({});
+  };
+
   const isUserActive = (user: User): boolean => {
     return !!(user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000);
   };
@@ -181,6 +187,16 @@ const AdminDashboard = () => {
     }
   };
 
+  const isAnyFilterActive = activeFilter !== 'all' || statusFilter !== 'all' || sortBy !== 'none';
+
+  const getActiveFilterCount = () => {
+    let count = 0;
+    if (activeFilter !== 'all') count++;
+    if (statusFilter !== 'all') count++;
+    if (sortBy !== 'none') count++;
+    return count;
+  };
+
   return (
     <>
       <Head>
@@ -195,153 +211,210 @@ const AdminDashboard = () => {
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
-          <h1 className="text-4xl font-bold text-center mt-5 mb-10">Member's Dashboard</h1>
-          
-          {/* Filter and Sort Controls */}
-          <div className="mb-8 grid grid-cols-1 md:grid-cols-3 gap-4">
-            {/* Role Filter Buttons */}
-            <div className="bg-[#1e1f21] p-4 rounded-lg">
-              <h3 className="text-sm text-white/70 mb-2 font-semibold">Filter by Role</h3>
-              <div className="flex gap-2 flex-wrap">
-                <button 
-                  onClick={() => handleRoleFilterChange('all')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    activeFilter === 'all' 
-                      ? 'bg-white text-black' 
-                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  All ({users.length})
-                </button>
-                <button 
-                  onClick={() => handleRoleFilterChange('admin')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    activeFilter === 'admin' 
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Admins ({users.filter(user => user.role === 'admin').length})
-                </button>
-                <button 
-                  onClick={() => handleRoleFilterChange('member')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    activeFilter === 'member' 
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Members ({users.filter(user => user.role === 'user').length})
-                </button>
-              </div>
-            </div>
-            
-            {/* Status Filter Buttons */}
-            <div className="bg-[#1e1f21] p-4 rounded-lg">
-              <h3 className="text-sm text-white/70 mb-2 font-semibold">Filter by Status</h3>
-              <div className="flex gap-2 flex-wrap">
-                <button 
-                  onClick={() => handleStatusFilterChange('all')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    statusFilter === 'all' 
-                      ? 'bg-white text-black' 
-                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  All Status
-                </button>
-                <button 
-                  onClick={() => handleStatusFilterChange('active')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    statusFilter === 'active' 
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Active ({getActiveUsersCount()})
-                </button>
-                <button 
-                  onClick={() => handleStatusFilterChange('inactive')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm ${
-                    statusFilter === 'inactive' 
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Inactive ({getInactiveUsersCount()})
-                </button>
-              </div>
-            </div>
-            
-            {/* Sort Options */}
-            <div className="bg-[#1e1f21] p-4 rounded-lg">
-              <h3 className="text-sm text-white/70 mb-2 font-semibold">Sort By</h3>
-              <div className="flex gap-2 flex-wrap">
-                <button 
-                  onClick={() => handleSortChange('name-asc')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
-                    sortBy === 'name-asc'
-                      ? 'bg-white text-black' 
-                      : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Name (A-Z) <ArrowUpIcon className="h-3 w-3 ml-1" />
-                </button>
-                <button 
-                  onClick={() => handleSortChange('name-desc')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
-                    sortBy === 'name-desc'
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Name (Z-A) <ArrowDownIcon className="h-3 w-3 ml-1" />
-                </button>
-                <button 
-                  onClick={() => handleSortChange('login-recent')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
-                    sortBy === 'login-recent'
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Recent Login <ArrowUpIcon className="h-3 w-3 ml-1" />
-                </button>
-                <button 
-                  onClick={() => handleSortChange('login-oldest')}
-                  className={`px-3 py-1 rounded-lg transition-all text-sm flex items-center ${
-                    sortBy === 'login-oldest'
-                    ? 'bg-white text-black' 
-                    : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
-                  }`}
-                >
-                  Oldest Login <ArrowDownIcon className="h-3 w-3 ml-1" />
-                </button>
-              </div>
-            </div>
+          <div className="flex justify-between items-center mt-5 mb-10">
+            <h1 className="text-4xl font-bold text-center">Member's Dashboard</h1>
           </div>
+          
+          {/* Filter Toggle Button */}
+          <div className="mb-6 flex justify-between items-center">
+            <button 
+              onClick={() => setIsFiltersOpen(!isFiltersOpen)}
+              className={`flex items-center gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
+            >
+              <FunnelIcon className="h-4 w-4" />
+              <span>Filters & Sort</span>
+              {getActiveFilterCount() > 0 && (
+                <span className="flex items-center justify-center bg-blue-500 text-white text-xs w-5 h-5 rounded-full">
+                  {getActiveFilterCount()}
+                </span>
+              )}
+            </button>
+            
+            {isAnyFilterActive && (
+              <div className="text-sm text-white/50 flex items-center gap-2">
+                <span>
+                  {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
+                  {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
+                  {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
+                  {(activeFilter !== 'all' || statusFilter !== 'all') && sortBy !== 'none' && ' | '}
+                  {sortBy !== 'none' && `Sorted by: ${
+                    sortBy === 'name-asc' ? 'Name (A-Z)' : 
+                    sortBy === 'name-desc' ? 'Name (Z-A)' : 
+                    sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
+                  }`}
+                </span>
+                <button 
+                  onClick={resetAllFilters}
+                  className="flex items-center gap-1 bg-gray-700 hover:bg-gray-600 text-white/70 hover:text-white px-2 py-1 rounded text-xs transition-all"
+                  title="Reset all filters"
+                >
+                  <ArrowPathIcon className="h-3 w-3" />
+                  Clear All
+                </button>
+              </div>
+            )}
+          </div>
+          
+          {/* Filter and Sort Controls - Only shown when filters are open */}
+          {isFiltersOpen && (
+            <div className="mb-8 bg-[#1e1f21] rounded-lg overflow-hidden shadow-lg">
+              <div className="flex justify-between items-center px-4 py-3 border-b border-[#27292af7]">
+                <h3 className="font-semibold">Filter & Sort Options</h3>
+                <button 
+                  onClick={() => setIsFiltersOpen(false)}
+                  className="text-white/70 hover:text-white transition-colors"
+                >
+                  <XMarkIcon className="h-5 w-5" />
+                </button>
+              </div>
+              
+              <div className="p-4 grid grid-cols-1 md:grid-cols-3 gap-0">
+                {/* Role Filter Buttons */}
+                <div>
+                  <h3 className="text-sm text-white/70 mb-3 font-medium">Filter by Role</h3>
+                  <div className="flex gap-2 flex-wrap">
+                    <button 
+                      onClick={() => handleRoleFilterChange('all')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        activeFilter === 'all' 
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      All ({users.length})
+                    </button>
+                    <button 
+                      onClick={() => handleRoleFilterChange('admin')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        activeFilter === 'admin' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Admins ({users.filter(user => user.role === 'admin').length})
+                    </button>
+                    <button 
+                      onClick={() => handleRoleFilterChange('member')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        activeFilter === 'member' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Members ({users.filter(user => user.role === 'user').length})
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Status Filter Buttons */}
+                <div>
+                  <h3 className="text-sm text-white/70 mb-3 font-medium">Filter by Status</h3>
+                  <div className="flex gap-2 flex-wrap">
+                    <button 
+                      onClick={() => handleStatusFilterChange('all')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        statusFilter === 'all' 
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      All Status
+                    </button>
+                    <button 
+                      onClick={() => handleStatusFilterChange('active')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        statusFilter === 'active' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Active ({getActiveUsersCount()})
+                    </button>
+                    <button 
+                      onClick={() => handleStatusFilterChange('inactive')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm ${
+                        statusFilter === 'inactive' 
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Inactive ({getInactiveUsersCount()})
+                    </button>
+                  </div>
+                </div>
+                
+                {/* Sort Options */}
+                <div>
+                  <h3 className="text-sm text-white/70 mb-3 font-medium">Sort By</h3>
+                  <div className="flex gap-2 flex-wrap">
+                    <button 
+                      onClick={() => handleSortChange('name-asc')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'name-asc'
+                          ? 'bg-blue-600 text-white' 
+                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Name (A-Z) <ArrowUpIcon className="h-3 w-3 ml-1" />
+                    </button>
+                    {/* <button 
+                      onClick={() => handleSortChange('name-desc')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'name-desc'
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Name (Z-A) <ArrowDownIcon className="h-3 w-3 ml-1" />
+                    </button> */}
+                    <button 
+                      onClick={() => handleSortChange('login-recent')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'login-recent'
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Recent Login <ArrowUpIcon className="h-3 w-3 ml-1" />
+                    </button>
+                    <button 
+                      onClick={() => handleSortChange('login-oldest')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'login-oldest'
+                        ? 'bg-blue-600 text-white' 
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Oldest Login <ArrowDownIcon className="h-3 w-3 ml-1" />
+                    </button>
+                  </div>
+                </div>
+              </div>
+              
+            </div>
+          )}
           
           {loading ? (
             <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
           ) : (
             <>
               {filteredUsers.length === 0 ? (
-                <p className="text-center py-10 opacity-70">No users match the selected filters</p>
+                <div className="text-center py-10 ">
+                  <p className="opacity-70">No users match the selected filters</p>
+                  {isAnyFilterActive && (
+                    <button 
+                      onClick={resetAllFilters}
+                      className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
+                    >
+                      <ArrowPathIcon className="h-4 w-4" />
+                      Reset all filters
+                    </button>
+                  )}
+                </div>
               ) : (
                 <div className="bg-[#18191af7] rounded-lg overflow-hidden">
                   <div className="p-4 border-b border-[#27292af7] flex justify-between items-center">
                     <span className="text-white/70">Showing {filteredUsers.length} of {users.length} users</span>
-                    <span className="text-sm text-white/50">
-                      {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
-                      {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
-                      {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
-                      {(activeFilter !== 'all' || statusFilter !== 'all') && sortBy !== 'none' && ' | '}
-                      {sortBy !== 'none' && `Sorted by: ${
-                        sortBy === 'name-asc' ? 'Name (A-Z)' : 
-                        sortBy === 'name-desc' ? 'Name (Z-A)' : 
-                        sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
-                      }`}
-                    </span>
                   </div>
                   <table className="w-full">
                     <thead>
