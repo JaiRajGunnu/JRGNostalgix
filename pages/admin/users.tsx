@@ -71,17 +71,7 @@ const AdminDashboard = () => {
     setSelectedUsers(prev => ({ ...prev, [userId]: !prev[userId] }));
   };
 
-  const deleteUser = async (userId: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      await axios.delete(`/api/users/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      setUsers(users.filter((user) => user._id !== userId));
-    } catch (error) {
-      console.error("Error deleting user:", error);
-    }
-  };
+
 
   const toggleAdmin = async (userId: string, currentRole: string) => {
     try {
@@ -213,7 +203,6 @@ const AdminDashboard = () => {
                                   {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
                                 </button>
                                 <button 
-                                  onClick={() => deleteUser(user._id)} 
                                   className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
                                 >
                                   Delete
