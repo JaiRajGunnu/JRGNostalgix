@@ -114,7 +114,7 @@ const AdminDashboard = () => {
       <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
         <h1 className="text-4xl font-bold text-center mt-5 mb-10">Member's Dashboard</h1>
         {loading ? (
-          <p className="text-center">Retrieving data from server, just a moment...</p>
+          <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
         ) : (
           <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
             <thead>

@@ -38,6 +38,7 @@ const AdminDashboard = () => {
   const [friends, setFriends] = useState<Friend[]>([]);
   const [userName, setUserName] = useState<string>("");
   const [lastLogin, setLastLogin] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -122,6 +123,8 @@ const AdminDashboard = () => {
       setUserCount(0);
       setFeedbackCount(0);
       setViewsCount(0);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -192,64 +195,67 @@ const AdminDashboard = () => {
           {/* Admin List Card */}
           <div className="mt-5">
             <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Admins</h2>
-            <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
-              <thead>
-                <tr className="bg-[#27292af7] text-white font-medium">
-                  <th className="p-3 max-w-[200px] text-left">Name</th>
-                  <th className="p-3">Since</th>
-                  <th className="p-3">Status</th>
-                  <th className="p-3">Last login</th>
-                </tr>
-              </thead>
-              <tbody>
-                {users.filter(user => user.role === "admin").map((admin) => (
-                  <tr 
-                    key={admin._id} 
-                    className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
-                    onClick={() => router.push('/admin/adminslist')}
-                  >
-                    <td className="p-3 text-centertext-gray-100 flex flex-row max-w-[200px]">
-                      <Image
-                        src={admin.image || '/img/guestavatar.svg'}
-                        alt={`${admin.name}'s profile`}
-                        width={25}
-                        height={25}
-                        className="rounded-full object-cover mr-2 transform scale-[0.8]"
-                      />
-                      {admin.name}
-                    </td>
-                    <td className="p-3 text-center">
-                      {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
-                    </td>
-                    <td className="p-3 text-center">
-                      {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                        <span className="flex items-center justify-center ml-0" title={`This admin was active in the last 48 hours`}>
-                          <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
-                          Active
-                        </span>
-                      ) : (
-                        <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
-                          <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
-                          Inactive
-                        </span>
-                      )}
-                    </td>
-
-                    <td className="p-3 text-center">
-                      {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
-                        day: '2-digit',
-                        month: 'short',
-                        year: 'numeric',
-                        hour: '2-digit',
-                        minute: '2-digit',
-                        hour12: true,
-                      }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
-                      : 'N/A'}
-                    </td>                  
+            {loading ? (
+              <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
+            ) : (
+              <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+                <thead>
+                  <tr className="bg-[#27292af7] text-white font-medium">
+                    <th className="p-3 max-w-[200px] text-left">Name</th>
+                    <th className="p-3">Since</th>
+                    <th className="p-3">Status</th>
+                    <th className="p-3">Last login</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {users.filter(user => user.role === "admin").map((admin) => (
+                    <tr 
+                      key={admin._id} 
+                      className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
+                      onClick={() => router.push('/admin/adminslist')}
+                    >
+                      <td className="p-3 text-centertext-gray-100 flex flex-row max-w-[200px]">
+                        <Image
+                          src={admin.image || '/img/guestavatar.svg'}
+                          alt={`${admin.name}'s profile`}
+                          width={25}
+                          height={25}
+                          className="rounded-full object-cover mr-2 transform scale-[0.8]"
+                        />
+                        {admin.name}
+                      </td>
+                      <td className="p-3 text-center">
+                        {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                      </td>
+                      <td className="p-3 text-center">
+                        {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
+                          <span className="flex items-center justify-center ml-0" title={`This admin was active in the last 48 hours`}>
+                            <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                            Active
+                          </span>
+                        ) : (
+                          <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
+                            <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                            Inactive
+                          </span>
+                        )}
+                      </td>
+                      <td className="p-3 text-center">
+                        {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
+                          day: '2-digit',
+                          month: 'short',
+                          year: 'numeric',
+                          hour: '2-digit',
+                          minute: '2-digit',
+                          hour12: true,
+                        }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                        : 'N/A'}
+                      </td>                  
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            )}
           </div>
           <div className="mt-5">
             <TodoList />
