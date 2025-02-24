@@ -155,19 +155,19 @@ const AdminDashboard = () => {
                       <div className="flex flex-row gap-2 justify-start">
                         <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}  
                              className="w-7 h-7 rounded-full" />
-                        <span className="text-ellipsis overflow-hidden whitespace-nowrap" title={user.name}>{user.name}</span>
+                        <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
                         </div>
                       
                     </td>
                     <td className="p-3 text-center">{user.email}</td>
                     <td className="p-3 text-center">
                       {user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                        <span className="flex items-center justify-center" title={`This user was active in the last 48 hours`}>
+                        <span className="flex items-center justify-center cursor-help" title={`This user was active in the last 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                           Active
                         </span>
                       ) : (
-                        <span className="flex items-center  justify-center ml-3" title={`This user was inactive for more than 48 hours`}>
+                        <span className="flex items-center  justify-center ml-3 cursor-help" title={`This user was inactive for more than 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                           Inactive
                         </span>

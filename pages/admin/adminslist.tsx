@@ -148,7 +148,7 @@ const AdminsPage = () => {
                     <td className="p-3 text-center max-w-[150px]">
                       <div className="flex flex-row gap-3 justify-start  ">
                         <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} className="w-7 h-7 rounded-full" />
-                        <span className="text-ellipsis overflow-hidden whitespace-nowrap" title={admin.name}>{admin.name}</span>
+                        <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={admin.name}>{admin.name}</span>
                       </div>
                     </td>
                     <td className="p-3 text-center">{admin.email}</td>
@@ -170,7 +170,7 @@ const AdminsPage = () => {
                           Active
                         </span>
                       ) : (
-                        <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
+                        <span className="flex items-center justify-center cursor-help" title={`This admin was inactive for more than 48 hours`}>
                           <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                           Inactive
                         </span>
