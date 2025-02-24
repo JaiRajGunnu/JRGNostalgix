@@ -205,7 +205,7 @@ const AdminDashboard = () => {
                                 <button 
                                   className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
                                 >
-                                  Delete
+                                  Text
                                 </button>
                               </>
                             )}
