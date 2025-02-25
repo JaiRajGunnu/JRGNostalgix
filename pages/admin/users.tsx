@@ -31,10 +31,10 @@ interface BatchActionModalProps {
 
 type FilterType = 'all' | 'admin' | 'member';
 type StatusFilterType = 'all' | 'active' | 'inactive';
-type SortType = 'none' | 'name-asc' | 'name-desc' | 'login-recent' | 'login-oldest';
+type SortType = 'none' | 'name-asc' | 'name-desc' | 'login-recent' | 'login-oldest' | 'member-newest' | 'member-oldest';
 type BatchActionType = 'make-admin' | 'revoke-admin' | 'delete';
 
-const AdminDashboard = () => {
+const UsersDashboard = () => {
   const router = useRouter();
   const [isAdmin, setIsAdmin] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
@@ -137,6 +137,14 @@ const AdminDashboard = () => {
         if (!a.lastLogin) return 1;
         if (!b.lastLogin) return -1;
         return new Date(a.lastLogin).getTime() - new Date(b.lastLogin).getTime();
+      });
+    } else if (sortBy === 'member-newest') {
+      filtered.sort((a, b) => {
+        return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+      });
+    } else if (sortBy === 'member-oldest') {
+      filtered.sort((a, b) => {
+        return new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime();
       });
     }
 
@@ -394,6 +402,17 @@ const AdminDashboard = () => {
     return count;
   };
 
+  const getActiveSortText = () => {
+    switch(sortBy) {
+      case 'member-newest': return 'Newest Members';
+      case 'member-oldest': return 'Oldest Members';
+      case 'name-asc': return 'Name (A-Z)';
+      case 'name-desc': return 'Name (Z-A)';
+      case 'login-recent': return 'Recent Login';
+      case 'login-oldest': return 'Oldest Login';
+    }
+  };
+
   // BatchActionModal component
   const BatchActionModal = ({
     isOpen,
@@ -462,7 +481,7 @@ const AdminDashboard = () => {
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
-          <h1 className="text-4xl font-bold text-center my-5">Member's Dashboard</h1>
+          <h1 className="text-4xl font-bold text-center my-5">Member's Control Panel</h1>
 
           {/* Filter Toggle Button */}
           <div className="mb-6 flex justify-between items-center">
@@ -486,10 +505,7 @@ const AdminDashboard = () => {
                   {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
                   {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
                   {(activeFilter !== 'all' || statusFilter !== 'all') && sortBy !== 'none' && ' | '}
-                  {sortBy !== 'none' && `Sorted by: ${sortBy === 'name-asc' ? 'Name (A-Z)' :
-                    sortBy === 'name-desc' ? 'Name (Z-A)' :
-                      sortBy === 'login-recent' ? 'Recent Login' : 'Oldest Login'
-                    }`}
+                  {sortBy !== 'none' && `Sorted by: ${getActiveSortText()}`}
                 </span>
                 <button
                   onClick={resetAllFilters}
@@ -626,6 +642,26 @@ const AdminDashboard = () => {
                     >
                       Oldest Login <ArrowDownIcon className="h-3 w-3 ml-1" />
                     </button>
+                    <button
+                      onClick={() => handleSortChange('member-newest')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'member-newest'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Newest Members <ArrowUpIcon className="h-3 w-3 ml-1" />
+                    </button>
+                    <button
+                      onClick={() => handleSortChange('member-oldest')}
+                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
+                        sortBy === 'member-oldest'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                      }`}
+                    >
+                      Oldest Members <ArrowDownIcon className="h-3 w-3 ml-1" />
+                    </button>
                   </div>
                 </div>
               </div>
@@ -740,7 +776,21 @@ const AdminDashboard = () => {
                             </div>
                           </div>
                         </th>
-                        <th className="p-3">Member since</th>
+                        <th className="p-3">
+                          <div className="flex justify-center items-center">
+                            Member since
+                            <div className="ml-2 flex flex-col">
+                              <ArrowUpIcon
+                                className={`w-3 h-3 ${sortBy === 'member-newest' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer -mb-0.5`}
+                                onClick={() => handleSortChange('member-newest')}
+                              />
+                              <ArrowDownIcon
+                                className={`w-3 h-3 ${sortBy === 'member-oldest' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer`}
+                                onClick={() => handleSortChange('member-oldest')}
+                              />
+                            </div>
+                          </div>
+                        </th>
                         <th className="p-3">Current role</th>
                       </tr>
                     </thead>
@@ -847,4 +897,4 @@ const AdminDashboard = () => {
   );
 };
 
-export default withAuth(AdminDashboard);
+export default withAuth(UsersDashboard);
