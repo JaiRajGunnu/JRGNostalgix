@@ -183,20 +183,20 @@ const AdminDashboard = () => {
   const handleSelectAll = () => {
     // Get the filtered users that are not the master admin
     const selectableUsers = filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com");
-    
+
     // Check if all selectable users are already selected
-    const allSelected = selectableUsers.length > 0 && 
+    const allSelected = selectableUsers.length > 0 &&
       selectableUsers.every(user => selectedUsers[user._id]);
-  
+
     const newSelectedUsers: { [key: string]: boolean } = {};
-  
+
     filteredUsers.forEach(user => {
       // Skip the Master Admin account
       if (user.email !== "jairajgsklm@gmail.com") {
         newSelectedUsers[user._id] = !allSelected;
       }
     });
-  
+
     setSelectedUsers(newSelectedUsers);
   };
 
@@ -255,9 +255,9 @@ const AdminDashboard = () => {
     switch (actionType) {
       case 'make-admin':
         setBatchActionConfig({
-          title: 'Promote Users to Admin',
-          description: `Are you sure you want to grant admin privileges to ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}?`,
-          confirmText: 'Promote to Admin',
+          title: `Promote ${selectedUserCount > 1 ? 'Members' : 'Member'} to Admin`,
+          description: `Granting admin privileges to ${selectedUserCount} member${selectedUserCount > 1 ? 's' : ''} can have significant consequences. Are you sure?`,
+          confirmText: `Grant ${selectedUserCount > 1 ? 'Admins' : 'Admin'}`,
           cancelText: 'Cancel',
           isDestructive: false,
           onConfirm: async () => {
@@ -298,8 +298,8 @@ const AdminDashboard = () => {
       case 'revoke-admin':
         setBatchActionConfig({
           title: 'Revoke Admin Privileges',
-          description: `Are you sure you want to revoke admin privileges from ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}?`,
-          confirmText: 'Revoke Admin',
+          description: `Are you certain you want to revoke administrative access from the ${selectedUserCount} member${selectedUserCount > 1 ? 's' : ''}?`,
+          confirmText: `Revoke ${selectedUserCount > 1 ? 'Admins' : 'Admin'}`,
           cancelText: 'Cancel',
           isDestructive: true,
           onConfirm: async () => {
@@ -339,9 +339,9 @@ const AdminDashboard = () => {
 
       case 'delete':
         setBatchActionConfig({
-          title: 'Delete Users',
-          description: `Are you sure you want to permanently delete ${selectedUserCount} selected user${selectedUserCount > 1 ? 's' : ''}? This action cannot be undone.`,
-          confirmText: 'Terminate Users',
+          title: `Terminate ${selectedUserCount > 1 ? 'Members' : 'Member'}`,
+          description: `Are you sure you want to permanently delete ${selectedUserCount} selected member${selectedUserCount > 1 ? 's' : ''}? This action cannot be undone.`,
+          confirmText: `Terminate ${selectedUserCount > 1 ? 'Members' : 'Member'}`,
           cancelText: 'Cancel',
           isDestructive: true,
           onConfirm: async () => {
@@ -427,7 +427,7 @@ const AdminDashboard = () => {
                 disabled={processingBatchAction}
                 className={`px-4 py-2 ${isDestructive
                   ? 'bg-white text-black hover:text-white hover:bg-red-600 hover:opacity-100'
-                  : 'bg-white text-black hover:text-white hover:bg-green-600 hover:opacity-100'
+                  : 'bg-white text-black hover:text-white hover:bg-green-700 hover:opacity-100'
                   }  rounded-lg transition-colors flex items-center ${processingBatchAction ? 'opacity-70 cursor-not-allowed' : ''
                   }`}
               >
@@ -462,9 +462,7 @@ const AdminDashboard = () => {
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
-          <div className="flex justify-between items-center mt-5 mb-10">
-            <h1 className="text-4xl font-bold text-center">Member's Dashboard</h1>
-          </div>
+          <h1 className="text-4xl font-bold text-center my-5">Member's Dashboard</h1>
 
           {/* Filter Toggle Button */}
           <div className="mb-6 flex justify-between items-center">
@@ -475,7 +473,7 @@ const AdminDashboard = () => {
               <FunnelIcon className="h-4 w-4" />
               <span>Filters & Sort</span>
               {getActiveFilterCount() > 0 && (
-                <span className="flex items-center justify-center bg-blue-500 text-white text-xs w-5 h-5 rounded-full">
+                <span className="flex items-center justify-center bg-blue-600 text-white text-xs w-5 h-5 rounded-full">
                   {getActiveFilterCount()}
                 </span>
               )}
@@ -666,19 +664,19 @@ const AdminDashboard = () => {
                         <div className="flex gap-2">
                           <button
                             onClick={() => openBatchActionModal('make-admin')}
-                            className="border border-green-600 text-green-600 hover:text-white hover:bg-green-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                            className="border border-green-600 font-poppins text-green-600 hover:text-white hover:bg-green-700 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
                           >
                             Make Admin
                           </button>
                           <button
                             onClick={() => openBatchActionModal('revoke-admin')}
-                            className="border border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                            className="border border-orange-600 font-poppins text-orange-600 hover:text-white hover:bg-orange-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
                           >
                             Revoke Admin
                           </button>
                           <button
                             onClick={() => openBatchActionModal('delete')}
-                            className="border border-red-600 text-red-600 hover:text-white hover:bg-red-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
+                            className="border border-red-600 font-poppins text-red-600 hover:text-white hover:bg-red-600 text-sm hover:opacity-100 px-3 py-1 rounded transition-colors"
                           >
                             Terminate
                           </button>
@@ -689,34 +687,33 @@ const AdminDashboard = () => {
                   <table className="w-full">
                     <thead>
                       <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
-<th className="p-3">
-  <aside
-    onClick={handleSelectAll}
-    className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
-      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
-      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
-        .every(user => selectedUsers[user._id])
-        ? "bg-blue-500 border-blue-500"
-        : "border-white/50"
-    }`}
-  >
-    {filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
-      filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
-        .every(user => selectedUsers[user._id]) &&
-      <CheckIcon className="w-3 h-3 text-white" />}
-  </aside>
-</th>
+                        <th className="p-3 ">
+                          <aside
+                            onClick={handleSelectAll}
+                            className={`w-5 h-5 flex items-center font-poppins justify-center border-2 rounded cursor-pointer ${filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
+                                filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
+                                  .every(user => selectedUsers[user._id])
+                                ? "bg-blue-600 border-blue-600"
+                                : "border-white/50"
+                              }`}
+                          >
+                            {filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
+                              filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
+                                .every(user => selectedUsers[user._id]) &&
+                              <CheckIcon className="w-3 h-3 text-white" />}
+                          </aside>
+                        </th>
 
                         <th className="p-3 text-left">
                           <div className="flex items-center">
                             Name
                             <div className="ml-2 flex flex-col">
                               <ArrowUpIcon
-                                className={`w-3 h-3 ${sortBy === 'name-asc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`}
+                                className={`w-3 h-3 ${sortBy === 'name-asc' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer -mb-0.5`}
                                 onClick={() => handleSortChange('name-asc')}
                               />
                               <ArrowDownIcon
-                                className={`w-3 h-3 ${sortBy === 'name-desc' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`}
+                                className={`w-3 h-3 ${sortBy === 'name-desc' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer`}
                                 onClick={() => handleSortChange('name-desc')}
                               />
                             </div>
@@ -733,18 +730,18 @@ const AdminDashboard = () => {
                             Last login
                             <div className="ml-2 flex flex-col">
                               <ArrowUpIcon
-                                className={`w-3 h-3 ${sortBy === 'login-recent' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer -mb-0.5`}
+                                className={`w-3 h-3 ${sortBy === 'login-recent' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer -mb-0.5`}
                                 onClick={() => handleSortChange('login-recent')}
                               />
                               <ArrowDownIcon
-                                className={`w-3 h-3 ${sortBy === 'login-oldest' ? 'text-blue-500' : 'text-gray-500'} cursor-pointer`}
+                                className={`w-3 h-3 ${sortBy === 'login-oldest' ? 'text-blue-600' : 'text-gray-500'} cursor-pointer`}
                                 onClick={() => handleSortChange('login-oldest')}
                               />
                             </div>
                           </div>
                         </th>
                         <th className="p-3">Member since</th>
-                        <th className="p-3">Actions</th>
+                        <th className="p-3">Current Role</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -763,7 +760,7 @@ const AdminDashboard = () => {
                               ) : (
                                 <div
                                   onClick={() => handleSelectUser(user._id, user.email)}
-                                  className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-500 border-blue-500" : "border-white/50"
+                                  className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-600 border-blue-600" : "border-white/50"
                                     }`}
                                 >
                                   {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
@@ -811,21 +808,15 @@ const AdminDashboard = () => {
                                 <div className="transition-opacity duration-300">
                                   {user.email === "jairajgsklm@gmail.com" ? (
                                     <button title="This is the primary admin account, no changes can be made to it."
-                                      className="scale-[85%] bg-[#18191af7] border border-gray-500 hover:border-blue-500  text-gray-500 hover:text-blue-500 pacity-30 px-3 py-1 rounded cursor-help"
+                                      className="scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500 hover:border-blue-600 hover:text-blue-600 px-3 py-1 rounded cursor-help"
                                     > Master Admin
                                     </button>
                                   ) : (
-                                    <>
-                                      <button
-                                        onClick={() => toggleAdmin(user._id, user.role)}
-                                        className={`scale-[85%] bg-[#18191af7] border border-white ${user.role === "admin"
-                                          ? "hover:border-red-500 hover:text-red-500"
-                                          : "hover:border-green-500 hover:text-green-500"
-                                          } text-white opacity-30 hover:opacity-100 px-3 py-1 rounded`}
-                                      >
-                                        {user.role === "admin" ? "Revoke Admin" : "Make Admin"}
-                                      </button>
-                                    </>
+                                    <button title={`This is the ${user.role} account. You can grant or revoke admin rights to this user.`}
+                                      className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500  text-gray-500 ${user.role == 'admin' ? 'hover:text-green-600 hover:border-green-600' : 'hover:text-yellow-600 hover:border-yellow-600'} px-3 py-1 rounded capitalize cursor-help`}
+                                    >
+                                      {user.role}
+                                    </button>
                                   )}
                                 </div>
                               </div>
