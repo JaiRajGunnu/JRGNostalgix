@@ -741,7 +741,7 @@ const AdminDashboard = () => {
                           </div>
                         </th>
                         <th className="p-3">Member since</th>
-                        <th className="p-3">Current Role</th>
+                        <th className="p-3">Current role</th>
                       </tr>
                     </thead>
                     <tbody>
