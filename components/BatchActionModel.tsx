@@ -1,3 +1,5 @@
+// components\BatchActionModel.tsx
+
 import React from 'react';
 
 interface Admin {
@@ -82,7 +84,7 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
       <div className="sm:max-w-md bg-[#18191af7] border border-[#27292af7] text-white rounded-lg shadow-lg w-full max-w-lg mx-4">
         <div className="p-5">
           {/* Header */}

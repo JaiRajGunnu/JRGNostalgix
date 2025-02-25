@@ -204,7 +204,7 @@ const AdminsPage = () => {
     const newRole = currentRole === "admin" ? "user" : "admin";
     setBatchActionConfig({
       title: `Revoke Admin Privileges`,
-      description: `Are you sure you want to revoke admin privileges from this user?`,
+      description: `Are you sure you want to revoke admin privileges from this member?`,
       confirmText: `Revoke Admin`,
       cancelText: 'Cancel',
       isDestructive: true,
@@ -321,9 +321,9 @@ const AdminsPage = () => {
       
       // Set up the batch action modal config
       setBatchActionConfig({
-        title: 'Make User an Admin',
-        description: 'Select a user to promote to admin:',
-        confirmText: 'Make Admin',
+        title: 'Promote Member to Admin',
+        description: 'Granting admin privileges to members can have significant consequences. Are you sure?',
+        confirmText: 'Promote to Admin',
         cancelText: 'Cancel',
         isDestructive: false,
         onConfirm: promoteUserToAdmin
@@ -333,7 +333,7 @@ const AdminsPage = () => {
       setRegularUsers(users);
       setIsBatchActionModalOpen(true);
     } catch (error) {
-      console.error("Error fetching users:", error);
+      console.error("Error fetching members:", error);
     }
   };
 
