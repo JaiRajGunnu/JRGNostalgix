@@ -9,6 +9,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import { shortTestimonials } from "@/components/ui/friends";
 import { CheckIcon, ArrowUpIcon, ArrowDownIcon, ArrowPathIcon, FunnelIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
+import BatchActionModal from '@/components/BatchActionModel';
 
 interface User {
   _id: string;
@@ -91,7 +92,7 @@ const UsersDashboard = () => {
       setUsers(response.data);
     } catch (error: unknown) {
       if (error instanceof Error) {
-        console.error("Error fetching users:", error.message);
+        console.error("Error fetching members:", error.message);
       } else {
         console.error("Unexpected error:", String(error));
       }
@@ -234,7 +235,7 @@ const UsersDashboard = () => {
         ));
       }
     } catch (error) {
-      console.error("Error updating user role:", error);
+      console.error("Error updating member role:", error);
     }
   };
 
@@ -296,7 +297,7 @@ const UsersDashboard = () => {
               setSelectedUsers({});
               setIsBatchActionModalOpen(false);
             } catch (error) {
-              console.error("Error updating user roles:", error);
+              console.error("Error updating member roles:", error);
               // Handle error (could add error state and display it)
             } finally {
               setProcessingBatchAction(false);
@@ -338,7 +339,7 @@ const UsersDashboard = () => {
               setSelectedUsers({});
               setIsBatchActionModalOpen(false);
             } catch (error) {
-              console.error("Error updating user roles:", error);
+              console.error("Error updating member roles:", error);
               // Handle error (could add error state and display it)
             } finally {
               setProcessingBatchAction(false);
@@ -375,7 +376,7 @@ const UsersDashboard = () => {
               setSelectedUsers({});
               setIsBatchActionModalOpen(false);
             } catch (error) {
-              console.error("Error deleting users:", error);
+              console.error("Error deleting members:", error);
               // Handle error (could add error state and display it)
             } finally {
               setProcessingBatchAction(false);
@@ -415,60 +416,6 @@ const UsersDashboard = () => {
     }
   };
 
-  // BatchActionModal component
-  const BatchActionModal = ({
-    isOpen,
-    onClose,
-    title,
-    description,
-    confirmText,
-    cancelText,
-    onConfirm,
-    isDestructive = false
-  }: BatchActionModalProps) => {
-    if (!isOpen) return null;
-
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70">
-        <div className="bg-[#1e1f21] w-full max-w-md rounded-lg shadow-xl overflow-hidden">
-          <div className="p-5">
-            <h3 className="text-xl font-semibold text-white">{title}</h3>
-            <p className="mt-2 text-white/70">{description}</p>
-
-            <div className="mt-6 flex justify-end gap-3">
-              <button
-                onClick={onClose}
-                disabled={processingBatchAction}
-                className="px-4 py-2 bg-[#27292af7] text-white/70 hover:bg-[#323436] rounded-lg transition-colors"
-              >
-                {cancelText}
-              </button>
-              <button
-                onClick={onConfirm}
-                disabled={processingBatchAction}
-                className={`px-4 py-2 ${isDestructive
-                  ? 'bg-white text-black hover:text-white hover:bg-red-600 hover:opacity-100'
-                  : 'bg-white text-black hover:text-white hover:bg-green-700 hover:opacity-100'
-                  }  rounded-lg transition-colors flex items-center ${processingBatchAction ? 'opacity-70 cursor-not-allowed' : ''
-                  }`}
-              >
-                {processingBatchAction ? (
-                  <>
-                    <svg className="animate-spin -ml-1 mr-2 h-4 w-4 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-                    </svg>
-                    Processing...
-                  </>
-                ) : confirmText}
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <>
       <Head>
@@ -483,10 +430,12 @@ const UsersDashboard = () => {
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
+        <div className="flex justify-between items-center mb-6">
+
           <h1 className="text-4xl font-bold text-center my-5">Member's Control Panel</h1>
 
           {/* Filter Toggle Button */}
-          <div className="mb-6 flex justify-between items-center">
+          <div className="mb-0 flex justify-between items-center">
             <button
               onClick={() => setIsFiltersOpen(!isFiltersOpen)}
               className={`flex items-center gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
@@ -499,9 +448,12 @@ const UsersDashboard = () => {
                 </span>
               )}
             </button>
+            </div>
+            
+          </div>
 
-            {isAnyFilterActive && (
-              <div className="text-sm text-white/50 flex items-center gap-2">
+          {isAnyFilterActive && (
+              <div className="text-sm text-white/50 flex items-center gap-2 justify-end mb-5 -mt-5">
                 <span>
                   {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
                   {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
@@ -519,7 +471,6 @@ const UsersDashboard = () => {
                 </button>
               </div>
             )}
-          </div>
 
           {/* Filter and Sort Controls - Only shown when filters are open */}
           {isFiltersOpen && (
@@ -671,13 +622,14 @@ const UsersDashboard = () => {
             </div>
           )}
 
+
           {loading ? (
             <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
           ) : (
             <>
               {filteredUsers.length === 0 ? (
                 <div className="text-center py-10 ">
-                  <p className="opacity-70">No users match the selected filters</p>
+                  <p className="opacity-70">No members match the selected filters</p>
                   {isAnyFilterActive && (
                     <button
                       onClick={resetAllFilters}
@@ -691,13 +643,13 @@ const UsersDashboard = () => {
               ) : (
                 <div className="bg-[#18191af7] rounded-lg overflow-hidden">
                   <div className="p-4 border-b border-[#27292af7] flex justify-between items-center">
-                    <span className="text-white/70">Showing {filteredUsers.length} of {users.length} users</span>
+                    <span className="text-white/70">Showing {filteredUsers.length} of {users.length} members</span>
 
                     {/* Batch Actions Section */}
                     {getSelectedUserCount() > 0 && (
                       <div className="flex items-center gap-3">
                         <span className="text-white/70 text-sm">
-                          {getSelectedUserCount()} user{getSelectedUserCount() !== 1 ? 's' : ''} selected
+                          {getSelectedUserCount()} member{getSelectedUserCount() !== 1 ? 's' : ''} selected
                         </span>
                         <div className="flex gap-2">
                           <button
@@ -807,7 +759,7 @@ const UsersDashboard = () => {
                               {user.email === "jairajgsklm@gmail.com" ? (
                                 <div
                                   className="w-5 h-5 flex items-center justify-center border-2 border-gray-500 rounded opacity-50 cursor-not-allowed"
-                                  title="Master Admin cannot be selected"
+                                  title="This configuration, set by the Master Admin, is locked against any modification."
                                 ></div>
                               ) : (
                                 <div
@@ -830,12 +782,12 @@ const UsersDashboard = () => {
                             <td className="p-3 text-center">{user.email}</td>
                             <td className="p-3 text-center">
                               {userActive ? (
-                                <span className="flex items-center justify-center cursor-help" title={`This user was active in the last 48 hours`}>
+                                <span className="flex items-center justify-center cursor-help" title={`This member was active in the last 48 hours`}>
                                   <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                                   Active
                                 </span>
                               ) : (
-                                <span className="flex items-center justify-center ml-3 cursor-help" title={`This user was inactive for more than 48 hours`}>
+                                <span className="flex items-center justify-center ml-3 cursor-help" title={`This member was inactive for more than 48 hours`}>
                                   <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                                   Inactive
                                 </span>
@@ -859,12 +811,12 @@ const UsersDashboard = () => {
                               <div className="relative group">
                                 <div className="transition-opacity duration-300">
                                   {user.email === "jairajgsklm@gmail.com" ? (
-                                    <button title="This is the primary admin account, no changes can be made to it."
+                                    <button title="This configuration, set by the Master Admin, is locked against any modification."
                                       className="scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500 hover:border-blue-600 hover:text-blue-600 px-3 py-1 rounded cursor-help"
                                     > Master Admin
                                     </button>
                                   ) : (
-                                    <button title={`This is the ${user.role} account. You can grant or revoke admin rights to this user.`}
+                                    <button title={`This is the ${user.role} account. You can grant or revoke admin rights to this member.`}
                                       className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500  text-gray-500 ${user.role == 'admin' ? 'hover:text-green-600 hover:border-green-600' : 'hover:text-yellow-600 hover:border-yellow-600'} px-3 py-1 rounded capitalize cursor-help`}
                                     >
                                       {user.role}
@@ -878,7 +830,12 @@ const UsersDashboard = () => {
                       })}
                     </tbody>
                   </table>
+
+                  
                 </div>
+
+
+
               )}
               {/* Add the modal at the end */}
               <BatchActionModal
