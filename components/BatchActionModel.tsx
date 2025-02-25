@@ -1,110 +1,186 @@
-import { useState } from "react";
+import React from 'react';
 
-// Add this interface to your existing interfaces at the top of your file
+interface Admin {
+  _id: string;
+  name: string;
+  email: string;
+  role: string;
+  lastLogin?: string;
+  isActive: boolean;
+  createdAt?: string;
+}
+
+interface Friend {
+  src: string;
+  email: string;
+  // Add any other properties that might be in shortTestimonials
+}
+
 interface BatchActionModalProps {
-    isOpen: boolean;
-    onClose: () => void;
-    title: string;
-    description: string;
-    confirmText: string;
-    cancelText?: string;
-    onConfirm: () => void;
-    isDestructive?: boolean;
-  }
-  
-  // Add these state variables inside your AdminDashboard component
-  // (right after your existing useState declarations)
-  const [isBatchActionModalOpen, setIsBatchActionModalOpen] = useState(false);
-  const [batchActionConfig, setBatchActionConfig] = useState<{
-    title: string;
-    description: string;
-    confirmText: string;
-    cancelText: string;
-    onConfirm: () => void;
-    isDestructive: boolean;
-  }>({
-    title: '',
-    description: '',
-    confirmText: 'Confirm',
-    cancelText: 'Cancel',
-    onConfirm: () => {},
-    isDestructive: false,
-  });
-  
-  // Add these functions to your component (place them with your other handler functions)
-  const openBatchActionModal = (config: {
-    title: string;
-    description: string;
-    confirmText: string;
-    cancelText?: string;
-    onConfirm: () => void;
-    isDestructive?: boolean;
-  }) => {
-    setBatchActionConfig({
-      ...config,
-      cancelText: config.cancelText || 'Cancel',
-      isDestructive: config.isDestructive || false,
-    });
-    setIsBatchActionModalOpen(true);
+  isOpen: boolean;
+  onClose: () => void;
+  title: string;
+  description: string;
+  confirmText: string;
+  cancelText: string;
+  onConfirm: () => Promise<void>;
+  isDestructive?: boolean;
+  users?: Admin[];
+  selectedUser?: string;
+  onUserSelect?: (userId: string) => void;
+  showSelected?: boolean;
+  selectedAdmins?: Admin[];
+  testimonials?: Friend[]; // Add this to pass in shortTestimonials
+  adminOnly?: boolean; // New prop to filter users by admin role
+}
+
+const BatchActionModal: React.FC<BatchActionModalProps> = ({
+  isOpen,
+  onClose,
+  title,
+  description,
+  confirmText,
+  cancelText,
+  onConfirm,
+  isDestructive = false,
+  users = [],
+  selectedUser = "",
+  onUserSelect = () => {},
+  showSelected = false,
+  selectedAdmins = [],
+  testimonials = [], // Default to empty array
+  adminOnly = false // Default to false for backward compatibility
+}: BatchActionModalProps) => {
+  const [isLoading, setIsLoading] = React.useState(false);
+
+  const handleConfirm = async () => {
+    setIsLoading(true);
+    try {
+      await onConfirm();
+    } catch (error) {
+      console.error("Error during batch action:", error);
+    } finally {
+      setIsLoading(false);
+      onClose();
+    }
   };
+
+  // Determine if this is a user selection modal
+  const isUserSelectionModal = users && users.length > 0;
   
-  const closeBatchActionModal = () => {
-    setIsBatchActionModalOpen(false);
+  // Filter users if adminOnly flag is set
+  const filteredUsers = adminOnly 
+    ? users.filter(user => user.role === "admin") 
+    : users;
+
+  // Helper function to get the correct avatar image
+  const getAvatarImage = (email: string) => {
+    const friend = testimonials.find(f => f.email === email);
+    return friend?.src || "/img/guestavatar.svg";
   };
-  
-  // Add this BatchActionModal component as a nested component inside your AdminDashboard component
-  // Put it right before the return statement of your AdminDashboard component
-  const BatchActionModal = ({ 
-    isOpen, 
-    onClose, 
-    title, 
-    description, 
-    confirmText, 
-    cancelText = 'Cancel', 
-    onConfirm, 
-    isDestructive = false 
-  }: BatchActionModalProps) => {
-    if (!isOpen) return null;
-    
-    return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black bg-opacity-50">
-        <div className="bg-[#1e1f21] rounded-lg max-w-md w-full p-6 shadow-xl">
-          <h3 className="text-xl font-semibold mb-2">{title}</h3>
-          <p className="text-white/70 mb-6">{description}</p>
-          <div className="flex justify-end gap-3">
+
+  if (!isOpen) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+      <div className="sm:max-w-md bg-[#18191af7] border border-[#27292af7] text-white rounded-lg shadow-lg w-full max-w-lg mx-4">
+        <div className="p-5">
+          {/* Header */}
+          <div className="mb-4">
+            <h2 className="text-xl font-semibold">{title}</h2>
+            <p className="text-white/70 mt-1">
+              {description}
+            </p>
+          </div>
+          
+          {/* Show selected admins for batch operations */}
+          {showSelected && selectedAdmins && selectedAdmins.length > 0 && (
+            <div className="max-h-60 overflow-y-auto my-4 pr-2">
+              <div className="mb-2 text-white/70">Selected admins:</div>
+              <div className="space-y-2">
+                {selectedAdmins.map((admin) => (
+                  <div 
+                    key={admin._id}
+                    className="p-3 border border-[#333437] rounded-lg"
+                  >
+                    <div className="flex items-center gap-3">
+                      <img 
+                        src={getAvatarImage(admin.email)} 
+                        alt={admin.name} 
+                        className="w-8 h-8 rounded-full"
+                      />
+                      <div>
+                        <div className="font-medium">{admin.name}</div>
+                        <div className="text-sm text-white/70">{admin.email}</div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+          
+          {/* User selection list */}
+          {isUserSelectionModal && (
+            <div className="max-h-60 overflow-y-auto my-4 pr-2">
+              {filteredUsers.length > 0 ? (
+                <div className="space-y-2">
+                  {filteredUsers.map((user) => (
+                    <div 
+                      key={user._id}
+                      onClick={() => onUserSelect(user._id)}
+                      className={`p-3 border rounded-lg cursor-pointer transition-colors ${
+                        selectedUser === user._id 
+                          ? "border-blue-600 bg-blue-600/20" 
+                          : "border-[#333437] hover:border-white/40"
+                      }`}
+                    >
+                      <div className="flex items-center gap-3">
+                        <img 
+                          src={getAvatarImage(user.email)} 
+                          alt={user.name}
+                          className="w-8 h-8 rounded-full"
+                        />
+                        <div>
+                          <div className="font-medium">{user.name}</div>
+                          <div className="text-sm text-white/70">{user.email} {adminOnly && <span className="ml-2 text-blue-400">(Admin)</span>}</div>
+                        </div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center py-4 text-white/70">
+                  {adminOnly ? "No admin users found." : "No users found."}
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Footer */}
+          <div className="flex justify-end gap-2 pt-4 mt-4 border-t border-[#333437]">
             <button
               onClick={onClose}
-              className="px-4 py-2 bg-[#27292af7] text-white/70 hover:bg-[#323436] rounded-lg transition-all"
+              className="px-4 py-2 rounded-md bg-transparent border border-[#333437] hover:bg-[#27292af7] hover:border-white/40 text-white"
             >
               {cancelText}
             </button>
             <button
-              onClick={onConfirm}
-              className={`px-4 py-2 rounded-lg transition-all ${
-                isDestructive
-                  ? 'bg-red-600 hover:bg-red-700 text-white'
-                  : 'bg-blue-600 hover:bg-blue-700 text-white'
-              }`}
+              onClick={handleConfirm}
+              disabled={isLoading || (isUserSelectionModal && !selectedUser)}
+              className={`px-4 py-2 rounded-md ${
+                isDestructive 
+                  ? "bg-red-600 hover:bg-red-700" 
+                  : "bg-blue-600 hover:bg-blue-700"
+              } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
             >
-              {confirmText}
+              {isLoading ? "Processing..." : confirmText}
             </button>
           </div>
         </div>
       </div>
-    );
-  };
-  
-  // Then inside your AdminDashboard's return statement, at the end of the JSX,
-  // right before the closing </> tag, add:
-  /*
-    <BatchActionModal
-      isOpen={isBatchActionModalOpen}
-      onClose={closeBatchActionModal}
-      title={batchActionConfig.title}
-      description={batchActionConfig.description}
-      confirmText={batchActionConfig.confirmText}
-      cancelText={batchActionConfig.cancelText}
-      onConfirm={batchActionConfig.onConfirm}
-      isDestructive={batchActionConfig.isDestructive}
-    />
-  */
+    </div>
+  );
+};
+
+export default BatchActionModal;
