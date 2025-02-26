@@ -400,7 +400,7 @@ const AdminsPage = () => {
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-4xl font-bold mt-5">Admins Control Panel</h1>
+            <h1 className="text-4xl font-bold mt-5">Admin's Control Panel</h1>
             
             <div className="flex items-center gap-3">
               {/* <button
