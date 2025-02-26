@@ -226,7 +226,8 @@ const AdminDashboard = () => {
                 <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
                   <thead>
                     <tr className="bg-[#27292af7] text-white font-medium">
-                      <th className="p-3 max-w-[200px] text-left">Name</th>
+                      <th className="p-3 max-w-[200px] text-left">
+                        <span className="ml-10">Name</span></th>
                       <th className="p-3">Since</th>
                       <th className="p-3">Status</th>
                       <th className="p-3">Last login</th>
@@ -239,18 +240,11 @@ const AdminDashboard = () => {
                         className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
                         onClick={() => router.push('/admin/adminslist')}
                       >
-                        <td className="p-3 text-centertext-gray-100 flex flex-row max-w-[200px]">
-                          <Image
-                            src={admin.image || '/img/guestavatar.svg'}
-                            alt={`${admin.name}'s profile`}
-                            width={25}
-                            height={25}
-                            className="rounded-full object-cover mr-2 transform scale-[0.8]"
-                          />
+                        <td className="p-3 text-center ml-6 text-gray-100 flex flex-row max-w-[200px]">
                           {admin.name}
                         </td>
                         <td className="p-3 text-center">
-                          {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                          {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: '2-digit' }) : "N/A"}
                         </td>
                         <td className="p-3 text-center">
                           {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
@@ -269,10 +263,7 @@ const AdminDashboard = () => {
                           {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
                             day: '2-digit',
                             month: 'short',
-                            year: 'numeric',
-                            hour: '2-digit',
-                            minute: '2-digit',
-                            hour12: true,
+                            year: '2-digit',
                           }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                           : 'N/A'}
                         </td>                  

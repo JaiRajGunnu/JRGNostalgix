@@ -86,7 +86,7 @@ const TodoList: React.FC = () => {
       {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
       <ul className="list-disc pl-0 space-y-2">
         {todos.map((todo, index) => (
-          <li key={todo._id} className="flex justify-between items-center bg-[#27292af7] p-2 rounded">
+          <li key={todo._id} className="flex justify-between items-center bg-[#27292af7] p-2 rounded hover:opacity-80 transition">
             <label className="flex items-center">
               <div
                 onClick={() => toggleTodoCompletion(index)}
