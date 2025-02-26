@@ -8,6 +8,7 @@ import { shortTestimonials } from "@/components/ui/friends";
 import { CheckIcon, ChevronUpIcon, ChevronDownIcon, FunnelIcon, ArrowsUpDownIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
+import moment from 'moment';
 
 
 interface Admin {
@@ -82,6 +83,9 @@ const AdminsPage = () => {
     }
   }, [router]);
 
+  const [lastFetched, setLastFetched] = useState<string | null>(null);
+
+
   const fetchAdmins = async () => {
     try {
       const response = await axios.get<Admin[]>("/api/users", {
@@ -90,6 +94,8 @@ const AdminsPage = () => {
       const adminUsers = response.data.filter(user => user.role === "admin");
       setAdmins(adminUsers);
       setFilteredAdmins(adminUsers);
+      setLastFetched(moment().format('MMM D, YYYY h:mm:ss A')); // Format the date using moment.js
+      
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error("Error fetching admins:", error.message);
@@ -400,8 +406,12 @@ const AdminsPage = () => {
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-4xl font-bold mt-5">Admin's Control Panel</h1>
-            
+          <div>
+              <h1 className="text-4xl font-bold text-center my-5">Admin's Control Panel</h1>
+              <h6 className="text-sm text-gray-500 font-poppins ">
+                Last fetched: {lastFetched ? lastFetched : 'N/A'}
+              </h6>
+            </div>
             <div className="flex items-center gap-3">
               {/* <button
                 onClick={() => setShowFilters(!showFilters)}

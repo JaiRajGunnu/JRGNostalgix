@@ -11,6 +11,7 @@ import { CheckIcon, ArrowUpIcon, ArrowDownIcon, ArrowPathIcon, FunnelIcon, XMark
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
 import UserRegistrationModal from "./UserRegistrationModal";
+import moment from 'moment';
 
 interface User {
   _id: string;
@@ -37,6 +38,9 @@ type FilterType = 'all' | 'admin' | 'member';
 type StatusFilterType = 'all' | 'active' | 'inactive';
 type SortType = 'none' | 'name-asc' | 'name-desc' | 'login-recent' | 'login-oldest' | 'member-newest' | 'member-oldest';
 type BatchActionType = 'make-admin' | 'revoke-admin' | 'delete';
+
+
+
 
 const UsersDashboard = () => {
   const router = useRouter();
@@ -70,6 +74,9 @@ const UsersDashboard = () => {
   });
   const [processingBatchAction, setProcessingBatchAction] = useState(false);
 
+  // Add a state variable to store the last fetched time
+  const [lastFetched, setLastFetched] = useState<string | null>(null);
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -91,6 +98,9 @@ const UsersDashboard = () => {
         headers: { Authorization: `Bearer ${token}` }
       });
       setUsers(response.data);
+
+      // Update the last fetched time after successful fetch
+      setLastFetched(moment().format('MMM D, YYYY h:mm:ss A')); // Format the date using moment.js
     } catch (error: unknown) {
       if (error instanceof Error) {
         console.error("Error fetching members:", error.message);
@@ -455,10 +465,13 @@ const UsersDashboard = () => {
 
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <div className="flex justify-between items-center mb-6">
+            <div>
+              <h1 className="text-4xl font-bold text-center my-5">Member's Control Panel</h1>
+              <h6 className="text-sm text-gray-500 font-poppins ">
+                Last fetched: {lastFetched ? lastFetched : 'N/A'}
+              </h6>
+            </div>
 
-            <h1 className="text-4xl font-bold text-center my-5">Member's Control Panel</h1>
-
-            {/* Filter Toggle Button */}
             <div className="mb-0 flex justify-between items-center">
 
               <button
@@ -475,13 +488,12 @@ const UsersDashboard = () => {
               </button>
 
 
-              <UserRegistrationModal isOpen={isOpen} closeModal={closeModal} />
-
+              <UserRegistrationModal isOpen={isOpen} closeModal={closeModal} onUserAdded={fetchUsers} />
 
               <button
-              onClick={openModal}
-              className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700">
-               <PlusIcon className="w-5 h-5 stroke-white stroke-1" />
+                onClick={openModal}
+                className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700">
+                <PlusIcon className="w-5 h-5 stroke-white stroke-1" />
                 <span className="font-medium font-poppins"> New Member</span>
               </button>
 
@@ -637,8 +649,8 @@ const UsersDashboard = () => {
                     <button
                       onClick={() => handleSortChange('member-newest')}
                       className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm flex items-center ${sortBy === 'member-newest'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
                     >
                       Newest Members <ArrowUpIcon className="h-3 w-3 ml-1" />
@@ -646,8 +658,8 @@ const UsersDashboard = () => {
                     <button
                       onClick={() => handleSortChange('member-oldest')}
                       className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'member-oldest'
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
+                        ? 'bg-blue-600 text-white'
+                        : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
                     >
                       Oldest Members <ArrowDownIcon className="h-3 w-3 ml-1" />
@@ -686,14 +698,14 @@ const UsersDashboard = () => {
                       <div className="flex items-center gap-3 mr-3">
                         <span className="text-white/70 text-sm">
                           {getSelectedUserCount()} member{getSelectedUserCount() !== 1 ? 's' : ''} selected
-                        </span> 
+                        </span>
                         <div className="flex gap-3">
                           <button
                             onClick={() => openBatchActionModal('make-admin')}
                             disabled={!hasNonAdminSelected()}
                             className={`border font-poppins text-sm px-4 py-1.5 rounded transition-colors ${hasNonAdminSelected()
-                                ? "border-blue-600 text-blue-600 hover:text-white hover:bg-blue-700"
-                                : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
+                              ? "border-blue-600 text-blue-600 hover:text-white hover:bg-blue-700"
+                              : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
                               }`}
                             title={hasNonAdminSelected() ? "Promote selected members to admin" : "No non-admin members selected"}
                           >
@@ -703,8 +715,8 @@ const UsersDashboard = () => {
                             onClick={() => openBatchActionModal('revoke-admin')}
                             disabled={!hasAdminSelected()}
                             className={`border font-poppins text-sm px-4 py-1.5 rounded transition-colors ${hasAdminSelected()
-                                ? "border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600"
-                                : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
+                              ? "border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600"
+                              : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
                               }`}
                             title={hasAdminSelected() ? "Revoke admin privileges from selected members" : "No admin members selected"}
                           >
@@ -878,9 +890,8 @@ const UsersDashboard = () => {
                     </tbody>
                   </table>
 
-
-
                 </div>
+
 
 
 
