@@ -174,7 +174,7 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
                 isDestructive 
                   ? "bg-red-600 hover:bg-red-700" 
                   : "bg-blue-600 hover:bg-blue-700"
-              } text-white disabled:opacity-50 disabled:cursor-not-allowed`}
+              } text-white disabled:opacity-75 disabled:cursor-not-allowed`}
             >
               {isLoading ? "Processing..." : confirmText}
             </button>
