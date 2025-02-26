@@ -608,7 +608,7 @@ const AdminsPage = () => {
                             </span>
                           ) : (
                             <span className="flex items-center justify-center cursor-help" title={`This admin was inactive for more than 48 hours`}>
-                              <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                              <span className="w-2.5 h-2.5 bg-red-500 rounded-full ml-2 mr-2"></span>
                               Inactive
                             </span>
                           )}

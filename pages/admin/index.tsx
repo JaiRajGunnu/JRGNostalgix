@@ -88,7 +88,7 @@ const AdminDashboard = () => {
 
   useEffect(() => {
     if (users.length > 0) {
-      const active = users.filter(user => 
+      const active = users.filter(user =>
         user.lastLogin && new Date(user.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000
       ).length;
       const inactive = users.length - active;
@@ -228,15 +228,17 @@ const AdminDashboard = () => {
                     <tr className="bg-[#27292af7] text-white font-medium">
                       <th className="p-3 max-w-[200px] text-left">
                         <span className="ml-10">Name</span></th>
-                      <th className="p-3">Since</th>
+
                       <th className="p-3">Status</th>
                       <th className="p-3">Last login</th>
+
+                      <th className="p-3">Since</th>
                     </tr>
                   </thead>
                   <tbody>
                     {users.filter(user => user.role === "admin").map((admin) => (
-                      <tr 
-                        key={admin._id} 
+                      <tr
+                        key={admin._id}
                         className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
                         onClick={() => router.push('/admin/adminslist')}
                       >
@@ -244,16 +246,13 @@ const AdminDashboard = () => {
                           {admin.name}
                         </td>
                         <td className="p-3 text-center">
-                          {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: '2-digit' }) : "N/A"}
-                        </td>
-                        <td className="p-3 text-center">
                           {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                            <span className="flex items-center justify-center ml-0" title={`This admin was active in the last 48 hours`}>
+                            <span className="flex items-center justify-center -ml-2" title={`This admin was active in the last 48 hours`}>
                               <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
                               Active
                             </span>
                           ) : (
-                            <span className="flex items-center justify-center" title={`This admin was inactive for more than 48 hours`}>
+                            <span className="flex items-center justify-center ml-1" title={`This admin was inactive for more than 48 hours`}>
                               <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
                               Inactive
                             </span>
@@ -265,8 +264,11 @@ const AdminDashboard = () => {
                             month: 'short',
                             year: '2-digit',
                           }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
-                          : 'N/A'}
-                        </td>                  
+                            : 'N/A'}
+                        </td>
+                        <td className="p-3 text-center">
+                          {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: '2-digit' }) : "N/A"}
+                        </td>
                       </tr>
                     ))}
                   </tbody>
