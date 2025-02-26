@@ -457,7 +457,7 @@ const UsersDashboard = () => {
   return (
     <>
       <Head>
-        <title>Members - Admin Panel</title>
+        <title>Member's Control Panel</title>
       </Head>
       <div className="flex min-h-screen text-white">
 

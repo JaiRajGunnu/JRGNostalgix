@@ -395,7 +395,7 @@ const AdminsPage = () => {
   return (
     <>
       <Head>
-        <title>Admins list - Admin Panel</title>
+        <title>Admin's Control Panel</title>
       </Head>
       <div className="flex min-h-screen text-white">
         <div className="absolute inset-0 -z-10 pointer-events-none">
