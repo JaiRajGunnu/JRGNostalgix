@@ -1,8 +1,9 @@
-// pages/api/users.ts
+// pages/api/users.ts - Updated to include POST method
 
 import type { NextApiRequest, NextApiResponse } from "next";
 import dbConnect from "@/lib/mongodb";
 import User from "@/models/User";
+import bcrypt from "bcryptjs"; // Make sure this dependency is installed
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   await dbConnect();
@@ -13,6 +14,45 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       return res.status(200).json(users);
     } catch (error) {
       console.error("Error fetching users:", error);
+      return res.status(500).json({ message: "Internal Server Error" });
+    }
+  } else if (req.method === "POST") {
+    try {
+      const { name, email, password, role } = req.body;
+      
+      // Basic validation
+      if (!name || !email || !password) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      
+      // Check if email already exists
+      const existingUser = await User.findOne({ email });
+      if (existingUser) {
+        return res.status(400).json({ message: "User with this email already exists" });
+      }
+      
+      // Hash the password
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(password, salt);
+      
+      // Create new user
+      const newUser = new User({
+        name,
+        email,
+        password: hashedPassword,
+        role: role || "user",
+        createdAt: new Date()
+      });
+      
+      await newUser.save();
+      
+      // Return the user without password
+      const userResponse = newUser.toObject();
+      delete userResponse.password;
+      
+      return res.status(201).json(userResponse);
+    } catch (error) {
+      console.error("Error creating user:", error);
       return res.status(500).json({ message: "Internal Server Error" });
     }
   } else if (req.method === "PUT") {
@@ -63,7 +103,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
   } else {
     // Return allowed methods in the header
-    res.setHeader('Allow', ['GET', 'PUT', 'DELETE']);
+    res.setHeader('Allow', ['GET', 'POST', 'PUT', 'DELETE']);
     return res.status(405).json({ message: "Method not allowed" });
   }
 }

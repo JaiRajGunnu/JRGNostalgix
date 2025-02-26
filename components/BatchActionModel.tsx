@@ -85,19 +85,19 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80">
-      <div className="sm:max-w-md bg-[#18191af7] border border-[#27292af7] text-white rounded-lg shadow-lg w-full max-w-lg mx-4">
+      <div className="sm:max-w-md bg-[#18191af7] border border-[#27292af7] text-white rounded-lg shadow-lg w-full max-w-lg mx-4 ">
         <div className="p-5">
           {/* Header */}
           <div className="mb-4">
             <h2 className="text-xl font-semibold">{title}</h2>
-            <p className="text-white/70 mt-1">
+            <p className="text-white/70 mt-1 text-md">
               {description}
             </p>
           </div>
           
           {/* Show selected admins for batch operations */}
           {showSelected && selectedAdmins && selectedAdmins.length > 0 && (
-            <div className="max-h-60 overflow-y-auto my-4 pr-2">
+            <div className="max-h-60 overflow-y-auto my-4 pr-2 font-poppins">
               <div className="mb-2 text-white/70">Selected admins:</div>
               <div className="space-y-2">
                 {selectedAdmins.map((admin) => (
@@ -124,7 +124,7 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
           
           {/* User selection list */}
           {isUserSelectionModal && (
-            <div className="max-h-60 overflow-y-auto my-4 pr-2">
+            <div className="max-h-60 overflow-y-auto my-4 pr-2 font-poppins">
               {filteredUsers.length > 0 ? (
                 <div className="space-y-2">
                   {filteredUsers.map((user) => (
@@ -160,17 +160,17 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
           )}
 
           {/* Footer */}
-          <div className="flex justify-end gap-2 pt-4 mt-4 border-t border-[#333437]">
+          <div className="flex justify-end gap-2 pt-4 mt-4 border-t font-poppins border-[#333437]">
             <button
               onClick={onClose}
-              className="px-4 py-2 rounded-md bg-transparent border border-[#333437] hover:bg-[#27292af7] hover:border-white/40 text-white"
+              className="px-4 py-2 rounded-md bg-transparent border font-poppins border-[#333437] hover:bg-[#27292af7] hover:border-white/40 text-white"
             >
               {cancelText}
             </button>
             <button
               onClick={handleConfirm}
               disabled={isLoading || (isUserSelectionModal && !selectedUser)}
-              className={`px-4 py-2 rounded-md ${
+              className={`px-4 py-2 rounded-md font-poppins font-semibold ${
                 isDestructive 
                   ? "bg-red-600 hover:bg-red-700" 
                   : "bg-blue-600 hover:bg-blue-700"

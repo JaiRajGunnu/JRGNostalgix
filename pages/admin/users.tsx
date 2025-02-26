@@ -7,9 +7,10 @@ import axios from "axios";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
-import { CheckIcon, ArrowUpIcon, ArrowDownIcon, ArrowPathIcon, FunnelIcon, XMarkIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, ArrowUpIcon, ArrowDownIcon, ArrowPathIcon, FunnelIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
+import UserRegistrationModal from "./UserRegistrationModal";
 
 interface User {
   _id: string;
@@ -433,6 +434,10 @@ const UsersDashboard = () => {
       case 'login-oldest': return 'Oldest Login';
     }
   };
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openModal = () => setIsOpen(true);
+  const closeModal = () => setIsOpen(false);
 
   return (
     <>
@@ -447,6 +452,7 @@ const UsersDashboard = () => {
 
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
+
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <div className="flex justify-between items-center mb-6">
 
@@ -454,9 +460,10 @@ const UsersDashboard = () => {
 
             {/* Filter Toggle Button */}
             <div className="mb-0 flex justify-between items-center">
+
               <button
                 onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                className={`flex items-center gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
+                className={`flex mr-5 items-center font-poppins gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
               >
                 <FunnelIcon className="h-4 w-4" />
                 <span>Filters & Sort</span>
@@ -466,12 +473,26 @@ const UsersDashboard = () => {
                   </span>
                 )}
               </button>
+
+
+              <UserRegistrationModal isOpen={isOpen} closeModal={closeModal} />
+
+
+              <button
+              onClick={openModal}
+              className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700">
+               <PlusIcon className="w-5 h-5 stroke-white stroke-1" />
+                <span className="font-medium font-poppins"> New Member</span>
+              </button>
+
+
+
             </div>
 
           </div>
 
           {isAnyFilterActive && (
-            <div className="text-sm text-white/50 flex items-center gap-2 justify-end mb-5 -mt-5">
+            <div className="text-sm text-white/50 font-poppins flex items-center gap-2 justify-end mb-5 -mt-5">
               <span>
                 {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
                 {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
@@ -481,7 +502,7 @@ const UsersDashboard = () => {
               </span>
               <button
                 onClick={resetAllFilters}
-                className="flex items-center gap-1 bg-gray-700 hover:bg-gray-600 text-white/70 hover:text-white px-2 py-1 rounded text-xs transition-all"
+                className="flex items-center gap-1 font-poppins bg-gray-700 hover:bg-gray-600 text-white/70 hover:text-white px-2 py-1 rounded text-xs transition-all"
                 title="Reset all filters"
               >
                 <ArrowPathIcon className="h-3 w-3" />
@@ -510,7 +531,7 @@ const UsersDashboard = () => {
                   <div className="flex gap-2 flex-wrap">
                     <button
                       onClick={() => handleRoleFilterChange('all')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'all'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${activeFilter === 'all'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -519,7 +540,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleRoleFilterChange('admin')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'admin'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${activeFilter === 'admin'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -528,7 +549,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleRoleFilterChange('member')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${activeFilter === 'member'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${activeFilter === 'member'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -544,7 +565,7 @@ const UsersDashboard = () => {
                   <div className="flex gap-2 flex-wrap">
                     <button
                       onClick={() => handleStatusFilterChange('all')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'all'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${statusFilter === 'all'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -553,7 +574,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleStatusFilterChange('active')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'active'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${statusFilter === 'active'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -562,7 +583,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleStatusFilterChange('inactive')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm ${statusFilter === 'inactive'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm ${statusFilter === 'inactive'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -578,7 +599,7 @@ const UsersDashboard = () => {
                   <div className="flex gap-2 flex-wrap">
                     <button
                       onClick={() => handleSortChange('name-asc')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'name-asc'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm flex items-center ${sortBy === 'name-asc'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -597,7 +618,7 @@ const UsersDashboard = () => {
                     </button> */}
                     <button
                       onClick={() => handleSortChange('login-recent')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'login-recent'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm flex items-center ${sortBy === 'login-recent'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -606,7 +627,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleSortChange('login-oldest')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'login-oldest'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm flex items-center ${sortBy === 'login-oldest'
                         ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -615,7 +636,7 @@ const UsersDashboard = () => {
                     </button>
                     <button
                       onClick={() => handleSortChange('member-newest')}
-                      className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${sortBy === 'member-newest'
+                      className={`px-3 py-2 rounded-lg font-poppins transition-all text-sm flex items-center ${sortBy === 'member-newest'
                           ? 'bg-blue-600 text-white'
                           : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                         }`}
@@ -638,18 +659,17 @@ const UsersDashboard = () => {
             </div>
           )}
 
-
           {loading ? (
-            <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
+            <p className="text-center opacity-50 font-poppins">Retrieving data from server, just a moment...</p>
           ) : (
             <>
               {filteredUsers.length === 0 ? (
                 <div className="text-center py-10 ">
-                  <p className="opacity-70">No members match the selected filters</p>
+                  <p className="opacity-70 font-poppins">No members match the selected filters</p>
                   {isAnyFilterActive && (
                     <button
                       onClick={resetAllFilters}
-                      className="mt-4 flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
+                      className="mt-4 flex items-center gap-2 bg-blue-600 font-poppins hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
                     >
                       <ArrowPathIcon className="h-4 w-4" />
                       Reset all filters
@@ -857,6 +877,7 @@ const UsersDashboard = () => {
                       })}
                     </tbody>
                   </table>
+
 
 
                 </div>
