@@ -80,10 +80,10 @@ export default function RegisterModal({ isOpen, closeModal }: { isOpen: boolean,
                   required
                 />
 
-                <label className="text-white mb-1 opacity-90">Email</label>
+                <label className="text-white mb-1 opacity-90">E-mail</label>
                 <input
                   type="email"
-                  placeholder="Enter email"
+                  placeholder="Enter e-mail"
                   className="w-full p-3 bg-[#27292af7] text-white border border-white/30 rounded-lg mb-6 focus:outline-none focus:border-blue-500"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
@@ -91,7 +91,7 @@ export default function RegisterModal({ isOpen, closeModal }: { isOpen: boolean,
                 />
 
                 <label className="text-white mb-1 opacity-90">Password</label>
-                <div className="relative">
+                <div className="relative mb-3">
                   <input
                     type={showPassword ? "text" : "password"}
                     placeholder="Enter password"
@@ -109,11 +109,11 @@ export default function RegisterModal({ isOpen, closeModal }: { isOpen: boolean,
                   </button>
                 </div>
 
-                {error && <p className="font-poppins text-red-500 text-center mt-3">{error}</p>}
+                {error && <p className="font-poppins text-red-500 text-center mt-3 ">{error}</p>}
 
                 <button
                   type="submit"
-                  className="w-full bg-blue-600  hover:bg-blue-700 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-10 flex items-center justify-center gap-2"
+                  className="w-full bg-blue-600  hover:bg-blue-700 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-5 flex items-center justify-center gap-2"
                 >  <PlusIcon className="w-5 h-5 stroke-white stroke-2 -mt-1" />
                   Add Member 
                 </button>
