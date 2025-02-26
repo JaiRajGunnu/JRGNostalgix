@@ -250,6 +250,11 @@ const UsersDashboard = () => {
     }
   };
 
+  const formatMemberSince = (dateString: string | undefined): string => {
+    if (!dateString) return "N/A";
+    return moment(dateString).format('D MMM YY, h:mm A');
+  };
+
   // Batch action helpers
   const getSelectedUserIds = (): string[] => {
     return Object.entries(selectedUsers)
@@ -476,7 +481,7 @@ const UsersDashboard = () => {
 
               <button
                 onClick={() => setIsFiltersOpen(!isFiltersOpen)}
-                className={`flex mr-5 items-center font-poppins gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-90`}
+                className={`flex mr-5 items-center font-poppins gap-2 ${isFiltersOpen ? 'bg-white text-black' : 'bg-[#1e1f21] text-white'} px-4 py-2 rounded-lg transition-all hover:bg-opacity-80`}
               >
                 <FunnelIcon className="h-4 w-4" />
                 <span>Filters & Sort</span>
@@ -856,7 +861,7 @@ const UsersDashboard = () => {
                               {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
                                 day: '2-digit',
                                 month: 'short',
-                                year: 'numeric',
+                                year: '2-digit',
                                 hour: '2-digit',
                                 minute: '2-digit',
                                 hour12: true,
@@ -864,7 +869,7 @@ const UsersDashboard = () => {
                                 : 'N/A'}
                             </td>
                             <td className="p-3 text-center">
-                              {user.createdAt ? new Date(user.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: 'numeric' }) : "N/A"}
+                            {formatMemberSince(user.createdAt)}
                             </td>
                             <td className="p-3 text-center">
                               <div className="relative group">

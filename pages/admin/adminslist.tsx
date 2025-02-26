@@ -617,7 +617,7 @@ const AdminsPage = () => {
                         <td className="p-3 text-center">{admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", {
                           day: '2-digit',
                           month: 'short',
-                          year: 'numeric',
+                          year: '2-digit',
                           hour: '2-digit',
                           minute: '2-digit',
                           hour12: true,
@@ -629,7 +629,7 @@ const AdminsPage = () => {
                           {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
                             day: '2-digit',
                             month: 'short',
-                            year: 'numeric',
+                            year: '2-digit',
                             hour: '2-digit',
                             minute: '2-digit',
                             hour12: true,
