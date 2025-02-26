@@ -18,6 +18,14 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
     const [error, setError] = useState("");
     const [showPassword, setShowPassword] = useState(false);
 
+    // Function to reset the form
+    const resetForm = () => {
+        setName("");
+        setEmail("");
+        setPassword("");
+        setError("");
+    };
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         setError("");
@@ -30,11 +38,18 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
 
         const data = await res.json();
         if (res.ok) {
+            resetForm(); // Reset form fields on successful registration
             closeModal(); // Close modal on successful registration
             await onUserAdded(); // Refetch users *after* closing the modal
         } else {
             setError(data.error || "Registration failed. Please try again.");
         }
+    };
+
+    // Reset the form when the modal is closed
+    const handleCloseModal = () => {
+        resetForm();
+        closeModal();
     };
 
     return (
@@ -69,7 +84,7 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
                         <Dialog.Panel className="w-full max-w-md px-8 py-10 bg-[#17181a] border border-white/30 rounded-2xl shadow-xl relative font-poppins">
                             {/* X Close Button */}
                             <button
-                                onClick={closeModal}
+                                onClick={handleCloseModal}
                                 className="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none"
                                 aria-label="Close"
                             >
