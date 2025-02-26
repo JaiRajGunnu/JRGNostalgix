@@ -547,12 +547,12 @@ const AdminsPage = () => {
                     </th>
                     <th className="p-3">Status</th>
 
-                    <th className="p-3 cursor-pointer" onClick={() => handleSort('role')}>
+                    {/* <th className="p-3 cursor-pointer" onClick={() => handleSort('role')}>
                       <div className="flex items-center justify-center">
                         <span className="mr-2">Role</span>
                         {getSortIcon('role')}
                       </div>
-                    </th>
+                    </th> */}
                     
                     <th className="p-3 cursor-pointer" onClick={() => handleSort('createdAt')}>
                       <div className="flex items-center justify-center">
@@ -613,7 +613,7 @@ const AdminsPage = () => {
                             </span>
                           )}
                         </td>
-                        <td className="p-3 text-center capitalize">{admin.role}</td>
+                        {/* <td className="p-3 text-center capitalize">{admin.role}</td> */}
                         <td className="p-3 text-center">{admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", {
                           day: '2-digit',
                           month: 'short',
