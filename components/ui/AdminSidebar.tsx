@@ -4,7 +4,7 @@ import { FaChevronDown } from "react-icons/fa";
 import { MdOutlineDashboard, MdOutlineAdminPanelSettings } from "react-icons/md";
 import { TbUsersGroup, TbLayoutSidebarLeftCollapse, TbLayoutSidebarLeftExpand, TbDatabaseCog } from "react-icons/tb";
 import { RiCodeSSlashLine } from "react-icons/ri";
-import { IconLogout2 } from "@tabler/icons-react";
+import { IconLogout2, IconSettings, } from "@tabler/icons-react";
 
 interface AdminSidebarProps {
   isSidebarOpen: boolean;
@@ -22,6 +22,8 @@ const AdminSidebar: React.FC<AdminSidebarProps> = ({ isSidebarOpen, setIsSidebar
     { label: "Members", href: "/admin/users", icon: <TbUsersGroup className="h-6 w-6" /> },
     { label: "Admins", href: "/admin/adminslist", icon: <MdOutlineAdminPanelSettings className="h-6 w-6" /> },
     { label: "Database", href: process.env.NEXT_PUBLIC_MONGODB_CLUSTER_URL || '#',  icon: <TbDatabaseCog className="h-6 w-6" />  },
+    { label: "Settings", href: "admin/settings", icon: <IconSettings className="h-7 w-7" /> }, 
+
   ];
 
   const pilotPages = [
