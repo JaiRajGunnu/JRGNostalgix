@@ -1,6 +1,6 @@
 // components\BatchActionModel.tsx
 
-import React from 'react';
+import React, { useEffect } from 'react';
 
 interface Admin {
   _id: string;
@@ -34,6 +34,7 @@ interface BatchActionModalProps {
   selectedAdmins?: Admin[];
   testimonials?: Friend[]; // Add this to pass in shortTestimonials
   adminOnly?: boolean; // New prop to filter users by admin role
+  isPromoting?: boolean; // New prop to indicate if we're promoting users
 }
 
 const BatchActionModal: React.FC<BatchActionModalProps> = ({
@@ -51,35 +52,81 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
   showSelected = false,
   selectedAdmins = [],
   testimonials = [], // Default to empty array
-  adminOnly = false // Default to false for backward compatibility
+  adminOnly = false, // Default to false for backward compatibility
+  isPromoting = false // Default to false
 }: BatchActionModalProps) => {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [localSelectedUser, setLocalSelectedUser] = React.useState(selectedUser);
+  
+  // Update local state when selectedUser prop changes
+  useEffect(() => {
+    setLocalSelectedUser(selectedUser);
+  }, [selectedUser]);
+
+  const handleUserSelect = (userId: string) => {
+    setLocalSelectedUser(userId);
+    onUserSelect(userId);
+  };
 
   const handleConfirm = async () => {
     setIsLoading(true);
     try {
       await onConfirm();
+      // Clear selection after successful operation
+      if (isPromoting) {
+        setLocalSelectedUser("");
+      }
     } catch (error) {
       console.error("Error during batch action:", error);
     } finally {
       setIsLoading(false);
-      onClose();
+      // Don't close modal immediately for promotion so user can see success state
+      if (!isPromoting) {
+        onClose();
+      } else {
+        // For promotion, add a small delay before closing
+        setTimeout(() => onClose(), 800);
+      }
     }
   };
 
   // Determine if this is a user selection modal
   const isUserSelectionModal = users && users.length > 0;
   
-  // Filter users if adminOnly flag is set
-  const filteredUsers = adminOnly 
-    ? users.filter(user => user.role === "admin") 
-    : users;
+  // Filter users based on requirements
+  const filteredUsers = React.useMemo(() => {
+    // If we're showing selected admins for revocation
+    if (showSelected && selectedAdmins && selectedAdmins.length > 0) {
+      return selectedAdmins;
+    }
+    
+    // For promotion, show non-admin users
+    if (isPromoting) {
+      return users.filter(user => user.role !== "admin");
+    }
+    
+    // Otherwise apply regular filtering based on adminOnly flag
+    return adminOnly 
+      ? users.filter(user => user.role === "admin") 
+      : users;
+  }, [users, adminOnly, showSelected, selectedAdmins, isPromoting]);
+
+  // Get selected user object for immediate feedback
+  const selectedUserObject = users.find(user => user._id === localSelectedUser);
 
   // Helper function to get the correct avatar image
   const getAvatarImage = (email: string) => {
     const friend = testimonials.find(f => f.email === email);
     return friend?.src || "/img/guestavatar.svg";
   };
+
+  // Reset state when modal opens/closes
+  useEffect(() => {
+    if (!isOpen) {
+      setIsLoading(false);
+      // Don't reset selection here - it clears the selection too early
+    }
+  }, [isOpen]);
 
   if (!isOpen) return null;
 
@@ -95,12 +142,12 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
             </p>
           </div>
           
-          {/* Show selected admins for batch operations */}
-          {showSelected && selectedAdmins && selectedAdmins.length > 0 && (
+          {/* If we're showing admins for revocation, we'll use the filtered list above */}
+          {showSelected && filteredUsers.length > 0 && (
             <div className="max-h-60 overflow-y-auto my-4 pr-2 font-poppins">
               <div className="mb-2 text-white/70">Selected admins:</div>
               <div className="space-y-2">
-                {selectedAdmins.map((admin) => (
+                {filteredUsers.map((admin) => (
                   <div 
                     key={admin._id}
                     className="p-3 border border-[#333437] rounded-lg"
@@ -122,17 +169,17 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
             </div>
           )}
           
-          {/* User selection list */}
-          {isUserSelectionModal && (
+          {/* User selection list - only show when not in "showSelected" mode */}
+          {isUserSelectionModal && !showSelected && (
             <div className="max-h-60 overflow-y-auto my-4 pr-2 font-poppins">
               {filteredUsers.length > 0 ? (
                 <div className="space-y-2">
                   {filteredUsers.map((user) => (
                     <div 
                       key={user._id}
-                      onClick={() => onUserSelect(user._id)}
+                      onClick={() => handleUserSelect(user._id)}
                       className={`p-3 border rounded-lg cursor-pointer transition-colors ${
-                        selectedUser === user._id 
+                        localSelectedUser === user._id 
                           ? "border-blue-600 bg-blue-600/20" 
                           : "border-[#333437] hover:border-white/40"
                       }`}
@@ -145,7 +192,13 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
                         />
                         <div>
                           <div className="font-medium">{user.name}</div>
-                          <div className="text-sm text-white/70">{user.email} {adminOnly && <span className="ml-2 text-blue-400">(Admin)</span>}</div>
+                          <div className="text-sm text-white/70">
+                            {user.email} 
+                            {isPromoting && localSelectedUser === user._id && isLoading && (
+                              <span className="ml-2 text-green-400">(Promoting...)</span>
+                            )}
+                            {adminOnly && <span className="ml-2 text-blue-400">(Admin)</span>}
+                          </div>
                         </div>
                       </div>
                     </div>
@@ -153,9 +206,22 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
                 </div>
               ) : (
                 <div className="text-center py-4 text-white/70">
-                  {adminOnly ? "No admin users found." : "No users found."}
+                  {adminOnly ? "No admin users found." : 
+                   isPromoting ? "No users available for promotion." : 
+                   "No users found."}
                 </div>
               )}
+            </div>
+          )}
+
+          {/* Immediate feedback for promotion */}
+          {isPromoting && localSelectedUser && selectedUserObject && (
+            <div className="my-4 p-3 border border-green-500/30 bg-green-500/10 rounded-lg">
+              <p className="text-green-400">
+                {isLoading ? 
+                  `Promoting ${selectedUserObject.name} to admin...` : 
+                  `Ready to promote ${selectedUserObject.name} to admin.`}
+              </p>
             </div>
           )}
 
@@ -169,7 +235,7 @@ const BatchActionModal: React.FC<BatchActionModalProps> = ({
             </button>
             <button
               onClick={handleConfirm}
-              disabled={isLoading || (isUserSelectionModal && !selectedUser)}
+              disabled={isLoading || (isUserSelectionModal && !showSelected && !localSelectedUser)}
               className={`px-4 py-2 rounded-md font-poppins font-semibold ${
                 isDestructive 
                   ? "bg-red-600 hover:bg-red-700" 
