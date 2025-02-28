@@ -12,6 +12,7 @@ import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
 import UserRegistrationModal from "./UserRegistrationModal";
 import moment from 'moment';
+import { CgUndo } from "react-icons/cg";
 
 interface User {
   _id: string;
@@ -569,7 +570,6 @@ const UsersDashboard = () => {
               <button
                 onClick={resetAllFilters}
                 className="flex items-center gap-1 font-poppins bg-gray-700 hover:bg-gray-600 text-white/70 hover:text-white px-2 py-1 rounded text-xs transition-all"
-                title="Reset all filters"
               >
                 <ArrowPathIcon className="h-3 w-3" />
                 Clear All
@@ -736,10 +736,10 @@ const UsersDashboard = () => {
                   {isAnyFilterActive && (
                     <button
                       onClick={resetAllFilters}
-                      className="mt-4 flex items-center gap-2 bg-blue-600 font-poppins hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
+                      className="mt-4 flex items-center gap-2 bg-blue-600 font-medium font-poppins hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
                     >
-                      <ArrowPathIcon className="h-4 w-4" />
-                      Reset all filters
+                      <CgUndo className="h-6 w-6 font-medium " />  
+                      Revert to Default
                     </button>
                   )}
                 </div>
