@@ -454,7 +454,7 @@ const UsersDashboard = () => {
     if (activeFilter !== 'all') count++;
     if (statusFilter !== 'all') count++;
     if (sortBy !== 'none') count++;
-    if (searchTerm.trim() !== '') count++;
+    // if (searchTerm.trim() !== '') count++;
     return count;
   };
 
