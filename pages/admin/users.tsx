@@ -77,6 +77,9 @@ const UsersDashboard = () => {
   // Add a state variable to store the last fetched time
   const [lastFetched, setLastFetched] = useState<string | null>(null);
 
+  // Add this state variable with the other state declarations (around line 49)
+  const [searchTerm, setSearchTerm] = useState<string>('');
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) {
@@ -89,7 +92,7 @@ const UsersDashboard = () => {
 
   useEffect(() => {
     applyFiltersAndSort();
-  }, [users, activeFilter, statusFilter, sortBy]);
+  }, [users, activeFilter, statusFilter, sortBy, searchTerm]);
 
   const fetchUsers = async () => {
     try {
@@ -112,9 +115,19 @@ const UsersDashboard = () => {
     }
   };
 
+  // Add this function with the other filter and sort functions (around line 100)
   const applyFiltersAndSort = () => {
-    // First apply role filter
+    // First apply search filter
     let filtered = [...users];
+
+    if (searchTerm.trim() !== '') {
+      const searchLower = searchTerm.toLowerCase();
+      filtered = filtered.filter(user =>
+        user.name.toLowerCase().includes(searchLower) ||
+        user.email.toLowerCase().includes(searchLower) ||
+        user.role.toLowerCase().includes(searchLower)
+      );
+    }
 
     if (activeFilter === 'admin') {
       filtered = filtered.filter(user => user.role === 'admin');
@@ -183,10 +196,12 @@ const UsersDashboard = () => {
     setSelectedUsers({});
   };
 
+  // Modify the resetAllFilters function to also clear the search term (around line 195)
   const resetAllFilters = () => {
     setActiveFilter('all');
     setStatusFilter('all');
     setSortBy('none');
+    setSearchTerm('');
     setSelectedUsers({});
   };
 
@@ -429,13 +444,16 @@ const UsersDashboard = () => {
     );
   };
 
-  const isAnyFilterActive = activeFilter !== 'all' || statusFilter !== 'all' || sortBy !== 'none';
+  // Add this to check if any filter including search is active (around line 465)
+  const isAnyFilterActive = activeFilter !== 'all' || statusFilter !== 'all' || sortBy !== 'none' || searchTerm.trim() !== '';
 
+  // Add this to count active filters including search (around line 467)
   const getActiveFilterCount = () => {
     let count = 0;
     if (activeFilter !== 'all') count++;
     if (statusFilter !== 'all') count++;
     if (sortBy !== 'none') count++;
+    if (searchTerm.trim() !== '') count++;
     return count;
   };
 
@@ -476,8 +494,36 @@ const UsersDashboard = () => {
                 Last fetched: {lastFetched ? lastFetched : 'N/A'}
               </h6>
             </div>
-
             <div className="mb-0 flex justify-between items-center">
+
+              {/* Add this search component right after the "Member's Control Panel" heading section,
+    around line 470, just after the div with the lastFetched display */}
+              <div className="flex items-center justify-between ">
+                <div className="relative flex-1 max-w-md mr-5">
+                  <input
+                    type="text"
+                    placeholder="Search here..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="w-full py-2 pl-10 pr-4 text-white bg-[#1e1f21] border border-[#323436] font-poppins rounded-lg focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  />
+                  <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                    </svg>
+                  </div>
+                  {searchTerm && (
+                    <button
+                      onClick={() => setSearchTerm('')}
+                      className="absolute inset-y-0 right-0 flex items-center pr-3 text-gray-400 hover:text-white"
+                    >
+                      <XMarkIcon className="h-5 w-5" />
+                    </button>
+                  )}
+                </div>
+
+
+              </div>
 
               <button
                 onClick={() => setIsFiltersOpen(!isFiltersOpen)}
@@ -508,9 +554,12 @@ const UsersDashboard = () => {
 
           </div>
 
+          {/* Update the active filters display (around line 480) */}
           {isAnyFilterActive && (
             <div className="text-sm text-white/50 font-poppins flex items-center gap-2 justify-end mb-5 -mt-5">
               <span>
+                {searchTerm.trim() !== '' && `Search: "${searchTerm}"`}
+                {searchTerm.trim() !== '' && (activeFilter !== 'all' || statusFilter !== 'all' || sortBy !== 'none') && ' | '}
                 {activeFilter !== 'all' && `Role: ${activeFilter === 'admin' ? 'Admins' : 'Members'}`}
                 {activeFilter !== 'all' && statusFilter !== 'all' && ' | '}
                 {statusFilter !== 'all' && `Status: ${statusFilter === 'active' ? 'Active' : 'Inactive'}`}
@@ -527,6 +576,7 @@ const UsersDashboard = () => {
               </button>
             </div>
           )}
+
 
           {/* Filter and Sort Controls - Only shown when filters are open */}
           {isFiltersOpen && (
@@ -623,11 +673,11 @@ const UsersDashboard = () => {
                     >
                       Name (A-Z) <ArrowUpIcon className="h-3 w-3 ml-1" />
                     </button>
-                    {/* <button 
+                    {/* <button
                       onClick={() => handleSortChange('name-desc')}
                       className={`px-3 py-2 rounded-lg transition-all text-sm flex items-center ${
                         sortBy === 'name-desc'
-                        ? 'bg-blue-600 text-white' 
+                        ? 'bg-blue-600 text-white'
                         : 'bg-[#27292af7] text-white/70 hover:bg-[#323436]'
                       }`}
                     >
@@ -682,7 +732,7 @@ const UsersDashboard = () => {
             <>
               {filteredUsers.length === 0 ? (
                 <div className="text-center py-10 ">
-                  <p className="opacity-70 font-poppins">No members match the selected filters</p>
+                  <p className="opacity-70 font-poppins">No members match your input.</p>
                   {isAnyFilterActive && (
                     <button
                       onClick={resetAllFilters}
@@ -869,7 +919,7 @@ const UsersDashboard = () => {
                                 : 'N/A'}
                             </td>
                             <td className="p-3 text-center">
-                            {formatMemberSince(user.createdAt)}
+                              {formatMemberSince(user.createdAt)}
                             </td>
                             <td className="p-3 text-center">
                               <div className="relative group">
