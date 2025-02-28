@@ -186,8 +186,11 @@ const AdminDashboard = () => {
                       <div className="ml-4">
                         <p className="text-lg font-semibold font-poppins text-gray-300">Active users</p>
                         <div className="flex items-center gap-2">
-                          <span className="w-2.5 h-2.5 bg-green-500 rounded-full"></span>
-                          <p className="text-2xl font-bold text-white">{activeUsers}</p>
+                        <div className="relative flex items-center justify-center">
+      <div className="absolute w-4 h-4 bg-green-300 rounded-full animate-ping ml-1"></div>
+      <div className="w-2.5 h-2.5 bg-green-500 rounded-full ml-1"></div>
+    </div>
+                          <p className="text-2xl font-bold text-white ml-2 -mt-1">{activeUsers}</p>
                         </div>
                       </div>
                     </div>
