@@ -84,7 +84,7 @@ const Settings = () => {
                       transition-colors focus:outline-none focus:ring-2 
                       focus:ring-blue-500 dark:bg-[#27292af7]`}
                   >
-                    {notifications && <CheckIcon className="w-4 h-4  text-white" />}
+                    {notifications && <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />}
                   </div>
 
                   <span className="text-gray-700 dark:text-gray-400">

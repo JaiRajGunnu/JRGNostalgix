@@ -76,7 +76,7 @@ const AdminSettings = () => {
                 </h3>
                 <label className="flex items-center space-x-3 cursor-pointer select-none">
                   <div className="relative w-5 h-5 flex items-center justify-center rounded border border-gray-300 dark:border-gray-600">
-                    <CheckIcon className="w-4 h-4 text-white" />
+                    <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />
                   </div>
                   <span className="text-gray-700 dark:text-gray-400">Enable master admin</span>
                 </label>
