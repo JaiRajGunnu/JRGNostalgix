@@ -112,6 +112,16 @@ export const shortTestimonials: Testimonial[] = [
     src: "/img/queens/imgchinguu.jpg",
   },
   {
+    id: 25281102,
+    quote:
+      "Every conversation with you feels like a scene from a feel-good movie. Counting down the days until we finally meet. 🎬💛",
+    name: "Reethu",
+    fullname: "Reethu Ponnathota",
+    king: false,
+    email: "ponnathotareethu@gmail.com",
+    src: "/img/queens/imgreethu.jpg",
+  },
+  {
     id: 25220802,
     quote:
       "Always a fun time with you. Thank you for being around even though there is nothing you hate about me. 🤗 💛",
