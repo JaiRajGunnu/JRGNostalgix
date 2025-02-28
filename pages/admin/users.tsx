@@ -556,7 +556,7 @@ const UsersDashboard = () => {
 
           {/* Update the active filters display (around line 480) */}
           {isAnyFilterActive && (
-            <div className="text-sm text-white/50 font-poppins flex items-center gap-2 justify-end mb-5 -mt-5">
+            <div className="text-sm text-gray-500 font-medium font-poppins flex items-center gap-2 justify-end mb-5 -mt-5">
               <span>
                 {searchTerm.trim() !== '' && `Search: "${searchTerm}"`}
                 {searchTerm.trim() !== '' && (activeFilter !== 'all' || statusFilter !== 'all' || sortBy !== 'none') && ' | '}
