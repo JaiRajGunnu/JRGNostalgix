@@ -114,7 +114,7 @@ export const shortTestimonials: Testimonial[] = [
   {
     id: 25281102,
     quote:
-      "Every conversation with you feels like a scene from a feel-good movie. Counting down the days until we finally meet. 🎬💛",
+      "Every conversation with you feels like a scene from a feel-good movie. Counting down the days until we finally meet. 🎬🤎",
     name: "Reethu",
     fullname: "Reethu Ponnathota",
     king: false,
