@@ -261,7 +261,7 @@ const AdminDashboard = () => {
                                     </>
                                   ) : (
                                     <>
-                                      <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                                      <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2 ml-3"></span>
                                       Inactive
                                     </>
                                   )}
