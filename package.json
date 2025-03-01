@@ -14,6 +14,7 @@
     "@headlessui/react": "^2.2.0",
     "@heroicons/react": "^2.2.0",
     "@next-auth/mongodb-adapter": "^1.1.3",
+    "@radix-ui/react-tooltip": "^1.1.8",
     "@tabler/icons-react": "^3.30.0",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.9",
