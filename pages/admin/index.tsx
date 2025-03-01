@@ -12,6 +12,7 @@ import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Image from "next/image";
 import Head from 'next/head';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../../components/ui/tooltip";
 
 interface User {
   _id: string;
@@ -186,10 +187,10 @@ const AdminDashboard = () => {
                       <div className="ml-4">
                         <p className="text-lg font-semibold font-poppins text-gray-300">Active users</p>
                         <div className="flex items-center gap-2">
-                        <div className="relative flex items-center justify-center">
-      <div className="absolute w-4 h-4 bg-green-300 rounded-full animate-ping ml-1"></div>
-      <div className="w-2.5 h-2.5 bg-green-500 rounded-full ml-1"></div>
-    </div>
+                          <div className="relative flex items-center justify-center">
+                            <div className="absolute w-4 h-4 bg-green-300 rounded-full animate-ping ml-1"></div>
+                            <div className="w-2.5 h-2.5 bg-green-500 rounded-full ml-1"></div>
+                          </div>
                           <p className="text-2xl font-bold text-white ml-2 -mt-1">{activeUsers}</p>
                         </div>
                       </div>
@@ -249,17 +250,30 @@ const AdminDashboard = () => {
                           {admin.name}
                         </td>
                         <td className="p-3 text-center">
-                          {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
-                            <span className="flex items-center justify-center -ml-2" title={`This admin was active in the last 48 hours`}>
-                              <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
-                              Active
-                            </span>
-                          ) : (
-                            <span className="flex items-center justify-center ml-1" title={`This admin was inactive for more than 48 hours`}>
-                              <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
-                              Inactive
-                            </span>
-                          )}
+                          <TooltipProvider>
+                            <Tooltip>
+                              <TooltipTrigger >
+                                <span className="flex items-center justify-center cursor-pointer">
+                                  {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000 ? (
+                                    <>
+                                      <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                                      Active
+                                    </>
+                                  ) : (
+                                    <>
+                                      <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                                      Inactive
+                                    </>
+                                  )}
+                                </span>
+                              </TooltipTrigger>
+                              <TooltipContent>
+                                {admin.lastLogin && new Date(admin.lastLogin).getTime() > Date.now() - 48 * 60 * 60 * 1000
+                                  ? "This admin was active in the last 48 hours"
+                                  : "This admin was inactive for more than 48 hours"}
+                              </TooltipContent>
+                            </Tooltip>
+                          </TooltipProvider>
                         </td>
                         <td className="p-3 text-center">
                           {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
