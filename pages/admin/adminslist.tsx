@@ -574,7 +574,10 @@ const AdminsPage = () => {
                     const isMasterAdmin = admin.email === MASTER_ADMIN_EMAIL;
                     const friend = shortTestimonials.find(friend => friend.email === admin.email);
                     return (
-                      <tr key={admin._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
+                      <tr key={admin._id}  className={`border-b border-[#27292af7] hover:bg-[#232425] cursor-pointer ${selectedAdmins[admin._id] ? 'bg-[#2D2D2D80]' : ''}`}
+                      onClick={() => handleSelectAdmin(admin._id)}
+                      >
+                        
                         <td className="p-3 text-center">
                           {isMasterAdmin ? (
                             // Master admin - non-clickable, disabled checkbox
@@ -585,7 +588,6 @@ const AdminsPage = () => {
                           ) : (
                             // Regular admin - clickable checkbox
                             <div
-                              onClick={() => handleSelectAdmin(admin._id)}
                               className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${
                                 !!selectedAdmins[admin._id] ? "bg-blue-600 border-blue-600" : "border-white/50"}`}
                             >

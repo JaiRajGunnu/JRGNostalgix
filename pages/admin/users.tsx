@@ -738,7 +738,7 @@ const UsersDashboard = () => {
                       onClick={resetAllFilters}
                       className="mt-4 flex items-center gap-2 bg-blue-600 font-medium font-poppins hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
                     >
-                      <CgUndo className="h-6 w-6 font-medium " />  
+                      <CgUndo className="h-6 w-6 font-medium " />
                       Revert to Default
                     </button>
                   )}
@@ -861,111 +861,114 @@ const UsersDashboard = () => {
                         </th>
                         <th className="p-3">Current role</th>
                       </tr>
-                    </thead>
-                    <tbody>
-                      {filteredUsers.map((user) => {
-                        const friend = shortTestimonials.find(friend => friend.email === user.email);
-                        const userActive = isUserActive(user);
+                </thead>
 
-                        return (
-                          <tr key={user._id} className="border-b border-[#27292af7] hover:bg-[#232425]">
-                            <td className="p-3 text-center">
-                              {user.email === "jairajgsklm@gmail.com" ? (
-                                <div
-                                  className="w-5 h-5 flex items-center justify-center border-2 border-gray-500 rounded opacity-50 cursor-not-allowed"
-                                  title="This configuration, set by the Master Admin, is locked against any modification."
-                                ></div>
-                              ) : (
-                                <div
-                                  onClick={() => handleSelectUser(user._id, user.email)}
-                                  className={`w-5 h-5 flex items-center justify-center border-2 rounded cursor-pointer ${!!selectedUsers[user._id] ? "bg-blue-600 border-blue-600" : "border-white/50"
-                                    }`}
-                                >
-                                  {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
-                                </div>
-                              )}
-                            </td>
+                  <tbody>
+                    {filteredUsers.map((user) => {
+                      const friend = shortTestimonials.find(friend => friend.email === user.email);
+                      const userActive = isUserActive(user);
 
-                            <td className="p-3 text-center max-w-[150px]">
-                              <div className="flex flex-row gap-2 justify-start">
-                                <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
-                                  className="w-7 h-7 rounded-full" />
-                                <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
+                      return (
+                        <tr key={user._id}
+                          className={`border-b border-[#27292af7] hover:bg-[#232425] cursor-pointer ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}
+                          onClick={() => handleSelectUser(user._id, user.email)}
+                        >
+                          <td className="p-3 text-center">
+                            {user.email === "jairajgsklm@gmail.com" ? (
+                              <div
+                                className="w-5 h-5 flex items-center justify-center border-2 border-gray-500 rounded opacity-50 cursor-not-allowed"
+                                title="This configuration, set by the Master Admin, is locked against any modification."
+                              ></div>
+                            ) : (
+                              <div
+                                className={`w-5 h-5 flex items-center justify-center border-2 rounded  ${!!selectedUsers[user._id] ? "bg-blue-600 border-blue-600" : "border-white/50"
+                                  }`}
+                              >
+                                {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
                               </div>
-                            </td>
-                            <td className="p-3 text-center">{user.email}</td>
-                            <td className="p-3 text-center">
-                              {userActive ? (
-                                <span className="flex items-center justify-center cursor-help" title={`This member was active in the last 48 hours`}>
-                                  <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
-                                  Active
-                                </span>
-                              ) : (
-                                <span className="flex items-center justify-center ml-3 cursor-help" title={`This member was inactive for more than 48 hours`}>
-                                  <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
-                                  Inactive
-                                </span>
-                              )}
-                            </td>
-                            <td className="p-3 text-center">
-                              {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
-                                day: '2-digit',
-                                month: 'short',
-                                year: '2-digit',
-                                hour: '2-digit',
-                                minute: '2-digit',
-                                hour12: true,
-                              }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
-                                : 'N/A'}
-                            </td>
-                            <td className="p-3 text-center">
-                              {formatMemberSince(user.createdAt)}
-                            </td>
-                            <td className="p-3 text-center">
-                              <div className="relative group">
-                                <div className="transition-opacity duration-300">
-                                  {user.email === "jairajgsklm@gmail.com" ? (
-                                    <button title="This configuration, set by the Master Admin, is locked against any modification."
-                                      className="scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500 hover:border-green-600 hover:text-green-600 px-4 py-1.5 rounded cursor-help"
-                                    > Master Admin
-                                    </button>
-                                  ) : (
-                                    <button title={`This is the ${user.role} account. You can grant or revoke admin rights to this member.`}
-                                      className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500  text-gray-500 ${user.role == 'admin' ? 'hover:text-blue-600 hover:border-blue-600' : 'hover:text-yellow-600 hover:border-yellow-600'} px-4 py-1.5 rounded capitalize cursor-help`}
-                                    >
-                                      {user.role}
-                                    </button>
-                                  )}
-                                </div>
+                            )}
+                          </td>
+
+                          <td className="p-3 text-center max-w-[150px]">
+                            <div className="flex flex-row gap-2 justify-start">
+                              <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
+                                className="w-7 h-7 rounded-full" />
+                              <span className="text-ellipsis overflow-hidden whitespace-nowrap cursor-help" title={user.name}>{user.name}</span>
+                            </div>
+                          </td>
+                          <td className="p-3 text-center">{user.email}</td>
+                          <td className="p-3 text-center">
+                            {userActive ? (
+                              <span className="flex items-center justify-center cursor-help" title={`This member was active in the last 48 hours`}>
+                                <span className="w-2.5 h-2.5 bg-green-500 rounded-full mr-2"></span>
+                                Active
+                              </span>
+                            ) : (
+                              <span className="flex items-center justify-center ml-3 cursor-help" title={`This member was inactive for more than 48 hours`}>
+                                <span className="w-2.5 h-2.5 bg-red-500 rounded-full mr-2"></span>
+                                Inactive
+                              </span>
+                            )}
+                          </td>
+                          <td className="p-3 text-center">
+                            {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
+                              day: '2-digit',
+                              month: 'short',
+                              year: '2-digit',
+                              hour: '2-digit',
+                              minute: '2-digit',
+                              hour12: true,
+                            }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
+                              : 'N/A'}
+                          </td>
+                          <td className="p-3 text-center">
+                            {formatMemberSince(user.createdAt)}
+                          </td>
+                          <td className="p-3 text-center">
+                            <div className="relative group">
+                              <div className="transition-opacity duration-300">
+                                {user.email === "jairajgsklm@gmail.com" ? (
+                                  <button title="This configuration, set by the Master Admin, is locked against any modification."
+                                    className="scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500 hover:border-green-600 hover:text-green-600 px-4 py-1.5 rounded cursor-help"
+                                  > Master Admin
+                                  </button>
+                                ) : (
+                                  <button title={`This is the ${user.role} account. You can grant or revoke admin rights to this member.`}
+                                    className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500  text-gray-500 ${user.role == 'admin' ? 'hover:text-blue-600 hover:border-blue-600' : 'hover:text-yellow-600 hover:border-yellow-600'} px-4 py-1.5 rounded capitalize cursor-help`}
+                                  >
+                                    {user.role}
+                                  </button>
+                                )}
                               </div>
-                            </td>
-                          </tr>
-                        );
-                      })}
-                    </tbody>
-                  </table>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
 
-                </div>
+            </div>
 
 
 
 
-              )}
-              {/* Add the modal at the end */}
-              <BatchActionModal
-                isOpen={isBatchActionModalOpen}
-                onClose={closeBatchActionModal}
-                title={batchActionConfig.title}
-                description={batchActionConfig.description}
-                confirmText={batchActionConfig.confirmText}
-                cancelText={batchActionConfig.cancelText}
-                onConfirm={batchActionConfig.onConfirm}
-                isDestructive={batchActionConfig.isDestructive}
-              />
-            </>
           )}
-        </main>
-      </div>
+          {/* Add the modal at the end */}
+          <BatchActionModal
+            isOpen={isBatchActionModalOpen}
+            onClose={closeBatchActionModal}
+            title={batchActionConfig.title}
+            description={batchActionConfig.description}
+            confirmText={batchActionConfig.confirmText}
+            cancelText={batchActionConfig.cancelText}
+            onConfirm={batchActionConfig.onConfirm}
+            isDestructive={batchActionConfig.isDestructive}
+          />
+        </>
+          )}
+      </main>
+    </div>
     </>
   );
 };
