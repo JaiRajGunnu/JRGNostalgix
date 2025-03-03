@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
 import axios from "axios";
+import AdminGuard from "./_layout";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
@@ -402,6 +403,7 @@ const AdminsPage = () => {
       <Head>
         <title>Admin's Control Panel</title>
       </Head>
+      <AdminGuard>
       <div className="flex min-h-screen text-white">
         <div className="absolute inset-0 -z-10 pointer-events-none">
           <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>
@@ -733,6 +735,7 @@ const AdminsPage = () => {
           selectedAdmins={selectedAdminsData}
         />
       </div>
+      </AdminGuard>
     </>
   );
 };

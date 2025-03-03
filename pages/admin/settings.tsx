@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Head from 'next/head';
+import AdminGuard from "./_layout";
 import AdminSidebar from "@/components/ui/AdminSidebar";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { CheckIcon } from "@heroicons/react/24/solid";
@@ -34,6 +35,8 @@ const AdminSettings = () => {
       <Head>
         <title>Settings - Admin Panel</title>
       </Head>
+      
+      <AdminGuard>
       <div className="flex h-screen">
         {/* Sidebar */}
         <div className={`fixed left-0 top-0 z-30 h-full transition-all duration-300 ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'}`}>
@@ -172,6 +175,7 @@ const AdminSettings = () => {
           </div>
         )}
       </div>
+      </AdminGuard>
     </>
   );
 };

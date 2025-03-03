@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import withAuth from "@/guard/withAuth";
 import axios from "axios";
+import AdminGuard from "./_layout";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
@@ -480,6 +481,8 @@ const UsersDashboard = () => {
       <Head>
         <title>Member's Control Panel</title>
       </Head>
+
+      <AdminGuard>
       <div className="flex min-h-screen text-white">
 
         <div className="absolute inset-0 -z-10 pointer-events-none">
@@ -487,8 +490,6 @@ const UsersDashboard = () => {
         </div>
 
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-
-
         <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
           <div className="flex justify-between items-center mb-6">
             <div>
@@ -1035,6 +1036,7 @@ const UsersDashboard = () => {
           )}
         </main>
       </div>
+      </AdminGuard>
     </>
   );
 };
