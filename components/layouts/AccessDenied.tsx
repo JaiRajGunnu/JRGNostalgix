@@ -21,7 +21,7 @@ const AccessDenied: React.FC<AccessDeniedProps> = ({
         </div>
         
         <h1 className="text-3xl font-bold text-white mb-3">Access Denied</h1>
-        <p className="text-gray-300 mb-8 text-md font-poppins">{message}</p>
+        <p className="text-gray-400 mb-8 text-md font-poppins">{message}</p>
         
         <div className="flex flex-col space-y-4">
           <button 

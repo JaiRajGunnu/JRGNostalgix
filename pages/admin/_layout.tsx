@@ -89,7 +89,7 @@ const AdminGuard = ({ children }: AdminGuardProps) => {
         {isAdmin ? (
           children
         ) : (
-          <AccessDenied message="You are not authorized to access this content" />
+          <AccessDenied message="You are not authorized to access this content." />
         )}
       </div>
     </>
