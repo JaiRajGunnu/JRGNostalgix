@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { FaSun, FaCloudRain, FaSnowflake, FaCloud, FaSmog } from 'react-icons/fa';
-import Image from 'next/image';
 
 const WeatherCard: React.FC = () => {
     const [weather, setWeather] = useState<{ temperature: number; condition: string } | null>(null);

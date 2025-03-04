@@ -1,6 +1,5 @@
 import { useEffect, useState, ReactNode } from "react";
 import { useRouter } from "next/router";
-import Head from 'next/head';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import AccessDenied from "@/components/layouts/AccessDenied";
 

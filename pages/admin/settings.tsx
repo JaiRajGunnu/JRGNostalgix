@@ -8,27 +8,14 @@ import { CheckIcon } from "@heroicons/react/24/solid";
 const AdminSettings = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [privacy, setPrivacy] = useState("Admins only");
-  const [showDeactivateError, setShowDeactivateError] = useState(false);
+  // const [showDeactivateError, setShowDeactivateError] = useState(false);
 
-  // Function to handle deactivation attempt
-  const handleDeactivate = () => {
-    setShowDeactivateError(true);
 
-    // Hide the error message after 3 seconds
-    setTimeout(() => {
-      setShowDeactivateError(false);
-    }, 3000);
-  };
+// Function to handle privacy change
+const handlePrivacyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+  setPrivacy(e.target.value);
+};
 
-  // Function to handle privacy change
-  const handlePrivacyChange = (e:any) => {
-    setPrivacy(e.target.value);
-  };
-
-  // Toggle sidebar function
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
 
   return (
     <>
@@ -161,12 +148,6 @@ const AdminSettings = () => {
           </div>
         </div>
 
-        {/* Floating error message */}
-        {showDeactivateError && (
-          <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-            Sorry, only admins can deactivate your account.
-          </div>
-        )}
       </div>
       </AdminGuard>
     </>

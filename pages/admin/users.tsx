@@ -27,16 +27,16 @@ interface User {
   lastLogin?: string;
 }
 
-interface BatchActionModalProps {
-  isOpen: boolean;
-  onClose: () => void;
-  title: string;
-  description: string;
-  confirmText: string;
-  cancelText: string;
-  onConfirm: () => Promise<void>;
-  isDestructive?: boolean;
-}
+// interface BatchActionModalProps {
+//   isOpen: boolean;
+//   onClose: () => void;
+//   title: string;
+//   description: string;
+//   confirmText: string;
+//   cancelText: string;
+//   onConfirm: () => Promise<void>;
+//   isDestructive?: boolean;
+// }
 
 type FilterType = 'all' | 'admin' | 'member';
 type StatusFilterType = 'all' | 'active' | 'inactive';
@@ -48,7 +48,7 @@ type BatchActionType = 'make-admin' | 'revoke-admin' | 'delete';
 
 const UsersDashboard = () => {
   const router = useRouter();
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [, setIsAdmin] = useState(false);
   const [users, setUsers] = useState<User[]>([]);
   const [filteredUsers, setFilteredUsers] = useState<User[]>([]);
   const [activeFilter, setActiveFilter] = useState<FilterType>('all');
@@ -249,25 +249,25 @@ const UsersDashboard = () => {
     setSelectedUsers(prev => ({ ...prev, [userId]: !prev[userId] }));
   };
 
-  const toggleAdmin = async (userId: string, currentRole: string) => {
-    try {
-      const token = localStorage.getItem('token');
-      const newRole = currentRole === "admin" ? "user" : "admin";
+  // const toggleAdmin = async (userId: string, currentRole: string) => {
+  //   try {
+  //     const token = localStorage.getItem('token');
+  //     const newRole = currentRole === "admin" ? "user" : "admin";
 
-      const response = await axios.put(`/api/users?id=${userId}`,
-        { role: newRole },
-        { headers: { Authorization: `Bearer ${token}` } }
-      );
+  //     const response = await axios.put(`/api/users?id=${userId}`,
+  //       { role: newRole },
+  //       { headers: { Authorization: `Bearer ${token}` } }
+  //     );
 
-      if (response.data) {
-        setUsers(users.map(user =>
-          user._id === userId ? { ...user, role: newRole } : user
-        ));
-      }
-    } catch (error) {
-      console.error("Error updating member role:", error);
-    }
-  };
+  //     if (response.data) {
+  //       setUsers(users.map(user =>
+  //         user._id === userId ? { ...user, role: newRole } : user
+  //       ));
+  //     }
+  //   } catch (error) {
+  //     console.error("Error updating member role:", error);
+  //   }
+  // };
 
   const formatMemberSince = (dateString: string | undefined): string => {
     if (!dateString) return "N/A";
@@ -277,8 +277,8 @@ const UsersDashboard = () => {
   // Batch action helpers
   const getSelectedUserIds = (): string[] => {
     return Object.entries(selectedUsers)
-      .filter(([_, isSelected]) => isSelected)
-      .map(([userId, _]) => userId);
+      .filter(([, isSelected]) => isSelected)
+      .map(([userId, ]) => userId);
   };
 
   const getSelectedUserCount = (): number => {
@@ -479,7 +479,7 @@ const UsersDashboard = () => {
   return (
     <>
       <Head>
-        <title>Member's Control Panel  - Admin Panel</title>
+        <title>Member&apos;s Control Panel  - Admin Panel</title>
       </Head>
 
       <AdminGuard>
@@ -493,7 +493,7 @@ const UsersDashboard = () => {
           <main className={`flex-1 p-4 md:p-10 transition-all duration-300 ${isSidebarOpen ? "ml-0 md:ml-64" : "ml-0 md:ml-12"}`}>
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
               <div>
-                <h1 className="text-2xl md:text-4xl font-bold text-center mt-3">Member's Control Panel</h1>
+                <h1 className="text-2xl md:text-4xl font-bold text-center mt-3">Member&apos;s Control Panel</h1>
                 <h6 className="text-xs md:text-sm text-gray-500 font-poppins my-3 ml-5 md:ml-0 lg:ml-0">
                   Last fetched: {lastFetched ? lastFetched : 'N/A'}
                 </h6>
@@ -949,7 +949,7 @@ const UsersDashboard = () => {
                                 </td>
 
                                 <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap sticky left-[2.75rem] group-hover:bg-[#232425]
-       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : 'bg-[#18191af7]'}`}>  {/* Make Name column sticky, adjust left value based on checkbox width */}
+                                   ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : 'bg-[#18191af7]'}`}>  {/* Make Name column sticky, adjust left value based on checkbox width */}
                                   <div className="flex flex-row gap-2 justify-start">
                                     <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
                                       className="w-7 h-7 rounded-full" />

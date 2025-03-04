@@ -6,7 +6,7 @@ import AdminGuard from "./_layout";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
-import { CheckIcon, ChevronUpIcon, ChevronDownIcon, FunnelIcon, ArrowsUpDownIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, ChevronUpIcon, ChevronDownIcon,  ArrowsUpDownIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
 import moment from 'moment';
@@ -40,7 +40,7 @@ const AdminsPage = () => {
   const [sortField, setSortField] = useState<SortField>('name');
   const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
   const [searchTerm, setSearchTerm] = useState('');
-  const [showFilters, setShowFilters] = useState(false);
+  // const [showFilters, setShowFilters] = useState(false);
   const [statusFilter, setStatusFilter] = useState<'all' | 'active' | 'inactive'>('all');
   const [roleFilter, setRoleFilter] = useState<'all' | 'admin'>('all');
 
@@ -153,21 +153,25 @@ const AdminsPage = () => {
       );
     }
 
-    // Apply sorting
-    result.sort((a, b) => {
-      let aValue: any = a[sortField] || '';
-      let bValue: any = b[sortField] || '';
+// Apply sorting
+result.sort((a, b) => {
+  let aValue: string | number | Date = a[sortField] || '';
+  let bValue: string | number | Date = b[sortField] || '';
 
-      // Special handling for dates
-      if (sortField === 'createdAt' || sortField === 'lastLogin') {
-        aValue = aValue ? new Date(aValue).getTime() : 0;
-        bValue = bValue ? new Date(bValue).getTime() : 0;
-      }
+  // Special handling for dates
+  if (sortField === 'createdAt' || sortField === 'lastLogin') {
+    aValue = aValue ? new Date(aValue).getTime() : 0;
+    bValue = bValue ? new Date(bValue).getTime() : 0;
+  } else if (typeof aValue === 'string' && typeof bValue === 'string') {
+    aValue = aValue.toLowerCase();
+    bValue = bValue.toLowerCase();
+  }
 
-      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-      return 0;
-    });
+  if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+  if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+  return 0;
+});
+
 
     setFilteredAdmins(result);
   }, [admins, sortField, sortOrder, searchTerm, statusFilter, roleFilter]);
@@ -242,7 +246,7 @@ const AdminsPage = () => {
 
   const handleBulkAction = async (action: 'revoke' | 'delete') => {
     const selectedIds = Object.entries(selectedAdmins)
-      .filter(([_, isSelected]) => isSelected)
+      .filter(([, isSelected]) => isSelected)
       .map(([id]) => id);
 
     if (selectedIds.length === 0) return;
@@ -260,9 +264,9 @@ const AdminsPage = () => {
 
     if (action === 'revoke') {
       // Get the actual admin objects for display in the modal
-      const selectedAdminsList = filteredAdmins.filter(admin =>
-        selectedIds.includes(admin._id) && admin.email !== MASTER_ADMIN_EMAIL
-      );
+      // const selectedAdminsList = filteredAdmins.filter(admin =>
+      //   selectedIds.includes(admin._id) && admin.email !== MASTER_ADMIN_EMAIL
+      // );
 
       setBatchActionConfig({
         title: 'Revoke Admin Privileges',
@@ -401,7 +405,7 @@ const AdminsPage = () => {
   return (
     <>
       <Head>
-        <title>Admin's Control Panel - Admin Panel</title>
+        <title>Admin&apos;s Control Panel - Admin Panel</title>
       </Head>
       <AdminGuard>
         <div className="flex min-h-screen text-white">
@@ -414,7 +418,7 @@ const AdminsPage = () => {
           <main className={`flex-1 p-4 md:p-10 transition-all duration-300 ${isSidebarOpen ? "ml-0 md:ml-64" : "ml-0 md:ml-12"}`}>
             <div className="flex flex-col md:flex-row justify-between items-center mb-6">
               <div>
-                <h1 className="text-2xl md:text-4xl font-bold text-center mt-3">Admin's Control Panel</h1>
+                <h1 className="text-2xl md:text-4xl font-bold text-center mt-3">Admin&apos;s Control Panel</h1>
                 <h6 className="text-xs md:text-sm text-gray-500 font-poppins my-3 ml-5 md:ml-0 lg:ml-0">
                   Last fetched: {lastFetched ? lastFetched : 'N/A'}
                 </h6>

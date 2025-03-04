@@ -1,6 +1,6 @@
 // SidebarLayout.tsx
 "use client";
-import { ReactNode, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation"; // Import usePathname
 import { Sidebar, SidebarBody, SidebarLink } from "@/components/ui/sidebar";
 import {

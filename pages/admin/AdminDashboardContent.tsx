@@ -3,7 +3,6 @@ import { useRouter } from "next/router";
 import { LuUsersRound } from "react-icons/lu";
 import { MdOutlineFeedback } from "react-icons/md";
 import { IoMdWifi } from "react-icons/io";
-import { FaChartLine } from "react-icons/fa";
 import { RiCustomerServiceLine } from "react-icons/ri";
 import WeatherCard from '@/components/WeatherCard';
 import TodoList from '@/components/TodoList';
@@ -32,12 +31,12 @@ const AdminDashboardContent = () => {
   const [userCount, setUserCount] = useState(0);
   const [feedbackCount, setFeedbackCount] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
-  const [friends, setFriends] = useState<Friend[]>([]);
+  const [, setFriends] = useState<Friend[]>([]);
   const [userName, setUserName] = useState<string>("");
-  const [lastLogin, setLastLogin] = useState<string | null>(null);
+  const [, setLastLogin] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [activeUsers, setActiveUsers] = useState(0);
-  const [inactiveUsers, setInactiveUsers] = useState(0);
+  const [, setInactiveUsers] = useState(0);
 
   useEffect(() => {
     fetchDashboardData();
