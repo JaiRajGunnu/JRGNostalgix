@@ -1,7 +1,6 @@
 import React from 'react';
 import { useRouter } from 'next/router';
-import { FaLock } from 'react-icons/fa';
-
+import { TbLockFilled } from "react-icons/tb";
 interface AccessDeniedProps {
   message?: string;
 }
@@ -15,8 +14,8 @@ const AccessDenied: React.FC<AccessDeniedProps> = ({
     <div className="flex items-center justify-center min-h-screen">
       <div className="bg-[#18191af7] p-10 rounded-xl max-w-md w-full text-center shadow-xl m-5">
         <div className="flex justify-center mb-6">
-          <div className="bg-red-600/20 p-6 rounded-full">
-            <FaLock className="text-red-500 text-5xl" />
+          <div className="bg-red-600/20 p-5 rounded-full border border-red-500/30">
+          <TbLockFilled  className="text-red-500 text-7xl" />
           </div>
         </div>
         
