@@ -129,7 +129,7 @@ const AdminDashboardContent = () => {
         <h1 className="text-3xl ml-7 -mt-4 md:ml-0 lg:ml-0 lg:-mt-4 mb-5 lg:mb-7
          font-bold text-gray-100 ">Welcome, {userName} 👋</h1>
 
-        <div className="grid grid-cols md:grid-cols-1 lg:grid-cols-2 gap-12 md:gap-6 lg:gap-6">
+        <div className="grid grid-cols md:grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6 lg:gap-6">
           <div className="flex flex-col">
             <h2 className="text-md md:text-lg lg:text-lg font-semibold
             font-poppins text-gray-200 opacity-80 mb-4 mt-3 md:ml-0 lg:mt-0">Weather</h2>
