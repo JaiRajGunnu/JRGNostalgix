@@ -749,12 +749,13 @@ const UsersDashboard = () => {
                   </div>
                 ) : (
                   <div className="bg-[#18191af7] rounded-lg overflow-hidden">
-                    <div className="p-4 border-b border-[#27292af7] flex flex-col md:flex-row justify-between items-center">
+                    <div className="p-4 border-b border-[#27292af7] flex flex-col md:flex-row justify-between">
                       <span className="text-white/70 text-sm">Showing {filteredUsers.length} of {users.length} members</span>
 
                       {/* Batch Actions Section */}
                       {getSelectedUserCount() > 0 && (
-                        <div className="flex flex-col md:flex-row lg:flex-row items-center gap-3 mr-3 mt-2 md:mt-0">
+                        <div className="flex flex-col md:flex-row lg:flex-row items-end
+                        md:items-center lg:items-center gap-3 mr-3 mt-2 md:mt-0">
                           <div>
                             <span className="text-white/45 text-sm">
                               {getSelectedUserCount()} member{getSelectedUserCount() !== 1 ? 's' : ''} selected
