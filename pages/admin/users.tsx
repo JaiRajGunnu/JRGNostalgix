@@ -824,13 +824,14 @@ const UsersDashboard = () => {
                       )}
                     </div>
                     <div className=" w-[375px] md:w-full lg:w-full overflow-x-auto">
-                    <table className="w-full bg-[#18191af7]overflow-hidden">
-                    <thead>
+                      <table className="w-full bg-[#18191af7]"> {/* By using overflow-hidden, it ll turn off sticky check & name.*/}
+                        <thead>
                           <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
-                            <th className="p-3 ">
+                            <th className="p-3 sticky left-0 bg-[#27292af7] z-10"> {/* Make checkbox column sticky */}
                               <aside
                                 onClick={handleSelectAll}
-                                className={`w-5 h-5 flex items-center font-poppins justify-center border-2 rounded cursor-pointer ${filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
+                                className={`w-5 h-5 flex items-center font-poppins justify-center border-2 rounded cursor-pointer
+                                  ${filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com").length > 0 &&
                                     filteredUsers.filter(user => user.email !== "jairajgsklm@gmail.com")
                                       .every(user => selectedUsers[user._id])
                                     ? "bg-blue-600 border-blue-600"
@@ -843,7 +844,7 @@ const UsersDashboard = () => {
                               </aside>
                             </th>
 
-                            <th className="p-3 text-left">
+                            <th className="p-3 text-left sticky left-[2.75rem] bg-[#27292af7] z-10"> {/* Make Name column sticky, adjust left value based on checkbox width */}
                               <div className="flex items-center">
                                 Name
                                 <div className="ml-2 flex flex-col">
@@ -858,9 +859,9 @@ const UsersDashboard = () => {
                                 </div>
                               </div>
                             </th>
-                            <th className="p-3 ">
+                            <th className="p-3">
                               <span className="-ml-20">E-mail</span>
-                              </th>
+                            </th>
                             <th className="p-3">
                               <div className="flex justify-center items-center">
                                 Status
@@ -907,10 +908,11 @@ const UsersDashboard = () => {
 
                             return (
                               <tr key={user._id}
-                                className={`border-b border-[#27292af7] hover:bg-[#232425] cursor-pointer ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}
+                                className={`border-b border-[#27292af7] group cursor-pointer`}
                                 onClick={() => handleSelectUser(user._id, user.email)}
                               >
-                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap sticky left-0 group-hover:bg-[#232425]
+       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : 'bg-[#18191af7]'}`}> {/* Make checkbox column sticky */}
                                   <TooltipProvider>
                                     {user.email === "jairajgsklm@gmail.com" ? (
                                       <Tooltip>
@@ -925,7 +927,8 @@ const UsersDashboard = () => {
                                       </Tooltip>
                                     ) : (
                                       <div
-                                        className={`w-5 h-5 flex items-center justify-center border-2 rounded ${!!selectedUsers[user._id] ? "bg-blue-600 border-blue-600" : "border-white/50"
+                                        className={`w-5 h-5 flex items-center justify-center border-2 rounded
+                       ${!!selectedUsers[user._id] ? "bg-blue-600 border-blue-600" : "border-white/50"
                                           }`}
                                       >
                                         {selectedUsers[user._id] && <CheckIcon className="w-3 h-3 text-white" />}
@@ -934,7 +937,8 @@ const UsersDashboard = () => {
                                   </TooltipProvider>
                                 </td>
 
-                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap sticky left-[2.75rem] group-hover:bg-[#232425]
+       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : 'bg-[#18191af7]'}`}>  {/* Make Name column sticky, adjust left value based on checkbox width */}
                                   <div className="flex flex-row gap-2 justify-start">
                                     <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
                                       className="w-7 h-7 rounded-full" />
@@ -950,9 +954,9 @@ const UsersDashboard = () => {
                                     </TooltipProvider>
                                   </div>
                                 </td>
-                                <td className="p-3 text-left  md:w-auto lg:w-auto w-full whitespace-nowrap">{user.email}</td>
+                                <td className={`p-3 text-left md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425] ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>{user.email}</td>
                                 <TooltipProvider>
-                                  <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                  <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425] ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                     <Tooltip>
                                       <TooltipTrigger>
                                         <span className="flex items-center justify-center">
@@ -970,7 +974,8 @@ const UsersDashboard = () => {
                                     </Tooltip>
                                   </td>
                                 </TooltipProvider>
-                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425]
+       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                   {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
                                     day: '2-digit',
                                     month: 'short',
@@ -981,10 +986,12 @@ const UsersDashboard = () => {
                                   }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                                     : 'N/A'}
                                 </td>
-                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425]
+       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                   {formatMemberSince(user.createdAt)}
                                 </td>
-                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
+                                <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425]
+       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                   <div className="relative group">
                                     <div className="transition-opacity duration-300">
                                       {user.email === "jairajgsklm@gmail.com" ? (
@@ -1007,7 +1014,8 @@ const UsersDashboard = () => {
                                           <Tooltip>
                                             <TooltipTrigger>
                                               <button
-                                                className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500 ${user.role === "admin"
+                                                className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500
+                                       ${user.role === "admin"
                                                     ? "hover:text-blue-600 hover:border-blue-600"
                                                     : "hover:text-yellow-600 hover:border-yellow-600"
                                                   } px-4 py-1.5 rounded capitalize`}
