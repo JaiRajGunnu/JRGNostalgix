@@ -133,7 +133,7 @@ const AdminDashboardContent = () => {
           <div className="flex flex-col">
             <h2 className="text-md md:text-lg lg:text-lg font-semibold
             font-poppins text-gray-200 opacity-80 mb-4 mt-3 md:ml-0 lg:mt-0">Weather</h2>
-            <div className="min-h-[200px] lg:h-full">
+            <div className="min-h-[200px] lg:h-full ">
               <WeatherCard /> </div>
           </div>
           <div className="flex flex-col">
@@ -141,8 +141,9 @@ const AdminDashboardContent = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
               {/* Card 01 */}
-              <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center">
-                <LuUsersRound className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
+              <div className="p-10 bg-gradient-to-r from-[#2f2812f7] to-[#161204f7] shadow-xl rounded-xl flex items-center
+               outline outline-1 outline-white/0 hover:outline-1 hover:outline-[#2f2812f7] transition-all">
+                <LuUsersRound className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3 " />
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Total users</p>
                   <p className="text-2xl font-bold text-white">{userCount}</p>
@@ -150,7 +151,9 @@ const AdminDashboardContent = () => {
               </div>
 
               {/* Card 04 */}
-              <div className="p-10  bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl">
+              <div className="p-10  bg-gradient-to-r from-[#102f10] to-[#031603f7] shadow-xl rounded-xl                
+              outline outline-1 outline-white/0 hover:outline-1 hover:outline-[#102f10] transition-all">
+
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <IoMdWifi className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-5xl rounded-full p-3" />
@@ -169,7 +172,8 @@ const AdminDashboardContent = () => {
               </div>
 
               {/* Card 03 */}
-              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center">
+              <div className="p-10 bg-gradient-to-r from-[#2c0d2d] to-[#170618] shadow-xl rounded-xl flex items-center
+              outline outline-1 outline-white/0 hover:outline-1 hover:outline-[#2c0d2d] transition-all">
                 <RiCustomerServiceLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Total tickets</p>
@@ -178,7 +182,8 @@ const AdminDashboardContent = () => {
               </div>
 
               {/* Card 02 */}
-              <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center">
+              <div className="p-10 bg-gradient-to-r from-[#202047f7] to-[#0a0a22] shadow-xl rounded-xl flex items-center
+              outline outline-1 outline-white/0 hover:outline-1 hover:outline-[#202047f7] transition-all">
                 <MdOutlineFeedback className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Feedbacks</p>

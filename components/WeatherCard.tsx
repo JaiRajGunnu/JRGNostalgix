@@ -80,15 +80,15 @@ const WeatherCard: React.FC = () => {
 
     return (
         <div
-            className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-full w-full"
+            className="p-6 bg-[#18191af7] shadow-xl rounded-xl flex items-center h-full w-full
+            outline outline-1 outline-white/0 hover:outline-1 hover:outline-white/10 transition-all "
             style={{
                 backgroundImage: `url('/img/wallpapers/${getTimeOfDay()}.jpg')`,
                 backgroundRepeat: 'no-repeat',
                 backgroundPosition: 'center',
                 backgroundSize: 'cover',
-            }}
-        >
-            <div className="flex content-end items-end ml-auto mb-auto">
+            }} >
+            <div className="flex content-end items-end ml-auto mb-auto ">
                 {loading ? (
                     <p className="text-lg font-semibold text-gray-400">Loading weather..</p>
                 ) : weather ? (
