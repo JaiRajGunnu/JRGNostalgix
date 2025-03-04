@@ -110,7 +110,7 @@ const Settings = () => {
                   </label>
                   <select
                     id="theme-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
+                    className="border  scale-90 md:scale-100 lg:scale-100  border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                   >
                     <option>Dark theme</option>
                     <option disabled>Light theme</option>
@@ -136,7 +136,7 @@ const Settings = () => {
                   </label>
                   <select
                     id="privacy-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
+                    className="border  scale-90 md:scale-100 lg:scale-100  border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                     value={privacy}
                     onChange={handlePrivacyChange}
                   >
@@ -164,7 +164,7 @@ const Settings = () => {
                   </label>
                   <button
                     onClick={handleDeactivate}
-                    className="dark:bg-[#27292af7] text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring"
+                    className="dark:bg-[#27292af7] scale-90 md:scale-100 lg:scale-100 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors focus:outline-none focus:ring"
                   >
                     Deactivate
                   </button>

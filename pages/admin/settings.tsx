@@ -95,7 +95,7 @@ const AdminSettings = () => {
                   </label>
                   <select
                     id="theme-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
+                    className="border scale-90 md:scale-100 lg:scale-100 border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                   >
                     <option>Jai Raj Gunnu</option>
                     <option disabled>Other</option>
@@ -120,7 +120,7 @@ const AdminSettings = () => {
                   </label>
                   <select
                     id="access-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
+                    className="border scale-90 md:scale-100 lg:scale-100 border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                     value={privacy}
                     onChange={handlePrivacyChange}
                   >
@@ -147,7 +147,7 @@ const AdminSettings = () => {
                   </label>
                   <select
                     id="control-select"
-                    className="border border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
+                    className="border scale-90 md:scale-100 lg:scale-100 border-gray-300 dark:border-gray-600 p-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-[#27292af7] dark:text-white"
                     value={privacy}
                     onChange={handlePrivacyChange}
                   >
