@@ -499,11 +499,8 @@ const UsersDashboard = () => {
                 </h6>
               </div>
               <div className="mb-0 flex flex-col md:flex-row justify-end items-center w-full md:w-auto gap-2">
-
-                {/* Add this search component right after the "Member's Control Panel" heading section,
-    around line 470, just after the div with the lastFetched display */}
                 <div className="flex items-center justify-between w-full md:w-auto ">
-                  <div className="relative flex-1 max-w-full md:max-w-md mr-0 md:mr-5">
+                  <div className="relative flex-1 max-w-full md:max-w-md mx-2 md:mr-5 lg:mr-5">
                     <input
                       type="text"
                       placeholder="Search here..."
@@ -550,8 +547,8 @@ const UsersDashboard = () => {
                   <button
                     onClick={openModal}
                     className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700 text-sm md:text-base">
-                    <PlusIcon className="w-5 h-5 stroke-white stroke-1" />
-                    <span className="font-medium font-poppins"> New Member</span>
+                    <PlusIcon className="w-5 h-5 stroke-white stroke-[1.5]" />
+                    <span className="font-semibold font-poppins">New Member</span>
                   </button>
                 </div>
               </div>
@@ -740,7 +737,8 @@ const UsersDashboard = () => {
                     {isAnyFilterActive && (
                       <button
                         onClick={resetAllFilters}
-                        className="mt-4 flex items-center gap-2 bg-blue-600 font-medium font-poppins hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
+                        className="mt-4 flex items-center gap-2 bg-blue-600 font-medium font-poppins
+                        hover:bg-blue-700 text-white px-4 py-2 rounded-lg transition-all mx-auto"
                       >
                         <CgUndo className="h-6 w-6 font-medium " />
                         Revert to Default
@@ -750,31 +748,36 @@ const UsersDashboard = () => {
                 ) : (
                   <div className="bg-[#18191af7] rounded-lg overflow-hidden">
                     <div className="p-4 border-b border-[#27292af7] flex flex-col md:flex-row justify-between">
-                      <span className="text-white/70 text-sm">Showing {filteredUsers.length} of {users.length} members</span>
+                      <span className="text-white/70 text-sm font-normal ">
+                        Showing {filteredUsers.length} of {users.length} members
+                      </span>
 
                       {/* Batch Actions Section */}
                       {getSelectedUserCount() > 0 && (
                         <div className="flex flex-col md:flex-row lg:flex-row items-end
-                        md:items-center lg:items-center gap-3 mr-3 mt-2 md:mt-0">
+                        md:items-center lg:items-center gap-3 mr-3 -mt-6 md:mt-0 lg:mt-0">
                           <div>
-                            <span className="text-white/45 text-sm">
+                            <span className="text-white/45 text-xs md:text-sm lg:text-sm
+                             font-thin md:font-normal lg:font-normal">
                               {getSelectedUserCount()} member{getSelectedUserCount() !== 1 ? 's' : ''} selected
                             </span>
                           </div>
 
-                          <div className="flex flex-row gap-3">
+                          <div className="flex flex-row gap-3 ">
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
                                   <button
                                     onClick={() => openBatchActionModal("make-admin")}
                                     disabled={!hasNonAdminSelected()}
-                                    className={`border font-poppins text-sm px-4 py-1.5 rounded transition-colors ${hasNonAdminSelected()
-                                      ? "border-blue-600 text-blue-600 hover:text-white hover:bg-blue-700"
-                                      : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
+                                    className={`border font-poppins font-semibold w-full h-8 md:h-full lg:h-full
+                                      md:px-4 md:py-1.5 lg:px-4 lg:py-1.5 rounded transition-colors ${hasNonAdminSelected()
+                                        ? "border-blue-600 text-blue-600 hover:text-white hover:bg-blue-700"
+                                        : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
                                       }`}
                                   >
-                                    Make Admin
+                                    <span className="whitespace-nowrap text-xs md:text-sm lg:text-sm
+                                     px-3 md:px-0 lg:px-0">Make Admin</span>
                                   </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="bottom">
@@ -790,12 +793,15 @@ const UsersDashboard = () => {
                                   <button
                                     onClick={() => openBatchActionModal("revoke-admin")}
                                     disabled={!hasAdminSelected()}
-                                    className={`border font-poppins text-sm px-4 py-1.5 rounded transition-colors ${hasAdminSelected()
-                                      ? "border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600"
-                                      : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
+                                    className={`border font-poppins font-semibold w-full h-8 md:h-full lg:h-full
+                                      md:px-4 md:py-1.5 lg:px-4 lg:py-1.5 rounded transition-colors ${hasAdminSelected()
+                                        ? "border-orange-600 text-orange-600 hover:text-white hover:bg-orange-600"
+                                        : "border-gray-600 text-gray-600 cursor-not-allowed opacity-70"
                                       }`}
                                   >
-                                    Revoke Admin
+                                    <span className="whitespace-nowrap text-xs md:text-sm lg:text-sm
+                                     px-3 md:px-0 lg:px-0">Revoke Admin</span>
+
                                   </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="bottom">
@@ -811,9 +817,13 @@ const UsersDashboard = () => {
                                 <TooltipTrigger >
                                   <button
                                     onClick={() => openBatchActionModal("delete")}
-                                    className="border border-red-600 font-poppins text-red-600 hover:text-white hover:bg-red-600 text-sm hover:opacity-100 px-4 py-1.5 rounded transition-colors"
+                                    className="border font-semibold border-red-600 text-red-600 hover:text-white
+                                     hover:bg-red-600 font-poppins w-full h-8 md:h-full lg:h-full
+                                    md:px-4 md:py-1.5 lg:px-4 lg:py-1.5 rounded transition-colors "
                                   >
-                                    Terminate
+                                    <span className="whitespace-nowrap text-xs md:text-sm lg:text-sm
+                                     px-3 md:px-0 lg:px-0">Terminate</span>
+
                                   </button>
                                 </TooltipTrigger>
                                 <TooltipContent side="bottom">Delete selected members</TooltipContent>

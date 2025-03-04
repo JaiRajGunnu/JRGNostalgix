@@ -432,7 +432,8 @@ const AdminsPage = () => {
                   onClick={handleAddAdmin}
                   className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700 text-sm md:text-base"
                 >
-                  <PlusIcon className="w-5 h-5 stroke-white stroke-1" /> <span className="font-medium font-poppins"> New Admin</span>
+                  <PlusIcon className="w-5 h-5 stroke-white stroke-[1.5]" />
+                  <span className="font-semibold font-poppins"> New Admin</span>
                 </button>
               </div>
             </div>
