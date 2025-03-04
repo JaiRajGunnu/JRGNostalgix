@@ -14,7 +14,7 @@ import BatchActionModal from '@/components/BatchActionModel';
 import UserRegistrationModal from "./UserRegistrationModal";
 import moment from 'moment';
 import { CgUndo } from "react-icons/cg";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
 
 interface User {
   _id: string;

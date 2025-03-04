@@ -8,7 +8,7 @@ import { RiCustomerServiceLine } from "react-icons/ri";
 import WeatherCard from '@/components/WeatherCard';
 import TodoList from '@/components/TodoList';
 import AdminSidebar from '@/components/ui/AdminSidebar';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
 
 interface User {
   _id: string;

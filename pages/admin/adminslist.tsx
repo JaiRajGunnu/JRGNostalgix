@@ -10,7 +10,7 @@ import { CheckIcon, ChevronUpIcon, ChevronDownIcon, FunnelIcon, ArrowsUpDownIcon
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
 import moment from 'moment';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/tooltip";
 
 
 interface Admin {
