@@ -78,9 +78,7 @@ const AdminGuard = ({ children }: AdminGuardProps) => {
 
   return (
     <>
-      <Head>
-        <title>{isAdmin ? "Admin Dashboard" : "Access Denied"}</title>
-      </Head>
+
       <div className="min-h-screen text-white">
         <div className="absolute inset-0 -z-10 pointer-events-none">
         <BackgroundBeamsWithCollision> </BackgroundBeamsWithCollision>

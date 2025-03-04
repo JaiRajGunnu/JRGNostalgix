@@ -401,7 +401,7 @@ const AdminsPage = () => {
   return (
     <>
       <Head>
-        <title>Admin's Control Panel</title>
+        <title>Admin's Control Panel - Admin Panel</title>
       </Head>
       <AdminGuard>
         <div className="flex min-h-screen text-white">

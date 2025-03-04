@@ -479,7 +479,7 @@ const UsersDashboard = () => {
   return (
     <>
       <Head>
-        <title>Member's Control Panel</title>
+        <title>Member's Control Panel  - Admin Panel</title>
       </Head>
 
       <AdminGuard>
@@ -500,7 +500,7 @@ const UsersDashboard = () => {
               </div>
               <div className="mb-0 flex flex-col md:flex-row justify-end items-center w-full md:w-auto gap-2">
                 <div className="flex items-center justify-between w-full md:w-auto ">
-                  <div className="relative flex-1 max-w-full md:max-w-md mx-2 md:mr-5 lg:mr-5">
+                  <div className="relative flex-1 max-w-full md:max-w-md mx-2 md:mr-5 lg:mr-4">
                     <input
                       type="text"
                       placeholder="Search here..."
