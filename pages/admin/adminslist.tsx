@@ -411,15 +411,15 @@ const AdminsPage = () => {
 
         <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
 
-        <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
-          <div className="flex justify-between items-center mb-6">
+        <main className={`flex-1 p-4 md:p-10 transition-all duration-300 ${isSidebarOpen ? "ml-0 md:ml-64" : "ml-0 md:ml-12"}`}>
+          <div className="flex flex-col md:flex-row justify-between items-center mb-6">
             <div>
-              <h1 className="text-4xl font-bold text-center my-5">Admin's Control Panel</h1>
-              <h6 className="text-sm text-gray-500 font-poppins ">
-                Last fetched: {lastFetched ? lastFetched : 'N/A'}
+              <h1 className="text-2xl md:text-4xl font-bold text-center mt-3">Admin's Control Panel</h1>
+              <h6 className="text-xs md:text-sm text-gray-500 font-poppins my-3 ml-5 md:ml-0 lg:ml-0">
+              Last fetched: {lastFetched ? lastFetched : 'N/A'}
               </h6>
             </div>
-            <div className="flex items-center gap-3">
+            <div className="flex flex-col md:flex-row items-center gap-3 mt-3 md:mt-0">
               {/* <button
                 onClick={() => setShowFilters(!showFilters)}
                 className="flex items-center gap-2 bg-[#27292af7] px-4 py-2 rounded-lg transition hover:bg-[#323436]"
@@ -430,7 +430,7 @@ const AdminsPage = () => {
 
               <button
                 onClick={handleAddAdmin}
-                className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700"
+                className="flex items-center gap-2 bg-blue-600 px-4 py-2 rounded-lg transition hover:bg-blue-700 text-sm md:text-base"
               >
                 <PlusIcon className="w-5 h-5 stroke-white stroke-1" /> <span className="font-medium font-poppins"> New Admin</span>
               </button>
@@ -489,9 +489,9 @@ const AdminsPage = () => {
 
           {/* Bulk actions bar */}
           {showBulkActions && (
-            <div className=" p-3 rounded-lg mb-2 flex items-center justify-between animate-slideDown">
+            <div className=" p-3 rounded-lg mb-2 flex flex-row  items-center justify-between animate-slideDown gap-2">
               <div className="flex items-center gap-2">
-                <span className="text-white/70">
+                <span className="text-white/70 text-sm">
                   {getSelectedCount()} admin{getSelectedCount() !== 1 ? 's' : ''} selected
                 </span>
                 <button
@@ -536,9 +536,9 @@ const AdminsPage = () => {
               </button>
             </div>
           ) : (
-            <div className="overflow-x-auto">
+            <div className=" w-[375px] md:w-full lg:w-full overflow-x-auto">
               <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
-                <thead>
+              <thead>
                   <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
                     <th className="p-3">
                       <aside

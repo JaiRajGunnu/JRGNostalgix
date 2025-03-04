@@ -103,7 +103,7 @@ const WeatherCard: React.FC = () => {
                         </div>
                     </>
                 ) : (
-                    <p className="text-lg font-semibold text-red-500">Failed to load weather</p>
+                    <p className="text-md font-semibold text-white/70 font-poppins">Failed to fetch weather</p>
                 )}
             </div>
         </div>

@@ -5,7 +5,8 @@ import AdminDashboardContent from "./AdminDashboardContent";
 const AdminDashboard = () => {
   return (
     <AdminGuard>
-      <AdminDashboardContent />
+      <div className="overflow-hidden">
+      <AdminDashboardContent/></div>
     </AdminGuard>
   );
 };

@@ -5,8 +5,8 @@ import { MdOutlineFeedback } from "react-icons/md";
 import { IoMdWifi } from "react-icons/io";
 import { FaChartLine } from "react-icons/fa";
 import { RiCustomerServiceLine } from "react-icons/ri";
-import WeatherCard from '@/components/ui/WeatherCard';
-import TodoList from '@/components/ui/TodoList';
+import WeatherCard from '@/components/WeatherCard';
+import TodoList from '@/components/TodoList';
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -31,7 +31,6 @@ const AdminDashboardContent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [userCount, setUserCount] = useState(0);
   const [feedbackCount, setFeedbackCount] = useState(0);
-  const [viewsCount, setViewsCount] = useState(0);
   const [users, setUsers] = useState<User[]>([]);
   const [friends, setFriends] = useState<Friend[]>([]);
   const [userName, setUserName] = useState<string>("");
@@ -91,7 +90,6 @@ const AdminDashboardContent = () => {
     try {
       const userResponse = await fetch("/api/users");
       const feedbackCountResponse = await fetch("/api/feedback/count");
-      const viewsCountResponse = await fetch("/api/views/count");
 
       if (!userResponse.ok) throw new Error("Failed to fetch users");
       const userData = await userResponse.json();
@@ -106,13 +104,6 @@ const AdminDashboardContent = () => {
         setFeedbackCount(count);
       }
 
-      if (!viewsCountResponse.ok) {
-        console.error("Error fetching views count");
-        setViewsCount(0);
-      } else {
-        const { count } = await viewsCountResponse.json();
-        setViewsCount(count);
-      }
 
       const friendsResponse = await fetch("/api/friends");
       if (!friendsResponse.ok) {
@@ -126,7 +117,6 @@ const AdminDashboardContent = () => {
       console.error("Error fetching dashboard data:", error);
       setUserCount(0);
       setFeedbackCount(0);
-      setViewsCount(0);
     } finally {
       setLoading(false);
     }
@@ -135,16 +125,19 @@ const AdminDashboardContent = () => {
   return (
     <div className="flex min-h-screen text-white">
       <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-12"}`}>
-        <h1 className="text-3xl font-bold text-gray-100 mb-10 -mt-4">Welcome, {userName} 👋</h1>
+      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-0 md:ml-12 lg:ml-12"}`}>
+        <h1 className="text-3xl ml-7 -mt-4 md:ml-0 lg:ml-0 lg:-mt-4 mb-5 lg:mb-7
+         font-bold text-gray-100 ">Welcome, {userName} 👋</h1>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="grid grid-cols md:grid-cols-1 lg:grid-cols-2 gap-12 md:gap-6 lg:gap-6">
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Weather</h2>
-            <WeatherCard />
+            <h2 className="text-md md:text-lg lg:text-lg font-semibold
+            font-poppins text-gray-200 opacity-80 mb-4 mt-5 md:ml-0 lg:mt-0">Weather</h2>
+            <div className="min-h-[200px] lg:h-full">
+              <WeatherCard /> </div>
           </div>
           <div className="flex flex-col">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Analytics</h2>
+            <h2 className="text-md md:text-lg lg:text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Analytics</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
 
               {/* Card 01 */}
@@ -180,7 +173,7 @@ const AdminDashboardContent = () => {
                 <RiCustomerServiceLine className="text-white text-[60px] bg-[#ffffff15] backdrop-blur-3xl rounded-full p-3" />
                 <div className="ml-4">
                   <p className="text-lg font-semibold font-poppins text-gray-300">Total tickets</p>
-                  <p className="text-2xl font-bold text-white">{viewsCount}</p>
+                  <p className="text-2xl font-bold text-white">0</p>
                 </div>
               </div>
 
@@ -200,19 +193,18 @@ const AdminDashboardContent = () => {
         <div className="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* Admin List Card */}
           <div className="mt-5">
-            <h2 className="text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Admins</h2>
+            <h2 className="text-md md:text-lg lg:text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">Admins</h2>
             {loading ? (
               <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
             ) : (
-              <table className="w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+
+              <table className="scale-90 -m-4 md:scale-100 md:m-0 md:m-0 lg:scale-100 lg:ml-0 lg:my-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
                 <thead>
                   <tr className="bg-[#27292af7] text-white font-medium">
                     <th className="p-3 max-w-[200px] text-left">
                       <span className="ml-6">Name</span></th>
-
                     <th className="p-3">Status</th>
                     <th className="p-3">Last login</th>
-
                     <th className="p-3">Since</th>
                   </tr>
                 </thead>
@@ -223,7 +215,7 @@ const AdminDashboardContent = () => {
                       className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
                       onClick={() => router.push('/admin/adminslist')}
                     >
-                      <td className="p-3 text-center ml-6 text-gray-100 flex flex-row max-w-[200px]">
+                      <td className="p-3 text-left ml-4  md:absolute lg:absolute  text-gray-100 max-w-[200px] align-middle">
                         {admin.name}
                       </td>
                       <td className="p-3 text-center">

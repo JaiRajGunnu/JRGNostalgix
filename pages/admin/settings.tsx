@@ -43,14 +43,7 @@ const AdminSettings = () => {
           <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
         </div>
         
-        {/* Sidebar Toggle Button - for mobile */}
-        <button 
-          onClick={toggleSidebar}
-          className="fixed top-4 left-4 z-40 md:hidden bg-gray-800 text-white p-2 rounded-md"
-          aria-label="Toggle Sidebar"
-        >
-          {isSidebarOpen ? '✕' : '☰'}
-        </button>
+
 
         {/* Main Content */}
         <div className={`flex-1 transition-all duration-300 ${isSidebarOpen ? 'ml-64' : 'ml-0'} min-h-screen w-full flex justify-center`}>
@@ -61,7 +54,7 @@ const AdminSettings = () => {
           {/* Main Container */}
           <div className="max-w-3xl w-full mx-auto p-6">
             {/* Page Header */}
-            <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-10 lg:mb-7">
+            <div className="space-y-2  mt-10  mb-6 md:mb-10lg:mb-7">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
                 Settings
               </h2>
