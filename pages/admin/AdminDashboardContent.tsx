@@ -132,7 +132,7 @@ const AdminDashboardContent = () => {
         <div className="grid grid-cols md:grid-cols-1 lg:grid-cols-2 gap-12 md:gap-6 lg:gap-6">
           <div className="flex flex-col">
             <h2 className="text-md md:text-lg lg:text-lg font-semibold
-            font-poppins text-gray-200 opacity-80 mb-4 mt-5 md:ml-0 lg:mt-0">Weather</h2>
+            font-poppins text-gray-200 opacity-80 mb-4 mt-3 md:ml-0 lg:mt-0">Weather</h2>
             <div className="min-h-[200px] lg:h-full">
               <WeatherCard /> </div>
           </div>
@@ -198,7 +198,7 @@ const AdminDashboardContent = () => {
               <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
             ) : (
 
-              <table className="scale-90 -m-4 md:scale-100 md:m-0 md:m-0 lg:scale-100 lg:ml-0 lg:my-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+              <table className="scale-[75%] ml-[-50px] -my-4 md:scale-100 lg:scale-100 md:m-0 lg:m-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
                 <thead>
                   <tr className="bg-[#27292af7] text-white font-medium">
                     <th className="p-3 max-w-[200px] text-left">
@@ -244,7 +244,7 @@ const AdminDashboardContent = () => {
                           </Tooltip>
                         </TooltipProvider>
                       </td>
-                      <td className="p-3 text-center">
+                      <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                         {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
                           day: '2-digit',
                           month: 'short',
@@ -252,7 +252,7 @@ const AdminDashboardContent = () => {
                         }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                           : 'N/A'}
                       </td>
-                      <td className="p-3 text-center">
+                      <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                         {admin.createdAt ? new Date(admin.createdAt).toLocaleDateString("en-IN", { day: '2-digit', month: 'short', year: '2-digit' }) : "N/A"}
                       </td>
                     </tr>

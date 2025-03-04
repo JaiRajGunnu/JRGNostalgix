@@ -824,7 +824,7 @@ const UsersDashboard = () => {
                       )}
                     </div>
                     <div className=" w-[375px] md:w-full lg:w-full overflow-x-auto">
-                    <table className="w-full bg-[#18191af7] rounded-lg overflow-hidden">
+                    <table className="w-full bg-[#18191af7]overflow-hidden">
                     <thead>
                           <tr className="bg-[#27292af7] text-white font-poppins font-semibold">
                             <th className="p-3 ">
@@ -843,7 +843,7 @@ const UsersDashboard = () => {
                               </aside>
                             </th>
 
-                            <th className="p-3 text-left ">
+                            <th className="p-3 text-left">
                               <div className="flex items-center">
                                 Name
                                 <div className="ml-2 flex flex-col">
@@ -858,7 +858,9 @@ const UsersDashboard = () => {
                                 </div>
                               </div>
                             </th>
-                            <th className="p-3">E-mail</th>
+                            <th className="p-3 ">
+                              <span className="-ml-20">E-mail</span>
+                              </th>
                             <th className="p-3">
                               <div className="flex justify-center items-center">
                                 Status
@@ -908,7 +910,7 @@ const UsersDashboard = () => {
                                 className={`border-b border-[#27292af7] hover:bg-[#232425] cursor-pointer ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}
                                 onClick={() => handleSelectUser(user._id, user.email)}
                               >
-                                <td className="p-3 text-center">
+                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                   <TooltipProvider>
                                     {user.email === "jairajgsklm@gmail.com" ? (
                                       <Tooltip>
@@ -932,14 +934,14 @@ const UsersDashboard = () => {
                                   </TooltipProvider>
                                 </td>
 
-                                <td className="p-3 text-center max-w-[150px]">
+                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                   <div className="flex flex-row gap-2 justify-start">
                                     <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={user.name}
                                       className="w-7 h-7 rounded-full" />
                                     <TooltipProvider>
                                       <Tooltip>
                                         <TooltipTrigger>
-                                          <span className="text-ellipsis overflow-hidden whitespace-nowrap">
+                                          <span className="pr-10">
                                             {user.name}
                                           </span>
                                         </TooltipTrigger>
@@ -948,9 +950,9 @@ const UsersDashboard = () => {
                                     </TooltipProvider>
                                   </div>
                                 </td>
-                                <td className="p-3 text-center">{user.email}</td>
+                                <td className="p-3 text-left  md:w-auto lg:w-auto w-full whitespace-nowrap">{user.email}</td>
                                 <TooltipProvider>
-                                  <td className="p-3 text-center">
+                                  <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                     <Tooltip>
                                       <TooltipTrigger>
                                         <span className="flex items-center justify-center">
@@ -968,7 +970,7 @@ const UsersDashboard = () => {
                                     </Tooltip>
                                   </td>
                                 </TooltipProvider>
-                                <td className="p-3 text-center">
+                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                   {user.lastLogin ? new Date(user.lastLogin).toLocaleString("en-IN", {
                                     day: '2-digit',
                                     month: 'short',
@@ -979,10 +981,10 @@ const UsersDashboard = () => {
                                   }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                                     : 'N/A'}
                                 </td>
-                                <td className="p-3 text-center">
+                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                   {formatMemberSince(user.createdAt)}
                                 </td>
-                                <td className="p-3 text-center">
+                                <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                                   <div className="relative group">
                                     <div className="transition-opacity duration-300">
                                       {user.email === "jairajgsklm@gmail.com" ? (

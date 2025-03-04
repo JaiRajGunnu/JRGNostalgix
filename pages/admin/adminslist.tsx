@@ -556,7 +556,7 @@ const AdminsPage = () => {
                       </div>
                     </th>
                     <th className="p-3 cursor-pointer" onClick={() => handleSort('email')}>
-                      <div className="flex items-center justify-center">
+                      <div className="-ml-10 flex items-center justify-center">
                         <span className="mr-2">E-mail</span>
                         {getSortIcon('email')}
                       </div>
@@ -593,7 +593,7 @@ const AdminsPage = () => {
                       <tr onClick={() => handleSelectAdmin(admin._id, admin.email)}
                         key={admin._id} className={`border-b border-[#27292af7] hover:bg-[#232425] cursor-pointer ${selectedAdmins[admin._id] ? 'bg-[#2D2D2D80]' : ''}`}
                       >
-                        <td className="p-3 text-center">
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                           {isMasterAdmin ? (
                             <TooltipProvider>
                               <Tooltip>
@@ -615,13 +615,13 @@ const AdminsPage = () => {
                             </div>
                           )}
                         </td>
-                        <td className="p-3 text-center max-w-[150px]">
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                           <div className="flex flex-row gap-3 justify-start  ">
                             <img src={friend ? friend.src : "/img/guestavatar.svg"} alt={admin.name} className="w-7 h-7 rounded-full" />
                             <TooltipProvider>
                               <Tooltip>
                                 <TooltipTrigger>
-                                  <span className="text-ellipsis overflow-hidden whitespace-nowrap ">
+                                  <span className="pr-10">
                                     {admin.name}
                                   </span>
                                 </TooltipTrigger>
@@ -631,8 +631,8 @@ const AdminsPage = () => {
                               </Tooltip>
                             </TooltipProvider>                          </div>
                         </td>
-                        <td className="p-3 text-center">{admin.email}</td>
-                        <td className="p-3 text-center">
+                        <td className="p-3 text-left md:w-auto lg:w-auto w-full whitespace-nowrap">{admin.email}</td>
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                           <TooltipProvider>
                             <Tooltip>
                               <TooltipTrigger>
@@ -649,8 +649,8 @@ const AdminsPage = () => {
                             </Tooltip>
                           </TooltipProvider>
                         </td>
-                        {/* <td className="p-3 text-center capitalize">{admin.role}</td> */}
-                        <td className="p-3 text-center">{admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", {
+                        {/* <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap capitalize">{admin.role}</td> */}
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">{admin.createdAt ? new Date(admin.createdAt).toLocaleString("en-IN", {
                           day: '2-digit',
                           month: 'short',
                           year: '2-digit',
@@ -661,7 +661,7 @@ const AdminsPage = () => {
                           : 'N/A'}
                         </td>
 
-                        <td className="p-3 text-center">
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                           {admin.lastLogin ? new Date(admin.lastLogin).toLocaleString("en-IN", {
                             day: '2-digit',
                             month: 'short',
@@ -672,7 +672,7 @@ const AdminsPage = () => {
                           }).replace(/\b(am|pm)\b/g, (match) => match.toUpperCase())
                             : 'N/A'}
                         </td>
-                        <td className="p-3 text-center">
+                        <td className="p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap">
                           <div className="relative group">
 
                             <div className="transition-opacity duration-300">
