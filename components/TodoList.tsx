@@ -9,12 +9,15 @@ interface Todo {
   completed: boolean;
 }
 
+type FilterType = 'All' | 'Pending' | 'Done';
+
 const TodoList: React.FC = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [inputValue, setInputValue] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [todoToDelete, setTodoToDelete] = useState<string | null>(null);
+  const [filter, setFilter] = useState<FilterType>('Pending'); // Changed default filter to 'Pending'
 
   // Load todos from MongoDB on component mount
   useEffect(() => {
@@ -48,20 +51,26 @@ const TodoList: React.FC = () => {
       method: 'DELETE',
     });
     setTodos(todos.filter(todo => todo._id !== id));
-    setShowConfirmation(false); // Hide the confirmation after deletion
+    setShowConfirmation(false);
     setTodoToDelete(null);
   };
 
-  const toggleTodoCompletion = async (index: number) => {
-    const todo = todos[index];
-    const updatedTodo = { ...todo, completed: !todo.completed };
+  const toggleTodoCompletion = async (id: string) => {
+    // Find the todo by id instead of index
+    const todoToUpdate = todos.find(todo => todo._id === id);
+    
+    if (!todoToUpdate) return;
+
+    const updatedTodo = { ...todoToUpdate, completed: !todoToUpdate.completed };
 
     // Update the local state
-    const updatedTodos = todos.map((t, i) => (i === index ? updatedTodo : t));
+    const updatedTodos = todos.map(todo => 
+      todo._id === id ? updatedTodo : todo
+    );
     setTodos(updatedTodos);
 
     // Send the updated status to the server
-    await fetch(`/api/todos?id=${todo._id}`, {
+    await fetch(`/api/todos?id=${id}`, {
       method: 'PUT',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ completed: updatedTodo.completed }),
@@ -84,10 +93,22 @@ const TodoList: React.FC = () => {
     setTodoToDelete(null);
   };
 
+  // Calculate filtered todos and counts
+  const allTodosCount = todos.length;
+  const pendingTodosCount = todos.filter(todo => !todo.completed).length;
+  const doneTodosCount = todos.filter(todo => todo.completed).length;
+
+  // Filter todos based on selected filter
+  const filteredTodos = todos.filter(todo => {
+    if (filter === 'Pending') return !todo.completed;
+    if (filter === 'Done') return todo.completed;
+    return true;
+  });
 
   return (
     <div>
       <h2 className="text-md md:text-lg lg:text-lg font-semibold font-poppins text-gray-200 opacity-80 mb-4">To-do List</h2>
+      
       <div className="p-6 bg-[#171819] shadow-xl rounded-xl flex flex-col h-full w-full">
         <div className="flex mb-4">
           <input
@@ -107,33 +128,61 @@ const TodoList: React.FC = () => {
             <FaPlus className="text-xl" />
           </button>
         </div>
+        
         {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
-        <ul className="list-disc pl-0 space-y-2">
-          {todos.map((todo, index) => (
-            <li key={todo._id} className="flex justify-between items-center bg-[#27292af7]
-            p-2 rounded hover:opacity-80 transition">
-              <label
-                onClick={() => toggleTodoCompletion(index)}
-                className="flex items-center cursor-pointer">
-                <div
-                  className={`w-4 h-4 flex items-center justify-center border-2 mr-3 ml-2
-                    font-poppins rounded-lg p-[1px] cursor-pointer ${todo.completed ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
-                >
-                  {todo.completed && <CheckIcon className="w-4 h-4 text-white " />}
-                </div>
-                <span className={`text-gray-100 text-sm p-1 font-poppins ${todo.completed ? 'line-through' : ''}`}>
-                  {todo.text}
-                </span>
-              </label>
+        
+        {/* Filters */}
+        <div className="flex justify-between items-center mb-4">
+          <div className="flex space-x-2">
+            {(['All', 'Pending', 'Done'] as FilterType[]).map((filterType) => (
               <button
-                onClick={() => confirmDeleteTodo(todo._id)}
-                className="text-gray-400 hover:text-red-500 font-poppins mr-3"
+                key={filterType}
+                onClick={() => setFilter(filterType)}
+                className={`px-2.5 py-1.5 rounded-md font-poppins text-xs 
+                  ${filter === filterType 
+                    ? 'bg-white text-[#18191af7]' 
+                    : 'bg-[#27292af7] text-gray-300 hover:bg-[#35373a]'}`}
               >
-                <RiDeleteBinLine />
+                {filterType} ({
+                  filterType === 'All' ? allTodosCount :
+                  filterType === 'Pending' ? pendingTodosCount :
+                  doneTodosCount
+                })
               </button>
-            </li>
-          ))}
-        </ul>
+            ))}
+          </div>
+        </div>
+        
+        {filteredTodos.length === 0 ? (
+          <p className="text-gray-400 text-center py-4">No todos in this filter</p>
+        ) : (
+          <ul className="list-disc pl-0 space-y-2">
+            {filteredTodos.map((todo) => (
+              <li key={todo._id} className="flex justify-between items-center bg-[#27292af7]
+              p-2 rounded hover:opacity-80 transition">
+                <label
+                  onClick={() => toggleTodoCompletion(todo._id)}
+                  className="flex items-center cursor-pointer">
+                  <div
+                    className={`w-4 h-4 flex items-center justify-center border-2 mr-3 ml-2
+                      font-poppins rounded-lg p-[1px] cursor-pointer ${todo.completed ? "bg-blue-500 border-blue-500" : "border-white/50"}`}
+                  >
+                    {todo.completed && <CheckIcon className="w-4 h-4 text-white " />}
+                  </div>
+                  <span className={`text-gray-100 text-sm p-1 font-poppins ${todo.completed ? 'line-through' : ''}`}>
+                    {todo.text}
+                  </span>
+                </label>
+                <button
+                  onClick={() => confirmDeleteTodo(todo._id)}
+                  className="text-gray-400 hover:text-red-500 font-poppins mr-3"
+                >
+                  <RiDeleteBinLine />
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
       </div>
 
       {/* Confirmation Modal */}
