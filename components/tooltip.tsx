@@ -33,14 +33,14 @@ export function TooltipContent({
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Content
         className={cn(
-          "bg-black text-white text-sm px-4 py-2 rounded-md shadow-md",
+          "bg-[#e5e7eb] text-black font-poppins text-sm px-4 py-2 rounded-md shadow-md",
           className
         )}
         side={side} // Dynamically set the tooltip side
         sideOffset={sideOffset} // Adding margin of 2 by default
       >
         {children}
-        <TooltipPrimitive.Arrow className="fill-black" />
+        <TooltipPrimitive.Arrow className="fill-[#e5e7eb]" />
       </TooltipPrimitive.Content>
     </TooltipPrimitive.Portal>
   );
