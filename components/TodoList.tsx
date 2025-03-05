@@ -154,7 +154,7 @@ const TodoList: React.FC = () => {
         </div>
         
         {filteredTodos.length === 0 ? (
-          <p className="text-gray-400 text-center py-4">No todos in this filter</p>
+          <p className="text-gray-400 text-center py-4">No to-dos in this filter</p>
         ) : (
           <ul className="list-disc pl-0 space-y-2">
             {filteredTodos.map((todo) => (
