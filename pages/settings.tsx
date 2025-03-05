@@ -48,7 +48,7 @@ const Settings = () => {
         </div>
 
         {/* Main Container */}
-        <div className="relative min-h-screen w-full flex justify-center items-start p-6  font-poppins">
+        <div className="relative min-h-screen w-full flex justify-center items-start p-6 font-poppins">
           <div className="max-w-3xl w-full mx-auto">
             {/* Page Header */}
             <div className="space-y-2 mb-6 mt-0 md:mt-5 md:mb-10 lg:mt-10 lg:mb-7">
@@ -61,7 +61,7 @@ const Settings = () => {
             </div>
 
             {/* Single Container for All Settings */}
-            <div className="dark:bg-[#18191af7] shadow-lg rounded-2xl py-10 px-6 md:px-10 lg:px-15 space-y-6">
+            <div className="dark:bg-[#18191af7] shadow-lg rounded-2xl py-8 px-6 md:px-10 lg:px-15 space-y-6">
               {/* Notifications */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">

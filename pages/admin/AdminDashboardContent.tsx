@@ -124,8 +124,8 @@ const AdminDashboardContent = () => {
   return (
     <div className="flex min-h-screen text-white">
       <AdminSidebar isSidebarOpen={isSidebarOpen} setIsSidebarOpen={setIsSidebarOpen} />
-      <main className={`flex-1 p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-0 md:ml-12 lg:ml-12"}`}>
-        <h1 className="text-3xl ml-7 -mt-4 md:ml-0 lg:ml-0 lg:-mt-4 mb-5 lg:mb-7
+      <main className={`flex-1 p-7 md:p-10 lg:p-10 transition-all duration-300 ${isSidebarOpen ? "ml-64" : "ml-0 md:ml-12 lg:ml-12"}`}>
+        <h1 className="text-3xl ml-10 -mt-1 md:ml-0 lg:ml-0 lg:-mt-4 mb-5 lg:mb-7
          font-bold text-gray-100 ">Welcome, {userName} 👋</h1>
 
         <div className="grid grid-cols md:grid-cols-1 lg:grid-cols-2 gap-8 md:gap-6 lg:gap-6">
@@ -201,8 +201,9 @@ const AdminDashboardContent = () => {
             {loading ? (
               <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
             ) : (
+              <div className=" md:w-full lg:w-full overflow-x-auto">
 
-              <table className="scale-[75%] ml-[-50px] -my-4 md:scale-100 lg:scale-100 md:m-0 lg:m-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
+              <table className="scale-[85%] -ml-[6%] md:scale-100 lg:scale-100 md:m-0 lg:m-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
                 <thead>
                   <tr className="bg-[#27292af7] text-white font-medium">
                     <th className="p-3 max-w-[200px] text-left">
@@ -219,7 +220,7 @@ const AdminDashboardContent = () => {
                       className="border-b border-[#27292af7] cursor-pointer hover:bg-[#232425]"
                       onClick={() => router.push('/admin/adminslist')}
                     >
-                      <td className="p-3 text-left ml-4  md:absolute lg:absolute  text-gray-100 max-w-[200px] align-middle">
+                      <td className="p-3 text-left ml-4 md:absolute text-nowrap lg:absolute text-gray-100 max-w-[200px] align-middle">
                         {admin.name}
                       </td>
                       <td className="p-3 text-center">
@@ -263,6 +264,7 @@ const AdminDashboardContent = () => {
                   ))}
                 </tbody>
               </table>
+              </div>
             )}
           </div>
           <div className="mt-5">

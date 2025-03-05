@@ -45,11 +45,11 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50">
-            <div className="w-full max-w-md px-8 py-10 bg-[#17181a] border border-white/30 rounded-2xl shadow-xl relative font-poppins">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/75 z-50">
+            <div className="w-full max-w-md m-5 px-8 py-10 bg-[#17181a] border border-white/30 rounded-2xl shadow-xl relative font-poppins">
                 <button
                     onClick={closeModal}
-                    className="absolute top-6 right-6 text-white hover:text-gray-300 focus:outline-none"
+                    className="absolute top-4 right-4 text-white hover:text-gray-300 focus:outline-none"
                     aria-label="Close"
                 >
                     <XMarkIcon className="w-6 h-6" />

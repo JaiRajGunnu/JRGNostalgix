@@ -41,7 +41,7 @@ const handlePrivacyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
           {/* Main Container */}
           <div className="max-w-3xl w-full mx-auto p-6">
             {/* Page Header */}
-            <div className="space-y-2  mt-10  mb-6 md:mb-10lg:mb-7">
+            <div className="space-y-2 mt-12 mb-6 md:mb-10lg:mb-7">
               <h2 className="text-3xl font-bold text-gray-800 dark:text-white">
                 Settings
               </h2>
@@ -51,7 +51,7 @@ const handlePrivacyChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
             </div>
 
             {/* Single Container for All Settings */}
-            <div className="dark:bg-[#18191af7] shadow-lg rounded-2xl py-10 px-6 md:px-10 lg:px-15 space-y-6">
+            <div className="dark:bg-[#18191af7] shadow-lg rounded-2xl py-8 px-6 md:px-10 lg:px-15 space-y-6">
               {/* Master Admin */}
               <div>
                 <h3 className="text-xl font-semibold text-gray-800 dark:text-white mb-4">
