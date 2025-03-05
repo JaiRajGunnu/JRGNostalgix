@@ -189,7 +189,6 @@ const AdminDashboardContent = () => {
                   <p className="text-2xl font-bold text-white">{feedbackCount}</p>
                 </div>
               </div>
-
             </div>
           </div>
         </div>
@@ -202,12 +201,12 @@ const AdminDashboardContent = () => {
               <p className="text-center opacity-50">Retrieving data from server, just a moment...</p>
             ) : (
               <div className=" md:w-full lg:w-full overflow-x-auto">
-
               <table className="scale-[85%] -ml-[6%] md:scale-100 lg:scale-100 md:m-0 lg:m-0 min-w-full bg-[#18191af7] font-poppins rounded-lg overflow-hidden">
                 <thead>
                   <tr className="bg-[#27292af7] text-white font-medium">
                     <th className="p-3 max-w-[200px] text-left">
-                      <span className="ml-6">Name</span></th>
+                    <span className="ml-0 md:ml-4 lg:ml-4">Name</span>
+                    </th>
                     <th className="p-3">Status</th>
                     <th className="p-3">Last login</th>
                     <th className="p-3">Since</th>
