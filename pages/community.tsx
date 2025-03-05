@@ -62,7 +62,7 @@ export default function Community() {
 
                     {isAdmin && (
                       <p className="py-5 text-md font-poppins font-medium text-center  mt-[0.5rem] -mb-[1rem] text-gray-600 cursor-help">
-                        Congrats! You're an Admin, now 🎉.
+                        Congrats! You&apos;re an Admin, now 🎉.
                       </p>
                     )}
 
