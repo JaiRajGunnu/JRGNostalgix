@@ -6,7 +6,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import Head from "next/head";
 
 const Settings = () => {
-  const [notifications, setNotifications] = useState(true);
+  // const [notifications, setNotifications] = useState(true);
   const [privacy, setPrivacy] = useState("Friends only"); // Default
   const [showDeactivateError, setShowDeactivateError] = useState(false);
 
@@ -71,20 +71,19 @@ const Settings = () => {
                   {/* Hidden input just for accessibility, actual UI is the custom box */}
                   <input
                     type="checkbox"
-                    checked={notifications}
-                    onChange={() => setNotifications(!notifications)}
-                    className="hidden"
+                    // checked={notifications}
+                    // onChange={() => setNotifications(!notifications)}
+                    className="hidden" disabled
                   />
                   {/* Custom checkbox container */}
                   <div
-                    onClick={() => setNotifications(!notifications)}
+                    // onClick={() => setNotifications(!notifications)}
                     className={`relative w-5 h-5 flex items-center justify-center rounded border 
-                      border-gray-300 dark:border-gray-600 
-                      ${notifications ? "bg-blue-600" : "bg-transparent"}
+                      border-gray-300 dark:border-gray-600  bg-transparent
                       transition-colors focus:outline-none focus:ring-2 
                       focus:ring-blue-500 dark:bg-[#27292af7]`}
                   >
-                    {notifications && <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />}
+                     <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />
                   </div>
 
                   <span className="text-gray-700 dark:text-gray-400">
@@ -178,7 +177,7 @@ const Settings = () => {
         {/* Floating error message */}
         {showDeactivateError && (
           <div className="fixed m-5 bottom-5 right-0  md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-            Sorry, only admins can deactivate your account.
+            Sorry, only Master Admin can deactivate your account.
           </div>
         )}
       </SidebarLayout>
