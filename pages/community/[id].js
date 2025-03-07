@@ -74,15 +74,15 @@ const FriendsPage = () => {
   };
 
   // Construct the meta description
-  const metaDescription = `Explore ${friend.fullname}'s slam profile on Jai Raj's Slam Book!
+  const metaDescription = `Explore ${friend.fullname}'s slam profile on Jai Raj's Nostalgix!
   Discover their favourites, deep thoughts, and what they think about you.
-  Learn about ${friend.fullname}'s crazy dreams, hobbies. Dive into their personal slam book questions and answers.`;
+  Learn about ${friend.fullname}'s crazy dreams, hobbies. Dive into their personal Nostalgix questions and answers.`;
 
 
   return (
     <>
       <Head>
-        <title>{friend.name} - Jai Raj&apos;s Slam Book</title>
+        <title>{friend.name} - Jai Raj&apos;s Nostalgix</title>
         <meta name="description" content={metaDescription} />
       </Head>
 

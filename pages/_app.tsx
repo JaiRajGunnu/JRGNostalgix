@@ -60,21 +60,21 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Head>
         <meta
           name="description"
-          content="Welcome to Jai Raj's Slam Book – a space for my friends to share their memories, favorites, and more!"
+          content="Welcome to Jai Raj's Nostalgix – a space for my friends to share their memories, favorites, and more!"
         />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <meta name="keywords" content="Jai Raj, Jai raj slam, Slam Book, friendship," />
+        <meta name="keywords" content="Jai Raj, Jai raj slam, Nostalgix, friendship," />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Jai Raj Gunnu" />
         
         {/* Open Graph (OG) Meta Tags for Social Sharing */}
-        <meta property="og:title" content="Jai Raj&apos;s Slam Book" />
+        <meta property="og:title" content="Jai Raj&apos;s Nostalgix" />
         <meta property="og:description" content="A space for my friends to share their memories, favorites, and more!" />
         <meta property="og:image" content="https://jairajslam25.vercel.app/favicon.ico" />
         <meta property="og:url" content="https://jairajslam25.vercel.app" />
         <meta property="og:type" content="website" />
 
-        <title>Jai Raj&apos;s Slam Book</title>
+        <title>Jai Raj&apos;s Nostalgix</title>
       </Head>
 
       {/* 2) Render your actual page */}

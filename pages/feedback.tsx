@@ -45,7 +45,7 @@ const FeedbackPage = () => {
   return (
     <>
       <Head>
-        <title>Jai Raj&apos;s Slam Book</title>
+        <title>Jai Raj&apos;s Nostalgix</title>
       </Head>
 
       <SidebarLayout>
