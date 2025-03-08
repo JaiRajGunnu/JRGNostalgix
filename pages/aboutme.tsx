@@ -65,7 +65,7 @@ export default function AboutMe() {
                                                 alt="Jai Raj Gunnu"
                                                 className="border-4 border-[#3a3b3c] rounded-full transition duration-300
                                             mt-[75px] w-[100px] h-[100px] object-cover hover:shadow-[6px_5px_3px_0px_rgba(0,0,0,0.36)]"
-                                                src="/img/jairajgunnu.jpg"
+                                                src="/img/master/imgjairaj.jpg"
                                                 width={100}
                                                 height={100}
                                             />

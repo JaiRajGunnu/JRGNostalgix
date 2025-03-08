@@ -12,9 +12,11 @@ type Testimonial = {
   name: string;
   fullname: string;
   king: boolean;
+  master:boolean,
   email: string;
   src: string;
 };
+
 
 // Short Testimonials Data
 export const shortTestimonials: Testimonial[] = [
@@ -24,6 +26,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Kanna",
     fullname: "Sai Tarun",
     king: true,
+    master:false,
     email: "esaitarun12@gmail.com",
     src: "/img/kings/imgkanna.jpg",
   },
@@ -33,6 +36,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Vissu",
     fullname: "Viswanadham",
     king: true,
+    master:false,
     email: "viswanadhkillamsetty422@gmail.com",
     src: "/img/kings/imgvissu.jpg",
   },
@@ -42,6 +46,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Likki",
     fullname: "Likhith",
     king: true,
+    master:false,
     email: "likhithsarvisetti@gmail.com",
     src: "/img/kings/imglikki.jpg",
   },
@@ -51,6 +56,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Chinnuu",
     fullname: "Keerthika",
     king: false,
+    master:false,
     email: "keerthikabandaru2003@gmail.com",
     src: "/img/queens/imgchinnu.jpg",
   },
@@ -60,6 +66,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Pavii",
     fullname: "Rakshanna",
     king: false,
+    master:false,
     email: "pavith2602@gmail.com",
     src: "/img/queens/imgraksh.jpg",
   },
@@ -70,6 +77,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Praneeth",
     fullname: "Sri Praneeth",
     king: true,
+    master:false,
     email: "praneethyakkala@gmail.com",
     src: "/img/kings/imgpraneeth.jpg",
   },
@@ -80,6 +88,7 @@ export const shortTestimonials: Testimonial[] = [
    name: "Gopi",
     fullname: "Gopi Krishna",
     king: true,
+    master:false,
     email: "gopikrishnaanagani25@gmail.com",
     src: "/img/kings/imggopi.jpg",
   },
@@ -89,6 +98,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Magii",
     fullname: "Lakshmi Madhuri",
     king: false,
+    master:false,
     email: "lakshmimadhuriakula@gmail.com",
     src: "/img/queens/imgmaggi.jpg",
   },
@@ -98,6 +108,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Bharuu",
     fullname: "Bhargavi",
     king: false,
+    master:false,
     email: "madinibharu@gmail.com",
     src: "/img/queens/imgbharu.jpg",
   },
@@ -108,6 +119,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Paddhu",
     fullname: "Padma Sri",
     king: false,
+    master:false,
     email: "padmasri.02pandranki@gmail.com",
     src: "/img/queens/imgchinguu.jpg",
   },
@@ -118,6 +130,7 @@ export const shortTestimonials: Testimonial[] = [
     name: "Reethu",
     fullname: "Reethu Ponnathota",
     king: false,
+    master:false,
     email: "ponnathotareethu@gmail.com",
     src: "/img/queens/imgreethu.jpg",
   },
@@ -127,19 +140,33 @@ export const shortTestimonials: Testimonial[] = [
       "Always a fun time with you. Thank you for being around even though there is nothing you hate about me. 🤗 💛",
     name: "Giri",
     fullname: "Gireesh",
-    king: true,
+    king: true,   
+    master:false,
     email: "gireeshpotunuru@gmail.com",
     src: "/img/kings/imggiri.jpg",
   },
+  {
+    id: 25220802,
+    quote: " ",
+    name: "Jai Raj",
+    fullname: "Jai Raj Gunnu",
+    king: false,
+    master:true,
+    email: "jairajgsklm@gmail.com",
+    src: "/img/master/imgjairaj.jpg",
+  },
 ];
 
-export const Friends = ({
-  testimonials = shortTestimonials,
+
+export const Friends = ({ // Dsiplaying friends in community page
+  testimonials: initialTestimonials = shortTestimonials,
   autoplay = true,
 }: {
   testimonials?: Testimonial[];
   autoplay?: boolean;
 }) => {
+  // Filter testimonials based on master: false
+  const [testimonials, setTestimonials] = useState(initialTestimonials.filter(testimonial => testimonial.master === false));
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
