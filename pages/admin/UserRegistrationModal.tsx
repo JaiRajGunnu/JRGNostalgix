@@ -45,7 +45,7 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 flex items-center justify-center bg-black/75 z-50">
+        <div className="fixed inset-0 flex items-center justify-center bg-black/80 z-50 backdrop-blur-sm">
             <div className="w-full max-w-md m-5 px-8 py-10 bg-[#17181a] border border-white/30 rounded-2xl shadow-xl relative font-poppins">
                 <button
                     onClick={closeModal}
@@ -71,7 +71,7 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
                     <input
                         type="email"
                         placeholder="Enter e-mail"
-                        className="w-full p-3 bg-[#27292af7] text-white border border-white/30 rounded-lg mb-6 focus:outline-none focus:border-blue-500"
+                        className="w-full p-3 bg-[#27292af7] text-white border-2 border-white/30 rounded-lg mb-6 focus:outline-none focus:border-blue-500"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         required
@@ -82,7 +82,7 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
                         <input
                             type={showPassword ? "text" : "password"}
                             placeholder="Enter password"
-                            className="w-full p-3 bg-[#27292af7] text-white border border-white/30 rounded-lg pr-12 focus:outline-none focus:border-blue-500"
+                            className="w-full p-3 bg-[#27292af7] text-white border-2 border-white/30 rounded-lg pr-12 focus:outline-none focus:border-blue-500"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                             required

@@ -126,7 +126,7 @@ export default function Login() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 mb-4 rounded-lg focus:outline-none focus:border-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -138,7 +138,7 @@ export default function Login() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-12"
+                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 rounded-lg focus:outline-none focus:border-blue-500 pr-12"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
