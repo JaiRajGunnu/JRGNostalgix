@@ -5,7 +5,7 @@ import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-w
 import Head from "next/head";
 import { shortTestimonials as friends } from "@/components/ui/friends";
 import DisableRightClick from '../components/disablerightclick';
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // Import eye icons
+import { EyeIcon, EyeSlashIcon, CheckIcon } from "@heroicons/react/24/solid";
 import Image from 'next/image';
 import { RiSpam2Line } from "react-icons/ri";
 
@@ -237,15 +237,17 @@ const ProfileSettings = () => {
 
             {/* Floating success message */}
             {showSuccess && (
-              <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-                Password updated successfully! 🚀
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+          <CheckIcon className="w-6 h-6 text-green-500" />
+            Password updated successfully.
               </div>
             )}
 
             {/* Floating error message */}
             {showError && (
-              <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
-        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+            <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+            text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
                 <RiSpam2Line className="w-6 h-6 text-red-500" />
                 Session time expired.
               </div>
