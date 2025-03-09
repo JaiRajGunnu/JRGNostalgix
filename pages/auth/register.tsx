@@ -125,9 +125,9 @@ export default function Register() {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeSlashIcon className="w-6 h-6 text-gray-300" />
+                  <EyeSlashIcon className="w-6 h-6 text-white/50" />
                 ) : (
-                  <EyeIcon className="w-6 h-6 text-gray-300" />
+                  <EyeIcon className="w-6 h-6 text-white/50" />
                 )}
               </button>
             </div>

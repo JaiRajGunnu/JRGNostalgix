@@ -149,9 +149,9 @@ export default function Login() {
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? (
-                  <EyeSlashIcon className="w-6 h-6 text-gray-300" />
+                  <EyeSlashIcon className="w-6 h-6 text-white/50" />
                 ) : (
-                  <EyeIcon className="w-6 h-6 text-gray-300" />
+                  <EyeIcon className="w-6 h-6 text-white/50" />
                 )}
               </button>
             </div>
@@ -162,7 +162,7 @@ export default function Login() {
               onClick={() => setRememberMe(!rememberMe)}
             >
               <div
-                className={`w-4 h-4 flex items-center justify-center border-2 rounded ${rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
+                className={`w-4 h-4 flex items-center justify-center -mt-[0.5px] border-2 rounded ${rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
                   }`}
               >
                 {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
@@ -173,7 +173,7 @@ export default function Login() {
             </div>
 
             {/* Divider Line */}
-            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-8 mb-3 h-[1px] w-full" />
+            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-6 mb-3 h-[1px] w-full" />
 
             {/* Login Button */}
             <button
