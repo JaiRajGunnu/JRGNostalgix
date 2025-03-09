@@ -26,8 +26,8 @@ export default function HomePage() {
     <>
       {/* ✅ Set Page Title & Favicon */}
       <Head>
-        <title>Jai Raj&apos;s Slam Book</title>
-        <link rel="icon" href="/favicon.ico" />
+      <title>Jai Raj&apos;s Nostalgix</title>
+      <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <BackgroundBeamsWithCollision className="flex flex-col justify-center items-center">
