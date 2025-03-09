@@ -231,7 +231,7 @@ export default function Login() {
             </p>
 
             {error && (
-              <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm rounded-lg p-3 text-center">
+              <div className="bg-red-500/10 border font-poppins border-red-500/20 text-red-400 text-sm rounded-lg p-3 text-center">
                 {error}
               </div>
             )}
