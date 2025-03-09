@@ -2,40 +2,79 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
-import Head from "next/head"; // ✅ Import Head for setting page title
+import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
-import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // ✅ Import ArrowRightIcon
-import { ChevronRightIcon } from "@heroicons/react/24/solid"; // ✅ Using ChevronRightIcon
+import { EyeIcon, EyeSlashIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { ChevronRightIcon } from "@heroicons/react/24/solid";
 
 export default function Register() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // ✅ State for toggling password
+  const [, setError] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [verificationCode, setVerificationCode] = useState("");
+  const [codeError, setCodeError] = useState("");
+  const [isCodeValid, setIsCodeValid] = useState(false);
+  const [showSuccessNotification, setShowSuccessNotification] = useState(false);
   const router = useRouter();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setError("");
-
-    const res = await fetch("/api/auth/register", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name, email, password }),
-    });
-
-    const data = await res.json();
-    if (res.ok) {
-      router.push("/auth/login"); // Redirect to login page
+    setShowModal(true); // Open the verification modal
+  };
+  
+  // Check verification code as user types
+  const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const code = e.target.value;
+    setVerificationCode(code);
+    
+    // Check if code is valid
+    if (code === "JAISLAM#25") {
+      setIsCodeValid(true);
+      setCodeError("");
     } else {
-      setError(data.error || "Registration failed. Please try again.");
+      setIsCodeValid(false);
+    }
+  };
+
+  const handleVerifyCode = async () => {
+    // Check if the code matches the required code
+    if (verificationCode === "JAISLAM#25") {
+      setCodeError("");
+      setShowModal(false);
+
+      // Now proceed with the actual registration
+      try {
+        const res = await fetch("/api/auth/register", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ name, email, password }),
+        });
+
+        const data = await res.json();
+        if (res.ok) {
+          // Show success notification
+          setShowSuccessNotification(true);
+
+          // Redirect to login page after a short delay
+          setTimeout(() => {
+            router.push("/auth/login");
+          }, 1000);
+        } else {
+          setError(data.error || "Registration failed. Please try again.");
+        }
+      } catch {
+        setError("Something went wrong. Please try again.");
+      }
+    } else {
+      setCodeError("Wrong code. Please try again.");
     }
   };
 
   return (
     <>
-      {/* ✅ Set Page Title */}
       <Head>
         <title>Register</title>
       </Head>
@@ -51,7 +90,7 @@ export default function Register() {
             <input
               type="text"
               placeholder="Enter your name"
-              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 mb-4 border-2 border-white/30 rounded-lg focus:outline-none focus:border-blue-500"
               value={name}
               onChange={(e) => setName(e.target.value)}
               required
@@ -62,7 +101,7 @@ export default function Register() {
             <input
               type="email"
               placeholder="Enter your email"
-              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg mb-4 focus:ring-2 focus:ring-blue-500 focus:outline-none"
+              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 mb-4 border-white/30 rounded-lg focus:outline-none focus:border-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -74,7 +113,7 @@ export default function Register() {
               <input
                 type={showPassword ? "text" : "password"}
                 placeholder="Enter your password"
-                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border border-white/30 rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none pr-12"
+                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 rounded-lg focus:outline-none focus:border-blue-500 pr-12"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -99,7 +138,7 @@ export default function Register() {
               className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
             >
               Register
-              <ChevronRightIcon className="w-4 h-4  stroke-current mt-[2px]" />
+              <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />
             </button>
 
             {/* Divider Line */}
@@ -113,10 +152,59 @@ export default function Register() {
               </Link>
             </p>
 
-            {error && <p className="text-red-500 text-center mt-3">{error}</p>}
           </form>
         </div>
       </BackgroundBeamsWithCollision>
+
+      {/* Verification Code Modal */}
+      {showModal && (
+        <div className="fixed inset-0 bg-black bg-opacity-80 backdrop-blur-sm flex items-center justify-center z-50">
+          <div className="bg-[#17181a] border border-white/30 rounded-2xl p-8 w-full max-w-md m-4 shadow-lg">
+            <div className="flex justify-between items-center mb-4">
+              <h3 className="text-xl font-bold text-white">Verification Required</h3>
+              <button
+                onClick={() => setShowModal(false)}
+                className="text-gray-300 hover:text-white"
+              >
+                <XMarkIcon className="w-6 h-6 -mt-4" />
+              </button>
+            </div>
+
+            <p className="text-gray-300 mb-4">Please enter the verification code to complete your registration.</p>
+
+            <div className="mb-4 relative">
+              <input
+                type="text"
+                placeholder="Enter verification code"
+                className="w-full p-3 my-2 bg-[#27292af7] text-white placeholder-gray-300 rounded-lg border-2 border-white/30 focus:outline-none focus:border-blue-500 pr-12"
+                value={verificationCode}
+                onChange={handleVerificationCodeChange}
+              />
+              {/* Tick icon when code is valid */}
+              {isCodeValid && (
+                <div className="absolute right-4 top-1/2 transform -translate-y-1/2">
+                  <CheckIcon className="w-6 h-6 text-green-500" />
+                </div>
+              )}
+              {codeError && <p className="text-red-500 mt-2">{codeError}</p>}
+            </div>
+
+            <button
+              onClick={handleVerifyCode}
+              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg transition duration-300 ease-in-out hover:opacity-60"
+            >
+              Verify & Register
+            </button>
+          </div>
+        </div>
+      )}
+
+      {/* Success Notification */}
+      {showSuccessNotification && (
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+          Account created sucessfully. Please log in.
+        </div>
+      )}
     </>
   );
 }
