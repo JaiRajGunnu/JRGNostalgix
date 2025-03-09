@@ -6,9 +6,10 @@ interface RegisterModalProps {
     isOpen: boolean;
     closeModal: () => void;
     onUserAdded: () => Promise<void>;
+    setShowSuccess: (show: boolean) => void; // New prop to set success state in parent
 }
 
-export default function RegisterModal({ isOpen, closeModal, onUserAdded }: RegisterModalProps) {
+export default function RegisterModal({ isOpen, closeModal, onUserAdded, setShowSuccess }: RegisterModalProps) {
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -35,8 +36,9 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
         const data = await res.json();
         if (res.ok) {
             resetForm();
-            closeModal();
+            setShowSuccess(true); // Set success state in parent component
             await onUserAdded();
+            closeModal();
         } else {
             setError(data.error || "Registration failed. Please try again.");
         }

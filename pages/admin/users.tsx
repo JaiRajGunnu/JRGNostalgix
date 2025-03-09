@@ -58,6 +58,7 @@ const UsersDashboard = () => {
   const [selectedUsers, setSelectedUsers] = useState<{ [key: string]: boolean }>({});
   const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   // Batch action modal state
   const [isBatchActionModalOpen, setIsBatchActionModalOpen] = useState(false);
@@ -97,6 +98,21 @@ const UsersDashboard = () => {
   useEffect(() => {
     applyFiltersAndSort();
   }, [users, activeFilter, statusFilter, sortBy, searchTerm]);
+
+  // Auto-hide success message after 3 seconds
+  useEffect(() => {
+    let successTimer: NodeJS.Timeout;
+
+    if (showSuccess) {
+      successTimer = setTimeout(() => {
+        setShowSuccess(false);
+      }, 3000);
+    }
+
+    return () => {
+      if (successTimer) clearTimeout(successTimer);
+    };
+  }, [showSuccess]);
 
   const fetchUsers = async () => {
     try {
@@ -542,7 +558,17 @@ const UsersDashboard = () => {
                   </button>
 
 
-                  <UserRegistrationModal isOpen={isOpen} closeModal={closeModal} onUserAdded={fetchUsers} />
+                  <UserRegistrationModal isOpen={isOpen} closeModal={closeModal} onUserAdded={fetchUsers} setShowSuccess={setShowSuccess}
+                  />
+
+                  {/* Success Message */}
+                  {showSuccess && (
+                    <div className="fixed m-5 bottom-5 right-0 md:bottom-10 z-50 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+                text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+                      <CheckIcon className="w-6 h-6 text-green-500" />
+                      Member added successfully.
+                    </div>
+                  )}
 
                   <button
                     onClick={openModal}
