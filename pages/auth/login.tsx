@@ -7,6 +7,8 @@ import Link from "next/link";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
+import { GoUnlock, GoLock } from "react-icons/go";
+import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
 import { useCallback } from "react";
 
 export default function Login() {
@@ -15,6 +17,10 @@ export default function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [rememberMe, setRememberMe] = useState(false);
+  const [isFocused, setIsFocused] = useState({
+    email: false,
+    password: false
+  });
 
   // For showing "Session time expired." floating message
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -81,28 +87,28 @@ export default function Login() {
     if (res.ok && data.token && data.user) {
       // Store token
       localStorage.setItem("token", data.token);
-    
+
       // Store the full user object, including the role
-      localStorage.setItem("user", JSON.stringify(data.user));  // ✅ FIX HERE
-    
+      localStorage.setItem("user", JSON.stringify(data.user));
+
       // (A) Store userName if needed
       localStorage.setItem("userName", data.user.name || "Guest");
-    
+
       // (B) If user wants "remember me," store that logic
       if (rememberMe) {
         localStorage.setItem("rememberMe", "true");
       } else {
         localStorage.removeItem("rememberMe");
       }
-    
+
       // (C) Set session expire time (15 minutes in milliseconds from now)
       const expireTime = Date.now() + 15 * 60 * 1000;
       localStorage.setItem("sessionExpireAt", expireTime.toString());
-    
+
       // Navigate to /community
       router.push("/community");
     }
-     else {
+    else {
       setError(data.error || "Login failed. Please check your credentials.");
     }
   };
@@ -114,97 +120,131 @@ export default function Login() {
       </Head>
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
-        <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-[#17181a] border border-white/30 
-                        transition-transform duration-300 hover:scale-[103%] hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]">
-          <h2 className="text-4xl font-bold font-hammersmith text-center text-white mb-6">
+        <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-[#17181a]/90 border border-white/20
+                        transition-all duration-300 hover:scale-[102%] hover:shadow-[0_0_25px_rgba(59,130,246,0.3)]">
+          <h2 className="text-4xl font-bold font-hammersmith text-center 
+          mb-5 bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent leading-[3rem]">
             Login
           </h2>
-          <form onSubmit={handleLogin} className="flex flex-col">
+          <form onSubmit={handleLogin} className="flex flex-col space-y-6">
             {/* Email Field */}
-            <label className="text-white mb-1 text-md font-poppins">E-mail</label>
-            <input
-              type="email"
-              placeholder="Enter your e-mail"
-              className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 mb-4 rounded-lg focus:outline-none focus:border-blue-500"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              required
-            />
+            <div className="space-y-2">
+              <label className="text-white text-sm font-medium font-poppins flex items-center gap-2">
+                E-mail
+              </label>
+              <div className={`relative transition-all duration-200 ${isFocused.email ? 'ring-opacity-0 ' : ''}`}>
+                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                  {isFocused.email ? < IoMailUnreadOutline className="w-4 h-4 text-blue-400" /> : <IoMailOutline className="w-4 h-4 text-blue-400" />}
 
-            {/* Password Field with Eye Toggle */}
-            <label className="text-white mb-1 text-md font-poppins">Password</label>
-            <div className="relative">
-              <input
-                type={showPassword ? "text" : "password"}
-                placeholder="Enter your password"
-                className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 rounded-lg focus:outline-none focus:border-blue-500 pr-12"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required
-              />
-              {/* Eye Icon for Password Visibility */}
-              <button
-                type="button"
-                className="absolute inset-y-0 right-4 flex items-center text-white"
-                onClick={() => setShowPassword(!showPassword)}
-              >
-                {showPassword ? (
-                  <EyeSlashIcon className="w-6 h-6 text-white/50" />
-                ) : (
-                  <EyeIcon className="w-6 h-6 text-white/50" />
-                )}
-              </button>
+                </div>
+                <input
+                  type="email"
+                  placeholder="Enter your e-mail"
+                  className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
+    rounded-lg transition-all duration-200 focus:outline-none ${isFocused.email ? 'rounded-b-none' : ''
+                    }`}
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  onFocus={() => setIsFocused({ ...isFocused, email: true })}
+                  onBlur={() => setIsFocused({ ...isFocused, email: false })}
+                  required
+                />
+
+                <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500  rounded-b-xl transition-all duration-300 ${isFocused.email ? 'opacity-100' : 'opacity-0'}`}></div></div>
             </div>
 
-            {/* Remember Me Checkbox using CheckIcon */}
+            {/* Password Field with Eye Toggle */}
+            <div className="space-y-2">
+              <label className="text-white text-sm font-medium font-poppins flex items-center gap-2">
+                Password
+              </label>
+              <div className={`relative transition-all duration-200 ${isFocused.password ? 'ring-opacity-0' : ''}`}>
+                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                  {isFocused.password ? <GoLock className="w-4 h-4 text-blue-400" /> : <GoUnlock className="w-4 h-4 text-blue-400" />}
+
+                </div>
+                <input
+                  type={showPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
+    rounded-lg transition-all duration-200 focus:outline-none ${isFocused.password ? 'rounded-b-none outline-0' : ''
+                    }`}
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  onFocus={() => setIsFocused({ ...isFocused, password: true })}
+                  onBlur={() => setIsFocused({ ...isFocused, password: false })}
+                  required
+                />
+
+                {isFocused.password && (  // Conditionally render the gradient line
+                  <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
+                )}
+                {/* Eye Icon for Password Visibility */}
+                <button
+                  type="button"
+                  className="absolute inset-y-0 right-3 flex items-center text-white"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <EyeSlashIcon className="w-5 h-5 text-white/25 hover:opacity-75 transition-colors duration-200 " />
+                  ) : (
+                    <EyeIcon className="w-5 h-5 text-white/25 hover:opacity-75 transition-colors duration-200" />
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Remember Me Checkbox */}
             <div
-              className="flex items-center mt-5 cursor-pointer"
+              className="flex items-center cursor-pointer group mt-2"
               onClick={() => setRememberMe(!rememberMe)}
             >
               <div
-                className={`w-4 h-4 flex items-center justify-center -mt-[0.5px] border-2 rounded ${rememberMe ? "bg-blue-500 border-blue-500" : "border-white/50"
+                className={`w-5 h-5 flex items-center scale-90 justify-center rounded-md transition-all duration-200 ${rememberMe
+                  ? "bg-gradient-to-r from-blue-500 to-indigo-500 border-transparent"
+                  : "border-2 border-white/30"
                   }`}
               >
-                {rememberMe && <CheckIcon className="w-4 h-4 text-white" />}
+                {rememberMe && <CheckIcon className="p-1 text-white" />}
               </div>
-              <label className="text-gray-300 text-sm ml-2  font-poppins cursor-pointer">
-                Remember this device?
+              <label className="text-gray-300 text-sm ml-2 font-poppins cursor-pointer group-hover:opacity-75 transition-colors duration-200">
+                Remember this device
               </label>
             </div>
-
-            {/* Divider Line */}
-            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-6 mb-3 h-[1px] w-full" />
 
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-4 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
-            >  Login
-              <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />
+              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-6 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
+            >
+              Login
+              <ChevronRightIcon className="w-5 h-5 stroke-current" />
             </button>
 
-                        {/* Already have an account? Login Now */}
-              <p className="text-gray-300 text-center mt-4 font-poppins opacity-90">
+            {/* Register Link */}
+            <p className="text-gray-400 text-center text-sm scale-95 font-poppins">
               Don't have an account?{" "}
-              <Link href="/auth/register" className="text-blue-400 hover:underline">
+              <Link href="/auth/register" className="text-blue-400 hover:text-blue-300 hover:underline transition-colors duration-200">
                 Register now
               </Link>
             </p>
 
-            {error && <p className="text-red-500 text-center mt-3">{error}</p>}
+            {error && (
+              <div className="bg-red-500/10 border border-red-500/20 text-red-400 text-sm rounded-lg p-3 text-center">
+                {error}
+              </div>
+            )}
           </form>
         </div>
       </BackgroundBeamsWithCollision>
 
       {/* Floating Session Expired Message */}
       {sessionExpired && (
-        <div className="fixed m-5 bottom-5 right-0  md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 animate-fadeIn flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
           Session time expired.
         </div>
       )}
     </>
   );
 }
-
-
-
