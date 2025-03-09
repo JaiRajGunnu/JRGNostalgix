@@ -166,7 +166,7 @@ export const Friends = ({ // Dsiplaying friends in community page
   autoplay?: boolean;
 }) => {
   // Filter testimonials based on master: false
-  const [testimonials, setTestimonials] = useState(initialTestimonials.filter(testimonial => testimonial.master === false));
+  const [testimonials, ] = useState(initialTestimonials.filter(testimonial => testimonial.master === false));
   const [active, setActive] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const intervalRef = useRef<number | null>(null);
