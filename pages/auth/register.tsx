@@ -234,7 +234,6 @@ export default function Register() {
                   <CheckIcon className="w-6 h-6 text-green-500" />
                 </div>
               )}
-              {codeError && <p className="text-red-500 mt-2">{codeError}</p>}
             </div>
 
             <button
@@ -242,6 +241,8 @@ export default function Register() {
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-2 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
             >  Verify & Register
             </button>
+            {codeError && <p className="text-red-500 mt-4 text-center">{codeError}</p>}
+
           </div>
         </div>
       )}
