@@ -5,6 +5,7 @@ import { useRouter } from "next/router";
 import Head from "next/head";
 import "../styles/globals.css";
 import type { AppProps } from "next/app";
+import { RiSpam2Line } from "react-icons/ri";
 
 function MyApp({ Component, pageProps }: AppProps) {
   const [sessionExpired, setSessionExpired] = useState(false);
@@ -66,7 +67,7 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="Jai Raj, Jai raj slam, Nostalgix, friendship," />
         <meta name="robots" content="index, follow" />
         <meta name="author" content="Jai Raj Gunnu" />
-        
+
         {/* Open Graph (OG) Meta Tags for Social Sharing */}
         <meta property="og:title" content="Jai Raj&apos;s Nostalgix" />
         <meta property="og:description" content="A space for my friends to share their memories, favorites, and more!" />
@@ -82,7 +83,9 @@ function MyApp({ Component, pageProps }: AppProps) {
 
       {/* 3) Floating expiration message */}
       {sessionExpired && (
-        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+          <RiSpam2Line className="w-6 h-6 text-red-500" />
           Session time expired.
         </div>
       )}

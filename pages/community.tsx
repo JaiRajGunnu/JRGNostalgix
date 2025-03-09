@@ -78,11 +78,7 @@ export default function Community() {
                 transition duration-300 ease-in-out tracking-wider font-poppins
                 hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
               >
-                Explore now
-              </button>
-
-
-
+                Explore now              </button>
             </div>
           )}
         </div>

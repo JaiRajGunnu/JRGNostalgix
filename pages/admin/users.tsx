@@ -278,7 +278,7 @@ const UsersDashboard = () => {
   const getSelectedUserIds = (): string[] => {
     return Object.entries(selectedUsers)
       .filter(([, isSelected]) => isSelected)
-      .map(([userId, ]) => userId);
+      .map(([userId,]) => userId);
   };
 
   const getSelectedUserCount = (): number => {
@@ -998,11 +998,11 @@ const UsersDashboard = () => {
                                     : 'N/A'}
                                 </td>
                                 <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425]
-       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
+                                    ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                   {formatMemberSince(user.createdAt)}
                                 </td>
                                 <td className={`p-3 text-center md:w-auto lg:w-auto w-full whitespace-nowrap group-hover:bg-[#232425]
-       ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
+                                    ${selectedUsers[user._id] ? 'bg-[#2D2D2D80]' : ''}`}>
                                   <div className="relative group">
                                     <div className="transition-opacity duration-300">
                                       {user.email === "jairajgsklm@gmail.com" ? (
@@ -1026,7 +1026,7 @@ const UsersDashboard = () => {
                                             <TooltipTrigger>
                                               <button
                                                 className={`scale-[85%] bg-[#18191af7] font-poppins border border-gray-500 text-gray-500
-                                       ${user.role === "admin"
+                                                ${user.role === "admin"
                                                     ? "hover:text-blue-600 hover:border-blue-600"
                                                     : "hover:text-yellow-600 hover:border-yellow-600"
                                                   } px-4 py-1.5 rounded capitalize`}

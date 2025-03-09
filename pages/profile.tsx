@@ -7,7 +7,7 @@ import { shortTestimonials as friends } from "@/components/ui/friends";
 import DisableRightClick from '../components/disablerightclick';
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid"; // Import eye icons
 import Image from 'next/image';
-
+import { RiSpam2Line } from "react-icons/ri";
 
 const ProfileSettings = () => {
   const [name, setName] = useState("");
@@ -145,10 +145,10 @@ const ProfileSettings = () => {
         <div className="relative w-full min-h-screen flex justify-center mt-[-25%] md:mt-0 lg:mt-0
         items-center p-6 font-poppins flex-col space-y-6">
           <div>
-        <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
+            <h2 className="text-3xl font-semibold text-center text-gray-800 dark:text-white">
               Profile Settings
             </h2>
-            </div>
+          </div>
           <div className="bg-white dark:bg-[#18191af7] rounded-2xl shadow-lg p-8 pt-25 w-full max-w-2xl">
 
 
@@ -156,14 +156,14 @@ const ProfileSettings = () => {
               {/* Profile Picture Display */}
               <div className="flex flex-col items-center">
                 <div className="w-24 h-24 rounded-full bg-gray-200 dark:bg-neutral-700 overflow-hidden">
-                <DisableRightClick>
-                  <Image
-                    src={profileImage}
-                    alt="Profile"
-                    width={100} // Set fixed width
-                    height={100} 
-                    className="object-cover"
-                  />
+                  <DisableRightClick>
+                    <Image
+                      src={profileImage}
+                      alt="Profile"
+                      width={100} // Set fixed width
+                      height={100}
+                      className="object-cover"
+                    />
                   </DisableRightClick>
                 </div>
               </div>
@@ -210,7 +210,7 @@ const ProfileSettings = () => {
                     placeholder="Enter a new password"
                     required // HTML required attribute
                   />
-                   <button
+                  <button
                     type="button"
                     className="absolute inset-y-0 right-4 flex items-center text-gray-500 dark:text-gray-400" // Adjusted right position
                     onClick={() => setShowPassword(!showPassword)}
@@ -244,8 +244,10 @@ const ProfileSettings = () => {
 
             {/* Floating error message */}
             {showError && (
-              <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-                Password updation failed.
+              <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+                <RiSpam2Line className="w-6 h-6 text-red-500" />
+                Session time expired.
               </div>
             )}
           </div>

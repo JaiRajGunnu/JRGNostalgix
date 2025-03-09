@@ -5,10 +5,11 @@ import Link from "next/link";
 import Head from "next/head";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon, XMarkIcon, CheckIcon } from "@heroicons/react/24/solid";
-import { RiUserLine, RiUserFollowLine  } from "react-icons/ri";
+import { RiUserLine, RiUserFollowLine } from "react-icons/ri";
 import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { GoUnlock, GoLock } from "react-icons/go";
 import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
+import { LuKey } from "react-icons/lu";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -69,7 +70,7 @@ export default function Register() {
           // Redirect to login page after a short delay
           setTimeout(() => {
             router.push("/auth/login");
-          }, 1000);
+          }, 3000);
         } else {
           setError(data.error || "Registration failed. Please try again.");
         }
@@ -93,28 +94,28 @@ export default function Register() {
           <h2 className="text-4xl font-bold font-hammersmith text-center 
           mb-5 bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent leading-[3rem]">Register</h2>
           <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
-{/* Name Field */}
-<div className="space-y-2">
-    <label className="text-white text-sm font-medium font-poppins flex items-center gap-2">Name</label>
-    <div className={`relative transition-all duration-200 ${isFocused.name ? 'ring-opacity-0' : ''}`}>
-        <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-            {isFocused.name ? <RiUserFollowLine className="w-4 h-4 text-blue-400" /> : <RiUserLine  className="w-4 h-4 text-blue-400" />}
-        </div>
-        <input
-            type="text"
-            placeholder="Enter your name"
-            className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 rounded-lg transition-all duration-200 focus:outline-none ${isFocused.name ? 'rounded-b-none' : ''}`}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onFocus={() => setIsFocused({ ...isFocused, name: true })}
-            onBlur={() => setIsFocused({ ...isFocused, name: false })}
-            required
-        />
-        {isFocused.name && (
-            <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
-        )}
-    </div>
-</div>
+            {/* Name Field */}
+            <div className="space-y-2">
+              <label className="text-white text-sm font-medium font-poppins flex items-center gap-2">Name</label>
+              <div className={`relative transition-all duration-200 ${isFocused.name ? 'ring-opacity-0' : ''}`}>
+                <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                  {isFocused.name ? <RiUserFollowLine className="w-4 h-4 text-blue-400" /> : <RiUserLine className="w-4 h-4 text-blue-400" />}
+                </div>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 rounded-lg transition-all duration-200 focus:outline-none ${isFocused.name ? 'rounded-b-none' : ''}`}
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                  onFocus={() => setIsFocused({ ...isFocused, name: true })}
+                  onBlur={() => setIsFocused({ ...isFocused, name: false })}
+                  required
+                />
+                {isFocused.name && (
+                  <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
+                )}
+              </div>
+            </div>
 
             {/* Email Field */}
             <div className="space-y-2">
@@ -176,13 +177,14 @@ export default function Register() {
             </div>
 
             {/* Divider Line */}
-            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-4 mb-3 h-[1px] w-full" />
+            {/* <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-4 mb-3 h-[1px] w-full" /> */}
 
             {/* Register Button with Right Arrow Icon */}
             <button
               type="submit"
-              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-2 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
-              >  Register
+              className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg
+              flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
+            >  Register
               <ChevronRightIcon className="w-5 h-5 stroke-current" />
             </button>
 
@@ -215,11 +217,14 @@ export default function Register() {
             <p className="text-gray-300 mb-4">Please enter the verification code to complete your registration.</p>
 
             <div className="mb-4 relative">
+              <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
+                <LuKey className="w-4 h-4 text-gray-400" />
+              </div>
               <input
                 type="text"
                 placeholder="Enter verification code"
-                className="w-full p-4 pl-6 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
-    rounded-lg transition-all duration-200 focus:outline-none  focus:outline-none focus:border-blue-500"
+                className="w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
+               rounded-lg transition-all duration-200 focus:outline-none focus:border-blue-500"
                 value={verificationCode}
                 onChange={handleVerificationCodeChange}
               />
@@ -235,7 +240,7 @@ export default function Register() {
             <button
               onClick={handleVerifyCode}
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-2 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
-             >  Verify & Register
+            >  Verify & Register
             </button>
           </div>
         </div>
@@ -243,8 +248,9 @@ export default function Register() {
 
       {/* Success Notification */}
       {showSuccessNotification && (
-        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 animate-fadeIn flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+          <CheckIcon className="w-6 h-6 text-green-500" />
           Account created sucessfully. Please log in.
         </div>
       )}

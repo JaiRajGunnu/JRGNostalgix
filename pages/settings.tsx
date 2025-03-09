@@ -4,6 +4,7 @@ import { CheckIcon } from "@heroicons/react/24/solid"; // <-- Import CheckIcon
 import SidebarLayout from "@/components/layouts/sidebarlayout";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import Head from "next/head";
+import { RiSpam2Line } from "react-icons/ri";
 
 const Settings = () => {
   // const [notifications, setNotifications] = useState(true);
@@ -83,7 +84,7 @@ const Settings = () => {
                       transition-colors focus:outline-none focus:ring-2 
                       focus:ring-blue-500 dark:bg-[#27292af7]`}
                   >
-                     <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />
+                    <CheckIcon className="w-4 h-4 text-white cursor-no-drop" />
                   </div>
 
                   <span className="text-gray-700 dark:text-gray-400">
@@ -176,8 +177,10 @@ const Settings = () => {
 
         {/* Floating error message */}
         {showDeactivateError && (
-          <div className="fixed m-5 bottom-5 right-0  md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-            Sorry, only Master Admin can deactivate your account.
+          <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+            <RiSpam2Line className="w-6 h-6 text-red-500" />
+            Session time expired.
           </div>
         )}
       </SidebarLayout>

@@ -100,8 +100,8 @@ export default function RegisterModal({ isOpen, closeModal, onUserAdded }: Regis
 
                     <button
                         type="submit"
-                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-5 flex items-center justify-center gap-2"
-                    >
+                        className="w-full bg-blue-600 hover:bg-blue-700 text-white font-poppins
+                        font-semibold py-3 rounded-lg text-lg mt-5 flex items-center justify-center gap-2">
                         <PlusIcon className="w-5 h-5 stroke-white stroke-2 mt-0" />
                         Add Member
                     </button>

@@ -9,6 +9,7 @@ import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { GoUnlock, GoLock } from "react-icons/go";
 import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
+import { RiSpam2Line } from "react-icons/ri";
 import { useCallback } from "react";
 
 export default function Login() {
@@ -240,8 +241,9 @@ export default function Login() {
 
       {/* Floating Session Expired Message */}
       {sessionExpired && (
-        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-gray-900 to-gray-800 text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 animate-fadeIn flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse"></div>
+        <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+          <RiSpam2Line className="w-6 h-6 text-red-500" />
           Session time expired.
         </div>
       )}

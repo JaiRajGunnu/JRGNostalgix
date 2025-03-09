@@ -6,7 +6,7 @@ import AdminGuard from "./_layout";
 import AdminSidebar from '@/components/ui/AdminSidebar';
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { shortTestimonials } from "@/components/ui/friends";
-import { CheckIcon, ChevronUpIcon, ChevronDownIcon,  ArrowsUpDownIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
+import { CheckIcon, ChevronUpIcon, ChevronDownIcon, ArrowsUpDownIcon, XMarkIcon, PlusIcon } from "@heroicons/react/24/solid";
 import Head from 'next/head';
 import BatchActionModal from '@/components/BatchActionModel';
 import moment from 'moment';
@@ -153,24 +153,24 @@ const AdminsPage = () => {
       );
     }
 
-// Apply sorting
-result.sort((a, b) => {
-  let aValue: string | number | Date = a[sortField] || '';
-  let bValue: string | number | Date = b[sortField] || '';
+    // Apply sorting
+    result.sort((a, b) => {
+      let aValue: string | number | Date = a[sortField] || '';
+      let bValue: string | number | Date = b[sortField] || '';
 
-  // Special handling for dates
-  if (sortField === 'createdAt' || sortField === 'lastLogin') {
-    aValue = aValue ? new Date(aValue).getTime() : 0;
-    bValue = bValue ? new Date(bValue).getTime() : 0;
-  } else if (typeof aValue === 'string' && typeof bValue === 'string') {
-    aValue = aValue.toLowerCase();
-    bValue = bValue.toLowerCase();
-  }
+      // Special handling for dates
+      if (sortField === 'createdAt' || sortField === 'lastLogin') {
+        aValue = aValue ? new Date(aValue).getTime() : 0;
+        bValue = bValue ? new Date(bValue).getTime() : 0;
+      } else if (typeof aValue === 'string' && typeof bValue === 'string') {
+        aValue = aValue.toLowerCase();
+        bValue = bValue.toLowerCase();
+      }
 
-  if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
-  if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
-  return 0;
-});
+      if (aValue < bValue) return sortOrder === 'asc' ? -1 : 1;
+      if (aValue > bValue) return sortOrder === 'asc' ? 1 : -1;
+      return 0;
+    });
 
 
     setFilteredAdmins(result);
@@ -701,8 +701,7 @@ result.sort((a, b) => {
                                         <button
                                           onClick={() => toggleAdmin(admin._id, admin.role)}
                                           className="scale-[85%] bg-[#18191af7] border border-white hover:border-red-500 text-white opacity-30 hover:opacity-100 hover:text-red-500 px-3 py-1 rounded"
-                                        >
-                                          Revoke Admin
+                                        >  Revoke Admin
                                         </button>
                                       </TooltipTrigger>
                                       <TooltipContent side="left">

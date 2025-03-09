@@ -3,6 +3,7 @@ import { useState } from "react";
 import toast from "react-hot-toast";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import SidebarLayout from "@/components/layouts/sidebarlayout";
+import { CheckIcon } from "@heroicons/react/24/solid";
 import Head from "next/head";
 
 const FeedbackPage = () => {
@@ -57,18 +58,16 @@ const FeedbackPage = () => {
             <div className="flex space-x-7">
               <button
                 onClick={() => sendFeedback("thumbs_up")}
-                className={`text-7xl transition-all ${
-                  selectedFeedback === "thumbs_down" ? "opacity-30" : ""
-                } ${selectedFeedback ? "cursor-default" : "hover:scale-110"}`}
+                className={`text-7xl transition-all ${selectedFeedback === "thumbs_down" ? "opacity-30" : ""
+                  } ${selectedFeedback ? "cursor-default" : "hover:scale-110"}`}
                 disabled={loading || selectedFeedback !== null}
               >
                 👍
               </button>
               <button
                 onClick={() => sendFeedback("thumbs_down")}
-                className={`text-7xl transition-all ${
-                  selectedFeedback === "thumbs_up" ? "opacity-30" : ""
-                } ${selectedFeedback ? "cursor-default" : "hover:scale-110"}`}
+                className={`text-7xl transition-all ${selectedFeedback === "thumbs_up" ? "opacity-30" : ""
+                  } ${selectedFeedback ? "cursor-default" : "hover:scale-110"}`}
                 disabled={loading || selectedFeedback !== null}
               >
                 👎
@@ -78,8 +77,10 @@ const FeedbackPage = () => {
 
           {/* ✅ Floating Message */}
           {feedbackSubmitted && (
-            <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-[#262626] text-white px-5 py-3 rounded-lg shadow-lg opacity-100 transition-opacity animate-fadeIn">
-              Thanks for your feedback. 😊
+            <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
+        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+              <CheckIcon className="w-6 h-6 text-green-500" />
+              Thanks for your feedback.
             </div>
           )}
         </BackgroundBeamsWithCollision>
