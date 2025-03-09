@@ -1,13 +1,12 @@
 // pages\auth\login.tsx
-
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Head from "next/head";
+import Link from "next/link";
 import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/solid";
 import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
-// import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 import { useCallback } from "react";
 
 export default function Login() {
@@ -122,10 +121,10 @@ export default function Login() {
           </h2>
           <form onSubmit={handleLogin} className="flex flex-col">
             {/* Email Field */}
-            <label className="text-white mb-1 text-md font-poppins">Email</label>
+            <label className="text-white mb-1 text-md font-poppins">E-mail</label>
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your e-mail"
               className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 border-white/30 mb-4 rounded-lg focus:outline-none focus:border-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -174,16 +173,24 @@ export default function Login() {
             </div>
 
             {/* Divider Line */}
-            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />
+            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-8 mb-3 h-[1px] w-full" />
 
             {/* Login Button */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
-            >
-              Login
+              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-4 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
+            >  Login
               <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />
             </button>
+
+                        {/* Already have an account? Login Now */}
+              <p className="text-gray-300 text-center mt-4 font-poppins opacity-90">
+              Don't have an account?{" "}
+              <Link href="/auth/register" className="text-blue-400 hover:underline">
+                Register now
+              </Link>
+            </p>
+
             {error && <p className="text-red-500 text-center mt-3">{error}</p>}
           </form>
         </div>

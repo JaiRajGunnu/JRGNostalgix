@@ -97,10 +97,10 @@ export default function Register() {
             />
 
             {/* Email Field */}
-            <label className="text-white mb-1 text-md font-poppins">Email</label>
+            <label className="text-white mb-1 text-md font-poppins">E-mail</label>
             <input
               type="email"
-              placeholder="Enter your email"
+              placeholder="Enter your e-mail"
               className="w-full p-3 bg-[#27292af7] text-white placeholder-gray-300 border-2 mb-4 border-white/30 rounded-lg focus:outline-none focus:border-blue-500"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -132,20 +132,19 @@ export default function Register() {
               </button>
             </div>
 
+            {/* Divider Line */}
+            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-8 mb-3 h-[1px] w-full" />
+
             {/* Register Button with Right Arrow Icon */}
             <button
               type="submit"
-              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-7 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
-            >
-              Register
+              className="w-full bg-white text-black font-poppins font-semibold py-3 rounded-lg text-lg mt-4 flex items-center justify-center gap-2 transition duration-300 ease-in-out hover:opacity-60"
+            >  Register
               <ChevronRightIcon className="w-4 h-4 stroke-current mt-[2px]" />
             </button>
 
-            {/* Divider Line */}
-            <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-5 mb-3 h-[1px] w-full" />
-
             {/* Already have an account? Login Now */}
-            <p className="text-gray-300 text-center mt-4 font-poppins">
+            <p className="text-gray-300 text-center mt-4 font-poppins opacity-90">
               Already have an account?{" "}
               <Link href="/auth/login" className="text-blue-400 hover:underline">
                 Login now
