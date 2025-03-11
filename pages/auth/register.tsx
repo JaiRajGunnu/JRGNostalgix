@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import Head from "next/head";
@@ -10,11 +10,16 @@ import { ChevronRightIcon } from "@heroicons/react/24/solid";
 import { GoUnlock, GoLock } from "react-icons/go";
 import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
 import { LuKey } from "react-icons/lu";
+import { FaRegFaceFrown, FaRegFaceMeh, FaRegFaceSmile } from "react-icons/fa6";
+import { BiMessageAltError } from "react-icons/bi";
 
 export default function Register() {
   const [name, setName] = useState("");
+  const [nameValidity, setNameValidity] = useState("");
   const [email, setEmail] = useState("");
+  const [emailValidity, setEmailValidity] = useState("");
   const [password, setPassword] = useState("");
+  const [passwordStrength, setPasswordStrength] = useState("");
   const [, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [showModal, setShowModal] = useState(false);
@@ -26,11 +31,115 @@ export default function Register() {
     name: false,
     email: false,
     password: false
-  }); // Added focus state for CSS
+  }); 
   const router = useRouter();
+
+  // Check name validity whenever name changes
+  useEffect(() => {
+    if (name.length === 0) {
+      setNameValidity("");
+    } else if (name.length < 3) {
+      setNameValidity("invalid");
+    } else {
+      setNameValidity("valid");
+    }
+  }, [name]);
+
+  // Check email validity whenever email changes
+  useEffect(() => {
+    if (email.length === 0) {
+      setEmailValidity("");
+    } else {
+      // Simple email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        setEmailValidity("valid");
+      } else {
+        setEmailValidity("invalid");
+      }
+    }
+  }, [email]);
+
+  // Check password strength whenever password changes
+  useEffect(() => {
+    if (password.length === 0) {
+      setPasswordStrength("");
+    } else if (password.length < 6) {
+      setPasswordStrength("weak");
+    } else if (password.length < 10) {
+      setPasswordStrength("normal");
+    } else {
+      // Check for strong password (contains numbers, special chars, uppercase, lowercase)
+      const hasNumber = /\d/.test(password);
+      const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+      const hasUppercase = /[A-Z]/.test(password);
+      const hasLowercase = /[a-z]/.test(password);
+      
+      if (hasNumber && hasSpecial && hasUppercase && hasLowercase) {
+        setPasswordStrength("strong");
+      } else {
+        setPasswordStrength("normal");
+      }
+    }
+  }, [password]);
+
+  // Get password strength icon
+  const getPasswordStrengthIcon = () => {
+    switch (passwordStrength) {
+      case "weak":
+        return <FaRegFaceFrown className="text-red-500" />;
+      case "normal":
+        return <FaRegFaceMeh className="text-yellow-500" />;
+      case "strong":
+        return <FaRegFaceSmile className="text-green-500" />;
+      default:
+        return null;
+    }
+  };
+
+  // Get color for password strength
+  const getPasswordStrengthColor = () => {
+    switch (passwordStrength) {
+      case "weak":
+        return "text-red-500 capitalize";
+      case "normal":
+        return "text-yellow-500 capitalize";
+      case "strong":
+        return "text-green-500 capitalize";
+      default:
+        return "";
+    }
+  };
+
+  // Get color for name validity
+  const getNameValidityColor = () => {
+    switch (nameValidity) {
+      case "invalid":
+        return "text-red-500";
+      case "valid":
+        return "text-green-500";
+      default:
+        return "";
+    }
+  };
+
+  // Get color for email validity
+  const getEmailValidityColor = () => {
+    switch (emailValidity) {
+      case "invalid":
+        return "text-red-500";
+      case "valid":
+        return "text-green-500";
+      default:
+        return "";
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (nameValidity !== "valid" || emailValidity !== "valid") {
+      return; // Prevent submission if validation fails
+    }
     setShowModal(true); // Open the verification modal
   };
 
@@ -115,6 +224,14 @@ export default function Register() {
                   <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
                 )}
               </div>
+              {/* Only display invalid name message */}
+              {nameValidity === "invalid" && (
+                <div className="flex items-center">
+                  <BiMessageAltError   className={`text-xs font-normal font-poppins ml-1 mt-2 ${getNameValidityColor()}`}/>
+                  <span className={`text-xs font-normal font-poppins ml-1 mt-2 ${getNameValidityColor()}`}>
+                  Enter a name (min. 3 letters)  </span>
+                </div>
+              )}
             </div>
 
             {/* Email Field */}
@@ -122,7 +239,7 @@ export default function Register() {
               <label className="text-white text-sm font-medium font-poppins flex items-center gap-2">E-mail</label>
               <div className={`relative transition-all duration-200 ${isFocused.email ? 'ring-opacity-0' : ''}`}>
                 <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                  {isFocused.email ? < IoMailUnreadOutline className="w-4 h-4 text-blue-400" /> : <IoMailOutline className="w-4 h-4 text-blue-400" />}
+                  {isFocused.email ? <IoMailUnreadOutline className="w-4 h-4 text-blue-400" /> : <IoMailOutline className="w-4 h-4 text-blue-400" />}
                 </div>
                 <input
                   type="email"
@@ -138,8 +255,16 @@ export default function Register() {
                   <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
                 )}
               </div>
+              {/* Only display invalid email message */}
+              {emailValidity === "invalid" && (
+                <div className="flex items-center">
+                <BiMessageAltError   className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}/>
+                  <span className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}>
+                    Enter a valid e-mail
+                  </span>
+                </div>
+              )}
             </div>
-
 
             {/* Password Field with Eye Toggle */}
             <div className="space-y-2">
@@ -174,16 +299,31 @@ export default function Register() {
                   )}
                 </button>
               </div>
+              {/* Password Strength Indicator with Font Awesome Icons */}
+              {passwordStrength && (
+                <div className="flex items-center mx-1">
+                  <div className="mr-2 mt-3">{getPasswordStrengthIcon()}</div>
+                  <span className={`text-xs font-semibold font-poppins mt-3 ${getPasswordStrengthColor()}`}>{passwordStrength}</span>
+                  {/* Progress bar for visual indication */}
+                  <div className="ml-2 h-1 bg-[#242527] rounded-full flex-1 mt-3">
+                    <div 
+                      className={`h-1 rounded-full transition-all duration-300 ${
+                        passwordStrength === "weak" ? "bg-red-500 w-1/3" : 
+                        passwordStrength === "normal" ? "bg-yellow-500 w-2/3" : 
+                        "bg-green-500 w-full"
+                      }`}
+                    ></div>
+                  </div>
+                </div>
+              )}
             </div>
-
-            {/* Divider Line */}
-            {/* <div className="bg-gradient-to-r from-transparent via-neutral-300 dark:via-neutral-700 to-transparent mt-4 mb-3 h-[1px] w-full" /> */}
 
             {/* Register Button with Right Arrow Icon */}
             <button
               type="submit"
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg
               flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
+              disabled={nameValidity !== "valid" || emailValidity !== "valid"}
             >  Register
               <ChevronRightIcon className="w-5 h-5 stroke-current" />
             </button>
