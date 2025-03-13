@@ -120,71 +120,71 @@ JRGNostalgix/
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of Home </p>
+      <p align="center" style="font-size: 8px;">A snap of  </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
   <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
     <tr>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
     <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
     </td>
   </tr>
    <tr>
    <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
    </td>
    <td>
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" width="400">
-      <p align="center" style="font-size: 12px;">A snap of </p>
+      <p align="center" style="font-size: 8px;">A snap of </p>
    </td>
   </tr>
 </table>
