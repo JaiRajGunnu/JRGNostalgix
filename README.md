@@ -116,64 +116,79 @@ JRGNostalgix/
 
 ## 📸 Screenshots
 
-<div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; max-width: 800px; margin: 0 auto;">
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Pilot page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Registration page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Home page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Community page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of My Verso page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Profile Settings page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Feedback page</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Settings page</p>
-  </div>
-    <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Dashboard of Admin Panel</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Member's Control Panel</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Member's Control Panel (Advanced)</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Admin's Control Panel</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Admin Settings</p>
-  </div>
-  <div style="text-align: center; margin-bottom: 10px;">
-    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" width="400" style="border: none; display: block; margin: 0 auto;">
-    <p style="font-size: 8px;">A snap of Restricted page</p>
-  </div>
-</div>
+<table style="border-collapse: collapse; margin: 0 auto;">
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Pilot page</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Registration page</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Home page</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Community page</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of My Verso page</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Profile Settings page</p>
+    </td>
+  </tr>
+  <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Feedback page</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Settings page</p>
+    </td>
+  </tr>
+    <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Dashboard of Admin Panel</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Member's Control Panel</p>
+    </td>
+  </tr>
+   <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Member's Control Panel (Advanced)</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Admin's Control Panel</p>
+    </td>
+  </tr>
+    <tr>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Admin Settings</p>
+    </td>
+    <td style="padding: 10px; text-align: center;">
+      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" width="250" style="display: block; margin: 0 auto;">
+      <p style="font-size: 8px;">A snap of Restricted page</p>
+    </td>
+  </tr>
+</table>
+
 ## 👥 Contributors
 
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
