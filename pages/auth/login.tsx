@@ -1,4 +1,3 @@
-// pages\auth\login.tsx
 "use client";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
@@ -10,10 +9,12 @@ import { ChevronRightIcon, CheckIcon } from "@heroicons/react/24/solid";
 import { GoUnlock, GoLock } from "react-icons/go";
 import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
 import { RiSpam2Line } from "react-icons/ri";
+import { BiMessageAltError } from "react-icons/bi";
 import { useCallback } from "react";
 
 export default function Login() {
   const [email, setEmail] = useState("");
+  const [emailValidity, setEmailValidity] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -27,6 +28,33 @@ export default function Login() {
   const [sessionExpired, setSessionExpired] = useState(false);
 
   const router = useRouter();
+
+  // Check email validity whenever email changes
+  useEffect(() => {
+    if (email.length === 0) {
+      setEmailValidity("");
+    } else {
+      // Simple email validation regex
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (emailRegex.test(email)) {
+        setEmailValidity("valid");
+      } else {
+        setEmailValidity("invalid");
+      }
+    }
+  }, [email]);
+
+  // Get color for email validity
+  const getEmailValidityColor = () => {
+    switch (emailValidity) {
+      case "invalid":
+        return "text-red-500";
+      case "valid":
+        return "text-green-500";
+      default:
+        return "";
+    }
+  };
 
   // Helper: logs out user, shows floating message
   const logoutAndShowExpiration = useCallback(() => {
@@ -76,6 +104,12 @@ export default function Login() {
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+
+    // Prevent submission if email validation fails
+    if (emailValidity === "invalid") {
+      setError("Please enter a valid email address");
+      return;
+    }
 
     const res = await fetch("/api/auth/login", {
       method: "POST",
@@ -135,23 +169,32 @@ export default function Login() {
               </label>
               <div className={`relative transition-all duration-200 ${isFocused.email ? 'ring-opacity-0 ' : ''}`}>
                 <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
-                  {isFocused.email ? < IoMailUnreadOutline className="w-4 h-4 text-blue-400" /> : <IoMailOutline className="w-4 h-4 text-blue-400" />}
-
+                  {isFocused.email ? <IoMailUnreadOutline className="w-4 h-4 text-blue-400" /> : <IoMailOutline className="w-4 h-4 text-blue-400" />}
                 </div>
                 <input
                   type="email"
                   placeholder="Enter your e-mail"
                   className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
-    rounded-lg transition-all duration-200 focus:outline-none ${isFocused.email ? 'rounded-b-none' : ''
-                    }`}
+                  rounded-lg transition-all duration-200 focus:outline-none ${isFocused.email ? 'rounded-b-none' : ''}`}
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   onFocus={() => setIsFocused({ ...isFocused, email: true })}
                   onBlur={() => setIsFocused({ ...isFocused, email: false })}
                   required
                 />
-
-                <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500  rounded-b-xl transition-all duration-300 ${isFocused.email ? 'opacity-100' : 'opacity-0'}`}></div></div>
+                {isFocused.email && (
+                  <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
+                )}
+              </div>
+              {/* Display invalid email message */}
+              {emailValidity === "invalid" && (
+                <div className="flex items-center">
+                  <BiMessageAltError className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}/>
+                  <span className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}>
+                    Enter a valid e-mail
+                  </span>
+                </div>
+              )}
             </div>
 
             {/* Password Field with Eye Toggle */}
@@ -162,22 +205,19 @@ export default function Login() {
               <div className={`relative transition-all duration-200 ${isFocused.password ? 'ring-opacity-0' : ''}`}>
                 <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none">
                   {isFocused.password ? <GoLock className="w-4 h-4 text-blue-400" /> : <GoUnlock className="w-4 h-4 text-blue-400" />}
-
                 </div>
                 <input
                   type={showPassword ? "text" : "password"}
                   placeholder="Enter your password"
                   className={`w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
-    rounded-lg transition-all duration-200 focus:outline-none ${isFocused.password ? 'rounded-b-none outline-0' : ''
-                    }`}
+                  rounded-lg transition-all duration-200 focus:outline-none ${isFocused.password ? 'rounded-b-none outline-0' : ''}`}
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   onFocus={() => setIsFocused({ ...isFocused, password: true })}
                   onBlur={() => setIsFocused({ ...isFocused, password: false })}
                   required
                 />
-
-                {isFocused.password && (  // Conditionally render the gradient line
+                {isFocused.password && (
                   <div className={`absolute bottom-0 left-0 h-[2px] w-full bg-gradient-to-r from-blue-500 to-indigo-500 rounded-b-xl transition-all duration-300`}></div>
                 )}
                 {/* Eye Icon for Password Visibility */}
