@@ -116,78 +116,64 @@ JRGNostalgix/
 
 ## 📸 Screenshots
 
-<table style="border-collapse: collapse;">
-  <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of  </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-  <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-    <tr>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-    <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-    </td>
-  </tr>
-   <tr>
-   <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-   </td>
-   <td style="padding: 0; border: none;">
-      <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" width="400">
-      <p align="center" style="font-size: 8px;">A snap of </p>
-   </td>
-  </tr>
-</table>
+<div style="display: flex; flex-wrap: wrap; justify-content: flex-start;">
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+  <div style="width: 400px; text-align: center; margin-bottom: 10px;">
+    <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" width="400" style="border: none;">
+    <p style="font-size: 8px;">A snap of </p>
+  </div>
+</div>
 
 ## 👥 Contributors
 
