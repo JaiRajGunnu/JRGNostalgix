@@ -1,15 +1,27 @@
 # JRGNostalgix
 
-**JRGNostalgix** is a modern digital slam book application that allows users to create and manage their slam book entries while interacting with a community. It includes features for user authentication, profile management, community engagement, and more.
+**JRGNostalgix** is a modern digital slam book application that allows members to create and manage their slam book entries while interacting with a community. It includes features for user authentication, profile management, community engagement, and more.
 
 ## 🚀 Features
 
 - **User Authentication**: MongoDB-based email/password authentication for secure login and registration.
-- **Community Page**: A dynamic and personalized page where users can interact with each other.
-- **Friends Page**: Displays a list of friends with their avatars and allows users to add them.
-- **Slam Book Page**: Users can view, add, and manage their slam book entries.
+- **Community Page**: A dynamic and personalized page where members can interact with each other.
+- **Friends Page**: Displays a list of friends with their avatars and allows members to add them.
+- **Slam Book Page**: Members can view, add, and manage their slam book entries.
 - **Profile Setting Page**: Manage and update profile settings including password changes.
 - **Settings Page**: Customizable settings for user controls, deactivations, and preferences.
+
+## 🔑 Admin Controls
+
+Admins have special access to manage members, feedback, and overall platform settings. The **Admin Panel** includes:
+
+- **Admins List**: View, add, or remove admin members.
+- **Members Control Panel**: View all members, grant admin privileges, edit their details, or deactivate accounts.
+- **Admins Control Panel**: View all admins, grant or revoke admin privileges, or edit their details.
+- **Database Configuration**: Manages database connections, models, and queries using MongoDB for efficient data storage.
+- **Feedback Management**: Review user feedback and take necessary actions.
+- **System Settings**: Modify platform access settings, update configurations, and manage global controls.
+
 
 ## 🛠 Tech Stack
 
