@@ -63,7 +63,7 @@ JRGNostalgix/
 │  ├─ feedback.ts                      # Feedback model
 │  ├─ Todo.ts                          # Todo model
 │  ├─ User.ts                          # User model
-├─ pages/                               # Next.js pages
+├─ pages/                              # Next.js pages
 │  ├─ admin/                           # Admin panel pages
 │  ├─ api/                             # API routes
 │  ├─ auth/                            # Authentication pages
