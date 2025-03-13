@@ -24,10 +24,17 @@
 ## 🛠 Tech Stack
 
 - **Frontend**: Next.js, React.js, Tailwind CSS
-- **Backend**: Node.js (if applicable)
-- **Database**: MongoDB
-- **UI Components**: Aceternity UI
-
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB, Mongoose
+- **UI Components**: Aceternity UI, Radix UI
+- **UI/UX Design**: Figma
+- **Authentication & Authorization**: JSON Web Tokens (JWT)
+- **State Management**: Context API
+- **API Handling**: Axios, Fetch API
+- **Middleware**: Next.js Middleware
+- **Deployment & Hosting**: Vercel
+- **Logging & Debugging**: Console Debugging, DevTools
+- **Version Control**: Git, GitHub
 
 
 ## 🗂️ File Structure
