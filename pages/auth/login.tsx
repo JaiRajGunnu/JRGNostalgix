@@ -151,7 +151,8 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login</title>
+        <title>Login | Jai Raj&apos;s Nostalgix</title>
+
       </Head>
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
