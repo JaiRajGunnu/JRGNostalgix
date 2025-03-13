@@ -115,9 +115,60 @@ JRGNostalgix/
 6. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
 ## 📸 Screenshots  
-![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/ss.png)  
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img01.png)  
 <p align="center" style="font-size: 12px;">A sample screenshot</p>
 
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img02.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img03.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img04.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img05.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img06.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img07.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img08.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img09.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img10.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
+
+![Screenshot](https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/img11.png)
+<p align="center" style="font-size: 12px;">A sample screenshot</p>
+
+<br><br/>
 ## 👥 Contributors
 
 - **Jai Raj Gunnu** - [GitHub](https://github.com/JaiRajGunnu)
