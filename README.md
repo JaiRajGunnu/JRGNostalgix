@@ -13,12 +13,10 @@
 
 ## 🔑 Admin Controls
 
-Admins have special access to manage members, feedback, and overall platform settings. The **Admin Panel** includes:
-
 - **Admins List**: View, add, or remove admin members.
 - **Members Control Panel**: View all members, grant admin privileges, edit their details, or deactivate accounts.
 - **Admins Control Panel**: View all admins, grant or revoke admin privileges, or edit their details.
-- **Database Configuration**: Manages database connections, models, and queries using MongoDB for efficient data storage.
+- **Database Configuration**: Manages database connections, models, and queries for efficient data storage.
 - **Feedback Management**: Review user feedback and take necessary actions.
 - **System Settings**: Modify platform access settings, update configurations, and manage global controls.
 
