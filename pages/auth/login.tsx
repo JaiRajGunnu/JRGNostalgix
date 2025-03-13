@@ -151,7 +151,7 @@ export default function Login() {
   return (
     <>
       <Head>
-        <title>Login | Jai Raj&apos;s Nostalgix</title>
+        <title>Login - Jai Raj&apos;s Nostalgix</title>
 
       </Head>
 

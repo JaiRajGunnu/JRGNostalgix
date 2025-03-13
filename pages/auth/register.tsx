@@ -194,7 +194,7 @@ export default function Register() {
   return (
     <>
       <Head>
-        <title>Register | Jai Raj&apos;s Nostalgix</title>
+        <title>Register - Jai Raj&apos;s Nostalgix</title>
       </Head>
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
