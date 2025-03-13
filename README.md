@@ -118,73 +118,73 @@ JRGNostalgix/
 
 <table style="border-collapse: collapse; margin: 0 auto;">
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Pilot page</p>
+      <p align="center" style="font-size: 8px;">Pilot page</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Registration page</p>
+      <p align="center" style="font-size: 8px;">Registration page</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Home page</p>
+      <p align="center" style="font-size: 8px;">Home page</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Community page</p>
+      <p align="center" style="font-size: 8px;">Community page</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">My Verso page</p>
+      <p align="center" style="font-size: 8px;">My Verso page</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Profile Settings page</p>
+      <p align="center" style="font-size: 8px;">Profile Settings page</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Feedback page</p>
+      <p align="center" style="font-size: 8px;">Feedback page</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Settings page</p>
+      <p align="center" style="font-size: 8px;">Settings page</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Dashboard of Admin Panel</p>
+      <p align="center" style="font-size: 8px;">Dashboard of Admin Panel</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Member's Control Panel</p>
+      <p align="center" style="font-size: 8px;">Member's Control Panel</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Member's Control Panel (Advanced)</p>
+      <p align="center" style="font-size: 8px;">Member's Control Panel (Advanced)</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Admin's Control Panel</p>
+      <p align="center" style="font-size: 8px;">Admin's Control Panel</p>
     </td>
   </tr>
   <tr>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Admin Settings</p>
+      <p align="center" style="font-size: 8px;">Admin Settings</p>
     </td>
-    <td style="padding: 10px; text-align: center;">
+    <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" style="display: block; margin: 0 auto;">
-      <p style="font-size: 8px; text-align: center;">Restricted page</p>
+      <p align="center" style="font-size: 8px;">Restricted page</p>
     </td>
   </tr>
 </table>
