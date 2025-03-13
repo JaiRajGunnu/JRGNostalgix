@@ -120,71 +120,71 @@ JRGNostalgix/
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs01.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Pilot page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Pilot page</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs02.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Registration page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Registration page</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs03.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Home page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Home page</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs04.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Community page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Community page</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs05.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">My Verso page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">My Verso page</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs06.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Profile Settings page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Profile Settings page</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs07.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Feedback page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Feedback page</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs08.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Settings page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Settings page</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs09.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Dashboard of Admin Panel</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Dashboard of Admin Panel</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs10.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Member's Control Panel</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Member's Control Panel</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs11.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Member's Control Panel (Advanced)</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Member's Control Panel (Advanced)</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs12.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Admin's Control Panel</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Admin's Control Panel</p>
     </td>
   </tr>
   <tr>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs13.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Admin Settings</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Admin Settings</p>
     </td>
     <td style="padding: 10px;">
       <img src="https://raw.githubusercontent.com/JaiRajGunnu/JRGNostalgix/refs/heads/main/public/img/screenshots/imgs14.png" style="display: block; margin: 0 auto;">
-      <p align="center" style="font-size: 8px;">Restricted page</p>
+      <p align="center" style="font-size: 6px; opacity:90%;">Restricted page</p>
     </td>
   </tr>
 </table>
