@@ -12,7 +12,7 @@ import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
 import { LuKey } from "react-icons/lu";
 import { FaRegFaceFrown, FaRegFaceMeh, FaRegFaceSmile } from "react-icons/fa6";
 import { BiMessageAltError } from "react-icons/bi";
-import { PacmanLoader } from "react-spinners"; // Import PacmanLoader
+import { PacmanLoader } from "react-spinners";
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -413,8 +413,7 @@ export default function Register() {
         <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
         text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
           <CheckIcon className="w-6 h-6 text-green-500" />
-          Account created sucessfully. Please log in.
-        </div>
+          Account created! Log in now.        </div>
       )}
 
       {/* Loading Overlay */}
