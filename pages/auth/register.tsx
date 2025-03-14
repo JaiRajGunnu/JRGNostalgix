@@ -191,6 +191,14 @@ export default function Register() {
     }
   };
 
+  // Handle keydown event for verification input
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      handleVerifyCode();
+    }
+  };
+
   return (
     <>
       <Head>
@@ -367,6 +375,8 @@ export default function Register() {
                rounded-lg transition-all duration-200 focus:outline-none focus:border-blue-500"
                 value={verificationCode}
                 onChange={handleVerificationCodeChange}
+                onKeyDown={handleKeyDown}
+                autoFocus
               />
               {/* Tick icon when code is valid */}
               {isCodeValid && (
