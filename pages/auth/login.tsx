@@ -283,7 +283,7 @@ export default function Login() {
       {/* Floating Session Expired Message */}
       {sessionExpired && (
         <div className="fixed m-5 bottom-5 right-0 md:bottom-10 md:right-10 lg:bottom-10 lg:right-10 bg-gradient-to-r from-[#1a1a1a] to-[#0f0f0f]
-        text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
+        text-white  font-poppins px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
           <RiSpam2Line className="w-6 h-6 text-red-500 mr-2" />
           Session time expired.
         </div>

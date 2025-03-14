@@ -129,7 +129,7 @@ const TodoList: React.FC = () => {
           </button>
         </div>
         
-        {errorMessage && <p className="text-red-500 mb-4">{errorMessage}</p>}
+        {errorMessage && <p className="text-red-500 mb-4 font-poppins">{errorMessage}</p>}
         
         {/* Filters */}
         <div className="flex justify-between items-center mb-4">

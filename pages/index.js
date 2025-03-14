@@ -45,8 +45,7 @@ export default function HomePage() {
           transition duration-300 ease-in-out font-arial
           hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
           onClick={handleGetStarted}
-        >
-          Get started
+        >  Get started
         </button>
       </BackgroundBeamsWithCollision>
     </>

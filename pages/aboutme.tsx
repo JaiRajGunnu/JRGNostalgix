@@ -332,8 +332,7 @@ export default function AboutMe() {
                                                     target="_blank"
                                                     rel="noopener noreferrer"
                                                     className="text-white-lite font-poppins flex flex-row"
-                                                >
-                                                    jairajg24
+                                                >   jairajg24
                                                     <IconExternalLink className="w-4 h-4 text-gray-400 ml-1 mt-1" />
                                                 </a>
                                             </span>

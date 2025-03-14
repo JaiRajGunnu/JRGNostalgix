@@ -77,8 +77,7 @@ export default function Community() {
                 bg-white text-black font-semibold py-2.5 px-5 rounded-3xl text-xl 
                 transition duration-300 ease-in-out tracking-wider font-poppins
                 hover:bg-gradient-to-r hover:from-purple-500 hover:to-blue-500 hover:text-white"
-              >
-                Explore now              </button>
+              >  Explore now  </button>
             </div>
           )}
         </div>
