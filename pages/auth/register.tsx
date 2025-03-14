@@ -12,6 +12,7 @@ import { IoMailOutline, IoMailUnreadOutline } from "react-icons/io5";
 import { LuKey } from "react-icons/lu";
 import { FaRegFaceFrown, FaRegFaceMeh, FaRegFaceSmile } from "react-icons/fa6";
 import { BiMessageAltError } from "react-icons/bi";
+import { PacmanLoader } from "react-spinners"; // Import PacmanLoader
 
 export default function Register() {
   const [name, setName] = useState("");
@@ -31,7 +32,8 @@ export default function Register() {
     name: false,
     email: false,
     password: false
-  }); 
+  });
+  const [isLoading, setIsLoading] = useState(false); // Add loading state
   const router = useRouter();
 
   // Check name validity whenever name changes
@@ -74,7 +76,7 @@ export default function Register() {
       const hasSpecial = /[!@#$%^&*(),.?":{}|<>]/.test(password);
       const hasUppercase = /[A-Z]/.test(password);
       const hasLowercase = /[a-z]/.test(password);
-      
+
       if (hasNumber && hasSpecial && hasUppercase && hasLowercase) {
         setPasswordStrength("strong");
       } else {
@@ -162,6 +164,7 @@ export default function Register() {
     if (verificationCode === "JAISLAM#25") {
       setCodeError("");
       setShowModal(false);
+      setIsLoading(true); // Start loading
 
       // Now proceed with the actual registration
       try {
@@ -185,6 +188,8 @@ export default function Register() {
         }
       } catch {
         setError("Something went wrong. Please try again.");
+      } finally {
+        setIsLoading(false); // End loading, whether success or error
       }
     } else {
       setCodeError("Wrong code. Please try again.");
@@ -202,13 +207,13 @@ export default function Register() {
   return (
     <>
       <Head>
-        <title>Register - Jai Raj&apos;s Nostalgix</title>
+        <title>Register - Jai Raj's Nostalgix</title>
       </Head>
 
       <BackgroundBeamsWithCollision className="p-[5%] flex flex-col justify-center items-center min-h-screen">
         <div className="w-full max-w-md p-8 md:p-10 rounded-2xl shadow-lg backdrop-blur-lg bg-[#17181a]/90 border border-white/20
                         transition-all duration-300 hover:scale-[102%] hover:shadow-[0_0_25px_rgba(59,130,246,0.3)]">
-          <h2 className="text-4xl font-bold font-hammersmith text-center 
+          <h2 className="text-4xl font-bold font-hammersmith text-center
           mb-5 bg-gradient-to-r from-blue-400 to-indigo-500 bg-clip-text text-transparent leading-[3rem]">Register</h2>
           <form onSubmit={handleSubmit} className="flex flex-col space-y-6">
             {/* Name Field */}
@@ -235,9 +240,9 @@ export default function Register() {
               {/* Only display invalid name message */}
               {nameValidity === "invalid" && (
                 <div className="flex items-center">
-                  <BiMessageAltError   className={`text-xs font-normal font-poppins ml-1 mt-2 ${getNameValidityColor()}`}/>
+                  <BiMessageAltError className={`text-xs font-normal font-poppins ml-1 mt-2 ${getNameValidityColor()}`} />
                   <span className={`text-xs font-normal font-poppins ml-1 mt-2 ${getNameValidityColor()}`}>
-                  Enter a name (min. 3 letters)  </span>
+                    Enter a name (min. 3 letters)  </span>
                 </div>
               )}
             </div>
@@ -266,7 +271,7 @@ export default function Register() {
               {/* Only display invalid email message */}
               {emailValidity === "invalid" && (
                 <div className="flex items-center">
-                <BiMessageAltError   className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}/>
+                  <BiMessageAltError className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`} />
                   <span className={`text-xs font-normal font-poppins ml-1 mt-2 ${getEmailValidityColor()}`}>
                     Enter a valid e-mail
                   </span>
@@ -314,12 +319,12 @@ export default function Register() {
                   <span className={`text-xs font-semibold font-poppins mt-3 ${getPasswordStrengthColor()}`}>{passwordStrength}</span>
                   {/* Progress bar for visual indication */}
                   <div className="ml-2 h-1 bg-[#242527] rounded-full flex-1 mt-3">
-                    <div 
+                    <div
                       className={`h-1 rounded-full transition-all duration-300 ${
-                        passwordStrength === "weak" ? "bg-red-500 w-1/3" : 
-                        passwordStrength === "normal" ? "bg-yellow-500 w-2/3" : 
-                        "bg-green-500 w-full"
-                      }`}
+                        passwordStrength === "weak" ? "bg-red-500 w-1/3" :
+                          passwordStrength === "normal" ? "bg-yellow-500 w-2/3" :
+                            "bg-green-500 w-full"
+                        }`}
                     ></div>
                   </div>
                 </div>
@@ -371,7 +376,7 @@ export default function Register() {
               <input
                 type="text"
                 placeholder="Enter verification code"
-                className="w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10 
+                className="w-full p-3 pl-10 bg-[#1e2023] text-white placeholder-gray-400 border border-white/10
                rounded-lg transition-all duration-200 focus:outline-none focus:border-blue-500"
                 value={verificationCode}
                 onChange={handleVerificationCodeChange}
@@ -389,7 +394,13 @@ export default function Register() {
             <button
               onClick={handleVerifyCode}
               className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-poppins font-semibold py-3 rounded-lg text-lg mt-2 flex items-center justify-center gap-2 transition-all duration-300 ease-in-out hover:shadow-lg hover:shadow-blue-500/30 hover:from-blue-600 hover:to-indigo-700"
-            >  Verify & Register
+              disabled={isLoading} // Disable the button while loading
+            >
+              {isLoading ? ( // Show spinner if loading
+                <PacmanLoader color="#ffffff" size={20} />
+              ) : (
+                <>Verify & Register</>
+              )}
             </button>
             {codeError && <p className="text-red-500 mt-4 text-center">{codeError}</p>}
 
@@ -403,6 +414,13 @@ export default function Register() {
         text-white px-5 py-3 rounded-lg shadow-lg border border-white/10 flex items-center gap-2">
           <CheckIcon className="w-6 h-6 text-green-500" />
           Account created sucessfully. Please log in.
+        </div>
+      )}
+
+      {/* Loading Overlay */}
+      {isLoading && (
+        <div className="fixed inset-0 bg-black bg-opacity-70 flex justify-center items-center z-50">
+          <PacmanLoader color="#ffffff" size={30} />
         </div>
       )}
     </>
